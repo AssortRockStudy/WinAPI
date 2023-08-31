@@ -47,6 +47,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
+
+    //GetMessage 함수는 메세지큐에 WM_QUIT 메세지가 들어있으면 false 를 반환한다.
+    // GetMessage 함수는 메세지큐에서 가져온 메세지가 WM_QUIT 이 아닌면 언제나 true 를 반환
+    // 
     // 기본 메시지 루프입니다:
     while (GetMessage(&msg, nullptr, 0, 0))
     {
@@ -62,6 +66,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             DispatchMessage(&msg);
         }
     }
+
 
     return (int) msg.wParam;
 }
@@ -134,6 +139,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //  WM_DESTROY  - 종료 메시지를 게시하고 반환합니다.
 //
 //
+bool g_bLBtn = false;
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
@@ -150,16 +157,24 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             case IDM_EXIT:
                 DestroyWindow(hWnd);
                 break;
+
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);
             }
         }
+        break;
+    case WM_LBUTTONDOWN:
+        g_bLBtn = true;
         break;
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+            if (g_bLBtn)
+            {
+                Rectangle(hdc, 10, 10, 210, 210);
+            }
             EndPaint(hWnd, &ps);
         }
         break;
