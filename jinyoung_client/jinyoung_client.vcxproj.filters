@@ -8,6 +8,21 @@
     <Filter Include="Default">
       <UniqueIdentifier>{35220712-4c30-4a33-99eb-dbe7a3b6ee3e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{39c4a9fa-f449-473c-9c81-c7f70fc75f7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\01.Header">
+      <UniqueIdentifier>{6d8713d4-f1f0-4fc6-9e81-baccb53bb3aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\02.Engine">
+      <UniqueIdentifier>{49428043-1bbf-4ccc-9486-efe20c496582}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03.Manager">
+      <UniqueIdentifier>{c06f2240-7ad6-4690-970f-75c3c6397159}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04.Object">
+      <UniqueIdentifier>{e1c4618b-0e38-4821-8539-567e8bd49525}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -21,6 +36,9 @@
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="CEngine.h">
+      <Filter>Game\02.Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +57,9 @@
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="CEngine.cpp">
+      <Filter>Game\02.Engine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

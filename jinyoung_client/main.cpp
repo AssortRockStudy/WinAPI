@@ -3,6 +3,7 @@
 
 #include "framework.h"
 #include "jinyoung_client.h"
+#include "CEngine.h"
 
 #define MAX_LOADSTRING 100
 
@@ -47,27 +48,61 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
+    int TimerID = SetTimer(g_hWnd, 0, 50, nullptr);
 
     //GetMessage 함수는 메세지큐에 WM_QUIT 메세지가 들어있으면 false 를 반환한다.
     // GetMessage 함수는 메세지큐에서 가져온 메세지가 WM_QUIT 이 아닌면 언제나 true 를 반환
+    // getmessage 함수는 메세지가 없어도 함수가 종료되지않음
+    // 메세지가 있으면 메세지를 큐에서 메세지 구조체에 이동를함.
+    // 
+    // peekmessage 함수는 메세지큐에 메세지가 있으면 true를 반환
+    // peekmessage 함수는 메세지큐에 메세지가 없으면 false 를 반환.
+    // peekmessage 함수는 메세지가 없으면 함수가 종료됨.
+    // 메세지가 있으면 메세지를 큐에서 메세지 구조체에 복사를함.
     // 
     // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
-    {
-        //단축키 조합이 눌렸는지 확인
-        if (WM_LBUTTONDOWN == msg.message )
-        {
-            int a = 0;
-        }
 
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-        {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+    
+
+    while (true)
+    {
+        //싱글톤 패턴1. 항상 같은 객체리턴(처음만들어진)
+        CEngine* cep= CEngine::GetInst();
+        //싱글톤 패턴2. 외부에서 생성불가.
+        //CEngine a;
+        //new CEngine;
+
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
+
+            if (WM_QUIT == msg.message)
+            {
+                break;
+            }
+            //단축키 조합이 눌렸는지 확인
+            if (WM_LBUTTONDOWN == msg.message)
+            {
+                int a = 0;
+            }
+
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+            {
+                //메세지 처리
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
+
         }
+        //메세지가 없었다.(대부분의 시간)
+        else 
+        {
+
+        }
+            
+
+
     }
 
-
+    KillTimer(g_hWnd,TimerID);
     return (int) msg.wParam;
 }
 
@@ -140,6 +175,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 //
 bool g_bLBtn = false;
+POINT g_point;
+POINT g_playerpos = {500,500};
+POINT g_monstpos = { 100,500 };
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -163,9 +201,46 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+
+
+        //lParam :마우스 좌표값
     case WM_LBUTTONDOWN:
+    {
         g_bLBtn = true;
+        //마우스의 x좌표를 검출
+        g_point.x = LOWORD(lParam);
+        //마우스의 y좌표를 검출
+        g_point.y = HIWORD(lParam);
+        //강제 WM_PAINT메세지발생
+        InvalidateRect(hWnd, nullptr, false);
+    }
         break;
+        //wParam : 눌린 키값.
+    case WM_KEYDOWN:
+    {
+        switch (wParam)
+        {
+        case 'w':
+            ++g_playerpos.y;
+            break;
+        case 's':
+            --g_playerpos.y;
+            break;
+        case 'a':
+            ++g_playerpos.x;
+            break;
+        case 'd':
+            --g_playerpos.x;
+            break;
+
+        default:
+            break;
+        }
+        InvalidateRect(hWnd, nullptr, false);
+
+    }
+        break;
+
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
@@ -173,7 +248,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
             if (g_bLBtn)
             {
-                Rectangle(hdc, 10, 10, 210, 210);
+                Ellipse(hdc, g_point.x - 50, g_point.y - 50, g_point.x + 50, g_point.y + 50);
+
+                Rectangle(hdc, g_playerpos.x - 20, g_playerpos.y - 20, g_playerpos.x + 20, g_playerpos.y + 20);
+                Rectangle(hdc, g_monstpos.x - 20, g_monstpos.y - 20, g_monstpos.x + 20, g_monstpos.y + 20);
             }
             EndPaint(hWnd, &ps);
         }
@@ -183,9 +261,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
+        --g_monstpos.x;
+        InvalidateRect(hWnd, nullptr, false);
     }
     return 0;
 }
+
+
 
 // 정보 대화 상자의 메시지 처리기입니다.
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
