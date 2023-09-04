@@ -1,5 +1,6 @@
 #pragma once
 #include "pch.h"
+class CLevel;
 
 //엔진은 게임프로그램의 관리자.
 //디자인패턴(설계의 유형)
@@ -19,12 +20,15 @@ class CEngine
 	SINGLETON(CEngine);
 
 private:
-	HWND m_hWnd; //메인 윈도우 핸들
-	POINT m_ptResolution; //윈도우 해상도
-	void tick();
+	HWND	m_hWnd;			// 메인 윈도우 핸들
+	POINT	m_ptResolution;	// 윈도우 해상도
+
+	HDC		m_dc;
+
+	CLevel* m_Level;
 public:
 	void init(HWND _hWnd, POINT _ptResolution);
-
+	void tick();
 	//정적멤버함수
 	//객체가 없어도 됨(객체에 상대적이지않음)
 	//this가없음

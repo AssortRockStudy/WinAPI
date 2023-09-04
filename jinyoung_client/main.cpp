@@ -31,12 +31,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     //UNREFERENCED_PARAMETER(hPrevInstance);
     //UNREFERENCED_PARAMETER(lpCmdLine);
 
-    // TODO: 여기에 코드를 입력합니다.
 
     // 전역 문자열을 초기화합니다. //MAX_LOADSTRING= 100;
-    LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_JINYOUNGCLIENT, szWindowClass, MAX_LOADSTRING);
-    MyRegisterClass(hInstance);
+    //LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
+    //LoadStringW(hInstance, IDC_JINYOUNGCLIENT, szWindowClass, MAX_LOADSTRING);
+    //MyRegisterClass(hInstance);
 
     // 애플리케이션 초기화를 수행합니다:
     if (!InitInstance (hInstance, nCmdShow))
@@ -51,7 +50,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
-    int TimerID = SetTimer(g_hWnd, 0, 50, nullptr);
 
     //GetMessage 함수는 메세지큐에 WM_QUIT 메세지가 들어있으면 false 를 반환한다.
     // GetMessage 함수는 메세지큐에서 가져온 메세지가 WM_QUIT 이 아닌면 언제나 true 를 반환
@@ -98,14 +96,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         //메세지가 없었다.(대부분의 시간)
         else 
         {
-
+            CEngine::GetInst()->tick();
         }
-            
-
-
     }
-
-    KillTimer(g_hWnd,TimerID);
+    //KillTimer(g_hWnd,TimerID);
     return (int) msg.wParam;
 }
 
@@ -177,10 +171,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //  WM_DESTROY  - 종료 메시지를 게시하고 반환합니다.
 //
 //
-bool g_bLBtn = false;
-POINT g_point;
-POINT g_playerpos = {500,500};
-POINT g_monstpos = { 100,500 };
+//bool g_bLBtn = false;
+//POINT g_point;
+//POINT g_playerpos = {500,500};
+//POINT g_monstpos = { 100,500 };
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -207,55 +201,55 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 
         //lParam :마우스 좌표값
-    case WM_LBUTTONDOWN:
-    {
-        g_bLBtn = true;
-        //마우스의 x좌표를 검출
-        g_point.x = LOWORD(lParam);
-        //마우스의 y좌표를 검출
-        g_point.y = HIWORD(lParam);
-        //강제 WM_PAINT메세지발생
-        InvalidateRect(hWnd, nullptr, false);
-    }
-        break;
-        //wParam : 눌린 키값.
-    case WM_KEYDOWN:
-    {
-        switch (wParam)
-        {
-        case 'w':
-            ++g_playerpos.y;
-            break;
-        case 's':
-            --g_playerpos.y;
-            break;
-        case 'a':
-            ++g_playerpos.x;
-            break;
-        case 'd':
-            --g_playerpos.x;
-            break;
+    //case WM_LBUTTONDOWN:
+    //{
+    //    g_bLBtn = true;
+    //    //마우스의 x좌표를 검출
+    //    g_point.x = LOWORD(lParam);
+    //    //마우스의 y좌표를 검출
+    //    g_point.y = HIWORD(lParam);
+    //    //강제 WM_PAINT메세지발생
+    //    InvalidateRect(hWnd, nullptr, false);
+    //}
+    //    break;
+    //    //wParam : 눌린 키값.
+    //case WM_KEYDOWN:
+    //{
+    //    switch (wParam)
+    //    {
+    //    case 'w':
+    //        ++g_playerpos.y;
+    //        break;
+    //    case 's':
+    //        --g_playerpos.y;
+    //        break;
+    //    case 'a':
+    //        ++g_playerpos.x;
+    //        break;
+    //    case 'd':
+    //        --g_playerpos.x;
+    //        break;
 
-        default:
-            break;
-        }
-        InvalidateRect(hWnd, nullptr, false);
+    //    default:
+    //        break;
+    //    }
+    //    InvalidateRect(hWnd, nullptr, false);
 
-    }
-        break;
+    //}
+    //    break;
 
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-            if (g_bLBtn)
+            /*if (g_bLBtn)
             {
                 Ellipse(hdc, g_point.x - 50, g_point.y - 50, g_point.x + 50, g_point.y + 50);
 
                 Rectangle(hdc, g_playerpos.x - 20, g_playerpos.y - 20, g_playerpos.x + 20, g_playerpos.y + 20);
                 Rectangle(hdc, g_monstpos.x - 20, g_monstpos.y - 20, g_monstpos.x + 20, g_monstpos.y + 20);
-            }
+            }*/
             EndPaint(hWnd, &ps);
         }
         break;
@@ -264,8 +258,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
-        --g_monstpos.x;
-        InvalidateRect(hWnd, nullptr, false);
+        //InvalidateRect(hWnd, nullptr, false);
     }
     return 0;
 }

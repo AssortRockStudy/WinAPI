@@ -16,6 +16,10 @@ private:
 public:
 	void tick();
 	void render(HDC _dc);
+	void AddObject(CObj* _Object)
+	{
+		m_vecObjects.push_back(_Object);
+	}
 
 public:
 	CLevel();
