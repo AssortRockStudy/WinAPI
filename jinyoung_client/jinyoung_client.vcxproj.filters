@@ -23,6 +23,9 @@
     <Filter Include="Game\04.Object">
       <UniqueIdentifier>{e1c4618b-0e38-4821-8539-567e8bd49525}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05.Level">
+      <UniqueIdentifier>{2958640a-12be-40d0-b4ca-c6ac39152108}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -40,6 +43,19 @@
     <ClInclude Include="CEngine.h">
       <Filter>Game\02.Engine</Filter>
     </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>Game\02.Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="global.h">
+      <Filter>Game\02.Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="CLevel.h">
+      <Filter>Game\05.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -61,5 +77,18 @@
     <ClCompile Include="CEngine.cpp">
       <Filter>Game\02.Engine</Filter>
     </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="CObj.h">
+      <Filter>Game\04.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CObj.cpp">
+      <Filter>Game\04.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevel.cpp">
+      <Filter>Game\05.Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 ﻿// jinyoung_client.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 
+#include "pch.h"
 #include "framework.h"
 #include "jinyoung_client.h"
 #include "CEngine.h"
@@ -42,6 +43,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     {
         return FALSE;
     }
+    CEngine::GetInst()->init(g_hWnd, POINT{ 1280,200 });
+
 
     //단축키 테이블 참조
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_JINYOUNGCLIENT));
@@ -67,7 +70,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     while (true)
     {
         //싱글톤 패턴1. 항상 같은 객체리턴(처음만들어진)
-        CEngine* cep= CEngine::GetInst();
+        //CEngine* cep= CEngine::GetInst();
         //싱글톤 패턴2. 외부에서 생성불가.
         //CEngine a;
         //new CEngine;
@@ -149,7 +152,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-   //윈도우 생성 후 핸들값 반환
+   //윈도우 생성 후 핸들값 반환(전역변수)
    g_hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
