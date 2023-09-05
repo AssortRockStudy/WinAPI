@@ -1,21 +1,22 @@
 #pragma once
+#include "pch.h"
+
+
 class CTimeManager
 {
 	SINGLETON(CTimeManager);
-
 private:
-	LARGE_INTEGER m_Frequency;
-	LARGE_INTEGER m_PrevCount;
-	LARGE_INTEGER m_CurCount;
+	// Larget Integer 는 그냥 8바이트 long long 타입 정수로 취급
+	LARGE_INTEGER	m_Frequency;
+	LARGE_INTEGER	m_PrevCount;
+	LARGE_INTEGER	m_CurCount;
+	float			m_DeltaTime;
 
-	float m_DeltaTime;
-
-	CTimeManager();
+public:
+	float GetDeltaTime() { return m_DeltaTime; }
 
 public:
 	void init();
-
-
-
+	void tick();
 };
 

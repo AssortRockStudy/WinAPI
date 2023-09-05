@@ -42,7 +42,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     {
         return FALSE;
     }
-    CEngine::GetInst()->init(g_hWnd, POINT{ 1280,800 });
+    CEngine::GetInst()->init(g_hWnd, POINT{ 1280, 768 });
 
 
     //단축키 테이블 참조
@@ -79,12 +79,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             {
                 break;
             }
-            //단축키 조합이 눌렸는지 확인
-            if (WM_LBUTTONDOWN == msg.message)
-            {
-                int a = 0;
-            }
+            //if (WM_LBUTTONDOWN == msg.message)
+            //{
+            //    int a = 0;
+            //}
 
+            //단축키 조합이 눌렸는지 확인
             if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
             {
                 //메세지 처리
