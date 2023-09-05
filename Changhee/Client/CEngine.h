@@ -1,23 +1,22 @@
 #pragma once
 
+class CLevel;
 
 class CEngine
 {
-private:
-
-public:
-	static CEngine* GetInst()
-	{
-		static CEngine myEngine;
-
-		return &myEngine;
-	}
-
+	SINGLETON(CEngine);
 
 private:
-	CEngine();
+	HWND		m_hWnd;				// 메인 윈도우 핸들
+	HDC			m_dc;
+	POINT		m_ptResloution;		// 윈도우 해상도 정보
+
+	CLevel*		m_Level;
+
 
 public:
-	~CEngine();
+	void init(HWND _hWnd, POINT _ptResolution);
+	void tick();
+
 };
 
