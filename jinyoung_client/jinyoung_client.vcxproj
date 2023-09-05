@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CLevel.h" />
+    <ClInclude Include="CTimeManager.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="global.h" />
@@ -144,12 +145,14 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="struct.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CObj.h" />
+    <ClCompile Include="CTimeManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
