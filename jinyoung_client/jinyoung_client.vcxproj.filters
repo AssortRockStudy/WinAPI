@@ -64,6 +64,9 @@
     <ClInclude Include="CPlayer.h">
       <Filter>Game\04.Object</Filter>
     </ClInclude>
+    <ClInclude Include="CObj.h">
+      <Filter>Game\04.Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -85,12 +88,6 @@
     <ClCompile Include="pch.cpp">
       <Filter>Default</Filter>
     </ClCompile>
-    <ClCompile Include="CObj.h">
-      <Filter>Game\04.Object</Filter>
-    </ClCompile>
-    <ClCompile Include="CObj.cpp">
-      <Filter>Game\04.Object</Filter>
-    </ClCompile>
     <ClCompile Include="CLevel.cpp">
       <Filter>Game\05.Level</Filter>
     </ClCompile>
@@ -102,6 +99,9 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>리소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CObj.cpp">
+      <Filter>Game\04.Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

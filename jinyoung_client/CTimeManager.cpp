@@ -40,7 +40,7 @@ void CTimeManager::init()
 void CTimeManager::tick()
 {
 	//√ ¥Á ∫Ûµµ
-	QueryPerformanceFrequency(&m_CurCount);
+	QueryPerformanceCounter(&m_CurCount);
 
 	m_DeltaTime= float(m_CurCount.QuadPart - m_PrevCount.QuadPart)/float(m_Frequency.QuadPart);
 

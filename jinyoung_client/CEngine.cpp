@@ -38,7 +38,7 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	m_ptResolution = _ptResolution;
 
 	// 해상도 변경
-	SetWindowPos(m_hWnd, nullptr, 1930, 10, m_ptResolution.x, m_ptResolution.y, 0);
+	SetWindowPos(m_hWnd, nullptr, 20, 10, m_ptResolution.x, m_ptResolution.y, 0);
 	ShowWindow(m_hWnd, true);
 
 	// DC : Device Context

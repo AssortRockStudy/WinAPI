@@ -1,5 +1,5 @@
 #pragma once
-#include "pch.h"
+
 
 class CObj
 {
@@ -25,4 +25,3 @@ public:
 	CObj();
 	virtual ~CObj();
 };
-
