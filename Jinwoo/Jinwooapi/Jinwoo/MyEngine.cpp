@@ -2,6 +2,7 @@
 #include "MyEngine.h"
 
 #include "MyTimeMgr.h"
+#include "MyLevel.h"
 
 MyEngine::MyEngine() : m_hWnd(nullptr), m_ptResolution{}, m_DC(nullptr)
 {
@@ -10,9 +11,13 @@ MyEngine::MyEngine() : m_hWnd(nullptr), m_ptResolution{}, m_DC(nullptr)
 
 MyEngine::~MyEngine()
 {
+	// DC 해제
 	ReleaseDC(m_hWnd, m_DC);
 
-
+	if (nullptr != m_Level)
+	{
+		delete m_Level;
+	}
 }
 
 void MyEngine::init(HWND _hWnd, POINT _ptResolution)
@@ -25,10 +30,17 @@ void MyEngine::init(HWND _hWnd, POINT _ptResolution)
 	//				SW_SHOWNORMAL과 같은 의미
 	ShowWindow(m_hWnd, true);
 
+	m_DC = GetDC(m_hWnd);
+
 	MyTimeMgr::GetInst()->init();
+
+	m_Level = new MyLevel;
 }
 
 void MyEngine::tick()
 {
 	MyTimeMgr::GetInst()->tick();
+
+	m_Level->tick();
+	m_Level->render(m_DC);
 }
