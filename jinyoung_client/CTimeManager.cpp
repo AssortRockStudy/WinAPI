@@ -2,16 +2,16 @@
 #include "CTimeManager.h"
 
 // 제일 큰 자료형 기준으로 같은 공간을 지칭하는 DataType 선언 방식
-union MousePos
-{
-	struct
-	{
-		short High;
-		short Low;
-	};
-
-	UINT value;
-};
+//union MousePos
+//{
+//	struct
+//	{
+//		short High;
+//		short Low;
+//	};
+//
+//	UINT value;
+//};
 
 
 CTimeManager::CTimeManager()

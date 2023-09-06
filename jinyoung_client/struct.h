@@ -1,5 +1,4 @@
 #pragma once
-#include "CKeyman.h"
 
 struct Vec2
 {
@@ -28,5 +27,6 @@ struct FKeyData
 {
 	KEY eKey;
 	KEY_STATE eState;
+	bool		bPressed;
 
 };
