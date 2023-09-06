@@ -2,20 +2,18 @@
 
 class CLevel;
 
-class CEngine
-{
-	SINGLETON(CEngine);
-private:
-	HWND	m_hWnd;
-	POINT	m_ptResolution;
+class CEngine {
+    SINGLETON(CEngine);
 
-	HDC		m_dc;
+  private:
+    HWND  m_hWnd;
+    POINT m_ptResolution;
 
-	CLevel* m_Level;
+    HDC m_dc;
 
+    CLevel* m_Level;
 
-public:
-	void init(HWND _hWnd, POINT _ptResolution);
-	void tick();
+  public:
+    void init(HWND _hWnd, POINT _ptResolution);
+    void tick();
 };
-

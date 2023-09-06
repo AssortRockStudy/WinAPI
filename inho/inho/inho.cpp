@@ -1,55 +1,42 @@
-﻿#include "pch.h"
-#include "inho.h"
+﻿#include "inho.h"
 #include "CEngine.h"
+#include "pch.h"
 
 // 전역 변수:
-HINSTANCE   hInst = 0;
-HWND        g_hWnd = 0;
+HINSTANCE hInst = 0;
+HWND      g_hWnd = 0;
 
+ATOM             MyRegisterClass(HINSTANCE hInstance);
+BOOL             InitInstance(HINSTANCE, int);
+LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+INT_PTR CALLBACK About(HWND, UINT, WPARAM, LPARAM);
 
-ATOM                MyRegisterClass(HINSTANCE hInstance);
-BOOL                InitInstance(HINSTANCE, int);
-LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
-INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
-
-int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-                     _In_opt_ HINSTANCE hPrevInstance,
-                     _In_ LPWSTR    lpCmdLine,
-                     _In_ int       nCmdShow)
-{ 
+int APIENTRY wWinMain(_In_ HINSTANCE     hInstance,
+                      _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine,
+                      _In_ int nCmdShow) {
     MyRegisterClass(hInstance);
 
     // 애플리케이션 초기화를 수행합니다:
-    if (!InitInstance (hInstance, nCmdShow))
-    {
+    if (!InitInstance(hInstance, nCmdShow)) {
         return FALSE;
     }
-    
-
-
 
     // 엔진 초기화
     CEngine::GetInst()->init(g_hWnd, POINT{1280, 768});
 
-
-
     // 단축키 테이블 참조
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_INHO));
-    MSG msg;
-            
-    while (true)
-    {     
+    MSG    msg;
+
+    while (true) {
         // 메세지가 있었다.
-        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
-        {
-            if (WM_QUIT == msg.message)
-            {
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
+            if (WM_QUIT == msg.message) {
                 break;
             }
 
             // 단축키 조합이 눌렸는지 확인
-            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-            {
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) {
                 // 메세지 처리
                 TranslateMessage(&msg);
                 DispatchMessage(&msg);
@@ -57,24 +44,20 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
 
         // 메세지가 없었다.
-        else
-        {
+        else {
             CEngine::GetInst()->tick();
-        }       
+        }
     }
 
-    return (int) msg.wParam;
+    return (int)msg.wParam;
 }
-
-
 
 //
 //  함수: MyRegisterClass()
 //
 //  용도: 창 클래스를 등록합니다.
 //
-ATOM MyRegisterClass(HINSTANCE hInstance)
-{
+ATOM MyRegisterClass(HINSTANCE hInstance) {
     WNDCLASSEXW wcex;
 
     wcex.cbSize = sizeof(WNDCLASSEX);
@@ -87,7 +70,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_INHO));
     wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-    wcex.lpszMenuName = nullptr;// MAKEINTRESOURCEW(IDC_CLIENT);
+    wcex.lpszMenuName = nullptr; // MAKEINTRESOURCEW(IDC_CLIENT);
     wcex.lpszClassName = L"MyWindow";
     wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -103,22 +86,21 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 //        이 함수를 통해 인스턴스 핸들을 전역 변수에 저장하고
 //        주 프로그램 창을 만든 다음 표시합니다.
 //
-BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
-{
-   hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
+BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
+    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-   g_hWnd = CreateWindowW(L"MyWindow", L"MyGame", WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+    g_hWnd = CreateWindowW(L"MyWindow", L"MyGame", WS_OVERLAPPEDWINDOW,
+                           CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr,
+                           hInstance, nullptr);
 
-   if (!g_hWnd)
-   {
-      return FALSE;
-   }
+    if (!g_hWnd) {
+        return FALSE;
+    }
 
-   ShowWindow(g_hWnd, nCmdShow);
-   UpdateWindow(g_hWnd);
+    ShowWindow(g_hWnd, nCmdShow);
+    UpdateWindow(g_hWnd);
 
-   return TRUE;
+    return TRUE;
 }
 
 //
@@ -131,16 +113,13 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //  WM_DESTROY  - 종료 메시지를 게시하고 반환합니다.
 //
 //
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
-    switch (message)
-    {
-    case WM_COMMAND:
-    {
+LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,
+                         LPARAM lParam) {
+    switch (message) {
+    case WM_COMMAND: {
         int wmId = LOWORD(wParam);
         // 메뉴 선택을 구문 분석합니다:
-        switch (wmId)
-        {
+        switch (wmId) {
         case IDM_ABOUT:
             DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
             break;
@@ -150,18 +129,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         default:
             return DefWindowProc(hWnd, message, wParam, lParam);
         }
-    }
-    break;
+    } break;
 
-    case WM_PAINT:
-    {
+    case WM_PAINT: {
         PAINTSTRUCT ps;
-        HDC hdc = BeginPaint(hWnd, &ps);
-
+        HDC         hdc = BeginPaint(hWnd, &ps);
 
         EndPaint(hWnd, &ps);
-    }
-    break;
+    } break;
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
@@ -172,17 +147,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 
 // 정보 대화 상자의 메시지 처리기입니다.
-INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
-{
+INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam) {
     UNREFERENCED_PARAMETER(lParam);
-    switch (message)
-    {
+    switch (message) {
     case WM_INITDIALOG:
         return (INT_PTR)TRUE;
 
     case WM_COMMAND:
-        if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
-        {
+        if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL) {
             EndDialog(hDlg, LOWORD(wParam));
             return (INT_PTR)TRUE;
         }

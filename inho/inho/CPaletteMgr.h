@@ -1,34 +1,22 @@
 #pragma once
-class CPaletteMgr
-{
-	SINGLETON(CPaletteMgr);
-public:
-	enum PenColor {
-		PBLACK,
-		PRED,
-		PBLUE
-	};
+class CPaletteMgr {
+    SINGLETON(CPaletteMgr);
 
-	enum BrushColor {
-		BBLACK,
-		BRED,
-		BBLUE
-	};
+  public:
+    enum PenColor { PBLACK, PRED, PBLUE };
 
-private:
-	map<PenColor, HPEN> pens;
-	map<BrushColor, HBRUSH> brushes;
-	HDC dc;
+    enum BrushColor { BBLACK, BRED, BBLUE };
 
+  private:
+    map<PenColor, HPEN>     pens;
+    map<BrushColor, HBRUSH> brushes;
+    HDC                     dc;
 
-	
-public:
-	void init(HDC _dc);
-	void AddPen(PenColor en, HPEN pen);
-	bool SelectPen(PenColor en);
+  public:
+    void init(HDC _dc);
+    void AddPen(PenColor en, HPEN pen);
+    bool SelectPen(PenColor en);
 
-	void AddBrush(BrushColor en, HBRUSH);
-	bool SelectBrush(BrushColor en);
-
+    void AddBrush(BrushColor en, HBRUSH);
+    bool SelectBrush(BrushColor en);
 };
-
