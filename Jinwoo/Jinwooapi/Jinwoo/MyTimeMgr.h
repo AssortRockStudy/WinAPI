@@ -5,12 +5,12 @@ class MyTimeMgr
 	SINGLETON(MyTimeMgr);
 
 private:
-	// LARGE_INTEGER´Â ±×³É 8¹ÙÀÌÆ® long long Ãë±Þ
+	// LARGE_INTEGERëŠ” ê·¸ëƒ¥ 8ë°”ì´íŠ¸ long long ì·¨ê¸‰
 	LARGE_INTEGER	m_Frequency;
 	LARGE_INTEGER	m_PrevCount;
 	LARGE_INTEGER	m_CurCount;
 
-	// µ¨Å¸Å¸ÀÓ = ÇöÀç ÇÁ·¹ÀÓ°ú ÀÌÀü ÇÁ·¹ÀÓÀÇ ½Ã°£°ª Â÷ÀÌ
+	// ë¸íƒ€íƒ€ìž„ = í˜„ìž¬ í”„ë ˆìž„ê³¼ ì´ì „ í”„ë ˆìž„ì˜ ì‹œê°„ê°’ ì°¨ì´
 	float			m_DeltaTime;
 
 public:

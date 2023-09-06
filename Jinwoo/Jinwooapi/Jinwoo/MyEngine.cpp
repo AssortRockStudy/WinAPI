@@ -11,7 +11,7 @@ MyEngine::MyEngine() : m_hWnd(nullptr), m_ptResolution{}, m_DC(nullptr)
 
 MyEngine::~MyEngine()
 {
-	// DC ÇØÁ¦
+	// DC í•´ì œ
 	ReleaseDC(m_hWnd, m_DC);
 
 	if (nullptr != m_Level)
@@ -25,9 +25,9 @@ void MyEngine::init(HWND _hWnd, POINT _ptResolution)
 	m_hWnd = _hWnd;
 	m_ptResolution = _ptResolution;
 
-	//			ÇÚµé / À©µµ¿ìÃ¢ ¿ì¼±¼øÀ§ / À©µµ¿ìÃ¢ ½ÃÀÛÁ¡ /		 À©µµ¿ìÃ¢ Å©±â		/ À©µµ¿ì Å©±âº¯°æ X
+	//			í•¸ë“¤ / ìœˆë„ìš°ì°½ ìš°ì„ ìˆœìœ„ / ìœˆë„ìš°ì°½ ì‹œì‘ì  /		 ìœˆë„ìš°ì°½ í¬ê¸°		/ ìœˆë„ìš° í¬ê¸°ë³€ê²½ X
 	SetWindowPos(m_hWnd, nullptr,		300, 100, m_ptResolution.x, m_ptResolution.y, 0);
-	//				SW_SHOWNORMAL°ú °°Àº ÀÇ¹Ì
+	//				SW_SHOWNORMALê³¼ ê°™ì€ ì˜ë¯¸
 	ShowWindow(m_hWnd, true);
 
 	m_DC = GetDC(m_hWnd);

@@ -2,12 +2,12 @@
 
 class MyObject;
 
-// ¿ÀºêÁ§Æ®¸¦ °ü¸®ÇØÁÖ´Â °ÔÀÓ ½ºÅ×ÀÌÁöÀÇ ¿ªÇÒÀ» ÇÏ´Â Å¬·¡½º
+// ì˜¤ë¸Œì íŠ¸ë¥¼ ê´€ë¦¬í•´ì£¼ëŠ” ê²Œìž„ ìŠ¤í…Œì´ì§€ì˜ ì—­í• ì„ í•˜ëŠ” í´ëž˜ìŠ¤
 class MyLevel
 {
 private:
-	// ¸ðµç ¿ÀºêÁ§Æ®´Â MyObject¸¦ »ó¼Ó¹Þ±â ¶§¹®¿¡ MyObjectÀÇ Æ÷ÀÎÅÍ¸¦ ¹ÞÀ¸¸é
-	// ÇÏÀ§ Å¬·¡½ºµéÀ» ¸ðµÎ °ü¸®ÇÒ ¼ö ÀÖ´Ù
+	// ëª¨ë“  ì˜¤ë¸Œì íŠ¸ëŠ” MyObjectë¥¼ ìƒì†ë°›ê¸° ë•Œë¬¸ì— MyObjectì˜ í¬ì¸í„°ë¥¼ ë°›ìœ¼ë©´
+	// í•˜ìœ„ í´ëž˜ìŠ¤ë“¤ì„ ëª¨ë‘ ê´€ë¦¬í•  ìˆ˜ ìžˆë‹¤
 	vector<MyObject*> m_vecObject;
 	
 public:

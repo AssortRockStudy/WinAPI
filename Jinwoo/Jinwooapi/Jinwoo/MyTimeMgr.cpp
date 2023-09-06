@@ -13,11 +13,11 @@ MyTimeMgr::~MyTimeMgr()
 
 void MyTimeMgr::init()
 {
-	// ¼º´É Ä«¿îÅÍÀÇ ºóµµ¸¦ °Ë»öÇÑ´Ù(ÇØ´ç Å¸ÀÌ¸Ó°¡ ÃÊ´ç ¸î ¹øÀÇ ÁÖ±â¸¦ ¿Ï·áÇÏ´Â°¡)
-	// ÀÎÀÚ·Î LARGE_INTEGER ±¸Á¶Ã¼ º¯¼öÀÇ Æ÷ÀÎÅÍ¸¦ °¡Áø´Ù
+	// ì„±ëŠ¥ ì¹´ìš´í„°ì˜ ë¹ˆë„ë¥¼ ê²€ìƒ‰í•œë‹¤(í•´ë‹¹ íƒ€ì´ë¨¸ê°€ ì´ˆë‹¹ ëª‡ ë²ˆì˜ ì£¼ê¸°ë¥¼ ì™„ë£Œí•˜ëŠ”ê°€)
+	// ì¸ìë¡œ LARGE_INTEGER êµ¬ì¡°ì²´ ë³€ìˆ˜ì˜ í¬ì¸í„°ë¥¼ ê°€ì§„ë‹¤
 	QueryPerformanceFrequency(&m_Frequency);
 
-	// ½Ã°£ °£°İ ÃøÁ¤
+	// ì‹œê°„ ê°„ê²© ì¸¡ì •
 	QueryPerformanceCounter(&m_PrevCount);
 }
 
@@ -25,7 +25,7 @@ void MyTimeMgr::tick()
 {
 	QueryPerformanceCounter(&m_CurCount);
 
-	// ÄÄÇ»ÅÍÀÇ ¼º´É°ú »ó°ü¾øÀÌ 1ÃÊµ¿¾È µ¿ÀÏÇÑ ÀÛ¾÷À» ÇØ¾ßÇÑ´Ù
+	// ì»´í“¨í„°ì˜ ì„±ëŠ¥ê³¼ ìƒê´€ì—†ì´ 1ì´ˆë™ì•ˆ ë™ì¼í•œ ì‘ì—…ì„ í•´ì•¼í•œë‹¤
 	m_DeltaTime = float(m_CurCount.QuadPart - m_PrevCount.QuadPart) / float(m_Frequency.QuadPart);
 
 	m_PrevCount = m_CurCount;
