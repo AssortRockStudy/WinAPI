@@ -144,6 +144,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include=".editorconfig" />
     <ClCompile Include="Jinwoo.cpp" />
     <ClCompile Include="MyEngine.cpp" />
     <ClCompile Include="MyLevel.cpp" />

@@ -106,5 +106,6 @@
     <ClCompile Include="MyPlayer.cpp">
       <Filter>Game\04.Object\Player</Filter>
     </ClCompile>
+    <ClCompile Include=".editorconfig" />
   </ItemGroup>
 </Project>
