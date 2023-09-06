@@ -24,3 +24,22 @@ using std::list;
 using std::map;
 using std::string;
 using std::make_pair;
+
+//순서 의존성 해결?
+#define RGB_BLACK   (RGB(0, 0, 0))
+#define RGB_RED		(RGB(255, 0, 0))
+#define RGB_GREEN	(RGB(0, 255, 0))
+#define RGB_BLUE	(RGB(0, 0, 255))
+#define RGB_WHITE	(RGB(255, 255, 255))
+#define RGB_YELLOW	(RGB(255, 255, 0))
+
+//enum 선언이유= pen 인덱스 체크용(사람실수)
+enum COLOR
+{
+	BLACK,
+	RED,
+	GREEN,
+	BLUE,
+	WHITE,
+	YELLOW,
+};

@@ -2,6 +2,9 @@
 #include "CPlayer.h"
 
 #include "CTimeManager.h"
+#include "CPal.h"
+
+
 
 
 CPlayer::CPlayer()
@@ -46,27 +49,14 @@ void CPlayer::render(HDC _dc)
 {
 	Vec2 vPos = GetPos();
 	Vec2 vScale = GetScale();
+	SelectObject(_dc, CPal::GetInst()->getHPen(BLACK));
+	SelectObject(_dc, CPal::GetInst()->getHBrush(GREEN));
 
-
-	// Black Pen -> Red Pen
-	HPEN hRedPen = CreatePen(PS_SOLID, 1, RGB(255, 20, 20));
-	HPEN hPrevPen = (HPEN)SelectObject(_dc, hRedPen);
-
-	// White Brush -> Blue Brush
-	HBRUSH hBlueBrush = CreateSolidBrush(RGB(20, 20, 255));
-	HBRUSH hPrevBrush = (HBRUSH)SelectObject(_dc, hBlueBrush);
 
 	Rectangle(_dc
 		, int(vPos.x - vScale.x / 2)
 		, int(vPos.y - vScale.y / 2)
 		, int(vPos.x + vScale.x / 2)
 		, int(vPos.y + vScale.y / 2));
-
-	// 되돌리고 사용했던 펜, 브러쉬를 삭제한다.
-	SelectObject(_dc, hPrevPen);
-	DeleteObject(hRedPen);
-
-	SelectObject(_dc, hPrevBrush);
-	DeleteObject(hBlueBrush);
 
 }

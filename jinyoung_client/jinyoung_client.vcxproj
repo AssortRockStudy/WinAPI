@@ -138,6 +138,7 @@
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CLevel.h" />
     <ClInclude Include="CObj.h" />
+    <ClInclude Include="CPal.h" />
     <ClInclude Include="CTimeManager.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
@@ -153,6 +154,7 @@
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CObj.cpp" />
+    <ClCompile Include="CPal.cpp" />
     <ClCompile Include="CTimeManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp">

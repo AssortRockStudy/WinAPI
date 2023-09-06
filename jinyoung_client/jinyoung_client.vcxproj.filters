@@ -67,6 +67,9 @@
     <ClInclude Include="CObj.h">
       <Filter>Game\04.Object</Filter>
     </ClInclude>
+    <ClInclude Include="CPal.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -102,6 +105,9 @@
     </ClCompile>
     <ClCompile Include="CObj.cpp">
       <Filter>Game\04.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CPal.cpp">
+      <Filter>Game\03.Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
