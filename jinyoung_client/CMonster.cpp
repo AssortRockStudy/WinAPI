@@ -50,11 +50,11 @@ void CMonster::render(HDC _dc)
 {
 	Vec2 vPos = GetPos();
 	Vec2 vScale = GetScale();
-	SelectObject(_dc, CPal::GetInst()->getHPen(BLACK));
-	SelectObject(_dc, CPal::GetInst()->getHBrush(GREEN));
+	SelectObject(_dc, CPal::GetInst()->getHPen(RED));
+	SelectObject(_dc, CPal::GetInst()->getHBrush(RED));
 
 
-	Rectangle(_dc
+	Ellipse(_dc
 		, int(vPos.x - vScale.x / 2)
 		, int(vPos.y - vScale.y / 2)
 		, int(vPos.x + vScale.x / 2)

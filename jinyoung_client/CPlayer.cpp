@@ -21,22 +21,22 @@ void CPlayer::tick(float _DT)
 	Vec2 vPos = GetPos();
 
 	// 키입력이 발생하면 움직인다.
-	if (GetAsyncKeyState(VK_LEFT) & 0x8001)
+	if (GetAsyncKeyState(0x41) & 0x8001)
 	{
 		vPos.x -= m_Speed * _DT;
 	}
 
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8001)
+	if (GetAsyncKeyState(0x44) & 0x8001)
 	{
 		vPos.x += m_Speed * _DT;
 	}
 
-	if (GetAsyncKeyState(VK_UP) & 0x8001)
+	if (GetAsyncKeyState(0x57) & 0x8001)
 	{
 		vPos.y -= m_Speed * _DT;
 	}
 
-	if (GetAsyncKeyState(VK_DOWN) & 0x8001)
+	if (GetAsyncKeyState(0x53) & 0x8001)
 	{
 		vPos.y += m_Speed * _DT;
 	}
@@ -50,7 +50,7 @@ void CPlayer::render(HDC _dc)
 	Vec2 vPos = GetPos();
 	Vec2 vScale = GetScale();
 	SelectObject(_dc, CPal::GetInst()->getHPen(BLACK));
-	SelectObject(_dc, CPal::GetInst()->getHBrush(GREEN));
+	SelectObject(_dc, CPal::GetInst()->getHBrush(BLACK));
 
 
 	Rectangle(_dc
