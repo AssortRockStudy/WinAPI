@@ -70,6 +70,7 @@
     <ClInclude Include="struct.h">
       <Filter>Game\01.Header</Filter>
     </ClInclude>
+    <ClInclude Include="TestClass.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jinwoo.rc">
@@ -107,5 +108,6 @@
       <Filter>Game\04.Object\Player</Filter>
     </ClCompile>
     <ClCompile Include=".editorconfig" />
+    <ClCompile Include="TestClass.cpp" />
   </ItemGroup>
 </Project>
