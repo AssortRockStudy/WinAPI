@@ -4,6 +4,7 @@
 #include "TimeMgr.h"
 #include "Level.h"
 #include "Player.h"
+#include "Monster.h"
 
 Engine::Engine()
 	: m_hWnd(nullptr)
@@ -51,14 +52,16 @@ void Engine::init(HWND _hWnd, POINT _ptResolution)
 	m_Level = new Level;
 
 	Player* pPlayer = new Player;
+	Monster* pMonster = new Monster;
 
 	pPlayer->SetPos(Vec2(500.f, 500.f));
 	pPlayer->SetScale(Vec2(50.f, 50.f));
 
+	pMonster->SetPos(Vec2(400.f, 400.f));
+	pMonster->SetScale(Vec2(50.f, 50.f));
+
 	m_Level->AddObject(pPlayer);
-
-
-
+	m_Level->AddObject(pMonster);
 
 }
 

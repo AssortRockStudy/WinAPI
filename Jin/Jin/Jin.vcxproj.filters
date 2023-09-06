@@ -29,6 +29,9 @@
     <Filter Include="Game\04. Object\Player">
       <UniqueIdentifier>{60ad5a23-cc12-4622-8f93-46ef985923b2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04. Object\Monster">
+      <UniqueIdentifier>{04ef5e7b-647f-49e3-a723-ca8c0c9ccaf6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jin.rc">
@@ -64,6 +67,9 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Game\04. Object\Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +111,9 @@
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Game\04. Object\Monster</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
