@@ -29,6 +29,9 @@
     <Filter Include="Game\04. Object\Player">
       <UniqueIdentifier>{01fddde8-a8e0-49ec-8f90-d990cf66ad2b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04. Object\Monster">
+      <UniqueIdentifier>{52d08624-4c36-4136-af1a-ca4431ea8700}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inho.h">
@@ -70,6 +73,9 @@
     <ClInclude Include="CPaletteMgr.h">
       <Filter>Game\03. Manager</Filter>
     </ClInclude>
+    <ClInclude Include="CMonster.h">
+      <Filter>Game\04. Object\Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="inho.rc">
@@ -108,6 +114,9 @@
     </ClCompile>
     <ClCompile Include="CPaletteMgr.cpp">
       <Filter>Game\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster.cpp">
+      <Filter>Game\04. Object\Monster</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

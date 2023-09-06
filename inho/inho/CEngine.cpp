@@ -9,6 +9,7 @@
 
 #include "CLevel.h"
 #include "CPlayer.h"
+#include "CMonster.h"
 
 CEngine::CEngine()
 	: m_hWnd(nullptr)
@@ -60,7 +61,12 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	pPlayer->SetPos(Vec2(500.f, 500.f));
 	pPlayer->SetScale(Vec2(50.f, 50.f));
 
+	CMonster* pMonster = new CMonster;
+	pMonster->SetPos(Vec2(500.f, 500.f));
+	pMonster->SetScale(Vec2(50.f, 50.f));
+
 	m_Level->AddObject(pPlayer);
+	m_Level->AddObject(pMonster);
 }
 
 void CEngine::tick()
