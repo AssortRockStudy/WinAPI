@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "MyEngine.h"
 
+#include "MyTimeMgr.h"
+
 MyEngine::MyEngine() : m_hWnd(nullptr), m_ptResolution{}, m_DC(nullptr)
 {
 
@@ -22,8 +24,11 @@ void MyEngine::init(HWND _hWnd, POINT _ptResolution)
 	SetWindowPos(m_hWnd, nullptr,		300, 100, m_ptResolution.x, m_ptResolution.y, 0);
 	//				SW_SHOWNORMAL과 같은 의미
 	ShowWindow(m_hWnd, true);
+
+	MyTimeMgr::GetInst()->init();
 }
 
 void MyEngine::tick()
 {
+	MyTimeMgr::GetInst()->tick();
 }
