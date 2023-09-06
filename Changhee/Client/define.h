@@ -1,10 +1,10 @@
 #pragma once
 
 #define SINGLETON(ClassType)		public:\
-										 static CEngine* GetInst()\
+										 static ClassType* GetInst()\
 										{\
-											static CEngine engine;\
-											return &engine;\
+											static ClassType mgr;\
+											return &mgr;\
 										}\
 										public:\
 											ClassType* operator = (const ClassType& _Origin) = delete;\

@@ -3,15 +3,15 @@
 class CObj
 {
 private:
-	POINT	m_Pos;
-	POINT	m_Scale;
+	Vec2	m_Pos;
+	Vec2	m_Scale;
 
 public:
-	POINT GetPos() { return m_Pos; }
-	POINT GetScale() { return m_Scale; }
+	Vec2 GetPos() { return m_Pos; }
+	Vec2 GetScale() { return m_Scale; }
 
-	void SetPos(POINT _Pos) { m_Pos = _Pos; }
-	void SetScale(POINT _Scale) { m_Scale = _Scale; }
+	void SetPos(Vec2 _Pos) { m_Pos = _Pos; }
+	void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
 
 
 public:

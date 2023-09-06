@@ -29,6 +29,9 @@
     <Filter Include="Game\04. Object\Player">
       <UniqueIdentifier>{6c093201-8ff1-46af-8a24-9c0abd1087ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03. Manager\TimeManager">
+      <UniqueIdentifier>{6bb95fc8-e3ef-46c5-b6ca-498b93dfbb57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -64,6 +67,13 @@
     <ClInclude Include="CPlayer.h">
       <Filter>Game\04. Object\Player</Filter>
     </ClInclude>
+    <ClInclude Include="struct.h">
+      <Filter>Game\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CTimeMgr.h">
+      <Filter>Game\03. Manager\TimeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CPalette.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -97,5 +107,9 @@
     <ClCompile Include="CPlayer.cpp">
       <Filter>Game\04. Object\Player</Filter>
     </ClCompile>
+    <ClCompile Include="CTimeMgr.cpp">
+      <Filter>Game\03. Manager\TimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CPalette.cpp" />
   </ItemGroup>
 </Project>
