@@ -12,3 +12,8 @@
 								 ClassType();\
 								 ClassType(const ClassType& _Origin) = delete;\
 							 	 ~ClassType();
+
+enum Color
+{
+	BLACK, RED, GREEN, BLUE, WHITE,
+};

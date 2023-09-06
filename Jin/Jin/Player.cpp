@@ -2,6 +2,7 @@
 #include "Player.h"
 
 #include "TimeMgr.h"
+#include "DrawMgr.h"
 
 Player::Player()
 	: m_Speed(500.f)
@@ -45,11 +46,11 @@ void Player::render(HDC _dc)
 	Vec2 vPos = GetPos();
 	Vec2 vScale = GetScale();
 
-	HPEN hBlackPen = CreatePen(PS_SOLID, 1, RGB(0,0,0));
-	SelectObject(_dc, hBlackPen);
+	//HPEN hBlackPen = CreatePen(PS_SOLID, 1, RGB(0,0,0));
+	//SelectObject(_dc,);
 
 	HBRUSH hBlackBrush = CreateSolidBrush(RGB(0, 0, 0));
-	SelectObject(_dc, hBlackBrush);
+	//SelectObject(_dc, hBlackBrush);
 
 	Rectangle(_dc
 		, int(vPos.x - vScale.x / 2)
@@ -57,8 +58,8 @@ void Player::render(HDC _dc)
 		, int(vPos.x + vScale.x / 2)
 		, int(vPos.y + vScale.y / 2));
 
-	DeleteObject(hBlackPen);
-	DeleteObject(hBlackBrush);
+	//DeleteObject(hBlackPen);
+	//DeleteObject(hBlackBrush);
 
 
 }

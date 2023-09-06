@@ -1,18 +1,6 @@
 #include "pch.h"
 #include "TimeMgr.h"
 
-union MousePos
-{
-	struct
-	{
-		short High;
-		short Low;
-	};
-
-	UINT value;
-};
-
-
 TimeMgr::TimeMgr()
 	: m_Frequency{}
 	, m_PrevCount{}

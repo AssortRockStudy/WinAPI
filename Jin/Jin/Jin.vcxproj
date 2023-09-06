@@ -129,6 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DrawMgr.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Jin.cpp" />
     <ClCompile Include="Level.cpp" />
@@ -150,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="Client.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="DrawMgr.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="Jin.h" />

@@ -2,6 +2,7 @@
 #include "Engine.h"
 
 #include "TimeMgr.h"
+#include "DrawMgr.h"
 #include "Level.h"
 #include "Player.h"
 #include "Monster.h"
@@ -41,6 +42,7 @@ void Engine::init(HWND _hWnd, POINT _ptResolution)
 
 	// Manager ÃÊ±âÈ­
 	TimeMgr::GetInst()->init();
+	DrawMgr::GetInst()->init();
 
 
 
@@ -68,6 +70,7 @@ void Engine::init(HWND _hWnd, POINT _ptResolution)
 void Engine::tick()
 {
 	TimeMgr::GetInst()->tick();
+	DrawMgr::GetInst()->tick();
 
 	m_Level->tick();
 	m_Level->render(m_dc);
