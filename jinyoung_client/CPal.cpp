@@ -23,7 +23,14 @@ CPal::CPal() {
 
 
 CPal::~CPal() {
-
+	for (size_t i = 0; i < vhp.size(); ++i)
+	{
+		DeleteObject(vhp[i]);
+	}
+	for (size_t i = 0; i < vhb.size(); ++i)
+	{
+		DeleteObject(vhb[i]);
+	}
 }
 
 HPEN CPal::getHPen(COLOR _COLOR)
