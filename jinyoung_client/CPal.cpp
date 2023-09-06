@@ -17,8 +17,6 @@ CPal::CPal() {
 	vhb.push_back(CreateSolidBrush(RGB_BLUE));
 	vhb.push_back(CreateSolidBrush(RGB_WHITE));
 	vhb.push_back(CreateSolidBrush(RGB_YELLOW));
-
-	vector<HBRUSH> vhb;
 }
 
 

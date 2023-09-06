@@ -1,4 +1,5 @@
 #pragma once
+#include "CKeyman.h"
 
 struct Vec2
 {
@@ -19,4 +20,13 @@ public:
 	Vec2(int _x, int _y)
 		: x((float)_x), y((float)_y)
 	{}
+};
+
+
+
+struct FKeyData
+{
+	KEY eKey;
+	KEY_STATE eState;
+
 };

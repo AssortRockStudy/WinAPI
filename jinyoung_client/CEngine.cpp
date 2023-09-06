@@ -6,6 +6,7 @@
 #include "CLevel.h"
 #include "CPlayer.h"
 #include "CMonster.h"
+#include "CKeyman.h"
 
 
 
@@ -50,6 +51,7 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 
 	// Manager 초기화
 	CTimeManager::GetInst()->init();
+	CKeyman::GetInst()->init();
 
 
 	// Level 생성

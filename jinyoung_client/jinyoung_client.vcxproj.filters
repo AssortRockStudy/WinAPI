@@ -73,6 +73,9 @@
     <ClInclude Include="CMonster.h">
       <Filter>Game\04.Object</Filter>
     </ClInclude>
+    <ClInclude Include="CKeyman.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -114,6 +117,9 @@
     </ClCompile>
     <ClCompile Include="CMonster.cpp">
       <Filter>Game\04.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyman.cpp">
+      <Filter>Game\03.Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

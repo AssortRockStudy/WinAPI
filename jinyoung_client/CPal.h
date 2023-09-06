@@ -1,8 +1,4 @@
 #pragma once
-#include "pch.h"
-
-
-
 
 
 class CPal
