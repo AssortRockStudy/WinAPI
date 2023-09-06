@@ -1,20 +1,19 @@
 #pragma once
 #include "CObj.h"
-class CPlayer :
+class CMonster :
     public CObj
 {
 private:
-    float   m_Speed;
+    float       m_Speed;
 
-
-public:
+private:
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
 
 
 public:
-    CPlayer();
-    ~CPlayer();
+    CMonster();
+    ~CMonster();
 
 };
 

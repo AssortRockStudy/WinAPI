@@ -22,3 +22,11 @@ public:
 		, y((float)_y)
 	{}
 };
+
+
+struct FKeyData
+{
+	KEY			eKey;
+	KEY_STATE	eState;
+	bool		bPressed;
+};

@@ -32,6 +32,15 @@
     <Filter Include="Game\03. Manager\TimeManager">
       <UniqueIdentifier>{6bb95fc8-e3ef-46c5-b6ca-498b93dfbb57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Module">
+      <UniqueIdentifier>{4715108d-003b-4dad-9ca2-df49b862a754}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\KeyManager">
+      <UniqueIdentifier>{48b54f9b-8b3b-4614-ab4c-15d6b261a73f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Object\Monster">
+      <UniqueIdentifier>{837e8a10-f7a8-4b5f-a980-bfa5f9ab53ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -73,7 +82,15 @@
     <ClInclude Include="CTimeMgr.h">
       <Filter>Game\03. Manager\TimeManager</Filter>
     </ClInclude>
-    <ClInclude Include="CPalette.h" />
+    <ClInclude Include="CPalette.h">
+      <Filter>Game\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="CKeyMgr.h">
+      <Filter>Game\03. Manager\KeyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonster.h">
+      <Filter>Game\04. Object\Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -110,6 +127,14 @@
     <ClCompile Include="CTimeMgr.cpp">
       <Filter>Game\03. Manager\TimeManager</Filter>
     </ClCompile>
-    <ClCompile Include="CPalette.cpp" />
+    <ClCompile Include="CPalette.cpp">
+      <Filter>Game\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyMgr.cpp">
+      <Filter>Game\03. Manager\KeyManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster.cpp">
+      <Filter>Game\04. Object\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

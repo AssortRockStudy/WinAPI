@@ -1,22 +1,5 @@
 #pragma once
 
-enum class BRUSH_TYPE
-{
-	RED,
-	GREEN,
-	BLUE,
-	END,
-};
-
-
-enum class PEN_TYPE
-{
-	RED,
-	GREEN,
-	BLUE,
-	END,
-};
-
 
 class CPalette
 {
