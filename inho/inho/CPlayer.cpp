@@ -18,22 +18,22 @@ void CPlayer::tick(float _DT)
 	Vec2 vPos = GetPos();
 
 	
-	if (GetAsyncKeyState(VK_LEFT) & 0x8001)
+	if (GetAsyncKeyState('A') & 0x8001)
 	{
 		vPos.x -= m_Speed * _DT;
 	}
 
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8001)
+	if (GetAsyncKeyState('D') & 0x8001)
 	{
 		vPos.x += m_Speed * _DT;
 	}
 
-	if (GetAsyncKeyState(VK_UP) & 0x8001)
+	if (GetAsyncKeyState('W') & 0x8001)
 	{
 		vPos.y -= m_Speed * _DT;
 	}
 
-	if (GetAsyncKeyState(VK_DOWN) & 0x8001)
+	if (GetAsyncKeyState('S') & 0x8001)
 	{
 		vPos.y += m_Speed * _DT;
 	}
