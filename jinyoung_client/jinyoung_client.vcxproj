@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CLevel.h" />
+    <ClInclude Include="CMonster.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="CPal.h" />
     <ClInclude Include="CTimeManager.h" />
@@ -153,6 +154,7 @@
   <ItemGroup>
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CLevel.cpp" />
+    <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPal.cpp" />
     <ClCompile Include="CTimeManager.cpp" />

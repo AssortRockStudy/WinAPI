@@ -3,8 +3,8 @@
 
 #include "CTimeManager.h"
 
-
 #include "CLevel.h"
+#include "CMonster.h"
 #include "CPlayer.h"
 
 
@@ -61,6 +61,14 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	pPlayer->SetScale(Vec2(50.f, 50.f));
 
 	m_Level->AddObject(pPlayer);
+
+	CMonster* CMonster = new CMonster;
+
+	CMonster->SetPos(Vec2(1000.f, 1000.f));
+	CMonster->SetScale(Vec2(50.f, 50.f));
+
+	m_Level->AddObject(CMonster);
+
 
 }
 
