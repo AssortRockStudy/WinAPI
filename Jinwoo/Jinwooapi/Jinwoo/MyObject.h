@@ -2,8 +2,7 @@
 
 class MyObject
 {
-	SINGLETON(MyObject);
-
+	
 
 };
 

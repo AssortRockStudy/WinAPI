@@ -2,6 +2,6 @@
 
 class MyLevel
 {
-	SINGLETON(MyLevel);
+	
 };
 
