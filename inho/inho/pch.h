@@ -2,10 +2,10 @@
 
 
 #include "targetver.h"
-#define WIN32_LEAN_AND_MEAN             // °ÅÀÇ »ç¿ëµÇÁö ¾Ê´Â ³»¿ëÀ» Windows Çì´õ¿¡¼­ Á¦¿ÜÇÕ´Ï´Ù.
-// Windows Çì´õ ÆÄÀÏ
+#define WIN32_LEAN_AND_MEAN             // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Windows ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+// Windows ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #include <windows.h>
-// C ·±Å¸ÀÓ Çì´õ ÆÄÀÏÀÔ´Ï´Ù.
+// C ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 #include <stdlib.h>
 #include <malloc.h>
 #include <memory.h>

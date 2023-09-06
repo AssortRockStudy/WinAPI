@@ -67,6 +67,9 @@
     <ClInclude Include="CPlayer.h">
       <Filter>Game\04. Object\Player</Filter>
     </ClInclude>
+    <ClInclude Include="CPaletteMgr.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="inho.rc">
@@ -102,6 +105,9 @@
     </ClCompile>
     <ClCompile Include="CPlayer.cpp">
       <Filter>Game\04. Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CPaletteMgr.cpp">
+      <Filter>Game\03. Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

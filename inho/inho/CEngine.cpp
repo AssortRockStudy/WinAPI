@@ -3,6 +3,7 @@
 
 // Manager
 #include "CTimeMgr.h"
+#include "CPaletteMgr.h"
 
 
 
@@ -37,12 +38,13 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	// DC : Device Context
 	// pen : Black 
 	// brush : White
-	// Bitmap(±×¸² ±×¸± °÷) : ÇÚµé¿¡ ÇØ´çÇÏ´Â À©µµ¿ì ºñÆ®¸Ê
+	// Bitmap(ï¿½×¸ï¿½ ï¿½×¸ï¿½ ï¿½ï¿½) : ï¿½Úµé¿¡ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½
 	m_dc = GetDC(m_hWnd);
 
 
-	// Manager ÃÊ±âÈ­
+	// Manager ï¿½Ê±ï¿½È­
 	CTimeMgr::GetInst()->init();
+	CPaletteMgr::GetInst()->init(m_dc);
 
 
 
