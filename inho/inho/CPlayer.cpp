@@ -49,7 +49,7 @@ void CPlayer::render(HDC _dc)
 	CPaletteMgr* palette = CPaletteMgr::GetInst();
 
 	palette->SelectPen(CPaletteMgr::PenColor::PBLACK);
-	palette->SelectBrush(CPaletteMgr::BrushColor::BBLUE);
+	palette->SelectBrush(CPaletteMgr::BrushColor::BBLACK);
 	Rectangle(_dc
 		, int(vPos.x - vScale.x / 2)
 		, int(vPos.y - vScale.y / 2)
