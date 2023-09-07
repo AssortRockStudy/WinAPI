@@ -2,6 +2,7 @@
 #include "CEngine.h"
 
 #include "CTimeManager.h"
+#include "CKeyman.h"
 
 #include "CLevel.h"
 #include "CPlayer.h"
@@ -80,6 +81,7 @@ void CEngine::tick()
 {
 	// TimeMgr
 	CTimeManager::GetInst()->tick();
+	CKeyman::GetInst()->tick();
 	m_Level->tick();
 	m_Level->render(m_dc);
 	/*static int Call = 0;
