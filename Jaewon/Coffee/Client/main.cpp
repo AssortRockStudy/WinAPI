@@ -28,14 +28,14 @@ LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-                     _In_opt_ HINSTANCE hPrevInstance,
-                     _In_ LPWSTR    lpCmdLine,
-                     _In_ int       nCmdShow)
+    _In_opt_ HINSTANCE hPrevInstance,
+    _In_ LPWSTR    lpCmdLine,
+    _In_ int       nCmdShow)
 {
     MyRegisterClass(hInstance);
 
     // 애플리케이션 초기화를 수행합니다:
-    if (!InitInstance (hInstance, nCmdShow))
+    if (!InitInstance(hInstance, nCmdShow))
     {
         return FALSE;
     }
@@ -45,7 +45,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
     MSG msg;
 
-    // 기본 메시지 루프입니다:
+    CEngine::GetInst()->init(myHwnd, POINT{1280, 768});
+
     // getMessage의 경우 메세지가 들어오지 않으면 리턴값을 주지 않기 때문에 메세지가 들어오지 않으면 함수가 종료되지 않아 while 조건 부분에서 무한루프를 돌게됨
     // 그러므로 메세지를 주지 않을 경우에도 리턴값을 주는 PeekMessage를 이용해 구현할 것임
     // 있으면 true, 없으면 false를 반환
@@ -71,8 +72,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         // 메세지가 없을 경우
         else
         {
-            CEngine::GetInst();
-            CEngine* pInst = CEngine::GetInst();
+            CEngine::GetInst()->tick();
         }
     }
 

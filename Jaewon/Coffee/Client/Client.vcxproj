@@ -130,10 +130,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CEngine.h" />
+    <ClInclude Include="CLevel.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="struct.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
@@ -141,9 +143,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp" />
+    <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

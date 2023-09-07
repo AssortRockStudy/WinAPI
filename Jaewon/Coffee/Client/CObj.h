@@ -19,10 +19,12 @@ private:
 public:
 	POINT getPos() { return mPos; }
 	POINT getScale() { return mScale; }
+	void setPos(POINT _pos) { mPos = _pos; }
+	void setScale(POINT _scale) { mScale = _scale; }
 
 public:
 	virtual void tick() = 0;
-	virtual void render() = 0;
+	virtual void render(HDC _dc) = 0;
 
 public:
 	CObj();

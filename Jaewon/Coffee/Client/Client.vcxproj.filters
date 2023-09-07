@@ -26,6 +26,9 @@
     <Filter Include="Default">
       <UniqueIdentifier>{f6dd98f3-ad71-47af-9395-ed4162fc2a07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04.Object\Player">
+      <UniqueIdentifier>{af133341-404c-483f-82b6-60bbb50e1016}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -52,7 +55,15 @@
     <ClInclude Include="CEngine.h">
       <Filter>Game\02.Engine</Filter>
     </ClInclude>
-    <ClInclude Include="CObj.h" />
+    <ClInclude Include="CObj.h">
+      <Filter>Game\04.Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Game\04.Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CLevel.h">
+      <Filter>Game\05.Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -77,6 +88,14 @@
     <ClCompile Include="CEngine.cpp">
       <Filter>Game\02.Engine</Filter>
     </ClCompile>
-    <ClCompile Include="CObj.cpp" />
+    <ClCompile Include="CObj.cpp">
+      <Filter>Game\04.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Game\04.Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevel.cpp">
+      <Filter>Game\05.Level</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
