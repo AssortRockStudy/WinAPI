@@ -15,10 +15,10 @@
 
 #define KEY_CHECK(Key, State) MyKeyMgr::GetInst()->GetKeyState(KEY::Key) == KEY_STATE::State
 
-#define KEY_TAP(Key)		KEY_CHECK(KEY::Key, KEY_STATE::TAP)
-#define KEY_PRESSED(Key)	KEY_CHECK(KEY::Key, KEY_STATE::PRESSED)
-#define KEY_RELEASED(Key)	KEY_CHECK(KEY::Key, KEY_STATE::RELEASED)
-#define KEY_NONE(Key)		KEY_CHECK(KEY::Key, KEY_STATE::NONE)
+#define KEY_TAP(Key)		KEY_CHECK(Key, TAP)
+#define KEY_PRESSED(Key)	KEY_CHECK(Key, PRESSED)
+#define KEY_RELEASED(Key)	KEY_CHECK(Key, RELEASED)
+#define KEY_NONE(Key)		KEY_CHECK(Key, NONE)
 
 
 enum class KEY

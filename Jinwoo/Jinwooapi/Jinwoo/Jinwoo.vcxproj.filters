@@ -29,6 +29,9 @@
     <Filter Include="Game\04.Object\Player">
       <UniqueIdentifier>{d2421ca3-045a-45b5-9e06-b7c63d62189c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04.Object\Monster">
+      <UniqueIdentifier>{27d68fe5-cd32-4ef9-8bca-e42ee05e3279}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -73,6 +76,12 @@
     <ClInclude Include="MyKeyMgr.h">
       <Filter>Game\03.Manager</Filter>
     </ClInclude>
+    <ClInclude Include="MyLevelMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMonster.h">
+      <Filter>Game\04.Object\Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jinwoo.rc">
@@ -111,6 +120,12 @@
     </ClCompile>
     <ClCompile Include="MyKeyMgr.cpp">
       <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MyLevelMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMonster.cpp">
+      <Filter>Game\04.Object\Monster</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -136,6 +136,8 @@
     <ClInclude Include="MyEngine.h" />
     <ClInclude Include="MyKeyMgr.h" />
     <ClInclude Include="MyLevel.h" />
+    <ClInclude Include="MyLevelMgr.h" />
+    <ClInclude Include="MyMonster.h" />
     <ClInclude Include="MyObject.h" />
     <ClInclude Include="MyPlayer.h" />
     <ClInclude Include="MyTimeMgr.h" />
@@ -149,6 +151,8 @@
     <ClCompile Include="MyEngine.cpp" />
     <ClCompile Include="MyKeyMgr.cpp" />
     <ClCompile Include="MyLevel.cpp" />
+    <ClCompile Include="MyLevelMgr.cpp" />
+    <ClCompile Include="MyMonster.cpp" />
     <ClCompile Include="MyObject.cpp" />
     <ClCompile Include="MyPlayer.cpp" />
     <ClCompile Include="MyTimeMgr.cpp" />

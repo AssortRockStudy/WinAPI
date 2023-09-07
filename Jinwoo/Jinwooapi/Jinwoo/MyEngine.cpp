@@ -3,9 +3,7 @@
 
 #include "MyTimeMgr.h"
 #include "MyKeyMgr.h"
-
-#include "MyLevel.h"
-#include "MyPlayer.h"
+#include "MyLevelMgr.h"
 
 MyEngine::MyEngine() : m_hWnd(nullptr), m_ptResolution{}, m_DC(nullptr)
 {
@@ -35,23 +33,25 @@ void MyEngine::init(HWND _hWnd, POINT _ptResolution)
 
 	m_DC = GetDC(m_hWnd);
 
+	// 추가 비트맵 버퍼
+	//									복사할 DC / 해상도
+	m_SubBitMap = CreateCompatibleBitmap(m_DC, m_ptResolution.x, m_ptResolution.y);
+	m_SubDC = CreateCompatibleDC(m_DC);
+
+	// m_SubDC가 m_SubBitMap을 목적지로 지정하고
+	// 원래 목적지로 지정하고 있던 BitMap이 반환값으로 나오는데 이것을 DeleteObject함수를 통해 삭제함
+	DeleteObject((HBITMAP)SelectObject(m_SubDC, m_SubBitMap));
+
 	MyTimeMgr::GetInst()->init();
 	MyKeyMgr::GetInst()->init();
-
-	m_Level = new MyLevel;
-
-	MyPlayer* pPlayer = new MyPlayer;
-
-	pPlayer->SetPos(Vec2(500.f, 500.f));
-	pPlayer->SetScale(Vec2(50.f, 50.f));
-
-	m_Level->AddObject(pPlayer);
+	MyLevelMgr::GetInst()->init();
 }
 
 void MyEngine::tick()
 {
 	MyTimeMgr::GetInst()->tick();
+	MyKeyMgr::GetInst()->tick();
+	MyLevelMgr::GetInst()->tick();
 
-	m_Level->tick();
-	m_Level->render(m_DC);
+	MyLevelMgr::GetInst()->render(m_SubDC);
 }
