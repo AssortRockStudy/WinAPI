@@ -4,7 +4,7 @@ class CMonster :
     public CObj
 {
 private:
-    float       m_Speed;
+    float       m_fSpeed;
 
 private:
     virtual void tick(float _DT) override;

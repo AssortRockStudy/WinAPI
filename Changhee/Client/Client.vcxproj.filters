@@ -41,12 +41,15 @@
     <Filter Include="Game\04. Object\Monster">
       <UniqueIdentifier>{837e8a10-f7a8-4b5f-a980-bfa5f9ab53ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03. Manager\LevelManager">
+      <UniqueIdentifier>{1a379583-4016-4fe9-9b91-ea88476851d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Object\Projectile">
+      <UniqueIdentifier>{33fd0346-f085-49a7-af0a-b0579893e99a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
-      <Filter>Default</Filter>
-    </ClInclude>
-    <ClInclude Include="framework.h">
       <Filter>Default</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
@@ -90,6 +93,15 @@
     </ClInclude>
     <ClInclude Include="CMonster.h">
       <Filter>Game\04. Object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CLevelMgr.h">
+      <Filter>Game\03. Manager\LevelManager</Filter>
+    </ClInclude>
+    <ClInclude Include="enum.h">
+      <Filter>Game\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CProjectile.h">
+      <Filter>Game\04. Object\Projectile</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +147,12 @@
     </ClCompile>
     <ClCompile Include="CMonster.cpp">
       <Filter>Game\04. Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevelMgr.cpp">
+      <Filter>Game\03. Manager\LevelManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CProjectile.cpp">
+      <Filter>Game\04. Object\Projectile</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

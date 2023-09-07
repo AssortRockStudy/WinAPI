@@ -2,9 +2,14 @@
 #include "CPlayer.h"
 
 #include "CKeyMgr.h"
+#include "CLevelMgr.h"
+
+#include "CLevel.h"
+
+#include "CProjectile.h"
 
 CPlayer::CPlayer()
-	: m_Speed(100.f)
+	: m_fSpeed(100.f)
 {
 }
 
@@ -20,22 +25,39 @@ void CPlayer::tick(float _DT)
 	
 	if (KEY_PRESSED(KEY::W))
 	{
-		vPos.y -= m_Speed * _DT;
+		vPos.y -= m_fSpeed * _DT;
 	}
 
 	if (KEY_PRESSED(KEY::S))
 	{
-		vPos.y += m_Speed * _DT;
+		vPos.y += m_fSpeed * _DT;
 	}
 	
 	if (KEY_PRESSED(KEY::A))
 	{
-		vPos.x -= m_Speed * _DT;
+		vPos.x -= m_fSpeed * _DT;
 	}
 	
 	if (KEY_PRESSED(KEY::D))
 	{
-		vPos.x += m_Speed * _DT;
+		vPos.x += m_fSpeed * _DT;
+	}
+
+	if (KEY_TAP(KEY::SPACE))
+	{
+		CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
+
+		CProjectile* pProjectile = new CProjectile;
+
+		Vec2 ProjectilePos = GetPos();
+		ProjectilePos.y -= GetScale().y / 2.f;
+
+		pProjectile->SetSpeed(1000.f);
+		pProjectile->SetDir(PI / 2.f);
+		pProjectile->SetPos(ProjectilePos);
+		pProjectile->SetScale(Vec2(25.f, 25.f));
+
+		pCurLevel->AddObject(pProjectile);
 	}
 
 	SetPos(vPos);

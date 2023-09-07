@@ -14,10 +14,10 @@ void CObj::render(HDC _dc)
 	CPalette tmp(_dc, PEN_TYPE::RED);
 
 	Rectangle(_dc
-		, int(m_Pos.x - m_Scale.x / 2)
-		, int(m_Pos.y - m_Scale.y / 2)
-		, int(m_Pos.x + m_Scale.x / 2)
-		, int(m_Pos.y + m_Scale.y / 2));
+		, int(m_vPos.x - m_vScale.x / 2)
+		, int(m_vPos.y - m_vScale.y / 2)
+		, int(m_vPos.x + m_vScale.x / 2)
+		, int(m_vPos.y + m_vScale.y / 2));
 
 }
 

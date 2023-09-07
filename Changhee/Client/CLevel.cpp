@@ -26,7 +26,6 @@ void CLevel::tick()
 	{
 		m_vecObjects[i]->tick(DT);
 	}
-
 }
 
 void CLevel::render(HDC _dc)

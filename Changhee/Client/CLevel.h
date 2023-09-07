@@ -16,10 +16,7 @@ public:
 
 
 public:
-	void AddObject(CObj* _Object)
-	{
-		m_vecObjects.push_back(_Object);
-	}
+	void AddObject(CObj* _Object) { m_vecObjects.push_back(_Object); }
 
 public:
 	CLevel();

@@ -5,7 +5,7 @@
 
 
 CMonster::CMonster()
-	: m_Speed(100.f)
+	: m_fSpeed(100.f)
 {
 }
 
@@ -21,22 +21,22 @@ void CMonster::tick(float _DT)
 
 	if (KEY_PRESSED(KEY::W))
 	{
-		vPos.y += m_Speed * _DT;
+		vPos.y += m_fSpeed * _DT;
 	}
 
 	if (KEY_PRESSED(KEY::S))
 	{
-		vPos.y -= m_Speed * _DT;
+		vPos.y -= m_fSpeed * _DT;
 	}
 
 	if (KEY_PRESSED(KEY::A))
 	{
-		vPos.x += m_Speed * _DT;
+		vPos.x += m_fSpeed * _DT;
 	}
 
 	if (KEY_PRESSED(KEY::D))
 	{
-		vPos.x -= m_Speed * _DT;
+		vPos.x -= m_fSpeed * _DT;
 	}
 
 	SetPos(vPos);

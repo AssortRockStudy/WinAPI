@@ -4,14 +4,17 @@ class CTimeMgr
 	SINGLETON(CTimeMgr);
 
 private:
-	LARGE_INTEGER m_Frequency;
-	LARGE_INTEGER m_PrevCount;
-	LARGE_INTEGER m_CurCount;
+	LARGE_INTEGER	m_llFrequency;
+	LARGE_INTEGER	m_llPrevCount;
+	LARGE_INTEGER	m_llCurCount;
 
-	float		  m_DeltaTime;
+	float			m_fDeltaTime;
+
+	float			m_fTime;
+	UINT			m_iCall;
 
 public:
-	float GetDeltaTime() { return m_DeltaTime; }
+	float GetDeltaTime() { return m_fDeltaTime; }
 
 public:
 	void init();

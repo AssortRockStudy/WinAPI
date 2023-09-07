@@ -1,6 +1,5 @@
 #pragma once
 
-
 class CPalette
 {
 private:
@@ -12,7 +11,5 @@ public:
 	CPalette(HDC _dc, PEN_TYPE _ePenType);
 	CPalette(HDC _dc, BRUSH_TYPE _eBrushType);
 	~CPalette();
-
-
 };
 

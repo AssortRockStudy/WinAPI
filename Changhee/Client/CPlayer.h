@@ -4,7 +4,7 @@ class CPlayer :
     public CObj
 {
 private:
-    float   m_Speed;
+    float   m_fSpeed;
 
 
 public:

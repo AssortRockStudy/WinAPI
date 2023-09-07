@@ -3,18 +3,16 @@
 
 #include "CTimeMgr.h"
 #include "CKeyMgr.h"
+#include "CLevelMgr.h"
 
-#include "CLevel.h"
-#include "CPlayer.h"
-#include "CMonster.h"
 
 
 CEngine::CEngine()
 	: m_hWnd(nullptr)
 	, m_ptResloution{}
-	, m_dc(nullptr)
-	, m_Level(nullptr)
-
+	, m_hDC(nullptr)
+	, m_hSubBitMap(nullptr)
+	, m_hSubDC(nullptr)
 {
 	// pen, brush 생성
 	CreatePenBrush();
@@ -23,9 +21,12 @@ CEngine::CEngine()
 CEngine::~CEngine()
 {
 	// DC 해제
-	ReleaseDC(m_hWnd, m_dc);
+	ReleaseDC(m_hWnd, m_hDC);
 
-
+	// SubDC, Bitmap 삭제
+	DeleteObject(m_hSubBitMap);
+	DeleteDC(m_hSubDC);
+	
 	// Pen,Brush 삭제
 	for (int i = 0; i < (UINT)PEN_TYPE::END; i++)
 	{
@@ -37,10 +38,6 @@ CEngine::~CEngine()
 		DeleteObject(m_arrBrush[i]);
 	}
 
-
-	// Level 해제
-	if (nullptr != m_Level)
-		delete m_Level;
 }
 
 
@@ -50,41 +47,45 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	// 멤버 변수 초기화
 	m_hWnd = _hWnd;
 	m_ptResloution = _ptResolution;
-	m_dc = GetDC(m_hWnd);
+	m_hDC = GetDC(m_hWnd);
 
 	// 해상도 변경
 	SetWindowPos(m_hWnd, nullptr, 50, 50, m_ptResloution.x, m_ptResloution.y, 0);
 	ShowWindow(m_hWnd, true);
 
+	// 추가 비트맵 버퍼
+	m_hSubBitMap = CreateCompatibleBitmap(m_hDC, m_ptResloution.x, m_ptResloution.y);
+	m_hSubDC = CreateCompatibleDC(m_hDC);
+	
+	// m_SubDC가 디폴트로 들고있던 비트맵을 삭제
+	DeleteObject((HBITMAP)SelectObject(m_hSubDC, m_hSubBitMap));
+
 	// Manager 초기화
 	CTimeMgr::GetInst()->init();
 	CKeyMgr::GetInst()->init();
+	CLevelMgr::GetInst()->init();
 
-	// Level 생성
-	m_Level = new CLevel;
-
-	// Plyaer 생성
-	CPlayer* pPlayer = new CPlayer;
-	pPlayer->SetPos(Vec2( 500.f,500.f ));
-	pPlayer->SetScale(Vec2(50.f, 50.f));
-	m_Level->AddObject(pPlayer);
-
-	CMonster* pMonster = new CMonster;
-	pMonster->SetPos(Vec2(500.f, 600.f));
-	pMonster->SetScale(Vec2(50.f, 50.f));
-	m_Level->AddObject(pMonster);
 }
 
 void CEngine::tick()
 {
-	// Manager Tick
+	// ------------ Manager Update ------------
 	CTimeMgr::GetInst()->tick();
 	CKeyMgr::GetInst()->tick();
 
-	m_Level->tick();
 
-	m_Level->render(m_dc);
+	// ------------ update ------------
+	CLevelMgr::GetInst()->tick();
 
+
+	// ------------ render ------------
+	CLevelMgr::GetInst()->render(m_hSubDC);
+
+
+
+	// SubDC -> mainDC 복사
+	CopyBackBuffer();
+	
 }
 
 void CEngine::CreatePenBrush()
@@ -101,4 +102,10 @@ void CEngine::CreatePenBrush()
 	m_arrPen[(UINT)PEN_TYPE::GREEN] = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
 	m_arrPen[(UINT)PEN_TYPE::BLUE] = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
 
+}
+
+void CEngine::CopyBackBuffer()
+{
+	// m_SubDC -> m_DC 로 복사
+	BitBlt(m_hDC, 0, 0, m_ptResloution.x, m_ptResloution.y, m_hSubDC, 0, 0, SRCCOPY);
 }
