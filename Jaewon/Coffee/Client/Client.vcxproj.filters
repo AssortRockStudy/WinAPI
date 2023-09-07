@@ -52,6 +52,7 @@
     <ClInclude Include="CEngine.h">
       <Filter>Game\02.Engine</Filter>
     </ClInclude>
+    <ClInclude Include="CObj.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -76,5 +77,6 @@
     <ClCompile Include="CEngine.cpp">
       <Filter>Game\02.Engine</Filter>
     </ClCompile>
+    <ClCompile Include="CObj.cpp" />
   </ItemGroup>
 </Project>

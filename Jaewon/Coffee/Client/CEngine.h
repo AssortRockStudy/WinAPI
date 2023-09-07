@@ -10,5 +10,14 @@ class CEngine
 {
 	SINGLETON(CEngine);
 
+private:
+	HWND mHwnd;
+	POINT mPtResolution;
+	HDC MDc;
+	
+public:
+	void init(HWND _hwnd, POINT _ptResolution);
+	void tick();
+
 };
 
