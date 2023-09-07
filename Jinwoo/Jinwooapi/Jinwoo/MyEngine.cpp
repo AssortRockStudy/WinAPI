@@ -2,7 +2,10 @@
 #include "MyEngine.h"
 
 #include "MyTimeMgr.h"
+#include "MyKeyMgr.h"
+
 #include "MyLevel.h"
+#include "MyPlayer.h"
 
 MyEngine::MyEngine() : m_hWnd(nullptr), m_ptResolution{}, m_DC(nullptr)
 {
@@ -33,8 +36,16 @@ void MyEngine::init(HWND _hWnd, POINT _ptResolution)
 	m_DC = GetDC(m_hWnd);
 
 	MyTimeMgr::GetInst()->init();
+	MyKeyMgr::GetInst()->init();
 
 	m_Level = new MyLevel;
+
+	MyPlayer* pPlayer = new MyPlayer;
+
+	pPlayer->SetPos(Vec2(500.f, 500.f));
+	pPlayer->SetScale(Vec2(50.f, 50.f));
+
+	m_Level->AddObject(pPlayer);
 }
 
 void MyEngine::tick()

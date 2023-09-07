@@ -21,3 +21,10 @@ public:
 
 	}
 };
+
+struct FKeyData
+{
+	KEY			eKey;
+	KEY_STATE	eState;
+	bool		bPressed;
+};

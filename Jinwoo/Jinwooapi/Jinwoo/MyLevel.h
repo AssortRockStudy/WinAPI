@@ -15,6 +15,12 @@ public:
 	void render(HDC _dc);
 
 public:
+	void AddObject(MyObject* _Object)
+	{
+		m_vecObject.push_back(_Object);
+	}
+
+public:
 	MyLevel();
 	~MyLevel();
 };

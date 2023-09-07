@@ -134,6 +134,7 @@
     <ClInclude Include="global.h" />
     <ClInclude Include="Jinwoo.h" />
     <ClInclude Include="MyEngine.h" />
+    <ClInclude Include="MyKeyMgr.h" />
     <ClInclude Include="MyLevel.h" />
     <ClInclude Include="MyObject.h" />
     <ClInclude Include="MyPlayer.h" />
@@ -142,18 +143,16 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="struct.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="TestClass.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include=".editorconfig" />
     <ClCompile Include="Jinwoo.cpp" />
     <ClCompile Include="MyEngine.cpp" />
+    <ClCompile Include="MyKeyMgr.cpp" />
     <ClCompile Include="MyLevel.cpp" />
     <ClCompile Include="MyObject.cpp" />
     <ClCompile Include="MyPlayer.cpp" />
     <ClCompile Include="MyTimeMgr.cpp" />
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="TestClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jinwoo.rc" />
