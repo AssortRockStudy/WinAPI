@@ -73,7 +73,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         {
             CEngine::GetInst();
             CEngine* pInst = CEngine::GetInst();
-            CEngine a(*pInst); 
         }
     }
 
