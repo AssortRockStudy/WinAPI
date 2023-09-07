@@ -3,7 +3,7 @@
 
 #include "CTimeManager.h"
 #include "CPal.h"
-
+#include "CKeyman.h"
 
 
 
@@ -22,22 +22,22 @@ void CMonster::tick(float _DT)
 	Vec2 vPos = GetPos();
 
 	// 키입력이 발생하면 움직인다.
-	if (GetAsyncKeyState(0x41) & 0x8001)
+	if (KEY_PRESSED(W))
 	{
 		vPos.x += m_Speed * _DT;
 	}
 
-	if (GetAsyncKeyState(0x44) & 0x8001)
+	if (KEY_PRESSED(D))
 	{
 		vPos.x -= m_Speed * _DT;
 	}
 
-	if (GetAsyncKeyState(0x57) & 0x8001)
+	if (KEY_PRESSED(W))
 	{
 		vPos.y += m_Speed * _DT;
 	}
 
-	if (GetAsyncKeyState(0x53) & 0x8001)
+	if (KEY_PRESSED(S))
 	{
 		vPos.y -= m_Speed * _DT;
 	}

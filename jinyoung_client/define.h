@@ -14,7 +14,7 @@
 								 ClassType(const ClassType& _Origin) = delete;\
 							 	 ~ClassType();
 
-#define KEY_CHECK(Key, State) CKeyMgr::GetInst()->GetKeyState(Key) == State
+#define KEY_CHECK(Key, State) CKeyman::GetInst()->GetKeyState(Key) == State
 
 #define KEY_TAP(Key) KEY_CHECK(Key, TAP)
 #define KEY_PRESSED(Key) KEY_CHECK(Key, PRESSED)

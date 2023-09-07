@@ -8,15 +8,16 @@ class CKeyman
 {
 	SINGLETON(CKeyman);
 
+private:
+	vector<FKeyData> m_vecKeyData;
 
 public:
-	void init();
-	void tick();
 
 	KEY_STATE GetKeyState(KEY _Key) { return m_vecKeyData[_Key].eState; }
 
-private:
-	vector<FKeyData> m_vecKeyData;
+	void init();
+	void tick();
+
 
 
 };
