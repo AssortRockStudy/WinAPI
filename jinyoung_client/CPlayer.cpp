@@ -9,15 +9,27 @@
 #include "CLevel.h"
 #include "CProjectile.h"
 
+#include "CPathMgr.h"
+#include "CEngine.h"
 
+using std::wstring;
 
 CPlayer::CPlayer()
 	: m_Speed(500.f)
+	, m_Image(nullptr)
 {
+	//이미지가 존재하는 상대경로 (contents 폴더로 부터)
+	//힙메모리에할당
+	wstring strPath = CPathMgr::GetContentDir();
+	strPath+= L"texture\\ma.png";
+	m_Image= (HBITMAP) LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+	m_Image_dc = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
+	GetObject(m_Image, sizeof(BITMAP), &m_BitmapInfo);
 }
 
 CPlayer::~CPlayer()
 {
+	DeleteObject(hLoadBit);
 }
 
 void CPlayer::tick(float _DT)
@@ -25,7 +37,7 @@ void CPlayer::tick(float _DT)
 	Vec2 vPos = GetPos();
 
 	// 키입력이 발생하면 움직인다.
-	if (KEY_PRESSED(W))
+	if (KEY_PRESSED(A))
 	{
 		vPos.x -= m_Speed * _DT;
 	}
@@ -74,7 +86,8 @@ void CPlayer::render(HDC _dc)
 	Vec2 vScale = GetScale();
 	SelectObject(_dc, CPal::GetInst()->getHPen(BLACK));
 	SelectObject(_dc, CPal::GetInst()->getHBrush(BLACK));
-
+	
+	BitBlt(_dc,vPos.x-m.BitmapInfo.bm
 
 	Rectangle(_dc
 		, int(vPos.x - vScale.x / 2)

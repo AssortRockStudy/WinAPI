@@ -9,6 +9,7 @@
 #include "CTimeManager.h"
 #include "CKeyman.h"
 #include "CLevelMgr.h"
+#include "CPathMgr.h"
 
 
 
@@ -67,7 +68,7 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	CTimeManager::GetInst()->init();
 	CKeyman::GetInst()->init();
 	CLevelMgr::GetInst()->init();
-
+	CPathMgr::init();
 
 	//레벨매니저로 이관
 	//// Level 생성
