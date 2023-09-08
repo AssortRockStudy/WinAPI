@@ -4,8 +4,9 @@
 #include "MyTimeMgr.h"
 #include "MyKeyMgr.h"
 #include "MyLevelMgr.h"
+#include "MyPathMgr.h"
 
-MyEngine::MyEngine() : m_hWnd(nullptr), m_ptResolution{}, m_DC(nullptr)
+MyEngine::MyEngine() : m_hWnd(nullptr), m_ptResolution{}, m_DC(nullptr), m_SubBitMap(nullptr), m_SubDC(nullptr)
 {
 
 }
@@ -14,6 +15,9 @@ MyEngine::~MyEngine()
 {
 	// DC 해제
 	ReleaseDC(m_hWnd, m_DC);
+
+	DeleteObject(m_SubBitMap);
+	DeleteDC(m_SubDC);
 
 	if (nullptr != m_Level)
 	{
@@ -44,6 +48,10 @@ void MyEngine::init(HWND _hWnd, POINT _ptResolution)
 
 	MyTimeMgr::GetInst()->init();
 	MyKeyMgr::GetInst()->init();
+
+	// static 함수로 선언했기 때문에 바로 호출 가능
+	// 이미지를 먼저 불러오고 Level에 그려야하기 때문에 먼저 실행한다
+	MyPathMgr::init();
 	MyLevelMgr::GetInst()->init();
 }
 

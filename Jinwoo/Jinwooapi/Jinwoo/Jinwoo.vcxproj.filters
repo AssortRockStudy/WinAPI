@@ -32,6 +32,9 @@
     <Filter Include="Game\04.Object\Monster">
       <UniqueIdentifier>{27d68fe5-cd32-4ef9-8bca-e42ee05e3279}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04.Object\Projectile">
+      <UniqueIdentifier>{2af7e9a2-daf9-49d1-aaa9-433df4fae71b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -52,7 +55,7 @@
     <ClInclude Include="MyEngine.h">
       <Filter>Game\02.Engine</Filter>
     </ClInclude>
-    <ClInclude Include="default.h">
+    <ClInclude Include="define.h">
       <Filter>Game\01.Header</Filter>
     </ClInclude>
     <ClInclude Include="global.h">
@@ -81,6 +84,12 @@
     </ClInclude>
     <ClInclude Include="MyMonster.h">
       <Filter>Game\04.Object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="MyProjectile.h">
+      <Filter>Game\04.Object\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="MyPathMgr.h">
+      <Filter>Game\03.Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +135,12 @@
     </ClCompile>
     <ClCompile Include="MyMonster.cpp">
       <Filter>Game\04.Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="MyProjectile.cpp">
+      <Filter>Game\04.Object\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="MyPathMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

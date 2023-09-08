@@ -1,8 +1,34 @@
 #include "pch.h"
 #include "MyPlayer.h"
 
+#include "MyEngine.h"
+
 #include "MyTimeMgr.h"
 #include "MyKeyMgr.h"
+#include "MyLevelMgr.h"
+#include "MyPathMgr.h"
+
+#include "MyLevel.h"
+#include "MyProjectile.h"
+
+MyPlayer::MyPlayer() : m_Speed(300.f), m_PlayerImage(nullptr)
+{
+	// 이미지가 존재하는 경로 탐색
+	wstring strPath = MyPathMgr::GetContentPath();
+	strPath += L"monster_gaper.bmp";
+
+	// 플레이어가 사용할 이미지 로드
+	m_PlayerImage = (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 64, 64, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+	m_PlayerDC = CreateCompatibleDC(MyEngine::GetInst()->GetMainDC());
+	DeleteObject(SelectObject(m_PlayerDC, m_PlayerImage));
+	GetObject(m_PlayerImage, sizeof(BITMAP), &m_BitmapInfo);
+}
+
+MyPlayer::~MyPlayer()
+{
+	DeleteObject(m_PlayerImage);
+	DeleteDC(m_PlayerDC);
+}
 
 void MyPlayer::tick(float _DT)
 {
@@ -28,6 +54,23 @@ void MyPlayer::tick(float _DT)
 		vPos.y += m_Speed * _DT;
 	}
 
+	if (KEY_TAP(SPACE))
+	{
+		MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
+
+		MyProjectile* pProjectile = new MyProjectile;
+
+		Vec2 ProjectilePos = GetPos();
+		ProjectilePos.y -= GetScale().y / 2.f;
+
+		pProjectile->SetSpeed(500.f);
+		pProjectile->SetDir(PI / 2.f);
+		pProjectile->SetPos(ProjectilePos);
+		pProjectile->SetScale(Vec2(20.f, 20.f));
+
+		pCurLevel->AddObject(pProjectile);
+	}
+
 	SetPos(vPos);
 }
 
@@ -48,11 +91,13 @@ void MyPlayer::render(HDC _dc)
 	HBRUSH hCurBrush = CreateSolidBrush(RGB(0, 0, 0));
 	HBRUSH hPrevBrush = (HBRUSH)SelectObject(_dc, hCurBrush);
 
-	Rectangle(_dc
-		, int(vPos.x - vScale.x / 2)
-		, int(vPos.y - vScale.y / 2)
-		, int(vPos.x + vScale.x / 2)
-		, int(vPos.y + vScale.y / 2));
+	BitBlt(_dc,
+		vPos.x -= m_BitmapInfo.bmWidth / 2.f,
+		vPos.y -= m_BitmapInfo.bmHeight / 2.f,
+		m_BitmapInfo.bmWidth,
+		m_BitmapInfo.bmHeight,
+		m_PlayerDC,
+		0, 0, SRCCOPY);
 
 	// 되돌리고 사용했던 펜과 브러쉬를 삭제한다
 	SelectObject(_dc, hPrevPen);
@@ -60,14 +105,4 @@ void MyPlayer::render(HDC _dc)
 
 	SelectObject(_dc, hPrevBrush);
 	DeleteObject(hCurBrush);
-}
-
-MyPlayer::MyPlayer() : m_Speed(300.f)
-{
-
-}
-
-MyPlayer::~MyPlayer()
-{
-
 }

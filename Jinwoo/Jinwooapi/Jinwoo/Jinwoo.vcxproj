@@ -70,6 +70,14 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)JWGame\bin\</OutDir>
+    <TargetName>JWGame_Debug</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)JWGame\bin\</OutDir>
+    <TargetName>JWGame</TargetName>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -129,7 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="default.h" />
+    <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="Jinwoo.h" />
@@ -139,7 +147,9 @@
     <ClInclude Include="MyLevelMgr.h" />
     <ClInclude Include="MyMonster.h" />
     <ClInclude Include="MyObject.h" />
+    <ClInclude Include="MyPathMgr.h" />
     <ClInclude Include="MyPlayer.h" />
+    <ClInclude Include="MyProjectile.h" />
     <ClInclude Include="MyTimeMgr.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
@@ -154,7 +164,9 @@
     <ClCompile Include="MyLevelMgr.cpp" />
     <ClCompile Include="MyMonster.cpp" />
     <ClCompile Include="MyObject.cpp" />
+    <ClCompile Include="MyPathMgr.cpp" />
     <ClCompile Include="MyPlayer.cpp" />
+    <ClCompile Include="MyProjectile.cpp" />
     <ClCompile Include="MyTimeMgr.cpp" />
     <ClCompile Include="pch.cpp" />
   </ItemGroup>
