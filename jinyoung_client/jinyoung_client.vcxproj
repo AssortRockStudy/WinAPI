@@ -138,10 +138,11 @@
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CKeyman.h" />
     <ClInclude Include="CLevel.h" />
-    <ClInclude Include="CLevelMan.h" />
+    <ClInclude Include="CLevelMgr.h" />
     <ClInclude Include="CMonster.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="CPal.h" />
+    <ClInclude Include="CProjectile.h" />
     <ClInclude Include="CTimeManager.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
@@ -157,7 +158,7 @@
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CKeyman.cpp" />
     <ClCompile Include="CLevel.cpp" />
-    <ClCompile Include="CLevelMan.cpp" />
+    <ClCompile Include="CLevelMgr.cpp" />
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPal.cpp" />
@@ -170,6 +171,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="CPlayer.cpp" />
+    <ClCompile Include="CProjectile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc" />

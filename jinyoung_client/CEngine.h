@@ -24,12 +24,15 @@ private:
 	POINT	m_ptResolution;	// 윈도우 해상도
 
 	HDC		m_dc;
-
-	HBITMAP m_subbitmap;
 	HDC		m_subdc;
+	HBITMAP m_subbitmap;
 
 	CLevel* m_Level;
 public:
+	HWND GetMainWind() { return m_hWnd; }
+	HDC GetMainDC() { return m_dc; }
+	POINT GetResolution() { return m_ptResolution; }
+
 	void init(HWND _hWnd, POINT _ptResolution);
 	void tick();
 	//정적멤버함수

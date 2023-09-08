@@ -5,6 +5,10 @@
 #include "CPal.h"
 #include "CKeyman.h"
 
+#include "CLevelMgr.h"
+#include "CLevel.h"
+#include "CProjectile.h"
+
 
 
 CPlayer::CPlayer()
@@ -41,6 +45,25 @@ void CPlayer::tick(float _DT)
 		vPos.y += m_Speed * _DT;
 	}
 
+	if (KEY_TAP(SPACE))
+	{
+		CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
+
+		for (int i = 0; i < 3; ++i)
+		{
+			CProjectile* pProjectile = new CProjectile;
+
+			Vec2 ProjectilePos = GetPos();
+			ProjectilePos.y -= GetScale().y / 2.f;
+
+			pProjectile->SetSpeed(1000.f);
+			pProjectile->SetDir(PI / 4.f + (PI / 4.f) * (float)i);
+			pProjectile->SetPos(ProjectilePos);
+			pProjectile->SetScale(Vec2(25.f, 25.f));
+
+			pCurLevel->AddObject(pProjectile);
+		}
+	}
 	SetPos(vPos);
 }
 

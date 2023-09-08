@@ -108,13 +108,7 @@ void CKeyman::init()
 
 void CKeyman::tick()
 {
-	++m_iCall;
 
-	if(1.f <= m_fTime)
-	{
-		wchar_t 
-
-	}
 
 
 
