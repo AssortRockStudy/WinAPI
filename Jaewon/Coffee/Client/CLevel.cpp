@@ -1,9 +1,9 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CLevel.h"
 #include "CObj.h"
 #include "CTimeMgr.h"
 
-// ·¹º§¿¡ µé¾îÀÖ´Â ¿ÀºêÁ§Æ®µéÀÇ tickÀ» ´Ù ½ÇÇà
+// ë ˆë²¨ì— ë“¤ì–´ìˆëŠ” ì˜¤ë¸Œì íŠ¸ë“¤ì˜ tickì„ ë‹¤ ì‹¤í–‰
 void CLevel::tick()
 {
 	float delta = CTimeMgr::GetInst()->getDeltaTime();
@@ -13,7 +13,7 @@ void CLevel::tick()
 	}
 }
 
-// ·¹º§¿¡ µé¾îÀÖ´Â ¿ÀºêÁ§Æ®µéÀÇ renderÀ» ´Ù ½ÇÇà
+// ë ˆë²¨ì— ë“¤ì–´ìˆëŠ” ì˜¤ë¸Œì íŠ¸ë“¤ì˜ renderì„ ë‹¤ ì‹¤í–‰
 void CLevel::render(HDC _dc)
 {
 	for (int i = 0; i < mVecObjects.size(); ++i) {
@@ -25,7 +25,7 @@ CLevel::CLevel()
 {
 }
 
-// vector¿¡ µé¾î ÀÖ´Â ¿ÀºêÁ§Æ®µéÀ» ´Ù deleteÇØÁÖ¾î¾ß µÊ
+// vectorì— ë“¤ì–´ ìˆëŠ” ì˜¤ë¸Œì íŠ¸ë“¤ì„ ë‹¤ deleteí•´ì£¼ì–´ì•¼ ë¨
 CLevel::~CLevel()
 {
 	for (int i = 0; i < mVecObjects.size(); ++i)

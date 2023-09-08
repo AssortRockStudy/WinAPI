@@ -1,12 +1,12 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "Player.h"
 
 void Player::tick(float _dt)
 {
 	Vec2 vPos = getPos();
 
-	// Å°ÀÔ·Â(ÀÌÀü¿¡ ´©¸¥ ÀûÀÌ ÀÖ°í È£Ãâ ½ÃÁ¡¿¡µµ ´­·ÁÀÖ´Â »óÅÂ)ÀÌ ¹ß»ıÇÏ¸é true
-	// ÁÂÇ¥ÀÇ ÀÌµ¿ °Å¸® = ¼Óµµ*dt
+	// í‚¤ì…ë ¥(ì´ì „ì— ëˆ„ë¥¸ ì ì´ ìˆê³  í˜¸ì¶œ ì‹œì ì—ë„ ëˆŒë ¤ìˆëŠ” ìƒíƒœ)ì´ ë°œìƒí•˜ë©´ true
+	// ì¢Œí‘œì˜ ì´ë™ ê±°ë¦¬ = ì†ë„*dt
 	if (GetAsyncKeyState(VK_LEFT) & 0x8001)
 		vPos.x -= mSpeed * _dt;
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8001)
@@ -24,9 +24,9 @@ void Player::render(HDC _dc)
 	Vec2 vPos = getPos();
 	Vec2 vScale = getScale();
 
-	// Ææ, ºê·¯½¬ »ı¼º
-	// ÇöÀç »ç¿ëÇÏ´ø °´Ã¼¸¦ µû·Î ÀúÀåÇØµÎ°í
-	// »õ·Î ¸¸µç ÆæÀ» dc¿¡ ¹Ù²ãµÒ
+	// íœ, ë¸ŒëŸ¬ì‰¬ ìƒì„±
+	// í˜„ì¬ ì‚¬ìš©í•˜ë˜ ê°ì²´ë¥¼ ë”°ë¡œ ì €ì¥í•´ë‘ê³ 
+	// ìƒˆë¡œ ë§Œë“  íœì„ dcì— ë°”ê¿”ë‘ 
 
 	HPEN blackPen = CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
 	HPEN prevPen = (HPEN)SelectObject(_dc, blackPen);
@@ -40,8 +40,8 @@ void Player::render(HDC _dc)
 		, int(vPos.x + vScale.x / 2)
 		, int(vPos.y + vScale.y / 2));
 
-	// ·»´õ¸µ ³¡³ª°í ´Ù½Ã ¹Ù²Ù°í
-	// ¸¸µé¾ú´ø Ææ »èÁ¦
+	// ë Œë”ë§ ëë‚˜ê³  ë‹¤ì‹œ ë°”ê¾¸ê³ 
+	// ë§Œë“¤ì—ˆë˜ íœ ì‚­ì œ
 	SelectObject(_dc, prevPen);
 	DeleteObject(blackPen);
 

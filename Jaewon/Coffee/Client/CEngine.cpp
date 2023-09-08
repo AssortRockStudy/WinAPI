@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CEngine.h"
 #include "Player.h"
 #include "CLevel.h"
@@ -10,7 +10,7 @@ CEngine::CEngine():mHwnd(nullptr), mPtResolution(), mDc(nullptr)
 
 CEngine::~CEngine()
 {
-	// DC ÇØÁ¦ ¹× ·¹º§ ÇØÁ¦
+	// DC í•´ì œ ë° ë ˆë²¨ í•´ì œ
 	ReleaseDC(mHwnd, mDc);
 	if (nullptr != mLevel)
 		delete mLevel;
@@ -21,15 +21,15 @@ void CEngine::init(HWND _hwnd, POINT _ptResolution)
 	mHwnd = _hwnd;
 	mPtResolution = _ptResolution;
 
-	// ÇØ»óµµ ¼³Á¤
+	// í•´ìƒë„ ì„¤ì •
 	SetWindowPos(mHwnd, nullptr, 10, 10, mPtResolution.x, mPtResolution.y, 0);
 	ShowWindow(mHwnd, true);
 
-	// DC »ý¼º
-	// ±×¸² ±×¸®´Â µµ±¸·Î »ý°¢
+	// DC ìƒì„±
+	// ê·¸ë¦¼ ê·¸ë¦¬ëŠ” ë„êµ¬ë¡œ ìƒê°
 	mDc = GetDC(mHwnd);
 
-	// ¸Å´ÏÁ®
+	// ë§¤ë‹ˆì ¸
 	CTimeMgr::GetInst()->init();
 
 	mLevel = new CLevel;
