@@ -13,3 +13,9 @@ public:
 	Vec2(float _x, float _y) : x(_x), y(_y) {}
 	Vec2(int _x, int _y) : x(float(_x)), y(float(_y)) {}
 };
+
+struct FKeyData {
+	KEY key;
+	KEYSTATE state;
+	bool isPressed;
+};
