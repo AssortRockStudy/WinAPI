@@ -5,6 +5,7 @@
 
 #include "CLevel.h"
 #include "CPlayer.h"
+#include "CPal.h"
 
 
 
@@ -41,6 +42,8 @@ void CLevelMgr::render(HDC _dc)
 	// Level Render
 	// 화면 Clear
 	POINT ptResolution = CEngine::GetInst()->GetResolution();
+	SelectObject(_dc, CPal::GetInst()->getHPen(WHITE));
+	SelectObject(_dc, CPal::GetInst()->getHBrush(WHITE));
 	Rectangle(_dc, -1, -1, ptResolution.x + 1, ptResolution.y + 1);
 
 	// 레벨 render
