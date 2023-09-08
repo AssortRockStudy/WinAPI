@@ -8,7 +8,7 @@
 #include "CPlayer.h"
 #include "CMonster.h"
 #include "CKeyman.h"
-
+#include "CEngine.h"
 
 
 
@@ -31,6 +31,10 @@ CEngine::~CEngine()
 	// 레벨 해제
 	if (nullptr != m_Level)
 		delete m_Level;
+
+	DeleteObject(m_subbitmap);
+	//우리가만든 dc는 deletedc로 지워야한다
+	DeleteDC(m_subdc);
 }
 
 
@@ -48,7 +52,11 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	// brush : White
 	// Bitmap(그림 그릴 곳) : 핸들에 해당하는 윈도우 비트맵
 	m_dc = GetDC(m_hWnd);
+	m_subbitmap= CreateCompatibleBitmap(m_dc, m_ptResolution.x, m_ptResolution.y);
+	m_subdc = CreateCompatibleDC(m_dc);
 
+	//m_subdc가 msubbitmap을 저장하고 원래 목적지로 갖고잇던
+	DeleteObject(SelectObject(m_subdc, m_subbitmap));
 
 	// Manager 초기화
 	CTimeManager::GetInst()->init();
@@ -83,6 +91,12 @@ void CEngine::tick()
 	CTimeManager::GetInst()->tick();
 	CKeyman::GetInst()->tick();
 	m_Level->tick();
+
+
+	Rectangle(m_dc, 0, 0, m_ptResolution.x, m_ptResolution.y);
+
+
+
 	m_Level->render(m_dc);
 	/*static int Call = 0;
 	++Call;

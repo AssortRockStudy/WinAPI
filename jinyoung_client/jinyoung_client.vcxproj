@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -138,6 +138,7 @@
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CKeyman.h" />
     <ClInclude Include="CLevel.h" />
+    <ClInclude Include="CLevelMan.h" />
     <ClInclude Include="CMonster.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="CPal.h" />
@@ -156,6 +157,7 @@
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CKeyman.cpp" />
     <ClCompile Include="CLevel.cpp" />
+    <ClCompile Include="CLevelMan.cpp" />
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPal.cpp" />

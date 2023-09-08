@@ -10,6 +10,8 @@ class CKeyman
 
 private:
 	vector<FKeyData> m_vecKeyData;
+	int m_iCall;
+	float m_fTIme;
 
 public:
 

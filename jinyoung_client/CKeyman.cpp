@@ -108,6 +108,16 @@ void CKeyman::init()
 
 void CKeyman::tick()
 {
+	++m_iCall;
+
+	if(1.f <= m_fTime)
+	{
+		wchar_t 
+
+	}
+
+
+
 	for (size_t i = 0; i < m_vecKeyData.size(); ++i)
 	{
 		if (GetAsyncKeyState(g_KeySync[m_vecKeyData[i].eKey]) & 0x8001)

@@ -25,6 +25,9 @@ private:
 
 	HDC		m_dc;
 
+	HBITMAP m_subbitmap;
+	HDC		m_subdc;
+
 	CLevel* m_Level;
 public:
 	void init(HWND _hWnd, POINT _ptResolution);
