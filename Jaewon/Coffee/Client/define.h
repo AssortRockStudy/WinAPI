@@ -12,3 +12,15 @@
 									ClassType();\
 									ClassType(const ClassType& _Origin) = delete;\
 									~ClassType();
+
+#define CREATEBLACKPEN CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
+#define CREATEREDPEN CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+#define CREATEBLACKBRUSH CreateSolidBrush(RGB(0, 0, 0));
+#define CREATEREDBRUSH CreateSolidBrush(RGB(255, 0, 0));
+
+enum COLOR {
+	red,
+	blue,
+	green,
+	black,
+};

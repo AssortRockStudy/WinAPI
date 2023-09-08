@@ -28,11 +28,21 @@ void Player::render(HDC _dc)
 	// 현재 사용하던 객체를 따로 저장해두고
 	// 새로 만든 펜을 dc에 바꿔둠
 
-	HPEN blackPen = CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
-	HPEN prevPen = (HPEN)SelectObject(_dc, blackPen);
+	HPEN renderPen;
+	HBRUSH renderBrush;
+	if (col == red) {
+		renderPen = CREATEREDPEN;
+		renderBrush = CREATEREDBRUSH;
+			
+	}
+	else {
+		renderPen = CREATEBLACKPEN;
+		renderBrush = CREATEBLACKBRUSH;
+	}
+	HPEN prevPen = (HPEN)SelectObject(_dc, renderPen);
+	HBRUSH prevBrush = (HBRUSH)SelectObject(_dc, renderBrush);
 
-	HBRUSH blackBrush = CreateSolidBrush(RGB(0, 0, 0));
-	HBRUSH prevBrush = (HBRUSH)SelectObject(_dc, blackBrush);
+	
 	
 	Rectangle(_dc
 		, int(vPos.x - vScale.x / 2)
@@ -43,13 +53,13 @@ void Player::render(HDC _dc)
 	// 렌더링 끝나고 다시 바꾸고
 	// 만들었던 펜 삭제
 	SelectObject(_dc, prevPen);
-	DeleteObject(blackPen);
+	DeleteObject(renderPen);
 
 	SelectObject(_dc, prevBrush);
-	DeleteObject(blackBrush);
+	DeleteObject(renderBrush);
 }
 
-Player::Player():mSpeed(500.f)
+Player::Player():mSpeed(500.f), col(black)
 {
 }
 
