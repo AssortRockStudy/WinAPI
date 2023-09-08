@@ -13,18 +13,18 @@
 class CObj
 {
 private:
-	POINT mPos;
-	POINT mScale;
+	Vec2 mPos;
+	Vec2 mScale;
 
 public:
-	POINT getPos() { return mPos; }
-	POINT getScale() { return mScale; }
-	void setPos(POINT _pos) { mPos = _pos; }
-	void setScale(POINT _scale) { mScale = _scale; }
+	Vec2 getPos() { return mPos; }
+	Vec2 getScale() { return mScale; }
+	void setPos(Vec2 _pos) { mPos = _pos; }
+	void setScale(Vec2 _scale) { mScale = _scale; }
 
 public:
-	virtual void tick() = 0;
-	virtual void render(HDC _dc) = 0;
+	virtual void tick(float _dt) = 0;
+	virtual void render(HDC _dc);
 
 public:
 	CObj();

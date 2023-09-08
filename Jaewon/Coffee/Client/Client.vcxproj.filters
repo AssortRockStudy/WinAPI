@@ -64,6 +64,9 @@
     <ClInclude Include="CLevel.h">
       <Filter>Game\05.Level</Filter>
     </ClInclude>
+    <ClInclude Include="CTimeMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -96,6 +99,9 @@
     </ClCompile>
     <ClCompile Include="CLevel.cpp">
       <Filter>Game\05.Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

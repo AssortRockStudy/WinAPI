@@ -20,7 +20,7 @@ using std::make_pair;
 using std::string;
 using std::wstring;
 
-// 싱글턴 매크로 함수 헤더
+// 매크로 함수 헤더
 #include "define.h"
 
 // 좌표 float 구조체 구현

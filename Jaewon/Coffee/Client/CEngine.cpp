@@ -2,6 +2,7 @@
 #include "CEngine.h"
 #include "Player.h"
 #include "CLevel.h"
+#include "CTimeMgr.h"
 
 CEngine::CEngine():mHwnd(nullptr), mPtResolution(), mDc(nullptr)
 {
@@ -28,16 +29,20 @@ void CEngine::init(HWND _hwnd, POINT _ptResolution)
 	// 그림 그리는 도구로 생각
 	mDc = GetDC(mHwnd);
 
+	// 매니져
+	CTimeMgr::GetInst()->init();
+
 	mLevel = new CLevel;
 
 	Player* mPlayer = new Player;
-	mPlayer->setPos(POINT{ 500, 500 });
-	mPlayer->setScale(POINT{ 50, 50 });
+	mPlayer->setPos(Vec2{ 500.f, 500.f });
+	mPlayer->setScale(Vec2{ 50.f, 50.f });
 	mLevel->AddObj(mPlayer);
 }
 
 void CEngine::tick()
 {
+	CTimeMgr::GetInst()->tick();
 	mLevel->tick();
 	mLevel->render(mDc);
 }

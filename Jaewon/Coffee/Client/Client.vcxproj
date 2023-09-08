@@ -133,6 +133,7 @@
     <ClInclude Include="CLevel.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CObj.h" />
+    <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Player.h" />
@@ -145,6 +146,7 @@
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CObj.cpp" />
+    <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Player.cpp" />
