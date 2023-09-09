@@ -3,7 +3,7 @@
 
 class CProjectile :public CObj
 {
-private:
+protected:
 	float m_Speed;
 	float m_theta;
 

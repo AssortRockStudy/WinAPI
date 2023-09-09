@@ -12,6 +12,8 @@
 #include "CEngine.h"
 
 #include "CProjectile.h"
+#include "CPosGuidedProjectile.h"
+
 
 CPlayer::CPlayer() : m_Speed(500.f), m_Image(nullptr) {
     wstring strPath = CPathMgr::GetContentPath();
@@ -53,7 +55,7 @@ void CPlayer::tick(float _DT) {
         CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
 
         for (int i = 0; i < 3; i++) {
-            CProjectile* pProjectile = new CProjectile;
+            CPosGuidedProjectile* pProjectile = new CPosGuidedProjectile;
 
             Vec2 ProjectilePos = GetPos();
             ProjectilePos.y -= GetScale().y / 2.f;

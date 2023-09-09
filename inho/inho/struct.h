@@ -19,6 +19,9 @@ public:
 	Vec2(int _x, int _y)
 		: x((float)_x), y((float)_y)
 	{}
+	float Distance(const Vec2 _oth) {
+		return sqrtf((x - _oth.x) * (x - _oth.x) + (y - _oth.y) * (y - _oth.y));
+	}
 };
 
 struct FKeyData {

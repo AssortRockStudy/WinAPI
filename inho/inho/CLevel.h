@@ -15,6 +15,7 @@ class CLevel {
   public:
     void AddObject(CObj* _Object) { m_vecObjects.push_back(_Object); }
     void AddMonster(CMonster* _Monster) { m_vecMonsters.push_back(_Monster); }
+    const vector<CMonster*> GetMonsters() { return m_vecMonsters; }
 
   public:
     CLevel();
