@@ -4,7 +4,7 @@
 #include "CTimeMgr.h"
 #include "CKeyMgr.h"
 #include "CLevelMgr.h"
-
+#include "CPathMgr.h"
 
 
 CEngine::CEngine()
@@ -63,7 +63,9 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	// Manager ÃÊ±âÈ­
 	CTimeMgr::GetInst()->init();
 	CKeyMgr::GetInst()->init();
+	CPathMgr::init();
 	CLevelMgr::GetInst()->init();
+	
 
 }
 

@@ -47,6 +47,9 @@
     <Filter Include="Game\04. Object\Projectile">
       <UniqueIdentifier>{33fd0346-f085-49a7-af0a-b0579893e99a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03. Manager\PathManager">
+      <UniqueIdentifier>{a6d4cb22-48fa-4bc2-aa2f-9ac6a1727be3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -103,6 +106,10 @@
     <ClInclude Include="CProjectile.h">
       <Filter>Game\04. Object\Projectile</Filter>
     </ClInclude>
+    <ClInclude Include="CPathMgr.h">
+      <Filter>Game\03. Manager\PathManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CProjectile1.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -154,5 +161,9 @@
     <ClCompile Include="CProjectile.cpp">
       <Filter>Game\04. Object\Projectile</Filter>
     </ClCompile>
+    <ClCompile Include="CPathMgr.cpp">
+      <Filter>Game\03. Manager\PathManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CProjectile1.cpp" />
   </ItemGroup>
 </Project>

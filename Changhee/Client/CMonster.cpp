@@ -17,29 +17,6 @@ CMonster::~CMonster()
 
 void CMonster::tick(float _DT)
 {
-	Vec2 vPos = GetPos();
-
-	if (KEY_PRESSED(KEY::W))
-	{
-		vPos.y += m_fSpeed * _DT;
-	}
-
-	if (KEY_PRESSED(KEY::S))
-	{
-		vPos.y -= m_fSpeed * _DT;
-	}
-
-	if (KEY_PRESSED(KEY::A))
-	{
-		vPos.x += m_fSpeed * _DT;
-	}
-
-	if (KEY_PRESSED(KEY::D))
-	{
-		vPos.x -= m_fSpeed * _DT;
-	}
-
-	SetPos(vPos);
 
 }
 

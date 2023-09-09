@@ -12,7 +12,8 @@
 											ClassType();\
 											ClassType(const ClassType& _Origin) = delete;\
 											~ClassType();
-
+// 게임 이름
+#define GAME_FOLDER MyGame
 
 // Key Manager
 #define KEY_CHECK(Key,State) CKeyMgr::GetInst()->GetKeyState(Key) == State

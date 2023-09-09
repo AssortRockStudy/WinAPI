@@ -5,7 +5,9 @@ class CPlayer :
 {
 private:
     float   m_fSpeed;
-
+    HBITMAP m_hImage;
+    HDC     m_hImageDC;
+    BITMAP  m_BitmapInfo;
 
 public:
     virtual void tick(float _DT) override;

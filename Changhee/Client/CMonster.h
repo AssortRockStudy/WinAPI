@@ -6,7 +6,7 @@ class CMonster :
 private:
     float       m_fSpeed;
 
-private:
+public:
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
 

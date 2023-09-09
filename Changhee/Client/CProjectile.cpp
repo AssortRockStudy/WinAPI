@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CProjectile.h"
 
+#include "CPalette.h"
 
 CProjectile::CProjectile()
 	: m_fSpeed(0.f)
@@ -26,6 +27,8 @@ void CProjectile::tick(float _DT)
 
 void CProjectile::render(HDC _dc)
 {
+	CPalette tmp(_dc, BRUSH_TYPE::BLACK);
+
 	Vec2 vPos = GetPos();
 	Vec2 vScale = GetScale();
 
