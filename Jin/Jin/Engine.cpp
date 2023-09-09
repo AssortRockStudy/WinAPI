@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Engine.h"
 
+#include "KeyMgr.h"
 #include "TimeMgr.h"
 #include "DrawMgr.h"
 #include "Level.h"
@@ -43,6 +44,7 @@ void Engine::init(HWND _hWnd, POINT _ptResolution)
 	// Manager ÃÊ±âÈ­
 	TimeMgr::GetInst()->init();
 	DrawMgr::GetInst()->init();
+	KeyMgr::GetInst()->init();
 
 
 
@@ -70,6 +72,7 @@ void Engine::init(HWND _hWnd, POINT _ptResolution)
 void Engine::tick()
 {
 	TimeMgr::GetInst()->tick();
+	KeyMgr::GetInst()->tick();
 	DrawMgr::GetInst()->tick();
 
 	m_Level->tick();

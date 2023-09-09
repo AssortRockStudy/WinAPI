@@ -74,6 +74,9 @@
     <ClCompile Include="DrawMgr.cpp">
       <Filter>Game\03. Manager</Filter>
     </ClCompile>
+    <ClCompile Include="KeyMgr.cpp">
+      <Filter>Game\03. Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -119,6 +122,9 @@
       <Filter>Game\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="DrawMgr.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyMgr.h">
       <Filter>Game\03. Manager</Filter>
     </ClInclude>
   </ItemGroup>

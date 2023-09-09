@@ -1,6 +1,8 @@
 #include "pch.h"
+#include "define.h"
 #include "Player.h"
 
+#include "KeyMgr.h"
 #include "TimeMgr.h"
 #include "DrawMgr.h"
 
@@ -18,22 +20,22 @@ void Player::tick(float _DT)
 	Vec2 vPos = GetPos();
 
 	// 키입력이 발생하면 움직인다.
-	if (GetAsyncKeyState('A') & 0x8001)
+	if (KEY_PRESSED(A))
 	{
 		vPos.x -= m_Speed * _DT;
 	}
 
-	if (GetAsyncKeyState('D') & 0x8001)
+	if (KeyMgr::GetInst()->GetKeyState(D) == PRESSED)
 	{
 		vPos.x += m_Speed * _DT;
 	}
 
-	if (GetAsyncKeyState('W') & 0x8001)
+	if (KEY_PRESSED(W))
 	{
 		vPos.y -= m_Speed * _DT;
 	}
 
-	if (GetAsyncKeyState('S') & 0x8001)
+	if (KEY_PRESSED(S))
 	{
 		vPos.y += m_Speed * _DT;
 	}
