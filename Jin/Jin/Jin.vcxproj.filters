@@ -71,7 +71,9 @@
     <ClCompile Include="Monster.cpp">
       <Filter>Game\04. Object\Monster</Filter>
     </ClCompile>
-    <ClCompile Include="DrawMgr.cpp" />
+    <ClCompile Include="DrawMgr.cpp">
+      <Filter>Game\03. Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -116,6 +118,8 @@
     <ClInclude Include="struct.h">
       <Filter>Game\01. Header</Filter>
     </ClInclude>
-    <ClInclude Include="DrawMgr.h" />
+    <ClInclude Include="DrawMgr.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

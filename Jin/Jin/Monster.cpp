@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Monster.h"
+#include "DrawMgr.h"
 
 Monster::Monster()
 	: m_Speed(500.f)
@@ -46,10 +47,10 @@ void Monster::render(HDC _dc)
 
 
 	HPEN hRedPen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
-	SelectObject(_dc, hRedPen);
+	HPEN oldPen = (HPEN)SelectObject(_dc, hRedPen);
 
-	HBRUSH hRedBrush = CreateSolidBrush(RGB(255, 0, 0));
-	SelectObject(_dc, hRedBrush);
+	//HBRUSH hRedBrush = CreateSolidBrush(RGB(255, 0, 0));
+	//SelectObject(_dc, hRedBrush);
 
 	Ellipse(_dc
 		, int(vPos.x - vScale.x / 2)
@@ -57,9 +58,6 @@ void Monster::render(HDC _dc)
 		, int(vPos.x + vScale.x / 2)
 		, int(vPos.y + vScale.y / 2));
 
-
-	DeleteObject(hRedPen);
-	DeleteObject(hRedBrush);
-
+	DeleteObject(SelectObject(_dc, oldPen));
 }
 

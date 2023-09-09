@@ -46,20 +46,21 @@ void Player::render(HDC _dc)
 	Vec2 vPos = GetPos();
 	Vec2 vScale = GetScale();
 
-	//HPEN hBlackPen = CreatePen(PS_SOLID, 1, RGB(0,0,0));
-	//SelectObject(_dc,);
+	//HPEN nowPen = (HPEN)(*(DrawMgr::GetInst()->pens[BLUE]));
+	 HPEN oldPen = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->pens[BLUE]));
 
-	HBRUSH hBlackBrush = CreateSolidBrush(RGB(0, 0, 0));
-	//SelectObject(_dc, hBlackBrush);
 
-	Rectangle(_dc
-		, int(vPos.x - vScale.x / 2)
-		, int(vPos.y - vScale.y / 2)
-		, int(vPos.x + vScale.x / 2)
-		, int(vPos.y + vScale.y / 2));
+	 //(HBRUSH)SelectObject(_dc, DrawMgr::GetInst()->brushes[BLACK]);
 
-	//DeleteObject(hBlackPen);
-	//DeleteObject(hBlackBrush);
+	 Rectangle(_dc
+		 , int(vPos.x - vScale.x / 2)
+		 , int(vPos.y - vScale.y / 2)
+		 , int(vPos.x + vScale.x / 2)
+		 , int(vPos.y + vScale.y / 2));
+
+	//DeleteObject(SelectObject(_dc, oldPen));
+
+
 
 
 }
