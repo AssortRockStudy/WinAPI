@@ -9,6 +9,8 @@ private:
 	LARGE_INTEGER	m_PrevCount;
 	LARGE_INTEGER	m_CurCount;
 	float			m_DeltaTime;
+	UINT			m_iCall;
+	float			m_fTime;
 
 public:
 	float GetDeltaTime() { return m_DeltaTime; }

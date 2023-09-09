@@ -4,21 +4,23 @@
 #include "KeyMgr.h"
 #include "TimeMgr.h"
 #include "DrawMgr.h"
-#include "Level.h"
-#include "Player.h"
-#include "Monster.h"
+#include "LevelMgr.h"
+#include "PathMgr.h"
 
 Engine::Engine()
 	: m_hWnd(nullptr)
 	, m_ptResolution{}
 	, m_Level(nullptr)
-	, m_dc(nullptr)
+	, m_DC(nullptr)
+	, m_SubBitMap(nullptr)
 {
 }
 
 Engine::~Engine()
 {
-	ReleaseDC(m_hWnd, m_dc);
+	ReleaseDC(m_hWnd, m_DC);
+	DeleteObject(m_SubBitMap);
+	DeleteDC(m_SubDC);
 
 	if (nullptr != m_Level)
 		delete m_Level;
@@ -34,47 +36,30 @@ void Engine::init(HWND _hWnd, POINT _ptResolution)
 	SetWindowPos(m_hWnd, nullptr, 10, 10, m_ptResolution.x, m_ptResolution.y, 0);
 	ShowWindow(m_hWnd, true);
 
-	// DC : Device Context
-	// pen : Black 
-	// brush : White
-	// Bitmap(그림 그릴 곳) : 핸들에 해당하는 윈도우 비트맵
-	m_dc = GetDC(m_hWnd);
+	m_DC = GetDC(m_hWnd);
+
+	m_SubBitMap = CreateCompatibleBitmap(m_DC, m_ptResolution.x, m_ptResolution.y);
+	m_SubDC = CreateCompatibleDC(m_DC);
+
+	DeleteObject((HBITMAP)SelectObject(m_SubDC, m_SubBitMap));
 
 
 	// Manager 초기화
 	TimeMgr::GetInst()->init();
 	DrawMgr::GetInst()->init();
 	KeyMgr::GetInst()->init();
-
-
-
-
-
-
-
-	// Level 
-	m_Level = new Level;
-
-	Player* pPlayer = new Player;
-	Monster* pMonster = new Monster;
-
-	pPlayer->SetPos(Vec2(500.f, 500.f));
-	pPlayer->SetScale(Vec2(50.f, 50.f));
-
-	pMonster->SetPos(Vec2(400.f, 400.f));
-	pMonster->SetScale(Vec2(50.f, 50.f));
-
-	m_Level->AddObject(pPlayer);
-	m_Level->AddObject(pMonster);
-
+	PathMgr::init();
+	LevelMgr::GetInst()->init();
+	
 }
 
 void Engine::tick()
 {
 	TimeMgr::GetInst()->tick();
 	KeyMgr::GetInst()->tick();
+	LevelMgr::GetInst()->tick();
 	DrawMgr::GetInst()->tick();
 
-	m_Level->tick();
-	m_Level->render(m_dc);
+	LevelMgr::GetInst()->render(m_SubDC);
+
 }

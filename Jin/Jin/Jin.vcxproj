@@ -70,6 +70,14 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)MyGame\bin\</OutDir>
+    <TargetName>debug</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)MyGame\bin\</OutDir>
+    <TargetName>game</TargetName>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -134,8 +142,10 @@
     <ClCompile Include="Jin.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="LevelMgr.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Obj.cpp" />
+    <ClCompile Include="PathMgr.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
@@ -158,8 +168,10 @@
     <ClInclude Include="Jin.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="LevelMgr.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Obj.h" />
+    <ClInclude Include="PathMgr.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
