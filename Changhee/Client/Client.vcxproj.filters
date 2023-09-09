@@ -109,7 +109,12 @@
     <ClInclude Include="CPathMgr.h">
       <Filter>Game\03. Manager\PathManager</Filter>
     </ClInclude>
-    <ClInclude Include="CProjectile1.h" />
+    <ClInclude Include="CProjectile1.h">
+      <Filter>Game\04. Object\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="CProjectile2.h">
+      <Filter>Game\04. Object\Projectile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -164,6 +169,11 @@
     <ClCompile Include="CPathMgr.cpp">
       <Filter>Game\03. Manager\PathManager</Filter>
     </ClCompile>
-    <ClCompile Include="CProjectile1.cpp" />
+    <ClCompile Include="CProjectile1.cpp">
+      <Filter>Game\04. Object\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="CProjectile2.cpp">
+      <Filter>Game\04. Object\Projectile</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

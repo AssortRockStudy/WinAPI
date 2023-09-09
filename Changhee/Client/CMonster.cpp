@@ -5,7 +5,7 @@
 
 
 CMonster::CMonster()
-	: m_fSpeed(100.f)
+	: m_fSpeed(300.f)
 {
 }
 
@@ -17,7 +17,29 @@ CMonster::~CMonster()
 
 void CMonster::tick(float _DT)
 {
+	Vec2 vPos = GetPos();
 
+	if (KEY_PRESSED(KEY::UP))
+	{
+		vPos.y -= m_fSpeed * _DT;
+	}
+
+	if (KEY_PRESSED(KEY::DOWN))
+	{
+		vPos.y += m_fSpeed * _DT;
+	}
+
+	if (KEY_PRESSED(KEY::LEFT))
+	{
+		vPos.x -= m_fSpeed * _DT;
+	}
+
+	if (KEY_PRESSED(KEY::RIGHT))
+	{
+		vPos.x += m_fSpeed * _DT;
+	}
+
+	SetPos(vPos);
 }
 
 void CMonster::render(HDC _dc)

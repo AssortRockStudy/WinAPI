@@ -38,21 +38,41 @@ public:
 		return *this;
 	}
 
-	Vec2 operator * (float _f)
+	Vec2 operator + (const Vec2& _Other)
 	{
-		return Vec2(x * _f, y * _f);
+		return Vec2(x + _Other.x, y + _Other.y);
 	}
-
 
 	Vec2 operator - (const Vec2& _Other)
 	{
 		return Vec2(x - _Other.x, y - _Other.y);
 	}
 
-	Vec2 operator + (const Vec2& _Other)
+	Vec2 operator * (const Vec2& _Other)
 	{
-		return Vec2(x + _Other.x, y + _Other.y);
+		return Vec2(x * _Other.x, y * _Other.y);
 	}
+
+	Vec2 operator / (const Vec2& _Other)
+	{
+		assert(_Other.x != 0 && _Other.y != 0);
+		return Vec2(x / _Other.x, y / _Other.y);
+	}
+
+
+
+
+	Vec2 operator * (float _f)
+	{
+		return Vec2(x * _f, y * _f);
+	}
+
+	Vec2 operator / (float _f)
+	{
+		assert(_f != 0);
+		return Vec2(x / _f, y / _f);
+	}
+
 };
 
 

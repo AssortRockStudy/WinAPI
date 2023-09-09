@@ -1,43 +1,48 @@
 #include "pch.h"
-#include "CProjectile1.h"
+#include "CProjectile2.h"
 
 #include "CLevelMgr.h"
 #include "CLevel.h"
 
-
-
-CProjectile1::CProjectile1()
-	: m_vDir{}
-	, m_pTarget(nullptr)
-	, m_fSpeed(100.f)
+CProjectile2::CProjectile2()
+	: m_pTarget(nullptr)
+	, m_fForce(100.f)
+	, m_vVelocity{0.f,0.f}
+	, m_fMass(50.f)
+	, m_vAccel{0.f,0.f}
 {
 }
 
-CProjectile1::~CProjectile1()
+CProjectile2::~CProjectile2()
 {
 }
 
 
-void CProjectile1::tick(float _DT)
+
+void CProjectile2::tick(float _DT)
 {
 	Targeting();
 
 	Vec2 vPos = GetPos();
 	Vec2 vMonPos = m_pTarget->GetPos();
 
-	m_vDir = vMonPos - vPos;
-
-	if (m_vDir.Length() != 0)
+	Vec2 vDiff = vMonPos - vPos;
+	if (vDiff.Length() != 0.f)
 	{
-		m_vDir.Normalize();
+		vDiff.Normalize();
+
+		m_vAccel = vDiff * m_fMass / m_fForce;
 	}
 
-	vPos = vPos + (m_vDir * m_fSpeed *_DT);
+	m_vVelocity = m_vVelocity + m_vAccel;
+
+	vPos = vPos + m_vVelocity * _DT;
 
 	SetPos(vPos);
+
 }
 
-void CProjectile1::Targeting()
+void CProjectile2::Targeting()
 {
 	Vec2 vPos = GetPos();
 
@@ -60,4 +65,6 @@ void CProjectile1::Targeting()
 			m_pTarget = vecMonster[i];
 		}
 	}
+
 }
+
