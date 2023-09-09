@@ -4,8 +4,9 @@
 #include "CLevel.h"
 #include "CTimeMgr.h"
 #include "KeyMgr.h"
+#include "LevelMgr.h"
 
-CEngine::CEngine():mHwnd(nullptr), mPtResolution(), mDc(nullptr), mLevel(nullptr)
+CEngine::CEngine():mHwnd(nullptr), mPtResolution(), mDc(nullptr), subBitMap(nullptr), subDc(nullptr)
 {
 }
 
@@ -13,8 +14,9 @@ CEngine::~CEngine()
 {
 	// DC 해제 및 레벨 해제
 	ReleaseDC(mHwnd, mDc);
-	if (nullptr != mLevel)
-		delete mLevel;
+
+	DeleteObject(subBitMap);
+	DeleteDC(subDc);
 }
 
 void CEngine::init(HWND _hwnd, POINT _ptResolution)
@@ -30,32 +32,25 @@ void CEngine::init(HWND _hwnd, POINT _ptResolution)
 	// 그림 그리는 도구로 생각
 	mDc = GetDC(mHwnd);
 
+	// 더블 버퍼 구현
+	// 추가 비트맵(윈도우), DC 생성
+	// 그림 완성 후에 바꿔줄 윈도우
+	subBitMap = CreateCompatibleBitmap(mDc, mPtResolution.x, mPtResolution.y);
+	subDc = CreateCompatibleDC(mDc);
+
+	DeleteObject((HBITMAP)SelectObject(subDc, subBitMap));
+
 	// 매니져
 	CTimeMgr::GetInst()->init();
 	KeyMgr::GetInst()->init();
-
-	mLevel = new CLevel;
-
-	Player* mPlayer = new Player;
-	mPlayer->setPos(Vec2{ 500.f, 500.f });
-	mPlayer->setScale(Vec2{ 50.f, 50.f });
-	mPlayer->setColor(black);
-	mPlayer->setReverseMove(true);
-	mLevel->AddObj(mPlayer);
-
-
-	Player* redPlayer = new Player;
-	redPlayer->setPos(Vec2{ 800.f, 500.f });
-	redPlayer->setScale(Vec2{ 50.f, 50.f });
-	redPlayer->setColor(red);
-	redPlayer->setReverseMove(false);
-	mLevel->AddObj(redPlayer);
+	LevelMgr::GetInst()->init();
+	
 }
 
 void CEngine::tick()
 {
 	CTimeMgr::GetInst()->tick();
 	KeyMgr::GetInst()->tick();
-	mLevel->tick();
-	mLevel->render(mDc);
+	LevelMgr::GetInst()->tick();
+	LevelMgr::GetInst()->render(subDc);
 }

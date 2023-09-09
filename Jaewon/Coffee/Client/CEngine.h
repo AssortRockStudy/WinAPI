@@ -10,7 +10,14 @@ private:
 	HWND mHwnd;
 	POINT mPtResolution;
 	HDC mDc;
-	CLevel* mLevel;
+
+	HDC subDc;
+	HBITMAP subBitMap;
+
+public:
+	HWND getMainWin() { return mHwnd; }
+	POINT getMainResol() { return mPtResolution; }
+	HDC getMainDc() { return mDc; }
 
 public:
 	void init(HWND _hwnd, POINT _ptResolution);
