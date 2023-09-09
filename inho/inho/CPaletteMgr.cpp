@@ -15,13 +15,20 @@ CPaletteMgr::~CPaletteMgr() {
 
 void CPaletteMgr::init(HDC _dc) {
     dc = _dc;
+    HPEN blackPen = CreatePen(BS_SOLID, 1, RGB(10, 10, 10));
     AddPen(PenColor::PRED, CreatePen(BS_SOLID, 1, RGB(255, 10, 10)));
-    AddPen(PenColor::PBLACK, CreatePen(BS_SOLID, 1, RGB(10, 10, 10)));
+    AddPen(PenColor::PBLACK, blackPen);
     AddPen(PenColor::PBLUE, CreatePen(BS_SOLID, 1, RGB(10, 10, 255)));
 
+
+    HBRUSH blackBrush = CreateSolidBrush(RGB(10, 10, 10));
     AddBrush(BrushColor::BRED, CreateSolidBrush(RGB(255, 10, 10)));
-    AddBrush(BrushColor::BBLACK, CreateSolidBrush(RGB(10, 10, 10)));
+    AddBrush(BrushColor::BBLACK, blackBrush);
     AddBrush(BrushColor::BBLUE, CreateSolidBrush(RGB(10, 10, 255)));
+
+    AddPen(PenColor::PWHITE, (HPEN)SelectObject(dc, blackPen));
+    AddBrush(BrushColor::BWHITE, (HBRUSH)SelectObject(dc, blackBrush));
+
 
     
 }

@@ -6,6 +6,8 @@
 #include "CLevel.h"
 
 #include "CPlayer.h"
+#include "CMonster.h"
+#include "CPaletteMgr.h"
 
 CLevelMgr::CLevelMgr(){}
 CLevelMgr::~CLevelMgr() {};
@@ -20,6 +22,16 @@ void CLevelMgr::init() {
 	pPlayer->SetScale(Vec2(50.f, 50.f));
 
 	m_pCurLevel->AddObject(pPlayer);
+
+	for (int i = 0; i < 2; ++i) {
+		CMonster* pMonster = new CMonster;
+		pMonster->SetPos({ 300.f*(i+1) , 300.f});
+		pMonster->SetScale({ 25.f, 25.f });
+
+		m_pCurLevel->AddMonster(pMonster);
+	}
+
+	
 }
 
 void CLevelMgr::tick() {
@@ -32,6 +44,6 @@ void CLevelMgr::render(HDC _dc) {
 	Rectangle(_dc, -1, -1, ptResolution.x, ptResolution.y);
 
 	m_pCurLevel->render(_dc);
-
+	CPaletteMgr::GetInst()->SelectBrush(CPaletteMgr::BrushColor::BWHITE);
 	BitBlt(CEngine::GetInst()->GetMainDC(), 0, 0, ptResolution.x, ptResolution.y, _dc, 0, 0, SRCCOPY);
 }

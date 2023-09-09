@@ -54,7 +54,7 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution) {
 
     // Manager �ʱ�ȭ
     CTimeMgr::GetInst()->init();
-    CPaletteMgr::GetInst()->init(m_dc);
+    CPaletteMgr::GetInst()->init(m_SubDC);
     CKeyMgr::GetInst()->init();
     CPathMgr::init();
     CLevelMgr::GetInst()->init();

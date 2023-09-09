@@ -6,14 +6,16 @@
 #include "CPaletteMgr.h"
 #include "CTimeMgr.h"
 
-CMonster::CMonster() : m_Speed(500.f) {}
+CMonster::CMonster() : m_Speed(500.f) {
+    
+}
 
 CMonster::~CMonster() {}
 
 void CMonster::tick(float _DT) {
     Vec2 vPos = GetPos();
 
-    if (GetAsyncKeyState('A') & 0x8001) {
+    /*if (GetAsyncKeyState('A') & 0x8001) {
         vPos.x += m_Speed * _DT;
     }
 
@@ -27,7 +29,7 @@ void CMonster::tick(float _DT) {
 
     if (GetAsyncKeyState('S') & 0x8001) {
         vPos.y -= m_Speed * _DT;
-    }
+    }*/
 
     SetPos(vPos);
 }

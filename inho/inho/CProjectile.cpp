@@ -1,6 +1,7 @@
 #include "pch.h"
 
 #include "CProjectile.h"
+#include "CPaletteMgr.h"
 
 CProjectile::CProjectile() :m_Speed(0.f), m_theta(PI / 2.f) {}
 
@@ -18,6 +19,9 @@ void CProjectile::tick(float _dt) {
 void CProjectile::render(HDC _dc) {
 	Vec2 vPos = GetPos();
 	Vec2 vScale = GetScale();
+
+	CPaletteMgr::GetInst()->SelectBrush(CPaletteMgr::BrushColor::BBLACK);
+	CPaletteMgr::GetInst()->SelectPen(CPaletteMgr::PenColor::PBLACK);
 
 	Ellipse(_dc
 		, int(vPos.x - vScale.x / 2)
