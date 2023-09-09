@@ -1,5 +1,6 @@
 ﻿#include "pch.h"
 #include "Player.h"
+#include "KeyMgr.h"
 
 void Player::tick(float _dt)
 {
@@ -7,15 +8,26 @@ void Player::tick(float _dt)
 
 	// 키입력(이전에 누른 적이 있고 호출 시점에도 눌려있는 상태)이 발생하면 true
 	// 좌표의 이동 거리 = 속도*dt
-	if (GetAsyncKeyState(VK_LEFT) & 0x8001)
-		vPos.x -= mSpeed * _dt;
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8001)
-		vPos.x += mSpeed * _dt;
-	if (GetAsyncKeyState(VK_UP) & 0x8001)
-		vPos.y -= mSpeed * _dt;
-	if (GetAsyncKeyState(VK_DOWN) & 0x8001)
-		vPos.y += mSpeed * _dt;
-	
+	if (reverseMove == true) {
+		if (KeyMgr::GetInst()->getKeyState(A) == PRESSED)
+			vPos.x -= mSpeed * _dt;
+		if (KeyMgr::GetInst()->getKeyState(D) == PRESSED)
+			vPos.x += mSpeed * _dt;
+		if (KeyMgr::GetInst()->getKeyState(W) == PRESSED)
+			vPos.y -= mSpeed * _dt;
+		if (KeyMgr::GetInst()->getKeyState(S) == PRESSED)
+			vPos.y += mSpeed * _dt;
+	}
+	else {
+		if (KeyMgr::GetInst()->getKeyState(A) == PRESSED)
+			vPos.x += mSpeed * _dt;
+		if (KeyMgr::GetInst()->getKeyState(D) == PRESSED)
+			vPos.x -= mSpeed * _dt;
+		if (KeyMgr::GetInst()->getKeyState(W) == PRESSED)
+			vPos.y += mSpeed * _dt;
+		if (KeyMgr::GetInst()->getKeyState(S) == PRESSED)
+			vPos.y -= mSpeed * _dt;
+	}
 	setPos(vPos);
 }
 
@@ -59,7 +71,7 @@ void Player::render(HDC _dc)
 	DeleteObject(renderBrush);
 }
 
-Player::Player():mSpeed(500.f), col(black)
+Player::Player():mSpeed(500.f), col(black), reverseMove(true)
 {
 }
 

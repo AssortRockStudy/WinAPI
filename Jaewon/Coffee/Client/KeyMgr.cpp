@@ -76,7 +76,7 @@ KeyMgr::~KeyMgr(){}
 void KeyMgr::init()
 {
 	vecKeyData.reserve(KEY::KEY_END);
-	for (int i = 0; i < KEY_END; ++i) {
+	for (UINT i = 0; i < KEY_END; ++i) {
 		vecKeyData.push_back(FKeyData{ (KEY)i, NONE, false });
 	}
 }
@@ -88,7 +88,7 @@ void KeyMgr::init()
 // 4. 지금 tick에 안눌림 + 전 tick에 안눌림 > None
 void KeyMgr::tick()
 {
-	for (int i = 0; i < vecKeyData.size(); ++i) {
+	for (size_t i = 0; i < vecKeyData.size(); ++i) {
 		if (GetAsyncKeyState(g_KeySync[vecKeyData[i].key]) & 0x8001) {
 			if (vecKeyData[i].isPressed)
 				vecKeyData[i].state = PRESSED;
@@ -103,6 +103,5 @@ void KeyMgr::tick()
 				vecKeyData[i].state = NONE;
 			vecKeyData[i].isPressed = false;
 		}
-		vecKeyData[i].isPressed = false;
 	}
 }

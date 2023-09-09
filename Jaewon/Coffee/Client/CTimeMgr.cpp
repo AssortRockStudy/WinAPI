@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CTimeMgr.h"
 
-CTimeMgr::CTimeMgr() :mFrequency(), mPrevCnt(), mCurCnt(){}
+CTimeMgr::CTimeMgr() :mFrequency{}, mPrevCnt{}, mCurCnt{} {}
 CTimeMgr::~CTimeMgr(){}
 
 void CTimeMgr::init()

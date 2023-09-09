@@ -3,8 +3,9 @@
 #include "Player.h"
 #include "CLevel.h"
 #include "CTimeMgr.h"
+#include "KeyMgr.h"
 
-CEngine::CEngine():mHwnd(nullptr), mPtResolution(), mDc(nullptr)
+CEngine::CEngine():mHwnd(nullptr), mPtResolution(), mDc(nullptr), mLevel(nullptr)
 {
 }
 
@@ -31,6 +32,7 @@ void CEngine::init(HWND _hwnd, POINT _ptResolution)
 
 	// 매니져
 	CTimeMgr::GetInst()->init();
+	KeyMgr::GetInst()->init();
 
 	mLevel = new CLevel;
 
@@ -38,6 +40,7 @@ void CEngine::init(HWND _hwnd, POINT _ptResolution)
 	mPlayer->setPos(Vec2{ 500.f, 500.f });
 	mPlayer->setScale(Vec2{ 50.f, 50.f });
 	mPlayer->setColor(black);
+	mPlayer->setReverseMove(true);
 	mLevel->AddObj(mPlayer);
 
 
@@ -45,12 +48,14 @@ void CEngine::init(HWND _hwnd, POINT _ptResolution)
 	redPlayer->setPos(Vec2{ 800.f, 500.f });
 	redPlayer->setScale(Vec2{ 50.f, 50.f });
 	redPlayer->setColor(red);
+	redPlayer->setReverseMove(false);
 	mLevel->AddObj(redPlayer);
 }
 
 void CEngine::tick()
 {
 	CTimeMgr::GetInst()->tick();
+	KeyMgr::GetInst()->tick();
 	mLevel->tick();
 	mLevel->render(mDc);
 }
