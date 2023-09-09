@@ -1,10 +1,10 @@
 #pragma once
 
 #include "targetver.h"
-#define WIN32_LEAN_AND_MEAN // ���� ������ �ʴ� ������ Windows ������� �����մϴ�.
-// Windows ��� ����
+#define WIN32_LEAN_AND_MEAN 
+
 #include <windows.h>
-// C ��Ÿ�� ��� �����Դϴ�.
+
 #include <malloc.h>
 #include <memory.h>
 #include <stdlib.h>

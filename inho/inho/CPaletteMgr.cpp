@@ -1,6 +1,8 @@
+#include "pch.h"
+
 #include "CPaletteMgr.h"
 #include "CEngine.h"
-#include "pch.h"
+
 CPaletteMgr::CPaletteMgr() {}
 CPaletteMgr::~CPaletteMgr() {
     for (auto pen = pens.begin(); pen != pens.end(); ++pen) {
@@ -20,6 +22,8 @@ void CPaletteMgr::init(HDC _dc) {
     AddBrush(BrushColor::BRED, CreateSolidBrush(RGB(255, 10, 10)));
     AddBrush(BrushColor::BBLACK, CreateSolidBrush(RGB(10, 10, 10)));
     AddBrush(BrushColor::BBLUE, CreateSolidBrush(RGB(10, 10, 255)));
+
+    
 }
 
 void CPaletteMgr::AddPen(PenColor en, HPEN pen) { pens[en] = pen; }

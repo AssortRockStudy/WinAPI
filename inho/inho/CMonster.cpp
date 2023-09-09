@@ -1,5 +1,7 @@
-#include "CMonster.h"
 #include "pch.h"
+
+
+#include "CMonster.h"
 
 #include "CPaletteMgr.h"
 #include "CTimeMgr.h"

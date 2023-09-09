@@ -14,9 +14,6 @@
     <Filter Include="Game\01. Header">
       <UniqueIdentifier>{fa36f031-6f2a-4f5e-98b8-c68bdaa683bd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\02. Engine">
-      <UniqueIdentifier>{39a91cb2-97fc-4415-9d00-a56c9666d396}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\03. Manager">
       <UniqueIdentifier>{71bc80a9-43a7-4a83-9276-6602b92d0148}</UniqueIdentifier>
     </Filter>
@@ -31,6 +28,12 @@
     </Filter>
     <Filter Include="Game\04. Object\Monster">
       <UniqueIdentifier>{52d08624-4c36-4136-af1a-ca4431ea8700}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\02. Engine">
+      <UniqueIdentifier>{39a91cb2-97fc-4415-9d00-a56c9666d396}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Object\CProjectile">
+      <UniqueIdentifier>{7ca5b44a-7707-4706-ba7f-323fcdfbd5c0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -55,9 +58,6 @@
     <ClInclude Include="struct.h">
       <Filter>Game\01. Header</Filter>
     </ClInclude>
-    <ClInclude Include="CEngine.h">
-      <Filter>Game\02. Engine</Filter>
-    </ClInclude>
     <ClInclude Include="CLevel.h">
       <Filter>Game\05. Level</Filter>
     </ClInclude>
@@ -75,6 +75,21 @@
     </ClInclude>
     <ClInclude Include="CMonster.h">
       <Filter>Game\04. Object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CPathMgr.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CKeyMgr.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CLevelMgr.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CProjectile.h">
+      <Filter>Game\04. Object\CProjectile</Filter>
+    </ClInclude>
+    <ClInclude Include="CEngine.h">
+      <Filter>Game\02. Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +132,18 @@
     </ClCompile>
     <ClCompile Include="CMonster.cpp">
       <Filter>Game\04. Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CPathMgr.cpp">
+      <Filter>Game\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyMgr.cpp">
+      <Filter>Game\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevelMgr.cpp">
+      <Filter>Game\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CProjectile.cpp">
+      <Filter>Game\04. Object\CProjectile</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

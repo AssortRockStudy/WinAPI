@@ -1,5 +1,9 @@
-#include "CTimeMgr.h"
 #include "pch.h"
+
+#include "CTimeMgr.h"
+
+
+#include "CEngine.h"
 
 // 제일 큰 자료형 기준으로 같은 공간을 지칭하는 DataType 선언 방식
 union MousePos {
@@ -29,4 +33,18 @@ void CTimeMgr::tick() {
                   float(m_Frequency.QuadPart);
 
     m_PrevCount = m_CurCount;
+
+    m_fTime += m_DeltaTime;
+    if (1.f <= m_fTime) {
+        wchar_t szText[50] = {};
+        swprintf_s(szText, 50, L"FPS [%d]", m_iCall);
+        SetWindowText(CEngine::GetInst()->GetMainWind(), szText);
+
+        m_iCall = 0;
+        m_fTime = 0;
+    }
+
+    ++m_iCall;
+
+ 
 }

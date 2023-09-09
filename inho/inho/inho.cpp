@@ -1,6 +1,8 @@
-﻿#include "inho.h"
+﻿#include "pch.h"
+
+#include "inho.h"
 #include "CEngine.h"
-#include "pch.h"
+
 
 // 전역 변수:
 HINSTANCE hInst = 0;

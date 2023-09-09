@@ -1,5 +1,7 @@
-#include "CEngine.h"
 #include "pch.h"
+
+#include "CEngine.h"
+
 
 // Manager
 #include "CPaletteMgr.h"
@@ -8,12 +10,23 @@
 #include "CLevel.h"
 #include "CMonster.h"
 #include "CPlayer.h"
+#include "CKeyMgr.h"
+#include "CPathMgr.h"
+#include "CLevelMgr.h"
 
 CEngine::CEngine()
-    : m_hWnd(nullptr), m_ptResolution{}, m_Level(nullptr), m_dc(nullptr) {}
+    : m_hWnd(nullptr),
+    m_ptResolution{},
+    m_Level(nullptr),
+    m_dc(nullptr),
+    m_SubBitMap(nullptr)
+ {}
 
 CEngine::~CEngine() {
     ReleaseDC(m_hWnd, m_dc);
+
+    DeleteObject(m_SubBitMap);
+    DeleteObject(m_SubDC);
 
     if (nullptr != m_Level)
         delete m_Level;
@@ -34,30 +47,24 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution) {
     // ��Ʈ��
     m_dc = GetDC(m_hWnd);
 
+    m_SubBitMap = CreateCompatibleBitmap(m_dc, m_ptResolution.x, m_ptResolution.y);
+    m_SubDC = CreateCompatibleDC(m_dc);
+
+    DeleteObject((HBITMAP)SelectObject(m_SubDC, m_SubBitMap));
+
     // Manager �ʱ�ȭ
     CTimeMgr::GetInst()->init();
     CPaletteMgr::GetInst()->init(m_dc);
-
-    // Level
-    m_Level = new CLevel;
-
-    CPlayer* pPlayer = new CPlayer;
-
-    pPlayer->SetPos(Vec2(500.f, 500.f));
-    pPlayer->SetScale(Vec2(50.f, 50.f));
-
-    CMonster* pMonster = new CMonster;
-    pMonster->SetPos(Vec2(500.f, 500.f));
-    pMonster->SetScale(Vec2(50.f, 50.f));
-
-    m_Level->AddObject(pPlayer);
-    m_Level->AddObject(pMonster);
+    CKeyMgr::GetInst()->init();
+    CPathMgr::init();
+    CLevelMgr::GetInst()->init();
 }
 
 void CEngine::tick() {
     // TimeMgr
     CTimeMgr::GetInst()->tick();
+    CKeyMgr::GetInst()->tick();
 
-    m_Level->tick();
-    m_Level->render(m_dc);
+    CLevelMgr::GetInst()->tick();
+    CLevelMgr::GetInst()->render(m_SubDC);
 }

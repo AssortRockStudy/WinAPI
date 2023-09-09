@@ -1,5 +1,6 @@
-#include "CObj.h"
 #include "pch.h"
+
+#include "CObj.h"
 
 CObj::CObj() {}
 
