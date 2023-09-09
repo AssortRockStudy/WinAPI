@@ -4,8 +4,8 @@ class DrawMgr
 	SINGLETON(DrawMgr);
 
 public:
-	vector<HPEN*> pens;
-	vector<HBRUSH*> brushes;
+	vector<HPEN> pens;
+	vector<HBRUSH> brushes;
 
 public:
 	void init();

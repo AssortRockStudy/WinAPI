@@ -45,12 +45,8 @@ void Monster::render(HDC _dc)
 	Vec2 vPos = GetPos();
 	Vec2 vScale = GetScale();
 
-
-	HPEN hRedPen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
-	HPEN oldPen = (HPEN)SelectObject(_dc, hRedPen);
-
-	//HBRUSH hRedBrush = CreateSolidBrush(RGB(255, 0, 0));
-	//SelectObject(_dc, hRedBrush);
+	HPEN oldPen = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->pens[RED]));
+	HPEN oldBrush = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->brushes[RED]));
 
 	Ellipse(_dc
 		, int(vPos.x - vScale.x / 2)
@@ -58,6 +54,5 @@ void Monster::render(HDC _dc)
 		, int(vPos.x + vScale.x / 2)
 		, int(vPos.y + vScale.y / 2));
 
-	DeleteObject(SelectObject(_dc, oldPen));
 }
 
