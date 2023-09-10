@@ -1,6 +1,9 @@
 ﻿#include "pch.h"
 #include "CProjectile.h"
+#include "CLevelMgr.h"
 
+#include "CPlayer.h"
+#include "CMonster.h"
 
 CProjectile::CProjectile()
 	: m_Speed(0.f)
@@ -15,9 +18,13 @@ CProjectile::~CProjectile()
 void CProjectile::tick(float _DT)
 {
 	Vec2 vPos = GetPos();
+	CMonster* cm= CLevelMgr::GetInst()->GetCurLevel()->getMonster();
+	
+	m_theta = atan((cm->GetPos().y - vPos.y) / (cm->GetPos().x - vPos.x));
+	
 
 	vPos.x += m_Speed * cosf(m_theta) * _DT;
-	vPos.y -= m_Speed * sinf(m_theta) * _DT;
+	vPos.y += m_Speed * sinf(m_theta) * _DT;
 
 	SetPos(vPos);
 }
