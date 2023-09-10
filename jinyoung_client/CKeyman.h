@@ -1,8 +1,8 @@
-#pragma once
+О╩©#pragma once
 
 // CKeyman
-// ~ е╟юг ╩Себ╟╙ ╟Э╦╝(TAP,PRESSED,RELEASED,NONE)
-//га╥╧юс╢Г е╟юг ╣©╠Бх╜цЁ╦╝ ╟║╢и
+// ~ М┌╓Л²≤ Л┐│М┐°Й╟▓ Й╢─К╕╛(TAP,PRESSED,RELEASED,NONE)
+//М■└К═┬Л·└К▀╧ М┌╓Л²≤ К▐≥Й╦╟М≥■Л╡≤К╕╛ Й╟─К┼╔
 
 class CKeyman
 {

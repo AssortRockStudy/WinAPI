@@ -1,8 +1,8 @@
-#pragma once
+ï»¿#pragma once
 class CPathMgr
 {
 private:
-	//Àü¹æ¼±¾ğÀÇ ÇüÅÂ·Î µÇ´Â°ÍÀÌ±â‹š¹®¿¡ cpp¿¡¼­ ÃÊ±âÈ­ÇÊ¿ä!
+	//ì „ë°©ì„ ì–¸ì˜ í˜•íƒœë¡œ ë˜ëŠ”ê²ƒì´ê¸°ë–„ë¬¸ì— cppì—ì„œ ì´ˆê¸°í™”í•„ìš”!
 	static wchar_t g_szContent[255];
 
 public:

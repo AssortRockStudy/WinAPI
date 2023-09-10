@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CEngine.h"
 
 
@@ -26,15 +26,15 @@ CEngine::CEngine()
 
 CEngine::~CEngine()
 {
-	// DC ÇØÁ¦
+	// DC í•´ì œ
 	ReleaseDC(m_hWnd, m_dc);
 
 
 	DeleteObject(m_subbitmap);
-	//¿ì¸®°¡¸¸µç dc´Â deletedc·Î Áö¿ö¾ßÇÑ´Ù
+	//ìš°ë¦¬ê°€ë§Œë“  dcëŠ” deletedcë¡œ ì§€ì›Œì•¼í•œë‹¤
 	DeleteDC(m_subdc);
 
-	// ·¹º§ ÇØÁ¦
+	// ë ˆë²¨ í•´ì œ
 	if (nullptr != m_Level)
 		delete m_Level;
 }
@@ -45,33 +45,33 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	m_hWnd = _hWnd;
 	m_ptResolution = _ptResolution;
 
-	// ÇØ»óµµ º¯°æ
+	// í•´ìƒë„ ë³€ê²½
 	SetWindowPos(m_hWnd, nullptr, 20, 10, m_ptResolution.x, m_ptResolution.y, 0);
 	ShowWindow(m_hWnd, true);
 
 	// DC : Device Context
 	// pen : Black 
 	// brush : White
-	// Bitmap(±×¸² ±×¸± °÷) : ÇÚµé¿¡ ÇØ´çÇÏ´Â À©µµ¿ì ºñÆ®¸Ê
+	// Bitmap(ê·¸ë¦¼ ê·¸ë¦´ ê³³) : í•¸ë“¤ì— í•´ë‹¹í•˜ëŠ” ìœˆë„ìš° ë¹„íŠ¸ë§µ
 	m_dc = GetDC(m_hWnd);
 
 
-	// Ãß°¡ ºñÆ®¸Ê ¹öÆÛ
+	// ì¶”ê°€ ë¹„íŠ¸ë§µ ë²„í¼
 	m_subbitmap= CreateCompatibleBitmap(m_dc, m_ptResolution.x, m_ptResolution.y);
 	m_subdc = CreateCompatibleDC(m_dc);
 
-	//m_subdc°¡ msubbitmapÀ» ÀúÀåÇÏ°í ¿ø·¡ ¸ñÀûÁö·Î °®°íÀÕ´øBitMap ÀÌ ¹ÝÈ¯°ªÀ¸·Î ³ª¿À´Âµ¥, 
-	// ÀÌ°É ¹Ù·Î DeleteObject ÇÔ¼ö¿¡ Àü´Þ½ÃÄÑ¼­ »èÁ¦¿äÃ»ÇÑ´Ù.
+	//m_subdcê°€ msubbitmapì„ ì €ìž¥í•˜ê³  ì›ëž˜ ëª©ì ì§€ë¡œ ê°–ê³ ìž‡ë˜BitMap ì´ ë°˜í™˜ê°’ìœ¼ë¡œ ë‚˜ì˜¤ëŠ”ë°, 
+	// ì´ê±¸ ë°”ë¡œ DeleteObject í•¨ìˆ˜ì— ì „ë‹¬ì‹œì¼œì„œ ì‚­ì œìš”ì²­í•œë‹¤.
 	DeleteObject((HBITMAP)SelectObject(m_subdc, m_subbitmap));
 
-	// Manager ÃÊ±âÈ­
+	// Manager ì´ˆê¸°í™”
 	CTimeManager::GetInst()->init();
 	CKeyman::GetInst()->init();
 	CLevelMgr::GetInst()->init();
 	CPathMgr::init();
 
-	//·¹º§¸Å´ÏÀú·Î ÀÌ°ü
-	//// Level »ý¼º
+	//ë ˆë²¨ë§¤ë‹ˆì €ë¡œ ì´ê´€
+	//// Level ìƒì„±
 	//m_Level = new CLevel;
 
 	//CPlayer* pPlayer = new CPlayer;
@@ -91,7 +91,7 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 
 }
 
-//tick() 1È¸ ==>1ÇÁ·¹ÀÓ
+//tick() 1íšŒ ==>1í”„ë ˆìž„
 //FPS(Frame Per Second
 void CEngine::tick()
 {

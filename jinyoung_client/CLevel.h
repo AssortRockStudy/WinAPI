@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 
 class CObj;
 
 //
-//¿ÀºêÁ§Æ®¸¦ vector¿¡ ³Ö´ÂÀÌÀ¯
+//ì˜¤ë¸Œì íŠ¸ë¥¼ vectorì— ë„£ëŠ”ì´ìœ 
 // 
 //
 

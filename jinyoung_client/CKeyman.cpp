@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CKeyman.h"
 
 int g_KeySync[KEY::KEY_END] =
@@ -84,10 +84,10 @@ CKeyman::~CKeyman()
 
 void CKeyman::init()
 {
-	//capacity¸¸´Ã¸²
+	//capacityë§ŒëŠ˜ë¦¼
 	m_vecKeyData.reserve(KEY::KEY_END);
 
-	//°ø°£°ú µ¥ÀÌÅÍ¸¦ °ø¹éÀ¸·Î ´ÙÃ¤¿ò(±¸Á¶Ã¼)
+	//ê³µê°„ê³¼ ë°ì´í„°ë¥¼ ê³µë°±ìœ¼ë¡œ ë‹¤ì±„ì›€(êµ¬ì¡°ì²´)
 	//m_vecKeyData.resize(KEY::KEY_END);
 
 
@@ -116,15 +116,15 @@ void CKeyman::tick()
 	{
 		if (GetAsyncKeyState(g_KeySync[m_vecKeyData[i].eKey]) & 0x8001)
 		{
-			// ÀÌ¹ø ÇÁ·¹ÀÓ¿¡ ÇØ´ç Å°°¡ ´­·ÁÀÖ´Ù.
+			// ì´ë²ˆ í”„ë ˆìž„ì— í•´ë‹¹ í‚¤ê°€ ëˆŒë ¤ìžˆë‹¤.
 			if (m_vecKeyData[i].bPressed)
 			{
-				// ÀÌÀü¿¡µµ ´­·ÁÀÖ¾ú´Ù ==> °è¼Ó ´­¸² »óÅÂ
+				// ì´ì „ì—ë„ ëˆŒë ¤ìžˆì—ˆë‹¤ ==> ê³„ì† ëˆŒë¦¼ ìƒíƒœ
 				m_vecKeyData[i].eState = PRESSED;
 			}
 			else
 			{
-				// ÀÌÀü¿¡´Â ´­·ÁÀÖÁö ¾Ê¾Ò´Ù ==> ¸· ´­¸² »óÅÂ
+				// ì´ì „ì—ëŠ” ëˆŒë ¤ìžˆì§€ ì•Šì•˜ë‹¤ ==> ë§‰ ëˆŒë¦¼ ìƒíƒœ
 				m_vecKeyData[i].eState = TAP;
 			}
 
@@ -132,10 +132,10 @@ void CKeyman::tick()
 		}
 		else
 		{
-			// ÀÌ¹ø ÇÁ·¹ÀÓ¿¡ ÇØ´çÅ°´Â ¾È ´­·Á ÀÖ´Ù
+			// ì´ë²ˆ í”„ë ˆìž„ì— í•´ë‹¹í‚¤ëŠ” ì•ˆ ëˆŒë ¤ ìžˆë‹¤
 			if (m_vecKeyData[i].bPressed)
 			{
-				// ÀÌÀü ÇÁ·¹ÀÓ¿¡´Â ´­·Á ÀÖ¾ú´Ù ==> ¸· ¶À
+				// ì´ì „ í”„ë ˆìž„ì—ëŠ” ëˆŒë ¤ ìžˆì—ˆë‹¤ ==> ë§‰ ë—Œ
 				m_vecKeyData[i].eState = RELEASED;
 			}
 			else

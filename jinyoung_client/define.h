@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #define SINGLETON(ClassType) public:\
@@ -24,6 +24,7 @@
 #define PI	3.14159265348979f
 
 
+#define GAME_FOLDER MyGame
 
 // Key Value
 enum KEY

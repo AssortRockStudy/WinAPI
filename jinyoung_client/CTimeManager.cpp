@@ -1,9 +1,9 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CTimeManager.h"
 
 #include "CEngine.h"
 
-// Á¦ÀÏ Å« ÀÚ·áÇü ±âÁØÀ¸·Î °°Àº °ø°£À» ÁöÄªÇÏ´Â DataType ¼±¾ð ¹æ½Ä
+// ì œì¼ í° ìžë£Œí˜• ê¸°ì¤€ìœ¼ë¡œ ê°™ì€ ê³µê°„ì„ ì§€ì¹­í•˜ëŠ” DataType ì„ ì–¸ ë°©ì‹
 //union MousePos
 //{
 //	struct
@@ -32,7 +32,7 @@ CTimeManager::~CTimeManager()
 
 void CTimeManager::init()
 {
-	// ÃÊ´ç ºóµµ
+	// ì´ˆë‹¹ ë¹ˆë„
 	QueryPerformanceFrequency(&m_Frequency);
 
 	QueryPerformanceCounter(&m_PrevCount);
@@ -42,14 +42,14 @@ void CTimeManager::init()
 
 void CTimeManager::tick()
 {
-	//ÃÊ´ç ºóµµ
+	//ì´ˆë‹¹ ë¹ˆë„
 	QueryPerformanceCounter(&m_CurCount);
 
 	m_DeltaTime= float(m_CurCount.QuadPart - m_PrevCount.QuadPart)/float(m_Frequency.QuadPart);
 
 	m_PrevCount = m_CurCount;
 
-	// ½Ã°£ ´©Àû ==> 1ÃÊ¸¶´Ù if ±¸¹® ½ÇÇà
+	// ì‹œê°„ ëˆ„ì  ==> 1ì´ˆë§ˆë‹¤ if êµ¬ë¬¸ ì‹¤í–‰
 	m_fTime += m_DeltaTime;
 	if (1.f <= m_fTime)
 	{

@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CLevelMgr.h"
 
 #include "CEngine.h"
@@ -40,15 +40,15 @@ void CLevelMgr::tick()
 void CLevelMgr::render(HDC _dc)
 {
 	// Level Render
-	// È­¸é Clear
+	// í™”ë©´ Clear
 	POINT ptResolution = CEngine::GetInst()->GetResolution();
 	SelectObject(_dc, CPal::GetInst()->getHPen(WHITE));
 	SelectObject(_dc, CPal::GetInst()->getHBrush(WHITE));
 	Rectangle(_dc, -1, -1, ptResolution.x + 1, ptResolution.y + 1);
 
-	// ·¹º§ render
+	// ë ˆë²¨ render
 	m_pCurLevel->render(_dc);
 
-	// m_SubDC -> m_DC ·Î ºñÆ®¸Ê º¹»ç
+	// m_SubDC -> m_DC ë¡œ ë¹„íŠ¸ë§µ ë³µì‚¬
 	BitBlt(CEngine::GetInst()->GetMainDC(), 0, 0, ptResolution.x, ptResolution.y, _dc, 0, 0, SRCCOPY);
 }

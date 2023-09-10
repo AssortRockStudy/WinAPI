@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 
 class CObj
@@ -15,10 +15,10 @@ public:
 	void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
 
 public:
-	// ¸Å ÇÁ·¹ÀÓ ¸¶´Ù ¿ÀºêÁ§Æ®°¡ ÇÒ ÀÏ
-	virtual void tick(float _DT) = 0; // ¼ø¼ö °¡»óÇÔ¼ö ==> Ãß»ó Å¬·¡½º
+	// ë§¤ í”„ë ˆìž„ ë§ˆë‹¤ ì˜¤ë¸Œì íŠ¸ê°€ í•  ì¼
+	virtual void tick(float _DT) = 0; // ìˆœìˆ˜ ê°€ìƒí•¨ìˆ˜ ==> ì¶”ìƒ í´ëž˜ìŠ¤
 
-	// ¸Å ÇÁ·¹ÀÓ¸¶´Ù È­¸é¿¡ ¿ÀºêÁ§Æ®¸¦ ±×¸®´Â ÇÔ¼ö
+	// ë§¤ í”„ë ˆìž„ë§ˆë‹¤ í™”ë©´ì— ì˜¤ë¸Œì íŠ¸ë¥¼ ê·¸ë¦¬ëŠ” í•¨ìˆ˜
 	virtual void render(HDC _dc);
 
 public:

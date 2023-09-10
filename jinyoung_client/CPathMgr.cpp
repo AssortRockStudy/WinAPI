@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CPathMgr.h"
 
 
@@ -6,7 +6,7 @@ wchar_t CPathMgr::g_szContent[255] = {};
 
 void CPathMgr::init()
 {
-	//½ÇÇàÆÄÀÏ °æ·Î ¾Ë·ÁÁÖ´Â ÇÔ¼ö
+	//ì‹¤í–‰íŒŒì¼ ê²½ë¡œ ì•Œë ¤ì£¼ëŠ” í•¨ìˆ˜
 	GetCurrentDirectory(255, g_szContent);
 
 	//MessageBox(nullptr, g_szContent, L"Curdir check", MB_OK);

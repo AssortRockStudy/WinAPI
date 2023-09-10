@@ -1,27 +1,27 @@
-#pragma once
+ï»¿#pragma once
 #include "pch.h"
 class CLevel;
 
-//¿£ÁøÀº °ÔÀÓÇÁ·Î±×·¥ÀÇ °ü¸®ÀÚ.
-//µðÀÚÀÎÆÐÅÏ(¼³°èÀÇ À¯Çü)
-//Singleton ÆÐÅÏ ´Ü ÇÏ³ªÀÇ °´Ã¼¸¦ À§ÇØ¼³°èµÊ
-//µÎ°³ÀÌ»ó ¸¸µé¾îÁö´Â°ÍÀ» ±ÝÁöÇÔ
+//ì—”ì§„ì€ ê²Œìž„í”„ë¡œê·¸ëž¨ì˜ ê´€ë¦¬ìž.
+//ë””ìžì¸íŒ¨í„´(ì„¤ê³„ì˜ ìœ í˜•)
+//Singleton íŒ¨í„´ ë‹¨ í•˜ë‚˜ì˜ ê°ì²´ë¥¼ ìœ„í•´ì„¤ê³„ë¨
+//ë‘ê°œì´ìƒ ë§Œë“¤ì–´ì§€ëŠ”ê²ƒì„ ê¸ˆì§€í•¨
 class CEngine
 {
 
-	//Á¤Àû ¸â¹öº¯¼ö
-	//-µ¥ÀÌÅÍ ¿µ¿ª(»ý¼ºµÈ °´Ã¼¾È¿¡ Æ÷ÇÔÀÌ ¾ÈµÊ,1°³) == ¸ðµç°´Ã¼µéÀÌ °øÀ¯ÇÏ´Â ÇÏ³ªÀÇ º¯¼ö
+	//ì •ì  ë©¤ë²„ë³€ìˆ˜
+	//-ë°ì´í„° ì˜ì—­(ìƒì„±ëœ ê°ì²´ì•ˆì— í¬í•¨ì´ ì•ˆë¨,1ê°œ) == ëª¨ë“ ê°ì²´ë“¤ì´ ê³µìœ í•˜ëŠ” í•˜ë‚˜ì˜ ë³€ìˆ˜
 	//  
-	//-¸â¹öº¯¼öÀÇ Æ¯Â¡(¸â¹öÇÔ¼ö¿¡¼­ Á¢±Ù°¡´É) this ¾øÀÌµµ Á¢±Ù°¡´É
-	//- Á¤Àû¸â¹öÇÔ¼ö¿¡¼­µµ Á¢±Ù°¡´ÉÇÏ´Ù.
-	// ¹®¹ý:Å¬·¡½º¾È¿¡ ÀÖ´Â ¼±¾ðÀº Àü¹æ¼±¾ð¿ªÇÒ
-	// ½ÇÁ¦ ÃÊ±âÈ­´Â cpp¿¡¼­ ÇØÁà¾ßÇÑ´Ù.
+	//-ë©¤ë²„ë³€ìˆ˜ì˜ íŠ¹ì§•(ë©¤ë²„í•¨ìˆ˜ì—ì„œ ì ‘ê·¼ê°€ëŠ¥) this ì—†ì´ë„ ì ‘ê·¼ê°€ëŠ¥
+	//- ì •ì ë©¤ë²„í•¨ìˆ˜ì—ì„œë„ ì ‘ê·¼ê°€ëŠ¥í•˜ë‹¤.
+	// ë¬¸ë²•:í´ëž˜ìŠ¤ì•ˆì— ìžˆëŠ” ì„ ì–¸ì€ ì „ë°©ì„ ì–¸ì—­í• 
+	// ì‹¤ì œ ì´ˆê¸°í™”ëŠ” cppì—ì„œ í•´ì¤˜ì•¼í•œë‹¤.
 	
 	SINGLETON(CEngine);
 
 private:
-	HWND	m_hWnd;			// ¸ÞÀÎ À©µµ¿ì ÇÚµé
-	POINT	m_ptResolution;	// À©µµ¿ì ÇØ»óµµ
+	HWND	m_hWnd;			// ë©”ì¸ ìœˆë„ìš° í•¸ë“¤
+	POINT	m_ptResolution;	// ìœˆë„ìš° í•´ìƒë„
 
 	HDC		m_dc;
 	HDC		m_subdc;
@@ -35,14 +35,14 @@ public:
 
 	void init(HWND _hWnd, POINT _ptResolution);
 	void tick();
-	//Á¤Àû¸â¹öÇÔ¼ö
-	//°´Ã¼°¡ ¾ø¾îµµ µÊ(°´Ã¼¿¡ »ó´ëÀûÀÌÁö¾ÊÀ½)
-	//this°¡¾øÀ½
+	//ì •ì ë©¤ë²„í•¨ìˆ˜
+	//ê°ì²´ê°€ ì—†ì–´ë„ ë¨(ê°ì²´ì— ìƒëŒ€ì ì´ì§€ì•ŠìŒ)
+	//thisê°€ì—†ìŒ
 	//static CEngine* GetInst()
 	//{
 
-	//	//static Á¤Àûº¯¼ö Àº ÇÔ¼öÀÇ È£ÃâÁ¾·á »ó°ü¾øÀÌ À¯ÁöµÇ´Âº¯¼ö
-	//	//ÃÊ±âÈ­´Â ÇÑ¹ø¸¸µÈ´Ù.
+	//	//static ì •ì ë³€ìˆ˜ ì€ í•¨ìˆ˜ì˜ í˜¸ì¶œì¢…ë£Œ ìƒê´€ì—†ì´ ìœ ì§€ë˜ëŠ”ë³€ìˆ˜
+	//	//ì´ˆê¸°í™”ëŠ” í•œë²ˆë§Œëœë‹¤.
 	//	if (nullptr==pEngine)
 	//	{
 	//		pEngine = new CEngine;
@@ -56,8 +56,8 @@ public:
 	//	pEngine = nullptr;
 	//}
 	
-	//ÀåÁ¡ : µ¥ÀÌÅÍ¿µ¿ª¿¡ ÀÖÀ¸¹Ç·Î destroy°¡ÇÊ¿ä¾ø´Ù.
-	//´ÜÁ¡ : runtime µµÁß¿¡ Áö¿ï ¼ö ¾ø´Ù. (¿©·¯°³ ¸Å´ÏÀú°¡ ½×¿©ÀÖÀ» ¼ö ÀÖÀ½)
+	//ìž¥ì  : ë°ì´í„°ì˜ì—­ì— ìžˆìœ¼ë¯€ë¡œ destroyê°€í•„ìš”ì—†ë‹¤.
+	//ë‹¨ì  : runtime ë„ì¤‘ì— ì§€ìš¸ ìˆ˜ ì—†ë‹¤. (ì—¬ëŸ¬ê°œ ë§¤ë‹ˆì €ê°€ ìŒ“ì—¬ìžˆì„ ìˆ˜ ìžˆìŒ)
 
 
 

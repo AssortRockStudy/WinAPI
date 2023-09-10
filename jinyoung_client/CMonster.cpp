@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CMonster.h"
 
 #include "CTimeManager.h"
@@ -21,7 +21,7 @@ void CMonster::tick(float _DT)
 {
 	Vec2 vPos = GetPos();
 
-	// Å°ÀÔ·ÂÀÌ ¹ß»ıÇÏ¸é ¿òÁ÷ÀÎ´Ù.
+	// í‚¤ì…ë ¥ì´ ë°œìƒí•˜ë©´ ì›€ì§ì¸ë‹¤.
 	if (KEY_PRESSED(W))
 	{
 		vPos.x += m_Speed * _DT;

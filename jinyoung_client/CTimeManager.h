@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "pch.h"
 
 
@@ -6,7 +6,7 @@ class CTimeManager
 {
 	SINGLETON(CTimeManager);
 private:
-	// Larget Integer ´Â ±×³É 8¹ÙÀÌÆ® long long Å¸ÀÔ Á¤¼ö·Î Ãë±Ş
+	// Larget Integer ëŠ” ê·¸ëƒ¥ 8ë°”ì´íŠ¸ long long íƒ€ì… ì •ìˆ˜ë¡œ ì·¨ê¸‰
 	LARGE_INTEGER	m_Frequency;
 	LARGE_INTEGER	m_PrevCount;
 	LARGE_INTEGER	m_CurCount;
