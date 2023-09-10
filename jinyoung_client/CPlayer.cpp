@@ -21,9 +21,9 @@ CPlayer::CPlayer()
 	//이미지가 존재하는 상대경로 (contents 폴더로 부터)
 	//힙메모리에할당
 	wstring strPath = CPathMgr::GetContentDir();
-	strPath+= L"texture\\ma.BMP";
+	strPath+= L"texture\\Fighter.bmp";
 
-	m_Image= (HBITMAP) LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+	m_Image= (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 	m_ImageDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
 	DeleteObject(SelectObject(m_ImageDC, m_Image));
  	GetObject(m_Image, sizeof(BITMAP), &m_BitmapInfo);

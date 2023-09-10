@@ -22,7 +22,7 @@ void CMonster::tick(float _DT)
 	Vec2 vPos = GetPos();
 
 	// 키입력이 발생하면 움직인다.
-	if (KEY_PRESSED(W))
+	if (KEY_PRESSED(A))
 	{
 		vPos.x += m_Speed * _DT;
 	}

@@ -5,6 +5,7 @@
 
 #include "CLevel.h"
 #include "CPlayer.h"
+#include "CMonster.h"
 #include "CPal.h"
 
 
@@ -30,6 +31,14 @@ void CLevelMgr::init()
 	pPlayer->SetScale(Vec2(50.f, 50.f));
 
 	m_pCurLevel->AddObject(pPlayer);
+
+	CMonster* pMonster = new CMonster;
+
+	pMonster->SetPos(Vec2(600.f, 500.f));
+	pMonster->SetScale(Vec2(50.f, 50.f));
+
+	m_pCurLevel->AddObject(pMonster);
+
 }
 
 void CLevelMgr::tick()
