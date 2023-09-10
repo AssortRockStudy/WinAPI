@@ -21,6 +21,21 @@ void CLevel::render(HDC _dc)
 	}
 }
 
+Vec2 CLevel::findCloseMon(Vec2 mPos)
+{
+	Vec2 closest = {mPos.x, mPos.y - 99999.f};
+	for (int i = 0; i < mVecObjects.size(); ++i) {
+		if (mVecObjects[i]->getType() == MONSTER) {
+			Vec2 monPos = mVecObjects[i]->getPos();
+			if (std::pow(closest.x - mPos.x, 2) + std::pow(closest.y - mPos.y, 2) >
+				std::pow(monPos.x - mPos.x, 2) + std::pow(monPos.y - mPos.y, 2)) {
+				closest = monPos;
+			}
+		}
+	}
+	return closest;
+}
+
 CLevel::CLevel()
 {
 }

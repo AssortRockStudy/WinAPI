@@ -20,6 +20,7 @@ public:
 	void AddObj(CObj* _obj) {
 		mVecObjects.push_back(_obj);
 	}
+	Vec2 findCloseMon(Vec2 mPos);
 
 public:
 	CLevel();

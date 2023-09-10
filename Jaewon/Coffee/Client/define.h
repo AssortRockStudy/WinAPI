@@ -103,3 +103,10 @@ enum KEYSTATE
 	PRESSED,
 	RELEASED,
 };
+
+enum OBJECTTYPE
+{
+	PLAYER,
+	MONSTER,
+
+};

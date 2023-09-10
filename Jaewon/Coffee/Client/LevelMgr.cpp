@@ -3,6 +3,7 @@
 #include "CLevel.h"
 #include "Player.h"
 #include "CEngine.h"
+#include "Monster.h"
 
 LevelMgr::LevelMgr(){}
 LevelMgr::~LevelMgr(){
@@ -19,13 +20,21 @@ void LevelMgr::init()
 	mPlayer->setScale(Vec2{ 50.f, 50.f });
 	mPlayer->setColor(black);
 	mPlayer->setReverseMove(true);
+	mPlayer->setType(PLAYER);
 	curLevel->AddObj(mPlayer);
+
+	Monster* mMonster = new Monster;
+	mMonster->setPos(Vec2{ 100.f, 100.f });
+	mMonster->setScale(Vec2{ 80.f, 80.f });
+	mMonster->setType(MONSTER);
+	curLevel->AddObj(mMonster);
 
 }
 
 void LevelMgr::tick()
 {
 	curLevel->tick();
+	
 }
 
 void LevelMgr::render(HDC _dc)

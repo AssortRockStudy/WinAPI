@@ -8,6 +8,9 @@
 #include <memory.h>
 #include <tchar.h>
 
+#define _USE_MATH_DEFINES
+#include <cmath>
+
 #include <vector>
 #include <list>
 #include <map>
@@ -19,6 +22,7 @@ using std::map;
 using std::make_pair;
 using std::string;
 using std::wstring;
+
 
 // 매크로 함수 헤더
 #include "define.h"

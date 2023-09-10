@@ -13,14 +13,19 @@
 class CObj
 {
 private:
+	
 	Vec2 mPos;
 	Vec2 mScale;
+	OBJECTTYPE mType;
 
 public:
 	Vec2 getPos() { return mPos; }
 	Vec2 getScale() { return mScale; }
+	OBJECTTYPE getType() { return mType; }
+
 	void setPos(Vec2 _pos) { mPos = _pos; }
 	void setScale(Vec2 _scale) { mScale = _scale; }
+	void setType(OBJECTTYPE _type) { mType = _type; }
 
 public:
 	virtual void tick(float _dt) = 0;

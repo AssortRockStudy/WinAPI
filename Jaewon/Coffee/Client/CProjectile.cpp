@@ -1,12 +1,22 @@
 #include "pch.h"
 #include "CProjectile.h"
+#include "Monster.h"
+#include "CLevel.h"
+#include "LevelMgr.h"
 
 void CProjectile::tick(float _dt)
 {
 	Vec2 vPos = getPos();
 
-	vPos.x += mSpeed * cosf(mTheta) * _dt;
-	vPos.y += mSpeed * sinf(mTheta) * _dt;
+	CLevel* mLevel = LevelMgr::GetInst()->getCurLevel();
+	Vec2 closeMon = mLevel->findCloseMon(vPos);
+
+	float distX = closeMon.x - vPos.x;
+	float distY = closeMon.y - vPos.y;
+	float distXY = std::sqrtf(std::pow(closeMon.x - vPos.x, 2) + std::pow(closeMon.y - vPos.y, 2));
+
+	vPos.x += mSpeed * (distX / distXY) * _dt;
+	vPos.y += mSpeed * (distY / distXY) * _dt;
 
 	setPos(vPos);
 }
