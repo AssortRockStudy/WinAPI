@@ -38,6 +38,17 @@ public:
 		return *this;
 	}
 
+	Vec2 Rotate(float _fTheta)
+	{
+		Vec2 tmp;
+
+		tmp.x = x * cosf(_fTheta) - y * sinf(_fTheta);
+		tmp.y = x * sinf(_fTheta) + y * cosf(_fTheta);
+
+		return tmp;
+	}
+
+
 	Vec2 operator + (const Vec2& _Other)
 	{
 		return Vec2(x + _Other.x, y + _Other.y);

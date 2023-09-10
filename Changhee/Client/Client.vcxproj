@@ -156,6 +156,7 @@
     <ClInclude Include="CProjectile.h" />
     <ClInclude Include="CProjectile1.h" />
     <ClInclude Include="CProjectile2.h" />
+    <ClInclude Include="CProjectile3.h" />
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="enum.h" />
@@ -178,6 +179,7 @@
     <ClCompile Include="CProjectile.cpp" />
     <ClCompile Include="CProjectile1.cpp" />
     <ClCompile Include="CProjectile2.cpp" />
+    <ClCompile Include="CProjectile3.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp">

@@ -6,9 +6,9 @@
 
 CProjectile2::CProjectile2()
 	: m_pTarget(nullptr)
-	, m_fForce(100.f)
+	, m_fForce(10.f)
 	, m_vVelocity{0.f,0.f}
-	, m_fMass(50.f)
+	, m_fMass(200.f)
 	, m_vAccel{0.f,0.f}
 {
 }
@@ -31,7 +31,7 @@ void CProjectile2::tick(float _DT)
 	{
 		vDiff.Normalize();
 
-		m_vAccel = vDiff * m_fMass / m_fForce;
+		m_vAccel = vDiff * m_fForce / m_fMass;
 	}
 
 	m_vVelocity = m_vVelocity + m_vAccel;
