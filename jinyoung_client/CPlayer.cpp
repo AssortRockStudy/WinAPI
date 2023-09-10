@@ -21,12 +21,12 @@ CPlayer::CPlayer()
 	//이미지가 존재하는 상대경로 (contents 폴더로 부터)
 	//힙메모리에할당
 	wstring strPath = CPathMgr::GetContentDir();
-	strPath+= L"texture\\ma.png";
+	strPath+= L"texture\\ma.BMP";
 
 	m_Image= (HBITMAP) LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
-	m_Image_dc = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
+	m_ImageDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
 	DeleteObject(SelectObject(m_ImageDC, m_Image));
-	GetObject(m_Image, sizeof(BITMAP), &m_BitmapInfo);
+ 	GetObject(m_Image, sizeof(BITMAP), &m_BitmapInfo);
 }
 
 CPlayer::~CPlayer()
@@ -91,12 +91,17 @@ void CPlayer::render(HDC _dc)
 	SelectObject(_dc, CPal::GetInst()->getHPen(BLACK));
 	SelectObject(_dc, CPal::GetInst()->getHBrush(BLACK));
 	
-	BitBlt(_dc,vPos.x-m.BitmapInfo.bm
+	BitBlt(_dc, vPos.x - m_BitmapInfo.bmWidth / 2.f
+		, vPos.y - m_BitmapInfo.bmHeight / 2.f
+		, m_BitmapInfo.bmWidth
+		, m_BitmapInfo.bmHeight
+		, m_ImageDC
+		, 0, 0, SRCCOPY);
 
-	Rectangle(_dc
-		, int(vPos.x - vScale.x / 2)
-		, int(vPos.y - vScale.y / 2)
-		, int(vPos.x + vScale.x / 2)
-		, int(vPos.y + vScale.y / 2));
+	//Rectangle(_dc
+	//	, int(vPos.x - vScale.x / 2)
+	//	, int(vPos.y - vScale.y / 2)
+	//	, int(vPos.x + vScale.x / 2)
+	//	, int(vPos.y + vScale.y / 2));
 
 }

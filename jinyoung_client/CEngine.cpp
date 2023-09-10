@@ -67,8 +67,8 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	// Manager 초기화
 	CTimeManager::GetInst()->init();
 	CKeyman::GetInst()->init();
-	CLevelMgr::GetInst()->init();
 	CPathMgr::init();
+	CLevelMgr::GetInst()->init();
 
 	//레벨매니저로 이관
 	//// Level 생성
