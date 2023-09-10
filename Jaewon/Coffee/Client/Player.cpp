@@ -1,6 +1,9 @@
 ﻿#include "pch.h"
 #include "Player.h"
 #include "KeyMgr.h"
+#include "CLevel.h"
+#include "LevelMgr.h"
+#include "CProjectile.h"
 
 void Player::tick(float _dt)
 {
@@ -17,6 +20,19 @@ void Player::tick(float _dt)
 			vPos.y -= mSpeed * _dt;
 		if (KeyMgr::GetInst()->getKeyState(S) == PRESSED)
 			vPos.y += mSpeed * _dt;
+		if (KeyMgr::GetInst()->getKeyState(SPACE) == TAP) {
+			
+			CLevel* curLevel = LevelMgr::GetInst()->getCurLevel();
+			
+			CProjectile* mProjectile = new CProjectile;
+
+			mProjectile->setSpeed(1000.f);
+			mProjectile->setDir(M_PI * 3 / 2.f);
+			mProjectile->setPos(getPos());
+			mProjectile->setScale(Vec2{ 25.f, 25.f });
+
+			curLevel->AddObj(mProjectile);
+		}
 	}
 	else {
 		if (KeyMgr::GetInst()->getKeyState(A) == PRESSED)

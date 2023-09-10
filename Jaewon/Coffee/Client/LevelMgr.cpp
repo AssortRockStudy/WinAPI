@@ -13,6 +13,7 @@ LevelMgr::~LevelMgr(){
 void LevelMgr::init()
 {
 	curLevel = new CLevel;
+
 	Player* mPlayer = new Player;
 	mPlayer->setPos(Vec2{ 500.f, 500.f });
 	mPlayer->setScale(Vec2{ 50.f, 50.f });
@@ -20,13 +21,6 @@ void LevelMgr::init()
 	mPlayer->setReverseMove(true);
 	curLevel->AddObj(mPlayer);
 
-
-	Player* redPlayer = new Player;
-	redPlayer->setPos(Vec2{ 800.f, 500.f });
-	redPlayer->setScale(Vec2{ 50.f, 50.f });
-	redPlayer->setColor(red);
-	redPlayer->setReverseMove(false);
-	curLevel->AddObj(redPlayer);
 }
 
 void LevelMgr::tick()
