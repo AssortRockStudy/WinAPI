@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "KeyMgr.h"
 
 int g_KeySync[KEY::KEY_END] =
@@ -81,11 +81,11 @@ void KeyMgr::init()
 	}
 }
 
-// 4°¡Áö »óÈ² È®ÀÎ ÈÄ ¾÷µ¥ÀÌÆ®
-// 1. Áö±Ý tick¿¡ ´­¸² + Àü tick¿¡ ´­·ÁÀÖ¾úÀ½ > pressed
-// 2. Áö±Ý tick¿¡ ´­¸² + Àü tick¿¡ ¾È´­·ÁÀÖ¾úÀ½ > tap
-// 3. Áö±Ý tick¿¡ ¾È´­¸² + Àü tick¿¡ ´­·ÁÀÖ¾úÀ½ > release
-// 4. Áö±Ý tick¿¡ ¾È´­¸² + Àü tick¿¡ ¾È´­¸² > None
+// 4ê°€ì§€ ìƒí™© í™•ì¸ í›„ ì—…ë°ì´íŠ¸
+// 1. ì§€ê¸ˆ tickì— ëˆŒë¦¼ + ì „ tickì— ëˆŒë ¤ìžˆì—ˆìŒ > pressed
+// 2. ì§€ê¸ˆ tickì— ëˆŒë¦¼ + ì „ tickì— ì•ˆëˆŒë ¤ìžˆì—ˆìŒ > tap
+// 3. ì§€ê¸ˆ tickì— ì•ˆëˆŒë¦¼ + ì „ tickì— ëˆŒë ¤ìžˆì—ˆìŒ > release
+// 4. ì§€ê¸ˆ tickì— ì•ˆëˆŒë¦¼ + ì „ tickì— ì•ˆëˆŒë¦¼ > None
 void KeyMgr::tick()
 {
 	for (size_t i = 0; i < vecKeyData.size(); ++i) {

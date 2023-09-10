@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "LevelMgr.h"
 #include "CLevel.h"
 #include "Player.h"
@@ -46,12 +46,12 @@ void LevelMgr::tick()
 
 void LevelMgr::render(HDC _dc)
 {
-	// ÀÌÁß ¹öÆÛ ±¸Çö
+	// ì´ì¤‘ ë²„í¼ êµ¬í˜„
 	POINT ptResolution = CEngine::GetInst()->getMainResol();
 	Rectangle(_dc, -1, -1, ptResolution.x + 1, ptResolution.y + 1);
 
 	curLevel->render(_dc);
 
-	// ¸ÞÀÎDC·Î ºñÆ®¸Ê º¹»ç
+	// ë©”ì¸DCë¡œ ë¹„íŠ¸ë§µ ë³µì‚¬
 	BitBlt(CEngine::GetInst()->getMainDc(), 0, 0, ptResolution.x, ptResolution.y, _dc, 0, 0, SRCCOPY);
 }

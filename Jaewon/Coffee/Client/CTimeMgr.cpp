@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CTimeMgr.h"
 
 CTimeMgr::CTimeMgr() :mFrequency{}, mPrevCnt{}, mCurCnt{} {}
@@ -12,7 +12,7 @@ void CTimeMgr::init()
 
 void CTimeMgr::tick()
 {
-	// tick¸¶´Ù delta time °è»ê
+	// tickë§ˆë‹¤ delta time ê³„ì‚°
 	QueryPerformanceCounter(&mCurCnt);
 	mDeltaT = float(mCurCnt.QuadPart - mPrevCnt.QuadPart) / float(mFrequency.QuadPart);
 	mPrevCnt = mCurCnt;
