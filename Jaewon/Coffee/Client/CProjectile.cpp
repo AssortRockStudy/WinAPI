@@ -15,8 +15,10 @@ void CProjectile::tick(float _dt)
 	float distY = closeMon.y - vPos.y;
 	float distXY = std::sqrtf(std::pow(closeMon.x - vPos.x, 2) + std::pow(closeMon.y - vPos.y, 2));
 
-	vPos.x += mSpeed * (distX / distXY) * _dt;
-	vPos.y += mSpeed * (distY / distXY) * _dt;
+	vPos.x += mSpeed * (distX / distXY) * _dt * mAccel;
+	vPos.y += mSpeed * (distY / distXY) * _dt * mAccel;
+
+	mAccel += 0.002f;
 
 	setPos(vPos);
 }
@@ -32,7 +34,7 @@ void CProjectile::render(HDC _dc)
 	Polygon(_dc, vertices, 3);
 }
 
-CProjectile::CProjectile():mSpeed(0.f), mTheta(M_PI / 2.f)
+CProjectile::CProjectile():mSpeed(0.f), mTheta(M_PI / 2.f), mAccel(0.f)
 {
 }
 

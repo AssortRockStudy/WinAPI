@@ -3,6 +3,15 @@
 
 void Monster::tick(float _dt)
 {
+	Vec2 vPos = getPos();
+	if (vPos.x < 20.f) {
+		mSpeed = mSpeed * -1.f;
+	}
+	if (vPos.x > 800.f) {
+		mSpeed = mSpeed * -1.f;
+	}
+	vPos.x += mSpeed;
+	setPos(vPos);
 }
 
 void Monster::render(HDC _dc)
@@ -17,7 +26,7 @@ void Monster::render(HDC _dc)
 		, int(vPos.y + vScale.y / 2));
 }
 
-Monster::Monster()
+Monster::Monster():mSpeed(0.2f)
 {
 }
 
