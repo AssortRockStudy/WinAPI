@@ -70,6 +70,14 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)MyGame\bin</OutDir>
+    <TargetName>game_debug</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)MyGame\bin</OutDir>
+    <TargetName>game</TargetName>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -133,6 +141,7 @@
     <ClInclude Include="CLevel.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CObj.h" />
+    <ClInclude Include="CPathMgr.h" />
     <ClInclude Include="CProjectile.h" />
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="define.h" />
@@ -150,6 +159,7 @@
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CObj.cpp" />
+    <ClCompile Include="CPathMgr.cpp" />
     <ClCompile Include="CProjectile.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="KeyMgr.cpp" />

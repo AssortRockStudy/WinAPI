@@ -7,6 +7,11 @@ private:
 	COLOR col;
 	bool reverseMove;
 
+	HBITMAP pImage;
+	HDC pImageDc;
+	BITMAP pBitMapInfo;
+
+
 public:
 	virtual void tick(float _dt) override;
 	virtual void render(HDC _dc) override;

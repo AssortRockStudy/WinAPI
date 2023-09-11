@@ -5,6 +5,7 @@
 #include "CTimeMgr.h"
 #include "KeyMgr.h"
 #include "LevelMgr.h"
+#include "CPathMgr.h"
 
 CEngine::CEngine():mHwnd(nullptr), mPtResolution(), mDc(nullptr), subBitMap(nullptr), subDc(nullptr)
 {
@@ -41,9 +42,11 @@ void CEngine::init(HWND _hwnd, POINT _ptResolution)
 	DeleteObject((HBITMAP)SelectObject(subDc, subBitMap));
 
 	// 매니져
+	CPathMgr::init();
 	CTimeMgr::GetInst()->init();
 	KeyMgr::GetInst()->init();
 	LevelMgr::GetInst()->init();
+	
 	
 }
 
