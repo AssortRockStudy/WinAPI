@@ -22,7 +22,7 @@ void CProjectile::tick(float _DT)
 	Vec2 vPos = GetPos();
 	
 	
-	addforce(10000.f, _DT);
+	addforce(100000.f, _DT);
 
 	vPos.x += m_Speed * cosf(m_theta) * _DT;
 	//y의 증가량이 -이기때문

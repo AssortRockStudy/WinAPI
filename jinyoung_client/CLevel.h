@@ -47,9 +47,19 @@ public:
 	}
 
 
+	template<typename T>
+	void GetObjects(vector<T*>& _Out);
+
+
 public:
 	CLevel();
 	~CLevel();
 
 };
 
+template<typename T>
+inline void CLevel::GetObjects(vector<T*>& _Out)
+{
+
+
+}
