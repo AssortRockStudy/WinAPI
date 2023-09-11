@@ -16,6 +16,10 @@ private:
 	LARGE_INTEGER mCurCnt; // 현재 카운트
 	float mDeltaT;
 
+	// frame 측정 변수
+	UINT mCall;
+	float mFTime;
+
 public:
 	float getDeltaTime() { return mDeltaT; }
 
