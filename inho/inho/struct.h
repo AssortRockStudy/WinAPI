@@ -22,6 +22,7 @@ public:
 	float Distance(const Vec2 _oth) {
 		return sqrtf((x - _oth.x) * (x - _oth.x) + (y - _oth.y) * (y - _oth.y));
 	}
+	
 };
 
 struct FKeyData {

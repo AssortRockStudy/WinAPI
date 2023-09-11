@@ -137,6 +137,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CAccGuidedProjectile.h" />
+    <ClInclude Include="CAngularGuidedProjectile.h" />
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CLevel.h" />
@@ -158,6 +160,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CAccGuidedProjectile.cpp" />
+    <ClCompile Include="CAngularGuidedProjectile.cpp" />
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CLevel.cpp" />

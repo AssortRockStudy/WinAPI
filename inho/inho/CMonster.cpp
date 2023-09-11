@@ -31,6 +31,25 @@ void CMonster::tick(float _DT) {
         vPos.y -= m_Speed * _DT;
     }*/
 
+    static float ftime = 0;
+    static bool flag = false;
+    ftime += CTimeMgr::GetInst()->GetDeltaTime();
+    if (ftime > 1.f) {
+        if (!flag) {
+            flag = true;
+        }
+        else {
+            flag = false;
+        }
+        ftime = 0;
+    }
+    if (flag) {
+        vPos.x += m_Speed * _DT;
+    }
+    else {
+        vPos.x -= m_Speed * _DT;
+    }
+
     SetPos(vPos);
 }
 
