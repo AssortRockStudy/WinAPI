@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Default">
+      <UniqueIdentifier>{90204b5d-2827-4bbd-b71b-cc8c6936dd21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{d90b0bbf-a7d7-420f-ba75-3b8541af1523}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\01. Header">
+      <UniqueIdentifier>{109d493c-1b52-4b43-a1ce-d5b2ad310370}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\02. Engine">
+      <UniqueIdentifier>{c959a567-f882-47e8-b5bb-b6c1c825a654}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager">
+      <UniqueIdentifier>{b9124116-16aa-4e17-b741-154a10b521cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Object">
+      <UniqueIdentifier>{8765aa85-354e-4ae3-a6b8-79375ae9b07a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Level">
+      <UniqueIdentifier>{103c338d-ff39-4f76-b476-f566710e2f87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Object\Player">
+      <UniqueIdentifier>{60ad5a23-cc12-4622-8f93-46ef985923b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Object\Monster">
+      <UniqueIdentifier>{04ef5e7b-647f-49e3-a723-ca8c0c9ccaf6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Jin.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Jin.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Game\02. Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeMgr.cpp">
+      <Filter>Game\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Obj.cpp">
+      <Filter>Game\04. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Game\04. Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Game\05. Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Jin.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Game\04. Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawMgr.cpp">
+      <Filter>Game\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyMgr.cpp">
+      <Filter>Game\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelMgr.cpp">
+      <Filter>Game\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="PathMgr.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Client.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Jin.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>Game\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="global.h">
+      <Filter>Game\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Game\02. Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeMgr.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Obj.h">
+      <Filter>Game\04. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Game\04. Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Game\05. Level</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Game\04. Object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="struct.h">
+      <Filter>Game\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawMgr.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyMgr.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelMgr.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="PathMgr.h" />
+  </ItemGroup>
+</Project>
