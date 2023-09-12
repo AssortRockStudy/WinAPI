@@ -4,7 +4,7 @@
 #include "MyKeyMgr.h"
 #include "MyTimeMgr.h"
 
-MyMonster::MyMonster() : m_Speed(300.f)
+MyMonster::MyMonster() : m_Speed(300.f), monsterTime(0.f)
 {
 }
 
@@ -14,35 +14,30 @@ MyMonster::~MyMonster()
 
 void MyMonster::tick(float _DT)
 {
-	Vec2 vPos = GetPos();
+	MonsterPos = GetPos();
 
-	if (KEY_PRESSED(A))
+	monsterTime += _DT;
+
+	if (0.f <= monsterTime && monsterTime < 1.f)
 	{
-		vPos.x += m_Speed * _DT;
+		MonsterPos.x += m_Speed * _DT;
+	}
+	else if (1.f <= monsterTime && monsterTime < 2.f)
+	{
+		MonsterPos.x -= m_Speed * _DT;
+	}
+	else
+	{
+		monsterTime = 0.f;
 	}
 
-	if (KEY_PRESSED(D))
-	{
-		vPos.x -= m_Speed * _DT;
-	}
-
-	if (KEY_PRESSED(W))
-	{
-		vPos.y += m_Speed * _DT;
-	}
-
-	if (KEY_PRESSED(S))
-	{
-		vPos.y -= m_Speed * _DT;
-	}
-
-	SetPos(vPos);
+	SetPos(MonsterPos);
 }
 
 void MyMonster::render(HDC _dc)
 {
-	Vec2 vPos = GetPos();
-	Vec2 vScale = GetScale();
+	MonsterPos = GetPos();
+	MonsterScale = GetScale();
 
 	// 새로운 펜 객체를 생성
 	//						선의 스타일 / 두께 / 색상
@@ -57,10 +52,10 @@ void MyMonster::render(HDC _dc)
 	HBRUSH hPrevBrush = (HBRUSH)SelectObject(_dc, hCurBrush);
 
 	Ellipse(_dc
-		, int(vPos.x - vScale.x / 2)
-		, int(vPos.y - vScale.y / 2)
-		, int(vPos.x + vScale.x / 2)
-		, int(vPos.y + vScale.y / 2));
+		, int(MonsterPos.x - MonsterScale.x / 2)
+		, int(MonsterPos.y - MonsterScale.y / 2)
+		, int(MonsterPos.x + MonsterScale.x / 2)
+		, int(MonsterPos.y + MonsterScale.y / 2));
 
 	// 되돌리고 사용했던 펜과 브러쉬를 삭제한다
 	SelectObject(_dc, hPrevPen);

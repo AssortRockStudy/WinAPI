@@ -20,6 +20,65 @@ public:
 	{
 
 	}
+
+public:
+	float Distance(Vec2 _Other)
+	{
+		return sqrtf(powf(x - _Other.x, 2) + powf(y - _Other.y, 2));
+	}
+
+	float Length()
+	{
+		return sqrtf(x * x + y * y);
+	}
+
+	Vec2& Normalize()
+	{
+		float fLen = Length();
+
+		x /= fLen;
+		y /= fLen;
+
+		return *this;
+	}
+
+public:
+	Vec2 operator + (const Vec2& _Other)
+	{
+		return Vec2(x + _Other.x, y + _Other.y);
+	}
+
+	Vec2 operator + (float _f)
+	{
+		return Vec2(x + _f, y + _f);
+	}
+
+	void operator += (const Vec2& _Other)
+	{
+		x += _Other.x;
+		y += _Other.y;
+	}
+
+	void operator += (float _f)
+	{
+		x += _f;
+		y += _f;
+	}
+
+	Vec2 operator - (const Vec2& _Other)
+	{
+		return Vec2(x - _Other.x, y - _Other.y);
+	}
+
+	Vec2 operator * (float& _Other)
+	{
+		return Vec2(x * _Other, y * _Other);
+	}
+
+	Vec2 operator / (float& _Other)
+	{
+		return Vec2(x / _Other, y / _Other);
+	}
 };
 
 struct FKeyData

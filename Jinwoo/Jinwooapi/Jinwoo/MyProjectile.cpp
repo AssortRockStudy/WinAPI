@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "MyProjectile.h"
 
-MyProjectile::MyProjectile() : m_Speed(300.f), m_Dir(PI / 2.f)
+MyProjectile::MyProjectile() : m_Speed(300.f), m_Angle(PI / 2.f)
 {
 
 }
@@ -15,8 +15,8 @@ void MyProjectile::tick(float _DT)
 {
 	Vec2 vPos = GetPos();
 
-	vPos.x += m_Speed * cosf(m_Dir) * _DT;
-	vPos.y -= m_Speed * sinf(m_Dir) * _DT;
+	vPos.x += m_Speed * cosf(m_Angle) * _DT;
+	vPos.y -= m_Speed * sinf(m_Angle) * _DT;
 
 	SetPos(vPos);
 }

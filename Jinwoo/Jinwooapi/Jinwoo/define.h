@@ -22,6 +22,8 @@
 
 #define PI 3.14159265358979
 
+#define DT MyTimeMgr::GetInst()->GetDeltaTime()
+
 enum class KEY
 {
 	_0,

@@ -10,15 +10,17 @@
 
 #include "MyLevel.h"
 #include "MyProjectile.h"
+#include "HomingBullet.h"
+#include "MyMonster.h"
 
 MyPlayer::MyPlayer() : m_Speed(300.f), m_PlayerImage(nullptr)
 {
 	// 이미지가 존재하는 경로 탐색
 	wstring strPath = MyPathMgr::GetContentPath();
-	strPath += L"monster_gaper.bmp";
+	strPath += L"Fighter.bmp";
 
 	// 플레이어가 사용할 이미지 로드
-	m_PlayerImage = (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 64, 64, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+	m_PlayerImage = (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 	m_PlayerDC = CreateCompatibleDC(MyEngine::GetInst()->GetMainDC());
 	DeleteObject(SelectObject(m_PlayerDC, m_PlayerImage));
 	GetObject(m_PlayerImage, sizeof(BITMAP), &m_BitmapInfo);
@@ -58,17 +60,16 @@ void MyPlayer::tick(float _DT)
 	{
 		MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
 
-		MyProjectile* pProjectile = new MyProjectile;
+		HomingBullet* HBullet = new HomingBullet;
 
-		Vec2 ProjectilePos = GetPos();
-		ProjectilePos.y -= GetScale().y / 2.f;
+		Vec2 HbulletPos = GetPos();
+		HbulletPos.y -= GetScale().y / 2.f;
 
-		pProjectile->SetSpeed(500.f);
-		pProjectile->SetDir(PI / 2.f);
-		pProjectile->SetPos(ProjectilePos);
-		pProjectile->SetScale(Vec2(20.f, 20.f));
-
-		pCurLevel->AddObject(pProjectile);
+		HBullet->SetSpeed(300.f);
+		HBullet->SetDir(PI / 2.f);
+		HBullet->SetPos(HbulletPos);
+		HBullet->SetScale(Vec2(20.f, 20.f));
+		pCurLevel->AddObject(HBullet);
 	}
 
 	SetPos(vPos);
@@ -92,8 +93,8 @@ void MyPlayer::render(HDC _dc)
 	HBRUSH hPrevBrush = (HBRUSH)SelectObject(_dc, hCurBrush);
 
 	BitBlt(_dc,
-		vPos.x -= m_BitmapInfo.bmWidth / 2.f,
-		vPos.y -= m_BitmapInfo.bmHeight / 2.f,
+		vPos.x -= m_BitmapInfo.bmWidth / 2,
+		vPos.y -= m_BitmapInfo.bmHeight / 2,
 		m_BitmapInfo.bmWidth,
 		m_BitmapInfo.bmHeight,
 		m_PlayerDC,

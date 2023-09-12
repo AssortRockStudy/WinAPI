@@ -5,6 +5,7 @@
 #include "MyKeyMgr.h"
 #include "MyLevelMgr.h"
 #include "MyPathMgr.h"
+#include "MyLevel.h"
 
 MyEngine::MyEngine() : m_hWnd(nullptr), m_ptResolution{}, m_DC(nullptr), m_SubBitMap(nullptr), m_SubDC(nullptr)
 {

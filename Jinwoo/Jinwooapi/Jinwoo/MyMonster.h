@@ -3,8 +3,12 @@
 #include "MyObject.h"
 
 class MyMonster : public MyObject
-{
+{	
 	float m_Speed;
+	float monsterTime;
+
+	Vec2 MonsterPos;
+	Vec2 MonsterScale;
 
 public:
 	virtual void tick(float _DT) override;
