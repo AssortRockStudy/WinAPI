@@ -2,7 +2,6 @@
 
 
 #include "targetver.h"
-#include "global.h"
 #define WIN32_LEAN_AND_MEAN             // 거의 사용되지 않는 내용을 Windows 헤더에서 제외합니다.
 // Windows 헤더 파일
 #include <windows.h>
@@ -23,6 +22,7 @@ using std::vector;
 using std::list;
 using std::map;
 using std::string;
+using std::wstring;
 using std::make_pair;
 
 //순서 의존성 해결?
@@ -43,3 +43,6 @@ enum COLOR
 	WHITE,
 	YELLOW,
 };
+
+
+#include "global.h"

@@ -144,11 +144,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CEngine.h" />
-    <ClInclude Include="Cguided.h" />
+    <ClInclude Include="CGuided.h" />
     <ClInclude Include="CKeyman.h" />
     <ClInclude Include="CLevel.h" />
     <ClInclude Include="CLevelMgr.h" />
     <ClInclude Include="CMonster.h" />
+    <ClInclude Include="CMonsterm.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="CObj.h" />
     <ClInclude Include="CPal.h" />
     <ClInclude Include="CPathMgr.h" />
@@ -166,11 +170,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp" />
-    <ClCompile Include="Cguided.cpp" />
+    <ClCompile Include="CGuided.cpp" />
     <ClCompile Include="CKeyman.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CLevelMgr.cpp" />
     <ClCompile Include="CMonster.cpp" />
+    <ClCompile Include="CMonsterm.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPal.cpp" />
     <ClCompile Include="CPathMgr.cpp" />

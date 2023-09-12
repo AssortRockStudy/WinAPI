@@ -7,7 +7,7 @@
 
 CProjectile::CProjectile()
 	: m_Speed(0.f)
-	, m_theta(PI / 2.f)
+	, m_Angle(PI / 2.f)
 	, m_mass(5.f)
 {
 }
@@ -22,11 +22,10 @@ void CProjectile::tick(float _DT)
 	Vec2 vPos = GetPos();
 	
 	
-	addforce(100000.f, _DT);
+	//addforce(100000.f, _DT);
 
-	vPos.x += m_Speed * cosf(m_theta) * _DT;
-	//y의 증가량이 -이기때문
-	vPos.y -= m_Speed * sinf(m_theta) * _DT;
+	vPos.x += m_Speed * cosf(m_Angle) * _DT;
+	vPos.y -= m_Speed * sinf(m_Angle) * _DT;
 
 	SetPos(vPos);
 }
@@ -43,13 +42,13 @@ void CProjectile::addforce(float _force , float _DT)
 
 	float targetth = atan2((-1) * (cm->GetPos().y - vPos.y), (cm->GetPos().x - vPos.x));
 
-	int x = m_Speed * cosf(m_theta) + (cosf(targetth)* a *_DT);
+	int x = m_Speed * cosf(m_Angle) + (cosf(targetth)* a *_DT);
 
 	//y의 증가량이 -이기때문
-	int y = m_Speed * sinf(m_theta) + (sinf(targetth)* a * _DT);
+	int y = m_Speed * sinf(m_Angle) + (sinf(targetth)* a * _DT);
 
 	m_Speed = sqrtf(pow(x,2) + pow(y,2));
-	m_theta = atan2(y, x);
+	m_Angle = atan2(y, x);
 
 }
 

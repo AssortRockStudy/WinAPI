@@ -1,19 +1,25 @@
 #pragma once
 #include "CProjectile.h"
-class Cguided :
+
+class CMonster;
+
+class CGuided :
     public CProjectile
 {
 private:
-    CObj* m_Taget;
+    CMonster* m_Target;
+    float       m_fMass;
+    Vec2        m_vAccel;
+    Vec2        m_vVelocity;
+
+public:
+    virtual void FindTarget();
 
 public:
     virtual void tick(float _DT) override;
-    virtual void FindTarget();
 
-    Cguided();
-    ~Cguided();
-    
-
-
+public:
+    CGuided();
+    ~CGuided();
 };
 

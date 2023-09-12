@@ -1,17 +1,21 @@
-﻿#pragma once
+#pragma once
 #include "CObj.h"
+
 
 class CMonster :
     public CObj
 {
-
-
 private:
+    FMonInfo    m_Info;
+
 
 public:
-    float m_Speed;
+    void SetMonsterInfo(const FMonInfo& _Info) { m_Info = _Info; }
+
+public:
     virtual void tick(float _DT) override;
-    void render(HDC _dc) override;
+
+public:
     CMonster();
     ~CMonster();
 };
