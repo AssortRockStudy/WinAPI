@@ -83,7 +83,7 @@ void CPlayer::tick(float _DT)
 			//pProjectile->SetDir(PI / 4.f + (PI / 4.f) * (float)i);
 			pProjectile->SetPos(ProjectilePos);
 			pProjectile->SetScale(Vec2(25.f, 25.f));
-			pProjectile->SetDir(Vec2(1.f, -1.f));
+			pProjectile->SetDir(Vec2(0.f, -1.f));
 
 			pCurLevel->AddObject(pProjectile);
 		}

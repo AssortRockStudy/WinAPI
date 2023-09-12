@@ -15,6 +15,7 @@ private:
     Vec2        m_vForce;
     Vec2        m_vDir;
 
+    float       m_fRotateSpeed;
 
 
 public:

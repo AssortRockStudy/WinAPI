@@ -50,14 +50,14 @@ void CLevelMgr::init()
 
 
 	pMonster = new CMonster;
-	pMonster->SetPos(Vec2(1200.f, 500.f));
+	pMonster->SetPos(Vec2(900.f, 500.f));
 	pMonster->SetScale(Vec2(100.f, 100.f));
 	m_pCurLevel->AddObject(pMonster);
 
-	pMonster = new CMonster;
-	pMonster->SetPos(Vec2(1200.f, 200.f));
-	pMonster->SetScale(Vec2(100.f, 100.f));
-	m_pCurLevel->AddObject(pMonster);
+	//pMonster = new CMonster;
+	//pMonster->SetPos(Vec2(1200.f, 200.f));
+	//pMonster->SetScale(Vec2(100.f, 100.f));
+	//m_pCurLevel->AddObject(pMonster);
 
 	// dynamic_cast
 	//{

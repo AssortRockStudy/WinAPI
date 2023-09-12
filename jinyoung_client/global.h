@@ -3,6 +3,7 @@
 
 #include "define.h"
 #include "struct.h"
+#include "func.h"
 
 // 230908 주말 과제
 // 1. Projectile 클래스를 상속받아서 유도탄 투사체 제작하기
