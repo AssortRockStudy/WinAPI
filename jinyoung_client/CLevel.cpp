@@ -13,15 +13,12 @@ CLevel::CLevel()
 
 CLevel::~CLevel()
 {
-	for (size_t i = 0; i < m_vecObjects.size(); ++i)
-	{
-		delete m_vecObjects[i];
-	}
+
 }
 
 void CLevel::tick()
 {
-	float DT = CTimeManager::GetInst()->GetDeltaTime();
+	//float DT = CTimeManager::GetInst()->GetDeltaTime();
 
 	for (size_t i = 0; i < m_vecObjects.size(); ++i)
 	{

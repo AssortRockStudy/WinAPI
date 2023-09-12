@@ -83,6 +83,7 @@ void CPlayer::tick(float _DT)
 			//pProjectile->SetDir(PI / 4.f + (PI / 4.f) * (float)i);
 			pProjectile->SetPos(ProjectilePos);
 			pProjectile->SetScale(Vec2(25.f, 25.f));
+			pProjectile->SetDir(Vec2(1.f, -1.f));
 
 			pCurLevel->AddObject(pProjectile);
 		}
@@ -98,8 +99,8 @@ void CPlayer::render(HDC _dc)
 	SelectObject(_dc, CPal::GetInst()->getHPen(BLACK));
 	SelectObject(_dc, CPal::GetInst()->getHBrush(BLACK));
 	
-	BitBlt(_dc, vPos.x - m_BitmapInfo.bmWidth / 2.f
-		, vPos.y - m_BitmapInfo.bmHeight / 2.f
+	BitBlt(_dc, (int)(vPos.x - m_BitmapInfo.bmWidth / 2.f)
+		, (int)(vPos.y - m_BitmapInfo.bmHeight / 2.f)
 		, m_BitmapInfo.bmWidth
 		, m_BitmapInfo.bmHeight
 		, m_ImageDC

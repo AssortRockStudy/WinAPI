@@ -17,7 +17,10 @@ CLevelMgr::CLevelMgr()
 
 CLevelMgr::~CLevelMgr()
 {
-
+	if (m_pCurLevel)
+	{
+		delete m_pCurLevel;
+	}
 }
 
 void CLevelMgr::init()

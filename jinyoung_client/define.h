@@ -21,6 +21,8 @@
 #define KEY_RELEASED(Key) KEY_CHECK(Key, RELEASED)
 #define KEY_NONE(Key) KEY_CHECK(Key, NONE)
 
+#define DT	CTimeManager::GetInst()->GetDeltaTime()
+
 #define PI	3.14159265348979f
 
 

@@ -16,7 +16,7 @@
 #include <list>
 #include <map>
 #include <string>
-
+#include <crtdbg.h>
 
 using std::vector;
 using std::list;

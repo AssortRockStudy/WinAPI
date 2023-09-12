@@ -2,7 +2,6 @@
 #include "CEngine.h"
 
 
-#include "CLevel.h"
 #include "CPlayer.h"
 #include "CMonster.h"
 
@@ -12,7 +11,8 @@
 #include "CPathMgr.h"
 
 
-
+//레벨을 알고있어야 delete소멸자호출가능
+#include "CLevel.h"
 
 CEngine::CEngine()
 	: m_hWnd(nullptr)
