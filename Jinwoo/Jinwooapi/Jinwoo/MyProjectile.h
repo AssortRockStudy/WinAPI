@@ -12,7 +12,7 @@ private:
 
 public:
 	void SetSpeed(float _Speed) { m_Speed = _Speed; }
-	void SetDir(float _Angle) { m_Angle = _Angle; }
+	void SetAngle(float _Angle) { m_Angle = _Angle; }
 
 	float GetSpeed() { return m_Speed; }
 	float GetAngle() { return m_Angle; }

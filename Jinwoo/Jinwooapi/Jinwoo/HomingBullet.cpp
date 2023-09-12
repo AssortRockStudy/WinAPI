@@ -7,7 +7,7 @@
 #include "MyLevel.h"
 #include "MyMonster.h"
 
-HomingBullet::HomingBullet() : m_TargetMonster(nullptr)
+HomingBullet::HomingBullet() : m_TargetMonster(nullptr), m_Mass(1.f)
 {
 }
 
@@ -23,7 +23,7 @@ void HomingBullet::tick(float _DT)
 	}
 	else
 	{
-		Fire01();
+		Fire02();
 	}
 }
 
@@ -70,6 +70,7 @@ void HomingBullet::Fire01()
 {
 	Vec2 vPos = GetPos();
 	Vec2 vMonsPos = m_TargetMonster->GetPos();
+	
 	Vec2 vDir = vMonsPos - vPos;
 
 	vDir.Normalize();
@@ -78,4 +79,27 @@ void HomingBullet::Fire01()
 	vPos.y += vDir.y * GetSpeed() * DT;
 
 	SetPos(vPos);
+}
+
+void HomingBullet::Fire02()
+{
+	float Force = 500.f;
+	Vec2 vForce = m_TargetMonster->GetPos() - GetPos();
+	vForce.Normalize() *= Force;
+
+	m_Accel = vForce / m_Mass;
+
+	// 가속도는 시간당 속도의 변화량
+	// 틱마다 가속되다가 1초가 됐을 때 설정해둔 Speed가 되어야 한다
+	m_Velocity += m_Accel * DT;
+
+	Vec2 vPos = GetPos();
+	vPos += m_Velocity * DT;
+
+	SetPos(vPos);
+}
+
+void HomingBullet::Fire03()
+{
+
 }

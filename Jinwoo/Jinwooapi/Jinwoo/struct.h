@@ -43,7 +43,9 @@ public:
 	}
 
 public:
-	Vec2 operator + (const Vec2& _Other)
+	// 구조체 크기가 어차피 8바이트라 레퍼런스를 써도 뭐 특별한 이득이 없다
+	// 따라서 그냥 지역변수로 인자를 받아도 무방
+	Vec2 operator + (Vec2 _Other)
 	{
 		return Vec2(x + _Other.x, y + _Other.y);
 	}
@@ -53,7 +55,7 @@ public:
 		return Vec2(x + _f, y + _f);
 	}
 
-	void operator += (const Vec2& _Other)
+	void operator += (Vec2 _Other)
 	{
 		x += _Other.x;
 		y += _Other.y;
@@ -65,17 +67,51 @@ public:
 		y += _f;
 	}
 
-	Vec2 operator - (const Vec2& _Other)
+	Vec2 operator - (Vec2 _Other)
 	{
 		return Vec2(x - _Other.x, y - _Other.y);
 	}
 
-	Vec2 operator * (float& _Other)
+	Vec2 operator - (float _f)
 	{
-		return Vec2(x * _Other, y * _Other);
+		return Vec2(x - _f, y - _f);
 	}
 
-	Vec2 operator / (float& _Other)
+	void operator -= (Vec2 _Other)
+	{
+		x -= _Other.x;
+		y -= _Other.y;
+	}
+
+	void operator -= (float _f)
+	{
+		x -= _f;
+		y -= _f;
+	}
+
+	Vec2 operator * (Vec2 _Other)
+	{
+		return Vec2(x * _Other.x, y * _Other.y);
+	}
+
+	Vec2 operator * (float _f)
+	{
+		return Vec2(x * _f, y * _f);
+	}
+
+	void operator *= (Vec2 _Other)
+	{
+		x *= _Other.x;
+		y *= _Other.y;
+	}
+
+	void operator *= (float _f)
+	{
+		x *= _f;
+		y *= _f;
+	}
+
+	Vec2 operator / (float _Other)
 	{
 		return Vec2(x / _Other, y / _Other);
 	}

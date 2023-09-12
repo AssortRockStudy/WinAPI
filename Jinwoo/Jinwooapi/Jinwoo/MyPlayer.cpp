@@ -66,9 +66,10 @@ void MyPlayer::tick(float _DT)
 		HbulletPos.y -= GetScale().y / 2.f;
 
 		HBullet->SetSpeed(300.f);
-		HBullet->SetDir(PI / 2.f);
+		HBullet->SetAngle(PI / 2.f);
 		HBullet->SetPos(HbulletPos);
 		HBullet->SetScale(Vec2(20.f, 20.f));
+		// HBullet->SetDir(Vec2(0.f, -1.f));
 		pCurLevel->AddObject(HBullet);
 	}
 
@@ -93,8 +94,8 @@ void MyPlayer::render(HDC _dc)
 	HBRUSH hPrevBrush = (HBRUSH)SelectObject(_dc, hCurBrush);
 
 	BitBlt(_dc,
-		vPos.x -= m_BitmapInfo.bmWidth / 2,
-		vPos.y -= m_BitmapInfo.bmHeight / 2,
+		(int)(vPos.x -= m_BitmapInfo.bmWidth / 2),
+		(int)(vPos.y -= m_BitmapInfo.bmHeight / 2),
 		m_BitmapInfo.bmWidth,
 		m_BitmapInfo.bmHeight,
 		m_PlayerDC,

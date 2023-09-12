@@ -14,7 +14,10 @@ MyLevelMgr::MyLevelMgr()
 
 MyLevelMgr::~MyLevelMgr()
 {
-
+	if (nullptr != m_pCurLevel)
+	{
+		delete m_pCurLevel;
+	}
 }
 
 void MyLevelMgr::init()

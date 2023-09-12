@@ -20,7 +20,7 @@
 #define KEY_RELEASED(Key)	KEY_CHECK(Key, RELEASED)
 #define KEY_NONE(Key)		KEY_CHECK(Key, NONE)
 
-#define PI 3.14159265358979
+#define PI 3.14159265358979f
 
 #define DT MyTimeMgr::GetInst()->GetDeltaTime()
 
