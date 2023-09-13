@@ -34,7 +34,8 @@ void CLevelMgr::init()
 	pPlayer->SetScale(Vec2(50.f, 50.f));
 	m_pCurLevel->setPlayer(pPlayer);
 
-	m_pCurLevel->AddObject(pPlayer);
+	m_pCurLevel->AddObject(PLAYER, pPlayer);
+	//m_pCurLevel->AddObject(pPlayer);
 
 	CMonster* pMonster = new CMonster;
 
@@ -42,17 +43,17 @@ void CLevelMgr::init()
 	pMonster->SetScale(Vec2(50.f, 50.f));
 
 	m_pCurLevel->setMonster(pMonster);
-	m_pCurLevel->AddObject(pMonster);
+	//m_pCurLevel->AddObject(pMonster);
+	m_pCurLevel->AddObject(MONSTER, pMonster);
 
 
 
 
 
-
-	pMonster = new CMonster;
-	pMonster->SetPos(Vec2(900.f, 500.f));
-	pMonster->SetScale(Vec2(100.f, 100.f));
-	m_pCurLevel->AddObject(pMonster);
+	//pMonster = new CMonster;
+	//pMonster->SetPos(Vec2(900.f, 500.f));
+	//pMonster->SetScale(Vec2(100.f, 100.f));
+	//m_pCurLevel->AddObject(pMonster);
 
 	//pMonster = new CMonster;
 	//pMonster->SetPos(Vec2(1200.f, 200.f));

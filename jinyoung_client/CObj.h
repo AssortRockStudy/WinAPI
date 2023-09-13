@@ -1,7 +1,9 @@
 ﻿#pragma once
 
+#include "CEntity.h"
 
 class CObj
+	: public CEntity
 {
 private:
 	Vec2	m_Pos;

@@ -94,6 +94,10 @@
     <ClInclude Include="func.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="CLayer.h">
+      <Filter>Game\05.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -157,5 +161,9 @@
     <ClCompile Include="func.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="CLayer.cpp">
+      <Filter>Game\05.Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CEntity.cpp" />
   </ItemGroup>
 </Project>

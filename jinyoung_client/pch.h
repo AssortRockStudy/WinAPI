@@ -17,6 +17,7 @@
 #include <map>
 #include <string>
 #include <crtdbg.h>
+#include <assert.h>
 
 using std::vector;
 using std::list;
