@@ -4,10 +4,12 @@
 #include "CLevelMgr.h"
 #include "CLevel.h"
 
+#include "CMonster.h"
+
 CProjectile3::CProjectile3()
 	: m_vDir{0.f,-1.f}
 	, m_pTarget(nullptr)
-	, m_fSpeed(50.f)
+	, m_fSpeed(80.f)
 	, m_fTheta(0.f)
 	, m_vDiff{}
 {
@@ -75,7 +77,10 @@ void CProjectile3::Targeting()
 	Vec2 vPos = GetPos();
 
 	// 가장 가까운 몬스터 찾기
-	vector<CObj*> vecMonster = CLevelMgr::GetInst()->GetCurLevel()->GetMonster();
+	vector<CMonster*> vecMonster;
+
+	CLevelMgr::GetInst()->GetCurLevel()->GetObjects(vecMonster);
+
 
 	float min_dis = 9999999.f;
 

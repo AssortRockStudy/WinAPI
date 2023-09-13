@@ -115,7 +115,12 @@
     <ClInclude Include="CProjectile2.h">
       <Filter>Game\04. Object\Projectile</Filter>
     </ClInclude>
-    <ClInclude Include="CProjectile3.h" />
+    <ClInclude Include="CProjectile3.h">
+      <Filter>Game\04. Object\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>Game\01. Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -176,6 +181,11 @@
     <ClCompile Include="CProjectile2.cpp">
       <Filter>Game\04. Object\Projectile</Filter>
     </ClCompile>
-    <ClCompile Include="CProjectile3.cpp" />
+    <ClCompile Include="CProjectile3.cpp">
+      <Filter>Game\04. Object\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>Game\01. Header</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

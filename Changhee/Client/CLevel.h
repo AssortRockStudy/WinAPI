@@ -10,9 +10,6 @@ private:
 	vector<CObj*>	m_vecObjects;
 
 
-	vector<CObj*>	m_vecMonsters;
-
-
 public:
 	void tick();
 	void render(HDC _dc);
@@ -21,9 +18,9 @@ public:
 public:
 	void AddObject(CObj* _Object) { m_vecObjects.push_back(_Object); }
 
+	template<typename T>
+	void GetObjects(vector<T*>& _Out);
 
-	void AddMonster(CObj* _Object) { m_vecMonsters.push_back(_Object); }
-	vector<CObj*> GetMonster() { return m_vecMonsters; }
 
 
 public:
@@ -32,3 +29,17 @@ public:
 
 };
 
+
+template<typename T>
+void CLevel::GetObjects(vector<T*>& _Out)
+{
+	for (size_t i = 0; i < m_vecObjects.size(); i++)
+	{
+		T* pObj = dynamic_cast<T*>(m_vecObjects[i]);
+		
+		if (pObj != nullptr)
+		{
+			_Out.push_back(pObj);
+		}
+	}
+}

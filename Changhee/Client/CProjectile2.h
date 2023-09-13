@@ -2,13 +2,13 @@
 #include "CProjectile.h"
 
 
-class CObj;
+class CMonster;
 
 class CProjectile2 :
     public CProjectile
 {
 private:
-    CObj*   m_pTarget;
+    CMonster*   m_pTarget;
 
     Vec2    m_vVelocity;
     Vec2    m_vAccel;

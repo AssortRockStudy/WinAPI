@@ -24,7 +24,7 @@ public:
 
 	float Length()
 	{
-		return sqrt(x * x + y * y);
+		return sqrtf(x * x + y * y);
 	}
 
 	Vec2& Normalize()
@@ -92,4 +92,14 @@ struct FKeyData
 	KEY			eKey;
 	KEY_STATE	eState;
 	bool		bPressed;
+};
+
+struct FMonInfo
+{
+	wchar_t szName[50];
+	float HP;
+	float MP;
+	float Att;
+	float Int;
+	float Speed;
 };

@@ -17,7 +17,8 @@ CLevelMgr::CLevelMgr()
 
 CLevelMgr::~CLevelMgr()
 {
-	delete m_pCurLevel;
+	if(m_pCurLevel != nullptr)
+		delete m_pCurLevel;
 }
 
 void CLevelMgr::init()
@@ -31,11 +32,6 @@ void CLevelMgr::init()
 	pPlayer->SetScale(Vec2(50.f, 50.f));
 	m_pCurLevel->AddObject(pPlayer);
 
-	CMonster* pMonster = new CMonster;
-	pMonster->SetPos(Vec2(500.f, 200.f));
-	pMonster->SetScale(Vec2(50.f, 50.f));
-	m_pCurLevel->AddMonster(pMonster);
-
 }
 
 void CLevelMgr::tick()
@@ -47,14 +43,9 @@ void CLevelMgr::render(HDC _dc)
 {
 	POINT ptResolution = CEngine::GetInst()->GetResolution();
 
-
 	// È­¸é clear
 	Rectangle(_dc, -1, -1, ptResolution.x + 1, ptResolution.y);
 
-
-
 	// Level render
 	m_pCurLevel->render(_dc);
-
-
 }

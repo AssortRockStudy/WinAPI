@@ -2,14 +2,14 @@
 #include "CProjectile.h"
 
 
-class CObj;
+class CMonster;
 
 class CProjectile1 :
     public CProjectile
 {
 private:
     Vec2    m_vDir;
-    CObj*   m_pTarget;
+    CMonster*   m_pTarget;
     float   m_fSpeed;
 
 
@@ -17,7 +17,6 @@ private:
 public:
     virtual void tick(float _DT) override;
     void Targeting();
-
 
 public:
     CProjectile1();

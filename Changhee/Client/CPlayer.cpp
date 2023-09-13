@@ -11,9 +11,7 @@
 
 #include "CProjectile.h"
 
-#include "CProjectile1.h"
-#include "CProjectile2.h"
-#include "CProjectile3.h"
+
 
 CPlayer::CPlayer()
 	: m_fSpeed(200.f)
@@ -78,60 +76,6 @@ void CPlayer::tick(float _DT)
 
 		pCurLevel->AddObject(pProjectile);
 	}
-
-	// 1단계
-	if (KEY_TAP(KEY::_1))
-	{
-		CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
-
-		CProjectile1* pProjectile = new CProjectile1;
-
-		Vec2 ProjectilePos = GetPos();
-		ProjectilePos.y -= GetScale().y / 2.f;
-
-		pProjectile->SetSpeed(1000.f);
-		pProjectile->SetDir(PI / 2.f);
-		pProjectile->SetPos(ProjectilePos);
-		pProjectile->SetScale(Vec2(25.f, 25.f));
-
-		pCurLevel->AddObject(pProjectile);
-	}
-	
-	// 2단계
-	if (KEY_TAP(KEY::_2))
-	{
-		CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
-
-		CProjectile2* pProjectile = new CProjectile2;
-
-		Vec2 ProjectilePos = GetPos();
-		ProjectilePos.y -= GetScale().y / 2.f;
-
-		pProjectile->SetSpeed(1000.f);
-		pProjectile->SetDir(PI / 2.f);
-		pProjectile->SetPos(ProjectilePos);
-		pProjectile->SetScale(Vec2(25.f, 25.f));
-
-		pCurLevel->AddObject(pProjectile);
-	}
-
-	// 3단계
-	if (KEY_TAP(KEY::_3))
-	{
-		CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
-
-		CProjectile3* pProjectile = new CProjectile3;
-
-		Vec2 ProjectilePos = GetPos();
-		ProjectilePos.y -= GetScale().y / 2.f;
-
-		pProjectile->SetSpeed(1000.f);
-		pProjectile->SetPos(ProjectilePos);
-		pProjectile->SetScale(Vec2(25.f, 25.f));
-
-		pCurLevel->AddObject(pProjectile);
-	}
-
 
 	SetPos(vPos);
 }
