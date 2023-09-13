@@ -11,7 +11,7 @@
 
 #include "CProjectile.h"
 
-
+#include "CTaskMgr.h"
 
 CPlayer::CPlayer()
 	: m_fSpeed(200.f)
@@ -74,7 +74,8 @@ void CPlayer::tick(float _DT)
 		pProjectile->SetPos(ProjectilePos);
 		pProjectile->SetScale(Vec2(25.f, 25.f));
 
-		pCurLevel->AddObject(pProjectile);
+		CTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT)LAYER::PLAYER_PJ, (UINT_PTR)pProjectile });
+
 	}
 
 	SetPos(vPos);
@@ -88,11 +89,15 @@ void CPlayer::render(HDC _dc)
 	Vec2 vPos = GetPos();
 	Vec2 vScale = GetScale();
 
-	BitBlt(_dc
+
+	TransparentBlt(_dc
 		, int(vPos.x - m_BitmapInfo.bmWidth / 2)
 		, int(vPos.y - m_BitmapInfo.bmHeight / 2)
 		, m_BitmapInfo.bmWidth
 		, m_BitmapInfo.bmHeight
-		, m_hImageDC, 0, 0, SRCCOPY);
+		, m_hImageDC, 0, 0
+		, m_BitmapInfo.bmWidth
+		, m_BitmapInfo.bmHeight
+		, RGB(255, 0, 255));
 
 }

@@ -1,14 +1,17 @@
 #pragma once
 
+#include "CEntity.h"
+#include "CLayer.h"
+
 
 class CObj;
+class CLayer;
 
-
-class CLevel
+class CLevel : 
+	public CEntity
 {
 private:
-	vector<CObj*>	m_vecObjects;
-
+	CLayer* m_arrLayer[(UINT)LAYER::END];
 
 public:
 	void tick();
@@ -16,30 +19,36 @@ public:
 
 
 public:
-	void AddObject(CObj* _Object) { m_vecObjects.push_back(_Object); }
+	void AddObject(LAYER _eLayer, CObj* _Object);
 
 	template<typename T>
 	void GetObjects(vector<T*>& _Out);
 
 
+	const vector<CObj*>& GetObjects(LAYER _eLayer) { return m_arrLayer[(UINT)_eLayer]->m_vecObjects; }
 
 public:
 	CLevel();
 	~CLevel();
 
+	friend class CLevelMgr;
+	friend class CTaskMgr;
 };
 
 
 template<typename T>
 void CLevel::GetObjects(vector<T*>& _Out)
 {
-	for (size_t i = 0; i < m_vecObjects.size(); i++)
+	for (UINT j = 0; j < (UINT)LAYER::END; ++j)
 	{
-		T* pObj = dynamic_cast<T*>(m_vecObjects[i]);
-		
-		if (pObj != nullptr)
+		for (size_t i = 0; i < m_arrLayer[j]->m_vecObjects.size(); ++i)
 		{
-			_Out.push_back(pObj);
+			T* pObj = dynamic_cast<T*>(m_arrLayer[j]->m_vecObjects[i]);
+
+			if (pObj != nullptr)
+			{
+				_Out.push_back(pObj);
+			}
 		}
 	}
 }

@@ -5,6 +5,7 @@
 #include "CKeyMgr.h"
 #include "CLevelMgr.h"
 #include "CPathMgr.h"
+#include "CTaskMgr.h"
 
 
 CEngine::CEngine()
@@ -83,6 +84,9 @@ void CEngine::tick()
 	// ------------ render ------------
 	CLevelMgr::GetInst()->render(m_hSubDC);
 
+
+	// -------- Task Execute --------
+	CTaskMgr::GetInst()->tick();
 
 
 	// SubDC -> mainDC บนป็

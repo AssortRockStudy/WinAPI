@@ -70,9 +70,6 @@ public:
 		return Vec2(x / _Other.x, y / _Other.y);
 	}
 
-
-
-
 	Vec2 operator * (float _f)
 	{
 		return Vec2(x * _f, y * _f);
@@ -102,4 +99,11 @@ struct FMonInfo
 	float Att;
 	float Int;
 	float Speed;
+};
+
+struct FTask
+{
+	TASK_TYPE Type;
+	UINT_PTR Param_1;
+	UINT_PTR Param_2;
 };

@@ -50,6 +50,9 @@
     <Filter Include="Game\03. Manager\PathManager">
       <UniqueIdentifier>{a6d4cb22-48fa-4bc2-aa2f-9ac6a1727be3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03. Manager\TaskManager">
+      <UniqueIdentifier>{c003db1e-c736-4a85-aa85-6429858f4987}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -121,6 +124,13 @@
     <ClInclude Include="func.h">
       <Filter>Game\01. Header</Filter>
     </ClInclude>
+    <ClInclude Include="CEntity.h" />
+    <ClInclude Include="CLayer.h">
+      <Filter>Game\05. Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CTaskMgr.h">
+      <Filter>Game\03. Manager\TaskManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -186,6 +196,13 @@
     </ClCompile>
     <ClCompile Include="func.cpp">
       <Filter>Game\01. Header</Filter>
+    </ClCompile>
+    <ClCompile Include="CEntity.cpp" />
+    <ClCompile Include="CLayer.cpp">
+      <Filter>Game\05. Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CTaskMgr.cpp">
+      <Filter>Game\03. Manager\TaskManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

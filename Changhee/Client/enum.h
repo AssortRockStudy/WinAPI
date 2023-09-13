@@ -1,5 +1,34 @@
 #pragma once
 
+// object layer
+enum class LAYER
+{
+	DEFAULT,
+	TILE,
+	PLAYER,
+	MONSTER,
+	PLAYER_PJ,
+	MONST_PJ,
+	WORLD_STATIC,
+
+
+
+	END,
+};
+
+
+enum class TASK_TYPE
+{
+	// Param1 : Layer Type, Param2 : Object Adress
+	CREATE_OBJECT,
+
+	// Param1 : Object Adress
+	DELETE_OBJECT,
+	LEVEL_CHANGE,
+
+
+	END,
+};
 
 // Palette
 enum class BRUSH_TYPE

@@ -15,6 +15,9 @@
 // 게임 이름
 #define GAME_FOLDER MyGame
 
+#define DT CTimeMgr::GetInst()->GetDeltaTime()
+
+
 // Key Manager
 #define KEY_CHECK(Key,State) CKeyMgr::GetInst()->GetKeyState(Key) == State
 

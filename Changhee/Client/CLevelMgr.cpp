@@ -30,8 +30,9 @@ void CLevelMgr::init()
 	CPlayer* pPlayer = new CPlayer;
 	pPlayer->SetPos(Vec2(500.f, 500.f));
 	pPlayer->SetScale(Vec2(50.f, 50.f));
-	m_pCurLevel->AddObject(pPlayer);
 
+
+	m_pCurLevel->AddObject(LAYER::PLAYER, pPlayer);
 }
 
 void CLevelMgr::tick()
