@@ -9,6 +9,67 @@ public:
 	float y;
 
 public:
+	float Distance(Vec2 _oth){
+		return sqrtf(powf(x - _oth.x, 2) + powf(y - _oth.y, 2));
+	}
+
+	float Length(){
+		return sqrtf(x * x + y * y);
+	}
+
+	Vec2& Normalize(){
+		float f = Length();
+		x /= f;
+		y /= f;
+
+		return *this;
+	}
+
+	Vec2 operator +(Vec2 _oth){
+		return Vec2(x + _oth.x, y + _oth.y);
+	}
+	Vec2 operator +(float _f) {
+		return Vec2(x + _f, y + _f);
+	}
+
+	Vec2 operator -(Vec2 _oth) {
+		return Vec2(x - _oth.x, y - _oth.y);
+	}
+	Vec2 operator -(float _f) {
+		return Vec2(x - _f, y - _f);
+	}
+
+	Vec2 operator *(Vec2 _oth) {
+		return Vec2(x * _oth.x, y * _oth.y);
+	}
+
+	Vec2 operator *(float _f) {
+		return Vec2(x * _f, y * _f);
+	}
+
+	void operator +=(Vec2 _oth){
+		x += _oth.x;
+		y += _oth.y;
+	}
+	Vec2 operator +=(float _f){
+		x += _f;
+		y += _f;
+	}
+
+	void operator *=(float _f) {
+		x *= _f;
+		y *= _f;
+	}
+
+	Vec2 operator /(Vec2 _oth) {
+		return Vec2(x / _oth.x, y / _oth.y);
+	}
+
+	Vec2 operator /(float _f) {
+		return Vec2(x / _f, y / _f);
+	}
+
+public:
 	Vec2() : x(0.f), y(0.f){}
 	Vec2(float _x, float _y) : x(_x), y(_y) {}
 	Vec2(int _x, int _y) : x(float(_x)), y(float(_y)) {}

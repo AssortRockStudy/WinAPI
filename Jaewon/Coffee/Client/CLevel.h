@@ -6,6 +6,7 @@
 // 오브젝트 클래스를 상속받은 모든 객체를 담을 수 있음
 
 class CObj;
+class Monster;
 
 class CLevel
 {
@@ -20,7 +21,7 @@ public:
 	void AddObj(CObj* _obj) {
 		mVecObjects.push_back(_obj);
 	}
-	Vec2 findCloseMon(Vec2 mPos);
+	Monster* findCloseMon(Vec2 mPos);
 
 public:
 	CLevel();

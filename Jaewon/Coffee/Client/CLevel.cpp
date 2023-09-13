@@ -2,6 +2,7 @@
 #include "CLevel.h"
 #include "CObj.h"
 #include "CTimeMgr.h"
+#include "Monster.h"
 
 // 레벨에 들어있는 오브젝트들의 tick을 다 실행
 void CLevel::tick()
@@ -21,19 +22,21 @@ void CLevel::render(HDC _dc)
 	}
 }
 
-Vec2 CLevel::findCloseMon(Vec2 mPos)
+Monster* CLevel::findCloseMon(Vec2 mPos)
 {
 	Vec2 closest = {mPos.x, mPos.y - 99999.f};
+	Monster* target = nullptr;
 	for (int i = 0; i < mVecObjects.size(); ++i) {
 		if (mVecObjects[i]->getType() == MONSTER) {
 			Vec2 monPos = mVecObjects[i]->getPos();
 			if (std::pow(closest.x - mPos.x, 2) + std::pow(closest.y - mPos.y, 2) >
 				std::pow(monPos.x - mPos.x, 2) + std::pow(monPos.y - mPos.y, 2)) {
 				closest = monPos;
+				target = dynamic_cast<Monster*>(mVecObjects[i]);
 			}
 		}
 	}
-	return closest;
+	return target;
 }
 
 CLevel::CLevel()

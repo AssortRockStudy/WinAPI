@@ -146,6 +146,7 @@
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="func.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="LevelMgr.h" />
     <ClInclude Include="Monster.h" />
@@ -162,6 +163,7 @@
     <ClCompile Include="CPathMgr.cpp" />
     <ClCompile Include="CProjectile.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
+    <ClCompile Include="func.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="LevelMgr.cpp" />
     <ClCompile Include="main.cpp" />

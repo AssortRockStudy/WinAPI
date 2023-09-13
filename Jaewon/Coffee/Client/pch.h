@@ -29,3 +29,5 @@ using std::wstring;
 
 // 좌표 float 구조체 구현
 #include "struct.h"
+
+#include "func.h"

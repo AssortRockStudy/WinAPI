@@ -28,11 +28,11 @@ void Player::tick(float _dt)
 			
 			CProjectile* mProjectile = new CProjectile;
 
-			mProjectile->setSpeed(1000.f);
-			mProjectile->setDir(M_PI * 3 / 2.f);
+			mProjectile->setSpeed(500.f);
+			mProjectile->setAngle(M_PI / 2.f);
 			mProjectile->setPos(getPos());
 			mProjectile->setScale(Vec2{ 25.f, 25.f });
-
+			mProjectile->setDir(Vec2(0.f, -1.f));
 			curLevel->AddObj(mProjectile);
 		}
 	}
