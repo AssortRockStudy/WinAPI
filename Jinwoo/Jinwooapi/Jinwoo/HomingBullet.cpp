@@ -7,7 +7,7 @@
 #include "MyLevel.h"
 #include "MyMonster.h"
 
-HomingBullet::HomingBullet() : m_TargetMonster(nullptr), m_Mass(1.f)
+HomingBullet::HomingBullet() : m_TargetMonster(nullptr), m_Mass(1.f), m_RotateSpeed(PI)
 {
 }
 
@@ -23,7 +23,7 @@ void HomingBullet::tick(float _DT)
 	}
 	else
 	{
-		Fire02();
+		Fire03();
 	}
 }
 
@@ -101,5 +101,30 @@ void HomingBullet::Fire02()
 
 void HomingBullet::Fire03()
 {
+	m_Dir.Normalize();
+	Vec2 vMonPos = m_TargetMonster->GetPos() - GetPos();
+	vMonPos.Normalize();
 
+	float vDot = (m_Dir.x * vMonPos.x) + (m_Dir.y * vMonPos.y);
+	float vAngle = acosf(vDot);
+
+	float vSpeed = GetSpeed();
+	m_Velocity = m_Dir * vSpeed;
+
+	if (vAngle > PI / 180.f)
+	{
+		if (IsClockwise(m_Dir, vMonPos))
+		{
+			m_Dir = RotateBullet(m_Dir, m_RotateSpeed * DT);
+		}
+		else
+		{
+			m_Dir = RotateBullet(m_Dir, -m_RotateSpeed * DT);
+		}
+	}
+
+	Vec2 vPos = GetPos();
+	vPos += m_Velocity * DT;
+
+	SetPos(vPos);
 }

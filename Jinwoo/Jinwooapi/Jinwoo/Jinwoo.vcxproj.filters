@@ -97,6 +97,9 @@
     <ClInclude Include="HomingBullet.h">
       <Filter>Game\04.Object\Projectile\Homing</Filter>
     </ClInclude>
+    <ClInclude Include="Func.h">
+      <Filter>Game\01.Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jinwoo.rc">
@@ -150,6 +153,9 @@
     </ClCompile>
     <ClCompile Include="HomingBullet.cpp">
       <Filter>Game\04.Object\Projectile\Homing</Filter>
+    </ClCompile>
+    <ClCompile Include="Func.cpp">
+      <Filter>Game\01.Header</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -16,20 +16,20 @@ void MyMonster::tick(float _DT)
 {
 	MonsterPos = GetPos();
 
-	monsterTime += _DT;
+	//monsterTime += _DT;
 
-	if (0.f <= monsterTime && monsterTime < 1.f)
-	{
-		MonsterPos.x += m_Speed * _DT;
-	}
-	else if (1.f <= monsterTime && monsterTime < 2.f)
-	{
-		MonsterPos.x -= m_Speed * _DT;
-	}
-	else
-	{
-		monsterTime = 0.f;
-	}
+	//if (0.f <= monsterTime && monsterTime < 1.f)
+	//{
+	//	MonsterPos.x += m_Speed * _DT;
+	//}
+	//else if (1.f <= monsterTime && monsterTime < 2.f)
+	//{
+	//	MonsterPos.x -= m_Speed * _DT;
+	//}
+	//else
+	//{
+	//	monsterTime = 0.f;
+	//}
 
 	SetPos(MonsterPos);
 }

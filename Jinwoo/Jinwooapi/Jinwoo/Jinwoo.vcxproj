@@ -140,6 +140,7 @@
   <ItemGroup>
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Func.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="HomingBullet.h" />
     <ClInclude Include="Jinwoo.h" />
@@ -159,6 +160,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Func.cpp" />
     <ClCompile Include="HomingBullet.cpp" />
     <ClCompile Include="Jinwoo.cpp" />
     <ClCompile Include="MyEngine.cpp" />

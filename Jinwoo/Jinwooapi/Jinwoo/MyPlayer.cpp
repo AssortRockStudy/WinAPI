@@ -69,7 +69,7 @@ void MyPlayer::tick(float _DT)
 		HBullet->SetAngle(PI / 2.f);
 		HBullet->SetPos(HbulletPos);
 		HBullet->SetScale(Vec2(20.f, 20.f));
-		// HBullet->SetDir(Vec2(0.f, -1.f));
+		HBullet->SetDir(Vec2(0.f, -1.f));
 		pCurLevel->AddObject(HBullet);
 	}
 

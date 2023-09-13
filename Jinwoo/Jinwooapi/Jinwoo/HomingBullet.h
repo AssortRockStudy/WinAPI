@@ -16,6 +16,8 @@ private:
 	Vec2	m_Force;
 	Vec2	m_Dir;
 
+	float	m_RotateSpeed;
+
 public:
 	// 혹시 이 유도탄 클래스를 상속받는 자식 클래스가
 	// 다른 방식으로 유도할 수 있어서 가상함수로 일단 만듦
