@@ -9,6 +9,8 @@
 #include "CKeyman.h"
 #include "CLevelMgr.h"
 #include "CPathMgr.h"
+#include "CTaskMgr.h"
+#include "CCamera.h"
 
 
 //레벨을 알고있어야 delete소멸자호출가능
@@ -98,6 +100,7 @@ void CEngine::tick()
 	// TimeMgr
 	CTimeManager::GetInst()->tick();
 	CKeyman::GetInst()->tick();
+	CCamera::GetInst()->tick();
 	
 	
 
@@ -123,4 +126,7 @@ void CEngine::tick()
 		Call = 0;
 		PrevCount = CurCount;
 	}*/
+
+	// Task Execute
+	CTaskMgr::GetInst()->tick();
 }

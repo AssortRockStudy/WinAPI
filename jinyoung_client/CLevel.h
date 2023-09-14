@@ -66,11 +66,12 @@ public:
 
 
 
-
-
 public:
 	CLevel();
 	~CLevel();
+
+	friend class CLevelMgr;
+	friend class CTaskMgr;
 
 };
 

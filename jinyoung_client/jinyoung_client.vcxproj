@@ -143,6 +143,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CCamera.h" />
+    <ClInclude Include="CCollider.h" />
+    <ClInclude Include="CComponent.h" />
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CEntity.h" />
     <ClInclude Include="CGuided.h" />
@@ -159,6 +162,7 @@
     <ClInclude Include="CPal.h" />
     <ClInclude Include="CPathMgr.h" />
     <ClInclude Include="CProjectile.h" />
+    <ClInclude Include="CTaskMgr.h" />
     <ClInclude Include="CTimeManager.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
@@ -172,6 +176,9 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CCamera.cpp" />
+    <ClCompile Include="CCollider.cpp" />
+    <ClCompile Include="CComponent.cpp" />
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CGuided.cpp" />
@@ -187,6 +194,7 @@
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPal.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
+    <ClCompile Include="CTaskMgr.cpp" />
     <ClCompile Include="CTimeManager.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="main.cpp" />

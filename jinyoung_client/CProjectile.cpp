@@ -54,7 +54,7 @@ void CProjectile::addforce(float _force , float _DT)
 
 void CProjectile::render(HDC _dc)
 {
-	Vec2 vPos = GetPos();
+	Vec2 vPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 
 	Ellipse(_dc

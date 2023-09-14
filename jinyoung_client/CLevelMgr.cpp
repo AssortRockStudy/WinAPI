@@ -7,6 +7,7 @@
 #include "CPlayer.h"
 #include "CMonster.h"
 #include "CPal.h"
+#include "CCamera.h"
 
 
 
@@ -19,7 +20,8 @@ CLevelMgr::~CLevelMgr()
 {
 	if (m_pCurLevel)
 	{
-		delete m_pCurLevel;
+		if (nullptr != m_pCurLevel)
+			delete m_pCurLevel;
 	}
 }
 
@@ -70,6 +72,10 @@ void CLevelMgr::init()
 	//	CPlayer* pPlayer = dynamic_cast<CPlayer*>(pObj); // RTTI(Runtime Type Information)
 	//}
 
+	// 카메라 설정
+	Vec2 vLookAt = CEngine::GetInst()->GetResolution();
+	vLookAt /= 2.f;
+	CCamera::GetInst()->SetLookAt(vLookAt);
 
 
 }

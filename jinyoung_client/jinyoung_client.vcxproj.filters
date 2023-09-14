@@ -26,6 +26,9 @@
     <Filter Include="Game\05.Level">
       <UniqueIdentifier>{2958640a-12be-40d0-b4ca-c6ac39152108}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\06.Component">
+      <UniqueIdentifier>{2a27e9ef-0729-447c-bfb3-9f45a885b415}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -98,6 +101,16 @@
       <Filter>Game\05.Level</Filter>
     </ClInclude>
     <ClInclude Include="CEntity.h" />
+    <ClInclude Include="CTaskMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CCamera.h" />
+    <ClInclude Include="CComponent.h">
+      <Filter>Game\06.Component</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>Game\06.Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -165,5 +178,15 @@
       <Filter>Game\05.Level</Filter>
     </ClCompile>
     <ClCompile Include="CEntity.cpp" />
+    <ClCompile Include="CTaskMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CCamera.cpp" />
+    <ClCompile Include="CComponent.cpp">
+      <Filter>Game\06.Component</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>Game\06.Component</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

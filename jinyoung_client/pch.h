@@ -19,6 +19,10 @@
 #include <crtdbg.h>
 #include <assert.h>
 
+
+#pragma comment(lib, "Msimg32.lib")
+
+
 using std::vector;
 using std::list;
 using std::map;

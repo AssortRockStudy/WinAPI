@@ -13,6 +13,10 @@
 #include "CEngine.h"
 
 #include "CGuided.h"
+#include "CCollider.h"
+
+class CCollider;
+
 
 using std::wstring;
 
@@ -24,6 +28,12 @@ CPlayer::CPlayer()
 	//힙메모리에할당
 	wstring strPath = CPathMgr::GetContentDir();
 	strPath+= L"texture\\Fighter.bmp";
+
+	// 필요한 컴포넌트 추가
+	m_Collider = AddComponent<CCollider>();
+	//AddComponent<CAnimator>();
+	//AddComponent<CMovement>();
+
 
 	m_Image= (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 	m_ImageDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
@@ -88,6 +98,8 @@ void CPlayer::tick(float _DT)
 			//pCurLevel->AddObject(pProjectile);
 
 			pCurLevel->AddObject(PLAYER_PJ, pProjectile);
+
+			CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)pProjectile });
 		}
 	}
 	SetPos(vPos);
@@ -96,17 +108,27 @@ void CPlayer::tick(float _DT)
 
 void CPlayer::render(HDC _dc)
 {
-	Vec2 vPos = GetPos();
+	Vec2 vPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 	SelectObject(_dc, CPal::GetInst()->getHPen(BLACK));
 	SelectObject(_dc, CPal::GetInst()->getHBrush(BLACK));
 	
-	BitBlt(_dc, (int)(vPos.x - m_BitmapInfo.bmWidth / 2.f)
-		, (int)(vPos.y - m_BitmapInfo.bmHeight / 2.f)
+	/*BitBlt(_dc, (int)vPos.x - m_BitmapInfo.bmWidth / 2
+				, (int)vPos.y - m_BitmapInfo.bmHeight / 2
+				, m_BitmapInfo.bmWidth
+				, m_BitmapInfo.bmHeight
+				, m_ImageDC
+				, 0, 0, SRCCOPY);*/
+	TransparentBlt(_dc, (int)vPos.x - m_BitmapInfo.bmWidth / 2
+		, (int)vPos.y - m_BitmapInfo.bmHeight / 2
 		, m_BitmapInfo.bmWidth
 		, m_BitmapInfo.bmHeight
 		, m_ImageDC
-		, 0, 0, SRCCOPY);
+		, 0, 0
+		, m_BitmapInfo.bmWidth
+		, m_BitmapInfo.bmHeight
+		, RGB(255, 0, 255));
+
 
 	//Rectangle(_dc
 	//	, int(vPos.x - vScale.x / 2)
