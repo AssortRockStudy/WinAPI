@@ -91,6 +91,8 @@
     <ClInclude Include="func.h">
       <Filter>Game\01.Header</Filter>
     </ClInclude>
+    <ClInclude Include="CEntity.h" />
+    <ClInclude Include="CLayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -145,5 +147,7 @@
     <ClCompile Include="func.cpp">
       <Filter>Game\01.Header</Filter>
     </ClCompile>
+    <ClCompile Include="CEntity.cpp" />
+    <ClCompile Include="CLayer.cpp" />
   </ItemGroup>
 </Project>
