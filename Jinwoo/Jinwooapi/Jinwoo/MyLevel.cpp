@@ -24,6 +24,11 @@ MyLevel::~MyLevel()
 	}
 }
 
+void MyLevel::AddObject(LAYER _LayerType, MyObject* _Object)
+{
+	m_Layer[(UINT_PTR)_LayerType]->AddObject(_Object);
+}
+
 void MyLevel::tick()
 {
 	for (UINT i = 0; i < (UINT)LAYER::END; ++i)

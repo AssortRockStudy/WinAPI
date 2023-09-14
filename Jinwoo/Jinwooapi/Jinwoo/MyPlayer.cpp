@@ -71,7 +71,7 @@ void MyPlayer::tick(float _DT)
 		HBullet->SetScale(Vec2(20.f, 20.f));
 		HBullet->SetDir(Vec2(0.f, -1.f));
 		
-		MyTaskMgr::GetInst()->AddTask(FTask(TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::PLAYERBULLET, (UINT_PTR)HBullet));
+		MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::PLAYERBULLET, (UINT_PTR)HBullet });
 	}
 
 	SetPos(vPos);

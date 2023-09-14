@@ -17,7 +17,7 @@
 #include <map>
 #include <string>
 
-#pragma comment(lib, "Msimg32.lib");
+#pragma comment(lib, "Msimg32.lib")
 
 using std::vector;
 using std::list;
