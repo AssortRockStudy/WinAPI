@@ -13,11 +13,13 @@ void CObj::render(HDC _dc)
 {
 	CPalette tmp(_dc, PEN_TYPE::RED);
 
+	Vec2 vRenderPos = GetRenderPos();
+
 	Rectangle(_dc
-		, int(m_vPos.x - m_vScale.x / 2)
-		, int(m_vPos.y - m_vScale.y / 2)
-		, int(m_vPos.x + m_vScale.x / 2)
-		, int(m_vPos.y + m_vScale.y / 2));
+		, int(vRenderPos.x - m_vScale.x / 2)
+		, int(vRenderPos.y - m_vScale.y / 2)
+		, int(vRenderPos.x + m_vScale.x / 2)
+		, int(vRenderPos.y + m_vScale.y / 2));
 
 }
 

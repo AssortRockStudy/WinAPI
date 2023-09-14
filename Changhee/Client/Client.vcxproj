@@ -143,6 +143,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CCamera.h" />
+    <ClInclude Include="CComponent.h" />
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CEntity.h" />
     <ClInclude Include="CKeyMgr.h" />
@@ -171,6 +173,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CCamera.cpp" />
+    <ClCompile Include="CComponent.cpp" />
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />

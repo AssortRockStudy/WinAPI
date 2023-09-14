@@ -45,7 +45,7 @@ void CProjectile1::Targeting()
 	// 가장 가까운 몬스터 찾기
 	vector<CMonster*> vecMonster;
 
-	CLevelMgr::GetInst()->GetCurLevel()->GetObjects(vecMonster);
+	CLevelMgr::GetInst()->GetCurLevel()->GetObjects<CMonster>(vecMonster);
 
 	float min_dis = 9999999.f;
 

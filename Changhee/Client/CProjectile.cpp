@@ -29,7 +29,7 @@ void CProjectile::render(HDC _dc)
 {
 	CPalette tmp(_dc, BRUSH_TYPE::BLACK);
 
-	Vec2 vPos = GetPos();
+	Vec2 vPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 
 	Ellipse(_dc

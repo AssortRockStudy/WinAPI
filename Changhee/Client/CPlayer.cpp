@@ -6,12 +6,14 @@
 #include "CKeyMgr.h"
 #include "CLevelMgr.h"
 #include "CPathMgr.h"
+#include "CTaskMgr.h"
+#include "CCamera.h"
+
 
 #include "CLevel.h"
 
 #include "CProjectile.h"
 
-#include "CTaskMgr.h"
 
 CPlayer::CPlayer()
 	: m_fSpeed(200.f)
@@ -83,10 +85,9 @@ void CPlayer::tick(float _DT)
 
 void CPlayer::render(HDC _dc)
 {
-	CPalette BlackBrush(_dc, BRUSH_TYPE::BLACK);
-	CPalette BluePen(_dc, PEN_TYPE::BLUE);
 
-	Vec2 vPos = GetPos();
+
+	Vec2 vPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 
 

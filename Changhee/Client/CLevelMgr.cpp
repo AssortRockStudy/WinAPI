@@ -23,6 +23,13 @@ CLevelMgr::~CLevelMgr()
 
 void CLevelMgr::init()
 {
+	// 카메라 설정
+	Vec2 vLookAt = CEngine::GetInst()->GetResolution();
+	vLookAt /= 2.f;
+
+	CCamera::GetInst()->SetLookAt(vLookAt);
+
+
 	// Level 생성
 	m_pCurLevel = new CLevel;
 
@@ -30,7 +37,6 @@ void CLevelMgr::init()
 	CPlayer* pPlayer = new CPlayer;
 	pPlayer->SetPos(Vec2(500.f, 500.f));
 	pPlayer->SetScale(Vec2(50.f, 50.f));
-
 
 	m_pCurLevel->AddObject(LAYER::PLAYER, pPlayer);
 }

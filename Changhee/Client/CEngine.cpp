@@ -6,6 +6,7 @@
 #include "CLevelMgr.h"
 #include "CPathMgr.h"
 #include "CTaskMgr.h"
+#include "CCamera.h"
 
 
 CEngine::CEngine()
@@ -75,6 +76,7 @@ void CEngine::tick()
 	// ------------ Manager Update ------------
 	CTimeMgr::GetInst()->tick();
 	CKeyMgr::GetInst()->tick();
+	CCamera::GetInst()->tick();
 
 
 	// ------------ update ------------

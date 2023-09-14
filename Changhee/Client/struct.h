@@ -7,6 +7,9 @@ public:
 	float		y;
 
 
+public:
+	// 생성자
+
 	Vec2()
 		: x(0.f)
 		, y(0.f)
@@ -22,6 +25,14 @@ public:
 		, y((float)_y)
 	{}
 
+	Vec2(POINT _pt)
+		: x((float)_pt.x)
+		, y((float)_pt.y)
+	{}
+
+public:
+	// 함수
+	
 	float Length()
 	{
 		return sqrtf(x * x + y * y);
@@ -49,6 +60,64 @@ public:
 	}
 
 
+public:
+	// 오퍼레이터
+
+	Vec2 operator + (float _f)
+	{
+		return Vec2(x + _f, y + _f);
+	}
+
+	Vec2 operator - (float _f)
+	{
+		return Vec2(x - _f, y - _f);
+	}
+
+	Vec2 operator * (float _f)
+	{
+		return Vec2(x * _f, y * _f);
+	}
+
+	Vec2 operator / (float _f)
+	{
+		assert(_f != 0);
+		return Vec2(x / _f, y / _f);
+	}
+
+	Vec2& operator +=(float _f)
+	{
+		x += _f;
+		y += _f;
+
+		return *this;
+	}
+
+	Vec2& operator -=(float _f)
+	{
+		x -= _f;
+		y -= _f;
+
+		return *this;
+	}
+
+	Vec2& operator *=(float _f)
+	{
+		x *= _f;
+		y *= _f;
+
+		return *this;
+	}
+
+	Vec2& operator /=(float _f)
+	{
+		assert(_f != 0);
+
+		x /= _f;
+		y /= _f;
+
+		return *this;
+	}
+
 	Vec2 operator + (const Vec2& _Other)
 	{
 		return Vec2(x + _Other.x, y + _Other.y);
@@ -70,16 +139,7 @@ public:
 		return Vec2(x / _Other.x, y / _Other.y);
 	}
 
-	Vec2 operator * (float _f)
-	{
-		return Vec2(x * _f, y * _f);
-	}
-
-	Vec2 operator / (float _f)
-	{
-		assert(_f != 0);
-		return Vec2(x / _f, y / _f);
-	}
+	
 
 };
 

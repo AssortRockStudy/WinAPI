@@ -32,9 +32,6 @@
     <Filter Include="Game\03. Manager\TimeManager">
       <UniqueIdentifier>{6bb95fc8-e3ef-46c5-b6ca-498b93dfbb57}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Module">
-      <UniqueIdentifier>{4715108d-003b-4dad-9ca2-df49b862a754}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\03. Manager\KeyManager">
       <UniqueIdentifier>{48b54f9b-8b3b-4614-ab4c-15d6b261a73f}</UniqueIdentifier>
     </Filter>
@@ -52,6 +49,27 @@
     </Filter>
     <Filter Include="Game\03. Manager\TaskManager">
       <UniqueIdentifier>{c003db1e-c736-4a85-aa85-6429858f4987}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\Camera">
+      <UniqueIdentifier>{902d5945-b98d-4b5c-9076-8cd5f5d6621e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component">
+      <UniqueIdentifier>{4356f0f5-8079-468b-b696-69c74f6108c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Module">
+      <UniqueIdentifier>{4715108d-003b-4dad-9ca2-df49b862a754}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\Collider">
+      <UniqueIdentifier>{70eb2681-1cca-413a-9fa9-7adb36d1e888}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\Animator">
+      <UniqueIdentifier>{8a15753a-d5e7-4793-8d33-eaa6db25020b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\Movement">
+      <UniqueIdentifier>{9b20c6fc-5f72-4ccf-af94-00967dbb7f45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\AI">
+      <UniqueIdentifier>{d064a8cb-2cf6-4160-84e4-d32dfa65f322}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +149,12 @@
     <ClInclude Include="CTaskMgr.h">
       <Filter>Game\03. Manager\TaskManager</Filter>
     </ClInclude>
+    <ClInclude Include="CCamera.h">
+      <Filter>Game\03. Manager\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CComponent.h">
+      <Filter>Game\06. Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -203,6 +227,12 @@
     </ClCompile>
     <ClCompile Include="CTaskMgr.cpp">
       <Filter>Game\03. Manager\TaskManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CCamera.cpp">
+      <Filter>Game\03. Manager\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CComponent.cpp">
+      <Filter>Game\06. Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
