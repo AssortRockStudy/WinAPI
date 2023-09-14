@@ -102,3 +102,28 @@ enum class KEY_STATE
 	PRESSED,
 	RELEASED,
 };
+
+enum class LAYER
+{
+	DEFAULT,
+	TILE,
+	PLAYER,
+	MONSTER,
+	PLAYERBULLET,
+	MONSTERBULLET,
+	WORLD_STATIC,
+
+	END,
+};
+
+enum class TASK_TYPE
+{
+	// Param1 : Layer Type, Param2 : Object Address
+	CREATE_OBJECT,
+
+	// Param1 : Object Address
+	// 삭제는 오브젝트의 주소만 받아도 됨
+	DELETE_OBJECT,
+
+	LEVEL_CHANGE,
+};

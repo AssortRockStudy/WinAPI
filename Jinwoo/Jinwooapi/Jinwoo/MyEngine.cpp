@@ -6,6 +6,7 @@
 #include "MyLevelMgr.h"
 #include "MyPathMgr.h"
 #include "MyLevel.h"
+#include "MyTaskMgr.h"
 
 MyEngine::MyEngine() : m_hWnd(nullptr), m_ptResolution{}, m_DC(nullptr), m_SubBitMap(nullptr), m_SubDC(nullptr)
 {
@@ -63,4 +64,6 @@ void MyEngine::tick()
 	MyLevelMgr::GetInst()->tick();
 
 	MyLevelMgr::GetInst()->render(m_SubDC);
+
+	MyTaskMgr::GetInst()->tick();
 }

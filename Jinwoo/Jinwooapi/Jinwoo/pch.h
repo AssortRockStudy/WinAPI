@@ -9,11 +9,15 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <crtdbg.h>
+#include <assert.h>
 
 #include <vector>
 #include <list>
 #include <map>
 #include <string>
+
+#pragma comment(lib, "Msimg32.lib");
 
 using std::vector;
 using std::list;

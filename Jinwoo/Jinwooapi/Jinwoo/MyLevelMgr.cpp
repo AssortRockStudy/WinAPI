@@ -36,9 +36,9 @@ void MyLevelMgr::init()
 	pMonster2->SetPos(Vec2(800.f, 200.f));
 	pMonster2->SetScale(Vec2(50.f, 50.f));
 
-	m_pCurLevel->AddObject(pPlayer);
-	m_pCurLevel->AddObject(pMonster);
-	m_pCurLevel->AddObject(pMonster2);
+	m_pCurLevel->AddObject(LAYER::PLAYER, pPlayer);
+	m_pCurLevel->AddObject(LAYER::MONSTER, pMonster);
+	m_pCurLevel->AddObject(LAYER::MONSTER, pMonster2);
 }
 
 void MyLevelMgr::tick()

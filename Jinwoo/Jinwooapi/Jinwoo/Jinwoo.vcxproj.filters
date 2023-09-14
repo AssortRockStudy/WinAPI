@@ -100,6 +100,13 @@
     <ClInclude Include="Func.h">
       <Filter>Game\01.Header</Filter>
     </ClInclude>
+    <ClInclude Include="MyEntity.h" />
+    <ClInclude Include="MyLayer.h">
+      <Filter>Game\05.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="MyTaskMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jinwoo.rc">
@@ -156,6 +163,13 @@
     </ClCompile>
     <ClCompile Include="Func.cpp">
       <Filter>Game\01.Header</Filter>
+    </ClCompile>
+    <ClCompile Include="MyEntity.cpp" />
+    <ClCompile Include="MyLayer.cpp">
+      <Filter>Game\05.Level</Filter>
+    </ClCompile>
+    <ClCompile Include="MyTaskMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

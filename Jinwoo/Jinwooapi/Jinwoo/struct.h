@@ -123,3 +123,10 @@ struct FKeyData
 	KEY_STATE	eState;
 	bool		bPressed;
 };
+
+struct FTask
+{
+	TASK_TYPE Type;
+	UINT_PTR Param1;
+	UINT_PTR Param2;
+};

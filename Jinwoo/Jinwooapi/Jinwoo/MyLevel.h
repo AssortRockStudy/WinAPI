@@ -1,31 +1,40 @@
 #pragma once
 
+#include "MyEntity.h"
+#include "MyLayer.h"
+
 class MyObject;
 
 // 오브젝트를 관리해주는 게임 스테이지의 역할을 하는 클래스
-class MyLevel
+class MyLevel : public MyEntity
 {
 private:
 	// 모든 오브젝트는 MyObject를 상속받기 때문에 MyObject의 포인터를 받으면
 	// 하위 클래스들을 모두 관리할 수 있다
-	vector<MyObject*> m_vecObject;
+	// vector<MyObject*> m_vecObject;
 
+	MyLayer* m_Layer[(UINT_PTR)LAYER::END];
+	
 public:
 	void tick();
 	void render(HDC _dc);
 
 public:
-	void AddObject(MyObject* _Object)
-	{
-		m_vecObject.push_back(_Object);
-	}
-
 	template <typename T>
 	void GetObjects(vector<T*>& _Object);
+
+	// 레벨이 소유하고 있는 특정 레이어의 오브젝트 목록을 반환
+	const vector<MyObject*> GetObject(LAYER _LayerType) { return m_Layer[(UINT_PTR)_LayerType]->m_vecObject; }
+
+private:
+	void AddObject(LAYER _LayerType, MyObject* _Object);
 
 public:
 	MyLevel();
 	~MyLevel();
+
+	friend class MyLevelMgr;
+	friend class MyTaskMgr;
 };
 
 
@@ -45,13 +54,16 @@ public:
 template<typename T>
 inline void MyLevel::GetObjects(vector<T*>& _Object)
 {
-	for (size_t i = 0; i < m_vecObject.size(); ++i)
+	for (UINT j = 0; j < (UINT)LAYER::END; ++j)
 	{
-		T* pObject = dynamic_cast<T*>(m_vecObject[i]);
-
-		if (nullptr != pObject)
+		for (size_t i = 0; i < m_Layer[j]->m_vecObject.size(); ++i)
 		{
-			_Object.push_back(pObject);
+			T* pObject = dynamic_cast<T*>(m_Layer[j]->m_vecObject[i]);
+
+			if (nullptr != pObject)
+			{
+				_Object.push_back(pObject);
+			}
 		}
 	}
 }

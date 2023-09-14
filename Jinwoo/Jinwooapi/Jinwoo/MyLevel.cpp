@@ -7,29 +7,35 @@
 
 MyLevel::MyLevel()
 {
-
+	for (UINT i = 0; i < (UINT)LAYER::END; ++i)
+	{
+		m_Layer[i] = new MyLayer;
+	}
 }
 
 MyLevel::~MyLevel()
 {
-	for (size_t i = 0; i < m_vecObject.size(); ++i)
+	for (UINT i = 0; i < (UINT)LAYER::END; ++i)
 	{
-		delete m_vecObject[i];
+		if (nullptr != m_Layer[i])
+		{
+			delete m_Layer[i];
+		}
 	}
 }
 
 void MyLevel::tick()
 {
-	for (size_t i = 0; i < m_vecObject.size(); ++i)
+	for (UINT i = 0; i < (UINT)LAYER::END; ++i)
 	{
-		m_vecObject[i]->tick(DT);
+		m_Layer[i]->tick(DT);
 	}
 }
 
 void MyLevel::render(HDC _dc)
 {
-	for (size_t i = 0; i < m_vecObject.size(); ++i)
+	for (UINT i = 0; i < (UINT)LAYER::END; ++i)
 	{
-		m_vecObject[i]->render(_dc);
+		m_Layer[i]->render(_dc);
 	}
 }
