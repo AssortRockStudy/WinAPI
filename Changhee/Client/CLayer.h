@@ -11,6 +11,7 @@ private:
 
 public:
 	void tick(float _DT);
+	void finaltick(float _DT);
 	void render(HDC _dc);
 
 	void AddObject(CObj* _pObject) { m_vecObjects.push_back(_pObject); }

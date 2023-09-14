@@ -32,6 +32,10 @@ void CLevel::tick()
 		m_arrLayer[i]->tick(DT);
 	}
 
+	for (UINT i = 0; i < (UINT)LAYER::END; ++i)
+	{
+		m_arrLayer[i]->finaltick(DT);
+	}
 
 }
 

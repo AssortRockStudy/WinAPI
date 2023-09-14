@@ -3,8 +3,12 @@
 class CPlayer :
     public CObj
 {
+    GENERATED_OBJECT(CObj);
+
 private:
     float   m_fSpeed;
+
+
     HBITMAP m_hImage;
     HDC     m_hImageDC;
     BITMAP  m_BitmapInfo;

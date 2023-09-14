@@ -155,6 +155,9 @@
     <ClInclude Include="CComponent.h">
       <Filter>Game\06. Component</Filter>
     </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>Game\06. Component\Collider</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -233,6 +236,9 @@
     </ClCompile>
     <ClCompile Include="CComponent.cpp">
       <Filter>Game\06. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>Game\06. Component\Collider</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

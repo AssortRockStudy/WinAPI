@@ -13,5 +13,5 @@ CMonster::~CMonster()
 
 void CMonster::tick(float _DT)
 {
-
+	Super::tick(_DT);
 }

@@ -3,6 +3,8 @@
 class CProjectile :
     public CObj
 {
+    GENERATED_OBJECT(CObj);
+
 private:
     float   m_fSpeed;
     float   m_fTheta;

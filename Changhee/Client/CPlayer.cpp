@@ -40,6 +40,8 @@ CPlayer::~CPlayer()
 
 void CPlayer::tick(float _DT)
 {
+	Super::tick(_DT);
+
 	Vec2 vPos = GetPos();
 	
 	if (KEY_PRESSED(KEY::W))

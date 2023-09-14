@@ -28,3 +28,5 @@
 
 #define PI 3.14159265348979f
 
+#define GENERATED_OBJECT(type) typedef type Super;\
+							   virtual void Abstract() override {}
