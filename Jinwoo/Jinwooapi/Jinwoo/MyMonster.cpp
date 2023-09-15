@@ -14,6 +14,8 @@ MyMonster::~MyMonster()
 
 void MyMonster::tick(float _DT)
 {
+	ParentClass::tick(_DT);
+
 	MonsterPos = GetPos();
 
 	//monsterTime += _DT;
@@ -36,7 +38,7 @@ void MyMonster::tick(float _DT)
 
 void MyMonster::render(HDC _dc)
 {
-	MonsterPos = GetPos();
+	MonsterPos = GetRenderPos();
 	MonsterScale = GetScale();
 
 	// 새로운 펜 객체를 생성

@@ -5,8 +5,10 @@
 #include "MyKeyMgr.h"
 #include "MyLevelMgr.h"
 #include "MyPathMgr.h"
-#include "MyLevel.h"
 #include "MyTaskMgr.h"
+#include "MyCameraMgr.h"
+
+#include "MyLevel.h"
 
 MyEngine::MyEngine() : m_hWnd(nullptr), m_ptResolution{}, m_DC(nullptr), m_SubBitMap(nullptr), m_SubDC(nullptr)
 {
@@ -33,7 +35,7 @@ void MyEngine::init(HWND _hWnd, POINT _ptResolution)
 	m_ptResolution = _ptResolution;
 
 	//			핸들 / 윈도우창 우선순위 / 윈도우창 시작점 /		 윈도우창 크기		/ 윈도우 크기변경 X
-	SetWindowPos(m_hWnd, nullptr,		300, 100, m_ptResolution.x, m_ptResolution.y, 0);
+	SetWindowPos(m_hWnd, nullptr,		50, 50, m_ptResolution.x, m_ptResolution.y, 0);
 	//				SW_SHOWNORMAL과 같은 의미
 	ShowWindow(m_hWnd, true);
 
@@ -61,8 +63,9 @@ void MyEngine::tick()
 {
 	MyTimeMgr::GetInst()->tick();
 	MyKeyMgr::GetInst()->tick();
-	MyLevelMgr::GetInst()->tick();
+	MyCameraMgr::GetInst()->tick();
 
+	MyLevelMgr::GetInst()->tick();
 	MyLevelMgr::GetInst()->render(m_SubDC);
 
 	MyTaskMgr::GetInst()->tick();

@@ -4,6 +4,9 @@
 
 class MyMonster : public MyObject
 {	
+	GENERATED_OBJECT(MyObject);
+
+private:
 	float m_Speed;
 	float monsterTime;
 

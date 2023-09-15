@@ -10,6 +10,9 @@
 
 #include "MyLevel.h"
 #include "MyProjectile.h"
+
+#include "MyCollider.h"
+
 #include "HomingBullet.h"
 #include "MyMonster.h"
 
@@ -24,6 +27,8 @@ MyPlayer::MyPlayer() : m_Speed(300.f), m_PlayerImage(nullptr)
 	m_PlayerDC = CreateCompatibleDC(MyEngine::GetInst()->GetMainDC());
 	DeleteObject(SelectObject(m_PlayerDC, m_PlayerImage));
 	GetObject(m_PlayerImage, sizeof(BITMAP), &m_BitmapInfo);
+
+	m_Collider = AddComponent<MyCollider>();
 }
 
 MyPlayer::~MyPlayer()
@@ -34,6 +39,8 @@ MyPlayer::~MyPlayer()
 
 void MyPlayer::tick(float _DT)
 {
+	ParentClass::tick(_DT);
+
 	Vec2 vPos = GetPos();
 
 	if (KEY_PRESSED(A))
@@ -79,7 +86,7 @@ void MyPlayer::tick(float _DT)
 
 void MyPlayer::render(HDC _dc)
 {
-	Vec2 vPos = GetPos();
+	Vec2 vPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 
 	// 새로운 펜 객체를 생성
@@ -94,13 +101,24 @@ void MyPlayer::render(HDC _dc)
 	HBRUSH hCurBrush = CreateSolidBrush(RGB(0, 0, 0));
 	HBRUSH hPrevBrush = (HBRUSH)SelectObject(_dc, hCurBrush);
 
-	BitBlt(_dc,
+	//BitBlt(_dc,
+	//	(int)(vPos.x -= m_BitmapInfo.bmWidth / 2),
+	//	(int)(vPos.y -= m_BitmapInfo.bmHeight / 2),
+	//	m_BitmapInfo.bmWidth,
+	//	m_BitmapInfo.bmHeight,
+	//	m_PlayerDC,
+	//	0, 0, SRCCOPY);
+
+	TransparentBlt(_dc,
 		(int)(vPos.x -= m_BitmapInfo.bmWidth / 2),
 		(int)(vPos.y -= m_BitmapInfo.bmHeight / 2),
 		m_BitmapInfo.bmWidth,
 		m_BitmapInfo.bmHeight,
 		m_PlayerDC,
-		0, 0, SRCCOPY);
+		0, 0,
+		m_BitmapInfo.bmWidth,
+		m_BitmapInfo.bmHeight,
+		RGB(255, 0, 255));
 
 	// 되돌리고 사용했던 펜과 브러쉬를 삭제한다
 	SelectObject(_dc, hPrevPen);

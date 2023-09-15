@@ -17,6 +17,8 @@ HomingBullet::~HomingBullet()
 
 void HomingBullet::tick(float _DT)
 {
+	ParentClass::tick(_DT);
+
 	if (nullptr == m_TargetMonster)
 	{
 		FindTarget();

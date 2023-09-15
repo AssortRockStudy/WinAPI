@@ -21,6 +21,11 @@ public:
 
 	}
 
+	Vec2(POINT _point) : x((float)_point.x), y((float)_point.y)
+	{
+
+	}
+
 public:
 	float Distance(Vec2 _Other)
 	{
@@ -114,6 +119,12 @@ public:
 	Vec2 operator / (float _Other)
 	{
 		return Vec2(x / _Other, y / _Other);
+	}
+
+	void operator /= (float _f)
+	{
+		x /= _f;
+		y /= _f;
 	}
 };
 

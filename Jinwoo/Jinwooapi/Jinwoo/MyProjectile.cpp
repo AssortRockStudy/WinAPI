@@ -11,19 +11,9 @@ MyProjectile::~MyProjectile()
 
 }
 
-void MyProjectile::tick(float _DT)
-{
-	Vec2 vPos = GetPos();
-
-	vPos.x += m_Speed * cosf(m_Angle) * _DT;
-	vPos.y -= m_Speed * sinf(m_Angle) * _DT;
-
-	SetPos(vPos);
-}
-
 void MyProjectile::render(HDC _dc)
 {
-	Vec2 vPos = GetPos();
+	Vec2 vPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 
 	Ellipse(_dc

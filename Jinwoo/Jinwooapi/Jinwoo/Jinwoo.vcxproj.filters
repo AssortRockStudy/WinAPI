@@ -38,6 +38,21 @@
     <Filter Include="Game\04.Object\Projectile\Homing">
       <UniqueIdentifier>{ba0415f5-d40d-4782-ae5e-62b1801fa5b0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\06.Component">
+      <UniqueIdentifier>{2a80377d-5f34-47b2-aea9-8a5976545f2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06.Component\Collider">
+      <UniqueIdentifier>{871409ce-b4e3-4490-8de9-b27ae8fbd08c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06.Component\Movement">
+      <UniqueIdentifier>{995bc2c9-f881-481f-8a9b-8e0d8c54ef2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06.Component\Animator">
+      <UniqueIdentifier>{7690ecf2-e8d8-4d41-8126-cde235713e6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06.Component\AI">
+      <UniqueIdentifier>{e82e42be-e851-4b0e-b332-b52957372643}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -107,6 +122,15 @@
     <ClInclude Include="MyTaskMgr.h">
       <Filter>Game\03.Manager</Filter>
     </ClInclude>
+    <ClInclude Include="MyCameraMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MyComponent.h">
+      <Filter>Game\06.Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MyCollider.h">
+      <Filter>Game\06.Component\Collider</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jinwoo.rc">
@@ -170,6 +194,15 @@
     </ClCompile>
     <ClCompile Include="MyTaskMgr.cpp">
       <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MyCameraMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MyComponent.cpp">
+      <Filter>Game\06.Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MyCollider.cpp">
+      <Filter>Game\06.Component\Collider</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -6,6 +6,8 @@ class MyMonster;
 
 class HomingBullet : public MyProjectile
 {
+	GENERATED_OBJECT(MyProjectile);
+
 private:
 	MyMonster*		m_TargetMonster;
 

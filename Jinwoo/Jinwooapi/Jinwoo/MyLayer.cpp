@@ -23,6 +23,15 @@ void MyLayer::tick(float _DT)
 	}
 }
 
+void MyLayer::finaltick(float _DT)
+{
+	for (size_t i = 0; i < m_vecObject.size(); ++i)
+	{
+		m_vecObject[i]->finaltick(_DT);
+	}
+
+}
+
 void MyLayer::render(HDC _dc)
 {
 	for (size_t i = 0; i < m_vecObject.size(); ++i)

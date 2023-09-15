@@ -24,6 +24,9 @@
 
 #define DT MyTimeMgr::GetInst()->GetDeltaTime()
 
+#define GENERATED_OBJECT(Type)	typedef Type ParentClass;\
+								virtual void Abstract() override {}
+
 enum class KEY
 {
 	_0,

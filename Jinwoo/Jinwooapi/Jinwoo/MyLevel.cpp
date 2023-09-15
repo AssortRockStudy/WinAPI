@@ -35,6 +35,11 @@ void MyLevel::tick()
 	{
 		m_Layer[i]->tick(DT);
 	}
+
+	for (UINT i = 0; i < (UINT)LAYER::END; ++i)
+	{
+		m_Layer[i]->finaltick(DT);
+	}
 }
 
 void MyLevel::render(HDC _dc)

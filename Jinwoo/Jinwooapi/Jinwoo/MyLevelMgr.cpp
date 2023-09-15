@@ -3,6 +3,8 @@
 
 #include "MyEngine.h"
 
+#include "MyCameraMgr.h"
+
 #include "MyLevel.h"
 #include "MyPlayer.h"
 #include "MyMonster.h"
@@ -39,6 +41,10 @@ void MyLevelMgr::init()
 	m_pCurLevel->AddObject(LAYER::PLAYER, pPlayer);
 	m_pCurLevel->AddObject(LAYER::MONSTER, pMonster);
 	m_pCurLevel->AddObject(LAYER::MONSTER, pMonster2);
+
+	Vec2 vLookAt = MyEngine::GetInst()->GetMainResolution();
+	vLookAt /= 2.f;
+	MyCameraMgr::GetInst()->SetLookAt(vLookAt);
 }
 
 void MyLevelMgr::tick()

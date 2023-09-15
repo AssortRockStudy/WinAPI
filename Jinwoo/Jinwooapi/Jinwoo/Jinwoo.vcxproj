@@ -144,6 +144,9 @@
     <ClInclude Include="global.h" />
     <ClInclude Include="HomingBullet.h" />
     <ClInclude Include="Jinwoo.h" />
+    <ClInclude Include="MyCameraMgr.h" />
+    <ClInclude Include="MyCollider.h" />
+    <ClInclude Include="MyComponent.h" />
     <ClInclude Include="MyEngine.h" />
     <ClInclude Include="MyEntity.h" />
     <ClInclude Include="MyKeyMgr.h" />
@@ -166,6 +169,9 @@
     <ClCompile Include="Func.cpp" />
     <ClCompile Include="HomingBullet.cpp" />
     <ClCompile Include="Jinwoo.cpp" />
+    <ClCompile Include="MyCameraMgr.cpp" />
+    <ClCompile Include="MyCollider.cpp" />
+    <ClCompile Include="MyComponent.cpp" />
     <ClCompile Include="MyEngine.cpp" />
     <ClCompile Include="MyEntity.cpp" />
     <ClCompile Include="MyKeyMgr.cpp" />
