@@ -27,6 +27,10 @@
 #define GENERATED_OBJECT(Type)	typedef Type ParentClass;\
 								virtual void Abstract() override {}
 
+#define DEBUG_RENDER	MyEngine::GetInst()->DebugRender()
+#define SELECT_PEN(DC,TYPE)	FSelectPen TempPenSelect(DC,TYPE)
+#define SELECT_BRUSH(DC, hBrush)	FSelectBrush TempBrushSelect(DC, hBrush)
+
 enum class KEY
 {
 	_0,
@@ -129,4 +133,12 @@ enum class TASK_TYPE
 	DELETE_OBJECT,
 
 	LEVEL_CHANGE,
+};
+
+enum class PEN_TYPE
+{
+	RED_PEN,
+	GREEN_PEN,
+	BLUE_PEN,
+	END,
 };

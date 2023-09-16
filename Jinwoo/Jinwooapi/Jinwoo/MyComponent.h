@@ -15,6 +15,7 @@ public:
 
     virtual void tick(float _DT) {}
     virtual void finaltick(float _DT) = 0;
+    virtual void render(HDC _dc) {}
 
 public:
     // 생성자를 따로 하나 구현하여 기본생성자가 자동으로 생기는 것을 방지

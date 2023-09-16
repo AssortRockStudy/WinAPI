@@ -22,13 +22,16 @@ MyPlayer::MyPlayer() : m_Speed(300.f), m_PlayerImage(nullptr)
 	wstring strPath = MyPathMgr::GetContentPath();
 	strPath += L"Fighter.bmp";
 
+	// Player가 사용하는 Component 추가
+	m_Collider = AddComponent<MyCollider>();
+	m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
+	m_Collider->SetOffsetScale(Vec2(40.f, 80.f));
+
 	// 플레이어가 사용할 이미지 로드
 	m_PlayerImage = (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 	m_PlayerDC = CreateCompatibleDC(MyEngine::GetInst()->GetMainDC());
 	DeleteObject(SelectObject(m_PlayerDC, m_PlayerImage));
 	GetObject(m_PlayerImage, sizeof(BITMAP), &m_BitmapInfo);
-
-	m_Collider = AddComponent<MyCollider>();
 }
 
 MyPlayer::~MyPlayer()
@@ -89,18 +92,6 @@ void MyPlayer::render(HDC _dc)
 	Vec2 vPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 
-	// 새로운 펜 객체를 생성
-	//						선의 스타일 / 두께 / 색상
-	HPEN hCurPen = CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
-	// 그리기에 사용할 개체를 현재 DC(device context)에 적용
-	//								현재 dc / 사용할 개체
-	HPEN hPrevPen = (HPEN)SelectObject(_dc, hCurPen);
-
-	// 새로운 브러쉬 생성
-	// 펜으로 그린 것의 내부를 채운다
-	HBRUSH hCurBrush = CreateSolidBrush(RGB(0, 0, 0));
-	HBRUSH hPrevBrush = (HBRUSH)SelectObject(_dc, hCurBrush);
-
 	//BitBlt(_dc,
 	//	(int)(vPos.x -= m_BitmapInfo.bmWidth / 2),
 	//	(int)(vPos.y -= m_BitmapInfo.bmHeight / 2),
@@ -110,8 +101,8 @@ void MyPlayer::render(HDC _dc)
 	//	0, 0, SRCCOPY);
 
 	TransparentBlt(_dc,
-		(int)(vPos.x -= m_BitmapInfo.bmWidth / 2),
-		(int)(vPos.y -= m_BitmapInfo.bmHeight / 2),
+		(int)(vPos.x -= m_BitmapInfo.bmWidth / 2.f),
+		(int)(vPos.y -= m_BitmapInfo.bmHeight / 2.f),
 		m_BitmapInfo.bmWidth,
 		m_BitmapInfo.bmHeight,
 		m_PlayerDC,
@@ -120,10 +111,5 @@ void MyPlayer::render(HDC _dc)
 		m_BitmapInfo.bmHeight,
 		RGB(255, 0, 255));
 
-	// 되돌리고 사용했던 펜과 브러쉬를 삭제한다
-	SelectObject(_dc, hPrevPen);
-	DeleteObject(hCurPen);
-
-	SelectObject(_dc, hPrevBrush);
-	DeleteObject(hCurBrush);
+	ParentClass::render(_dc);
 }

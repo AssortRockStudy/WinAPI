@@ -186,6 +186,7 @@
     <ClCompile Include="MyTaskMgr.cpp" />
     <ClCompile Include="MyTimeMgr.cpp" />
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="struct.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jinwoo.rc" />
