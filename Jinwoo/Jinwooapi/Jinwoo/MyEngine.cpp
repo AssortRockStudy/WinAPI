@@ -7,6 +7,7 @@
 #include "MyPathMgr.h"
 #include "MyTaskMgr.h"
 #include "MyCameraMgr.h"
+#include "MyColliderMgr.h"
 
 #include "MyLevel.h"
 
@@ -82,6 +83,7 @@ void MyEngine::tick()
 	MyTimeMgr::GetInst()->tick();
 	MyKeyMgr::GetInst()->tick();
 	MyCameraMgr::GetInst()->tick();
+	MyColliderMgr::GetInst()->tick();
 
 	if (KEY_TAP(NUM8))
 	{

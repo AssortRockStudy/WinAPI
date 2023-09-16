@@ -4,6 +4,7 @@
 #include "MyEngine.h"
 
 #include "MyCameraMgr.h"
+#include "MyColliderMgr.h"
 
 #include "MyLevel.h"
 #include "MyPlayer.h"
@@ -45,6 +46,8 @@ void MyLevelMgr::init()
 	Vec2 vLookAt = MyEngine::GetInst()->GetMainResolution();
 	vLookAt /= 2.f;
 	MyCameraMgr::GetInst()->SetLookAt(vLookAt);
+
+	MyColliderMgr::GetInst()->CheckCollision(LAYER::MONSTER, LAYER::PLAYER);
 }
 
 void MyLevelMgr::tick()

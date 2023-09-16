@@ -3,11 +3,13 @@
 #include "MyEntity.h"
 
 class MyObject;
+class MyCollider;
 
 class MyLayer : public MyEntity
 {
 private:
-	vector<MyObject*> m_vecObject;
+	vector<MyObject*>		m_vecObject;
+	vector< MyCollider*>	m_vecCollider;
 
 public:
 	void tick(float _DT);

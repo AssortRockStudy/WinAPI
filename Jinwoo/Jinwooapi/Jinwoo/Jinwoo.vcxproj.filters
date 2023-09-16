@@ -131,6 +131,9 @@
     <ClInclude Include="MyCollider.h">
       <Filter>Game\06.Component\Collider</Filter>
     </ClInclude>
+    <ClInclude Include="MyColliderMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jinwoo.rc">
@@ -203,6 +206,12 @@
     </ClCompile>
     <ClCompile Include="MyCollider.cpp">
       <Filter>Game\06.Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="MyColliderMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="struct.cpp">
+      <Filter>Game\01.Header</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

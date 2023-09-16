@@ -24,7 +24,7 @@ public:
 	void GetObjects(vector<T*>& _Object);
 
 	// 레벨이 소유하고 있는 특정 레이어의 오브젝트 목록을 반환
-	const vector<MyObject*> GetObject(LAYER _LayerType) { return m_Layer[(UINT_PTR)_LayerType]->m_vecObject; }
+	const vector<MyObject*>& GetObjects(LAYER _LayerType) { return m_Layer[(UINT)_LayerType]->m_vecObject; }
 
 private:
 	void AddObject(LAYER _LayerType, MyObject* _Object);

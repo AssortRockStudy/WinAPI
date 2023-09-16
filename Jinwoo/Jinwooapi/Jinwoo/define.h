@@ -120,7 +120,7 @@ enum class LAYER
 	MONSTERBULLET,
 	WORLD_STATIC,
 
-	END,
+	END = 32,
 };
 
 enum class TASK_TYPE

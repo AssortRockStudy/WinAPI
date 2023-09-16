@@ -146,6 +146,7 @@
     <ClInclude Include="Jinwoo.h" />
     <ClInclude Include="MyCameraMgr.h" />
     <ClInclude Include="MyCollider.h" />
+    <ClInclude Include="MyColliderMgr.h" />
     <ClInclude Include="MyComponent.h" />
     <ClInclude Include="MyEngine.h" />
     <ClInclude Include="MyEntity.h" />
@@ -171,6 +172,7 @@
     <ClCompile Include="Jinwoo.cpp" />
     <ClCompile Include="MyCameraMgr.cpp" />
     <ClCompile Include="MyCollider.cpp" />
+    <ClCompile Include="MyColliderMgr.cpp" />
     <ClCompile Include="MyComponent.cpp" />
     <ClCompile Include="MyEngine.cpp" />
     <ClCompile Include="MyEntity.cpp" />
