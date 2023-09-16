@@ -1,6 +1,6 @@
 #pragma once
 
-// object layer
+// Object layer
 enum class LAYER
 {
 	DEFAULT,
@@ -13,10 +13,10 @@ enum class LAYER
 
 
 
-	END,
+	END = 32,
 };
 
-
+// Task
 enum class TASK_TYPE
 {
 	// Param1 : Layer Type, Param2 : Object Adress
@@ -30,7 +30,7 @@ enum class TASK_TYPE
 	END,
 };
 
-// Palette
+// GDI
 enum class BRUSH_TYPE
 {
 	RED,

@@ -167,3 +167,15 @@ struct FTask
 	UINT_PTR Param_1;
 	UINT_PTR Param_2;
 };
+
+struct FSelectGDI
+{
+	HDC		hCurDC;
+	HPEN	hPrevPen;
+	HBRUSH	hPrevBrush;
+
+	FSelectGDI(HDC _dc, PEN_TYPE _ePenType, BRUSH_TYPE _eBrushType = BRUSH_TYPE::END);
+	FSelectGDI(const FSelectGDI& _Other) = delete;
+	~FSelectGDI();
+
+};

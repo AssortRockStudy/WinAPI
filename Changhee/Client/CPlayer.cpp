@@ -9,6 +9,8 @@
 #include "CTaskMgr.h"
 #include "CCamera.h"
 
+#include "CCollider.h"
+
 
 #include "CLevel.h"
 
@@ -17,8 +19,8 @@
 
 CPlayer::CPlayer()
 	: m_fSpeed(200.f)
+	, m_hImage(nullptr)
 {
-	// 이미지가 존재하는 상대경로(content 폴더로부터)
 	wstring strPath = CPathMgr::GetContentDirectory();
 	strPath += L"texture\\Fighter.bmp";
 
@@ -27,6 +29,10 @@ CPlayer::CPlayer()
 	DeleteObject((HBITMAP)SelectObject(m_hImageDC, m_hImage));
 
 	GetObject(m_hImage, sizeof(BITMAP), &m_BitmapInfo);
+
+	m_pCollider = AddComponent<CCollider>();
+	m_pCollider->SetOffsetPos(Vec2(0.f, 10.f));
+	m_pCollider->SetScale(Vec2(40.f, 80.f));
 }
 
 CPlayer::~CPlayer()
@@ -103,4 +109,5 @@ void CPlayer::render(HDC _dc)
 		, m_BitmapInfo.bmHeight
 		, RGB(255, 0, 255));
 
+	Super::render(_dc);
 }

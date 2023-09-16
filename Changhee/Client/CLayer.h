@@ -2,12 +2,14 @@
 #include "CEntity.h"
 
 class CObj;
+class CCollider;
 
 class CLayer : 
 	public CEntity
 {
 private:
 	vector<CObj*>	m_vecObjects;
+	vector<CCollider*>	m_vecCollider;
 
 public:
 	void tick(float _DT);

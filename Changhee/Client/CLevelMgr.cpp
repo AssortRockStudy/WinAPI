@@ -4,6 +4,7 @@
 
 #include "CEngine.h"
 #include "CLevel.h"
+#include "CCollisionMgr.h"
 
 
 // 임시
@@ -29,6 +30,9 @@ void CLevelMgr::init()
 
 	CCamera::GetInst()->SetLookAt(vLookAt);
 
+	// 충돌 설정
+	CCollisionMgr::GetInst()->CheckCollision(LAYER::MONSTER, LAYER::PLAYER);
+
 
 	// Level 생성
 	m_pCurLevel = new CLevel;
@@ -39,6 +43,8 @@ void CLevelMgr::init()
 	pPlayer->SetScale(Vec2(50.f, 50.f));
 
 	m_pCurLevel->AddObject(LAYER::PLAYER, pPlayer);
+
+
 }
 
 void CLevelMgr::tick()

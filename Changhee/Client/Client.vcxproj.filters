@@ -56,9 +56,6 @@
     <Filter Include="Game\06. Component">
       <UniqueIdentifier>{4356f0f5-8079-468b-b696-69c74f6108c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Module">
-      <UniqueIdentifier>{4715108d-003b-4dad-9ca2-df49b862a754}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\06. Component\Collider">
       <UniqueIdentifier>{70eb2681-1cca-413a-9fa9-7adb36d1e888}</UniqueIdentifier>
     </Filter>
@@ -70,6 +67,9 @@
     </Filter>
     <Filter Include="Game\06. Component\AI">
       <UniqueIdentifier>{d064a8cb-2cf6-4160-84e4-d32dfa65f322}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\CollisionManager">
+      <UniqueIdentifier>{a8fdf6c8-6e2c-41ca-8fff-82fdc1b152b5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -108,9 +108,6 @@
     </ClInclude>
     <ClInclude Include="CTimeMgr.h">
       <Filter>Game\03. Manager\TimeManager</Filter>
-    </ClInclude>
-    <ClInclude Include="CPalette.h">
-      <Filter>Game\Module</Filter>
     </ClInclude>
     <ClInclude Include="CKeyMgr.h">
       <Filter>Game\03. Manager\KeyManager</Filter>
@@ -158,6 +155,7 @@
     <ClInclude Include="CCollider.h">
       <Filter>Game\06. Component\Collider</Filter>
     </ClInclude>
+    <ClInclude Include="CCollisionMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -193,9 +191,6 @@
     </ClCompile>
     <ClCompile Include="CTimeMgr.cpp">
       <Filter>Game\03. Manager\TimeManager</Filter>
-    </ClCompile>
-    <ClCompile Include="CPalette.cpp">
-      <Filter>Game\Module</Filter>
     </ClCompile>
     <ClCompile Include="CKeyMgr.cpp">
       <Filter>Game\03. Manager\KeyManager</Filter>
@@ -239,6 +234,12 @@
     </ClCompile>
     <ClCompile Include="CCollider.cpp">
       <Filter>Game\06. Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="struct.cpp">
+      <Filter>Game\01. Header</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollisionMgr.cpp">
+      <Filter>Game\03. Manager\CollisionManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

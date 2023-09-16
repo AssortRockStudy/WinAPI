@@ -37,15 +37,11 @@ void CObj::finaltick(float _DT)
 
 void CObj::render(HDC _dc)
 {
-	CPalette tmp(_dc, PEN_TYPE::RED);
+	for (size_t i = 0; i < m_vecComponent.size(); i++)
+	{
+		m_vecComponent[i]->render(_dc);
+	}
 
-	Vec2 vRenderPos = GetRenderPos();
-
-	Rectangle(_dc
-		, int(vRenderPos.x - m_vScale.x / 2)
-		, int(vRenderPos.y - m_vScale.y / 2)
-		, int(vRenderPos.x + m_vScale.x / 2)
-		, int(vRenderPos.y + m_vScale.y / 2));
 
 }
 

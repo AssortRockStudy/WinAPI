@@ -25,7 +25,7 @@ public:
 
 protected:
 	template<typename T>
-	CComponent* AddComponent()
+	T* AddComponent()
 	{
 		T* pNewComponent = new T(this);
 		m_vecComponent.push_back(pNewComponent);

@@ -7,6 +7,7 @@
 #include "CPathMgr.h"
 #include "CTaskMgr.h"
 #include "CCamera.h"
+#include "CCollisionMgr.h"
 
 
 CEngine::CEngine()
@@ -15,9 +16,10 @@ CEngine::CEngine()
 	, m_hDC(nullptr)
 	, m_hSubBitMap(nullptr)
 	, m_hSubDC(nullptr)
+	, m_bDebugRender(true)
 {
 	// pen, brush 持失
-	CreatePenBrush();
+	CreateDefaultGDI();
 }
 
 CEngine::~CEngine()
@@ -78,9 +80,15 @@ void CEngine::tick()
 	CKeyMgr::GetInst()->tick();
 	CCamera::GetInst()->tick();
 
+	if (KEY_TAP(KEY::TAB))
+	{
+		m_bDebugRender ? m_bDebugRender = false : m_bDebugRender = true;
+	}
+
 
 	// ------------ update ------------
 	CLevelMgr::GetInst()->tick();
+	CCollisionMgr::GetInst()->tick();
 
 
 	// ------------ render ------------
@@ -96,7 +104,7 @@ void CEngine::tick()
 	
 }
 
-void CEngine::CreatePenBrush()
+void CEngine::CreateDefaultGDI()
 {
 	// red, green, blue blush 持失
 	m_arrBrush[(UINT)BRUSH_TYPE::RED] = CreateSolidBrush(RGB(255, 0, 0));
