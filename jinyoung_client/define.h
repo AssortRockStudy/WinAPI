@@ -28,6 +28,11 @@
 
 #define GAME_FOLDER MyGame
 
+
+#define GENERATED_OBJECT(type) typedef type Super;\
+							   virtual void Abstract() override {}
+
+
 // Key Value
 enum KEY
 {

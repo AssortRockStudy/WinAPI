@@ -22,6 +22,8 @@ CGuided::~CGuided()
 
 void CGuided::tick(float _DT)
 {
+	Super::tick(_DT);
+
 	if (nullptr == m_Target)
 	{
 		FindTarget();

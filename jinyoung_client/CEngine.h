@@ -28,6 +28,11 @@ private:
 	HBITMAP m_subbitmap;
 
 	CLevel* m_Level;
+
+	bool	m_bDebugRender;
+
+	HPEN	m_arrPen[PEN_END];
+
 public:
 	HWND GetMainWind() { return m_hWnd; }
 	HDC GetMainDC() { return m_dc; }

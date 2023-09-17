@@ -18,7 +18,7 @@ public:
     float GetAngle() { return m_Angle; };
 
 public:
-    virtual void tick(float _DT) override;
+    //virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
 
 public:

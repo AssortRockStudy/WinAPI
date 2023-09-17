@@ -27,14 +27,15 @@ protected:
 	template<typename T>
 	T* AddComponent()
 	{
-		T* pNewCom = new T;
+		T* pNewCom = new T(this);
 		m_vecComponent.push_back(pNewCom);
 		return pNewCom;
 	}
 	
 public:
+	virtual void tick(float _DT);
+	virtual void finaltick(float _DT) final; // 상속받은 자식 클래스에서 재정의(override) 할 수 없음
 	// 매 프레임 마다 오브젝트가 할 일
-	virtual void tick(float _DT) = 0; // 순수 가상함수 ==> 추상 클래스
 
 	// 매 프레임마다 화면에 오브젝트를 그리는 함수
 	virtual void render(HDC _dc);
@@ -42,4 +43,6 @@ public:
 public:
 	CObj();
 	virtual ~CObj();
+private:
+	virtual void Abstract() = 0;
 };

@@ -34,6 +34,10 @@ void CLevel::tick()
 	{
 		m_Layer[i]->tick(DT);
 	}
+	for (UINT i = 0; i < LAYER::END; ++i)
+	{
+		m_Layer[i]->finaltick(DT);
+	}
 }
 
 void CLevel::render(HDC _dc)

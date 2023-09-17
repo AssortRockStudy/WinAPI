@@ -50,6 +50,8 @@ CPlayer::~CPlayer()
 
 void CPlayer::tick(float _DT)
 {
+	Super::tick(_DT);
+
 	Vec2 vPos = GetPos();
 
 	// 키입력이 발생하면 움직인다.
@@ -97,7 +99,7 @@ void CPlayer::tick(float _DT)
 
 			//pCurLevel->AddObject(pProjectile);
 
-			pCurLevel->AddObject(PLAYER_PJ, pProjectile);
+			//pCurLevel->AddObject(PLAYER_PJ, pProjectile);
 
 			CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)pProjectile });
 		}

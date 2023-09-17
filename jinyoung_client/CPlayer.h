@@ -6,6 +6,7 @@ class CCollider;
 class CPlayer :
     public CObj
 {
+    GENERATED_OBJECT(CObj);
 
 
 private:

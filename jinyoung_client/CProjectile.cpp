@@ -10,25 +10,25 @@ CProjectile::CProjectile()
 	, m_Angle(PI / 2.f)
 	, m_mass(5.f)
 {
-}
+} 
 
 CProjectile::~CProjectile()
 {
 }
 
 
-void CProjectile::tick(float _DT)
-{
-	Vec2 vPos = GetPos();
-	
-	
-	//addforce(100000.f, _DT);
-
-	vPos.x += m_Speed * cosf(m_Angle) * _DT;
-	vPos.y -= m_Speed * sinf(m_Angle) * _DT;
-
-	SetPos(vPos);
-}
+//void CProjectile::tick(float _DT)
+//{
+//	Vec2 vPos = GetPos();
+//	
+//	
+//	//addforce(100000.f, _DT);
+//
+//	vPos.x += m_Speed * cosf(m_Angle) * _DT;
+//	vPos.y -= m_Speed * sinf(m_Angle) * _DT;
+//
+//	SetPos(vPos);
+//}
 
 
 void CProjectile::addforce(float _force , float _DT)

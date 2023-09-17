@@ -21,6 +21,8 @@ CEngine::CEngine()
 	, m_ptResolution{}
 	, m_Level(nullptr)
 	, m_dc(nullptr)
+	, m_bDebugRender(true)
+	, m_arrPen{}
 {
 }
 
@@ -39,8 +41,17 @@ CEngine::~CEngine()
 	// 레벨 해제
 	if (nullptr != m_Level)
 		delete m_Level;
+	for (UINT i = 0; i < PEN_END; ++i)
+	{
+		DeleteObject(m_arrPen[i]);
+	}
 }
-
+void CEngine::CreateDefaultGDI()
+{
+	m_arrPen[RED_PEN] = CreatePen(PS_SOLID, 1, RGB(255, 20, 20));
+	m_arrPen[GREEN_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 255, 20));
+	m_arrPen[BLUE_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 20, 255));
+}
 
 void CEngine::init(HWND _hWnd, POINT _ptResolution)
 {
@@ -90,6 +101,8 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 
 	//m_Level->AddObject(pMonster);
 
+	// Default GDI Object 생성
+	CreateDefaultGDI();
 
 }
 
@@ -107,6 +120,11 @@ void CEngine::tick()
 	//m_Level->tick();
 	//m_Level->render(m_dc);
 	//Rectangle(m_dc, 0, 0, m_ptResolution.x, m_ptResolution.y);
+
+	if (KEY_TAP(KEY::NUM8))
+	{
+		m_bDebugRender ? m_bDebugRender = false : m_bDebugRender = true;
+	}
 
 	// LevelMgr
 	CLevelMgr::GetInst()->tick();
