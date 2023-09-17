@@ -78,6 +78,14 @@
     <OutDir>$(SolutionDir)MyGame\bin</OutDir>
     <TargetName>game</TargetName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)MyGame\bin</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)MyGame\bin</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -145,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CCollider.h" />
+    <ClInclude Include="CCollisionMgr.h" />
     <ClInclude Include="CComponent.h" />
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CEntity.h" />
@@ -178,6 +187,7 @@
   <ItemGroup>
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CCollider.cpp" />
+    <ClCompile Include="CCollisionMgr.cpp" />
     <ClCompile Include="CComponent.cpp" />
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CEntity.cpp" />
@@ -206,6 +216,7 @@
     </ClCompile>
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CProjectile.cpp" />
+    <ClCompile Include="struct.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc" />

@@ -9,6 +9,7 @@
 #include "CPal.h"
 #include "CCamera.h"
 
+#include "CCollisionMgr.h"
 
 
 CLevelMgr::CLevelMgr()
@@ -77,6 +78,8 @@ void CLevelMgr::init()
 	vLookAt /= 2.f;
 	CCamera::GetInst()->SetLookAt(vLookAt);
 
+	// 충돌 설정
+	CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
 
 }
 

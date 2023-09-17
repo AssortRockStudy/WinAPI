@@ -111,6 +111,9 @@
     <ClInclude Include="CCollider.h">
       <Filter>Game\06.Component</Filter>
     </ClInclude>
+    <ClInclude Include="CCollisionMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -187,6 +190,12 @@
     </ClCompile>
     <ClCompile Include="CCollider.cpp">
       <Filter>Game\06.Component</Filter>
+    </ClCompile>
+    <ClCompile Include="struct.cpp">
+      <Filter>Game\02.Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollisionMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

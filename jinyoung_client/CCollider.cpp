@@ -5,6 +5,10 @@
 #include "CEngine.h"
 #include "CCamera.h"
 
+#include "CLevelMgr.h"
+#include "CLevel.h"
+#include "CLayer.h"
+
 CCollider::CCollider(CObj* _Owner)
 	: CComponent(_Owner)
 {
@@ -21,6 +25,7 @@ void CCollider::finaltick(float _DT)
 	Vec2 vOwnerPos = GetOwner()->GetPos();
 
 	m_vFinalPos = vOwnerPos + m_vOffsetPos;
+	// 현재 속해있는 레이어에 충돌체(본인) 를 등록
 }
 
 void CCollider::render(HDC _dc)

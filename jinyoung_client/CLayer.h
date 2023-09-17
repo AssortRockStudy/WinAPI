@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CEntity.h"
-
+class CCollider;
 
 class CObj;
 
@@ -9,7 +9,8 @@ class CLayer
 	: public CEntity
 {
 private:
-	vector<CObj*> 	m_vecObjects;
+	vector<CObj*> 		m_vecObjects;
+	vector<CCollider*>	m_vecCollider;
 
 
 

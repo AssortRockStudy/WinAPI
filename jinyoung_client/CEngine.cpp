@@ -11,6 +11,7 @@
 #include "CPathMgr.h"
 #include "CTaskMgr.h"
 #include "CCamera.h"
+#include "CCollisionMgr.h"
 
 
 //레벨을 알고있어야 delete소멸자호출가능
@@ -45,6 +46,7 @@ CEngine::~CEngine()
 	{
 		DeleteObject(m_arrPen[i]);
 	}
+
 }
 void CEngine::CreateDefaultGDI()
 {
@@ -128,7 +130,13 @@ void CEngine::tick()
 
 	// LevelMgr
 	CLevelMgr::GetInst()->tick();
+
+	CCollisionMgr::GetInst()->tick();
+
 	CLevelMgr::GetInst()->render(m_subdc);
+
+	// Task Execute
+	CTaskMgr::GetInst()->tick();
 
 	/*static int Call = 0;
 	++Call;
@@ -145,6 +153,4 @@ void CEngine::tick()
 		PrevCount = CurCount;
 	}*/
 
-	// Task Execute
-	CTaskMgr::GetInst()->tick();
 }

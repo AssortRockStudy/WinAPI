@@ -38,6 +38,14 @@ public:
 	HDC GetMainDC() { return m_dc; }
 	POINT GetResolution() { return m_ptResolution; }
 
+
+	HPEN GetPen(PEN_TYPE _type) { return m_arrPen[_type]; }
+	bool DebugRender() { return m_bDebugRender; }
+
+private:
+	void CreateDefaultGDI();
+
+public:
 	void init(HWND _hWnd, POINT _ptResolution);
 	void tick();
 	//정적멤버함수

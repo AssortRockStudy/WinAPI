@@ -32,6 +32,9 @@
 #define GENERATED_OBJECT(type) typedef type Super;\
 							   virtual void Abstract() override {}
 
+#define DEBUG_RENDER CEngine::GetInst()->DebugRender()
+#define SELECT_PEN(DC, TYPE) FSelectPen tempPenSelect(DC, TYPE)
+#define SELECT_BRUSH(DC, hBrush) FSelectBrush tempBrushSelect(DC, hBrush)
 
 // Key Value
 enum KEY
@@ -121,7 +124,8 @@ enum LAYER
 	PLAYER_PJ,
 	MONSTER_PJ,
 	WORLD_STATIC,
-	END,
+
+	END = 32,
 };
 
 
@@ -135,4 +139,15 @@ enum TASK_TYPE
 
 
 	LEVEL_CHANGE,
+};
+
+
+
+enum PEN_TYPE
+{
+	GREEN_PEN,
+	BLUE_PEN,
+	RED_PEN,
+
+	PEN_END,
 };

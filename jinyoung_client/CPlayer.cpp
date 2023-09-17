@@ -31,6 +31,8 @@ CPlayer::CPlayer()
 
 	// 필요한 컴포넌트 추가
 	m_Collider = AddComponent<CCollider>();
+	m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
+	m_Collider->SetScale(Vec2(40.f, 80.f));
 	//AddComponent<CAnimator>();
 	//AddComponent<CMovement>();
 
@@ -131,6 +133,7 @@ void CPlayer::render(HDC _dc)
 		, m_BitmapInfo.bmHeight
 		, RGB(255, 0, 255));
 
+	Super::render(_dc);
 
 	//Rectangle(_dc
 	//	, int(vPos.x - vScale.x / 2)

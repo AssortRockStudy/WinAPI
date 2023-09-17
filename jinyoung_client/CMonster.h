@@ -12,6 +12,7 @@ private:
 
 public:
     void SetMonsterInfo(const FMonInfo& _Info) { m_Info = _Info; }
+    virtual void render(HDC _dc) override;
 
 public:
     virtual void tick(float _DT) override;
