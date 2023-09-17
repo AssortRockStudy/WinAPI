@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "CObj.h"
 
 class CPlayer : public CObj {
@@ -8,8 +8,8 @@ class CPlayer : public CObj {
     float m_Speed;
 
     HBITMAP m_Image;
-    HDC m_ImageDC;
-    BITMAP m_BitmapInfo;
+    HDC     m_ImageDC;
+    BITMAP  m_BitmapInfo;
 
     class CCollider* m_Collider;
 

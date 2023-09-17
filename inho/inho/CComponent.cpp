@@ -1,11 +1,7 @@
-#include "pch.h"
+﻿#include "pch.h"
+
 #include "CComponent.h"
 
-CComponent::CComponent(CObj* _Owner)
-	: m_pOwner(_Owner)
-{
-}
+CComponent::CComponent(CObj* _Owner) : m_pOwner(_Owner) {}
 
-CComponent::~CComponent()
-{
-}
+CComponent::~CComponent() {}

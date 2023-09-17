@@ -1,17 +1,15 @@
-#pragma once
-class CLevelMgr
-{
-	SINGLETON(CLevelMgr);
+﻿#pragma once
+class CLevelMgr {
+    SINGLETON(CLevelMgr);
 
-private:
-	class CLevel* m_pCurLevel;
+  private:
+    class CLevel* m_pCurLevel;
 
-public:
-	CLevel* GetCurLevel() { return m_pCurLevel; }
+  public:
+    CLevel* GetCurLevel() { return m_pCurLevel; }
 
-public:
-	void init();
-	void tick();
-	void render(HDC _dc);
+  public:
+    void init();
+    void tick();
+    void render(HDC _dc);
 };
-

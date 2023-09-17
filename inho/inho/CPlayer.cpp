@@ -1,34 +1,32 @@
-#include "pch.h"
-
+Ôªø#include "pch.h"
 
 #include "CPlayer.h"
 
-#include "CPaletteMgr.h"
-#include "CTimeMgr.h"
-#include "CKeyMgr.h"
-#include "CLevelMgr.h"
-#include "CLevel.h"
-#include "CPathMgr.h"
 #include "CEngine.h"
+#include "CKeyMgr.h"
+#include "CLevel.h"
+#include "CLevelMgr.h"
+#include "CPaletteMgr.h"
+#include "CPathMgr.h"
+#include "CTimeMgr.h"
 
-#include "CProjectile.h"
 #include "CGuidedProjectile.h"
+#include "CProjectile.h"
 
 #include "CCollider.h"
-
 
 CPlayer::CPlayer() : m_Speed(500.f), m_Image(nullptr) {
     wstring strPath = CPathMgr::GetContentPath();
     strPath += L"texture\\fighter.bmp";
 
-    // «√∑π¿ÃæÓ∞° ªÁøÎ«“ ¿ÃπÃ¡ˆ ∫Ò∆Æ∏  ∑Œµ˘
-    m_Image = (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+    // ÌîåÎ†àÏù¥Ïñ¥Í∞Ä ÏÇ¨Ïö©Ìï† Ïù¥ÎØ∏ÏßÄ ÎπÑÌä∏Îßµ Î°úÎî©
+    m_Image = (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0,
+                                 LR_LOADFROMFILE | LR_CREATEDIBSECTION);
     m_ImageDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
     DeleteObject(SelectObject(m_ImageDC, m_Image));
-    GetObject(m_Image, sizeof(BITMAP), & m_BitmapInfo);
-    
+    GetObject(m_Image, sizeof(BITMAP), &m_BitmapInfo);
 
-    // ƒƒ∆˜≥Õ∆Æ √ﬂ∞°
+    // Ïª¥Ìè¨ÎÑåÌä∏ Ï∂îÍ∞Ä
     m_Collider = AddComponent<CCollider>();
     m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
     m_Collider->SetScale(Vec2(40.f, 80.f));
@@ -68,14 +66,15 @@ void CPlayer::tick(float _DT) {
 
             Vec2 ProjectilePos = GetPos();
             ProjectilePos.y -= GetScale().y / 2.f;
-            
+
             pProjectile->SetSpeed(1000.f);
             pProjectile->SetAngle((PI / 4.f) * (float)(i + 1));
             pProjectile->SetPos(ProjectilePos);
             pProjectile->SetScale(Vec2(25.f, 25.f));
             pProjectile->SetDir(Vec2(0.f, -1.f));
 
-            CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)pProjectile });
+            CTaskMgr::GetInst()->AddTask(
+                FTask{CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)pProjectile});
         }
     }
 
@@ -86,16 +85,11 @@ void CPlayer::render(HDC _dc) {
     Vec2 vPos = GetRenderPos();
     Vec2 vScale = GetScale();
 
-
     TransparentBlt(_dc, vPos.x - (int)m_BitmapInfo.bmWidth / 2,
-        vPos.y - (int)m_BitmapInfo.bmHeight / 2,
-        m_BitmapInfo.bmWidth,
-        m_BitmapInfo.bmHeight,
-        m_ImageDC,
-        0, 0,
-        m_BitmapInfo.bmWidth,
-        m_BitmapInfo.bmHeight,
-        RGB(255, 0, 255));
+                   vPos.y - (int)m_BitmapInfo.bmHeight / 2,
+                   m_BitmapInfo.bmWidth, m_BitmapInfo.bmHeight, m_ImageDC, 0, 0,
+                   m_BitmapInfo.bmWidth, m_BitmapInfo.bmHeight,
+                   RGB(255, 0, 255));
 
     Super::render(_dc);
 }

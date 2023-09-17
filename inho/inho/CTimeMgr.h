@@ -9,7 +9,7 @@ class CTimeMgr {
     LARGE_INTEGER m_CurCount;
     float         m_DeltaTime;
 
-    UINT m_iCall;
+    UINT  m_iCall;
     float m_fTime;
 
   public:

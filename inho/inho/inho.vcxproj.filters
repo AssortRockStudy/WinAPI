@@ -17,22 +17,37 @@
     <Filter Include="Game\03. Manager">
       <UniqueIdentifier>{71bc80a9-43a7-4a83-9276-6602b92d0148}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\04. Object">
-      <UniqueIdentifier>{56b7f4e1-4c4f-4faa-93c3-48437b40bd0f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\05. Level">
-      <UniqueIdentifier>{5f1d2422-c492-4359-b981-a66544bee164}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\04. Object\Player">
-      <UniqueIdentifier>{01fddde8-a8e0-49ec-8f90-d990cf66ad2b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\04. Object\Monster">
-      <UniqueIdentifier>{52d08624-4c36-4136-af1a-ca4431ea8700}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\02. Engine">
       <UniqueIdentifier>{39a91cb2-97fc-4415-9d00-a56c9666d396}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\04. Object\CProjectile">
+    <Filter Include="Game\06. Component">
+      <UniqueIdentifier>{dd98df2a-d112-4a27-bd67-4f43a80d05da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\AI">
+      <UniqueIdentifier>{8fe77e28-0a19-44e0-8100-48558c2d7daa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\Animator">
+      <UniqueIdentifier>{2c15ce47-688d-4eae-b6bf-2e1ef127d02f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\Collider">
+      <UniqueIdentifier>{15f39f95-334e-47db-9890-1d7eadb2f4c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\Movement">
+      <UniqueIdentifier>{709d139e-7690-495e-baea-ebd893116752}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Level">
+      <UniqueIdentifier>{5f1d2422-c492-4359-b981-a66544bee164}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object">
+      <UniqueIdentifier>{56b7f4e1-4c4f-4faa-93c3-48437b40bd0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Player">
+      <UniqueIdentifier>{01fddde8-a8e0-49ec-8f90-d990cf66ad2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Monster">
+      <UniqueIdentifier>{52d08624-4c36-4136-af1a-ca4431ea8700}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\CProjectile">
       <UniqueIdentifier>{7ca5b44a-7707-4706-ba7f-323fcdfbd5c0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -59,22 +74,22 @@
       <Filter>Game\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="CLevel.h">
-      <Filter>Game\05. Level</Filter>
+      <Filter>Game\04. Level</Filter>
     </ClInclude>
     <ClInclude Include="CObj.h">
-      <Filter>Game\04. Object</Filter>
+      <Filter>Game\05. Object</Filter>
     </ClInclude>
     <ClInclude Include="CTimeMgr.h">
       <Filter>Game\03. Manager</Filter>
     </ClInclude>
     <ClInclude Include="CPlayer.h">
-      <Filter>Game\04. Object\Player</Filter>
+      <Filter>Game\05. Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="CPaletteMgr.h">
       <Filter>Game\03. Manager</Filter>
     </ClInclude>
     <ClInclude Include="CMonster.h">
-      <Filter>Game\04. Object\Monster</Filter>
+      <Filter>Game\05. Object\Monster</Filter>
     </ClInclude>
     <ClInclude Include="CPathMgr.h">
       <Filter>Game\03. Manager</Filter>
@@ -86,22 +101,36 @@
       <Filter>Game\03. Manager</Filter>
     </ClInclude>
     <ClInclude Include="CProjectile.h">
-      <Filter>Game\04. Object\CProjectile</Filter>
+      <Filter>Game\05. Object\CProjectile</Filter>
     </ClInclude>
     <ClInclude Include="CEngine.h">
       <Filter>Game\02. Engine</Filter>
     </ClInclude>
     <ClInclude Include="CGuidedProjectile.h">
-      <Filter>Game\04. Object\CProjectile</Filter>
+      <Filter>Game\05. Object\CProjectile</Filter>
     </ClInclude>
-    <ClInclude Include="func.h" />
     <ClInclude Include="CEntity.h" />
-    <ClInclude Include="CLayer.h" />
-    <ClInclude Include="CTaskMgr.h" />
-    <ClInclude Include="CCamera.h" />
-    <ClInclude Include="CComponent.h" />
-    <ClInclude Include="CCollider.h" />
-    <ClInclude Include="CCollisionMgr.h" />
+    <ClInclude Include="CComponent.h">
+      <Filter>Game\06. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>Game\06. Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollisionMgr.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CCamera.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CLayer.h">
+      <Filter>Game\04. Level</Filter>
+    </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>Game\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CTaskMgr.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="inho.rc">
@@ -127,22 +156,22 @@
       <Filter>Game\02. Engine</Filter>
     </ClCompile>
     <ClCompile Include="CLevel.cpp">
-      <Filter>Game\05. Level</Filter>
+      <Filter>Game\04. Level</Filter>
     </ClCompile>
     <ClCompile Include="CObj.cpp">
-      <Filter>Game\04. Object</Filter>
+      <Filter>Game\05. Object</Filter>
     </ClCompile>
     <ClCompile Include="CTimeMgr.cpp">
       <Filter>Game\03. Manager</Filter>
     </ClCompile>
     <ClCompile Include="CPlayer.cpp">
-      <Filter>Game\04. Object\Player</Filter>
+      <Filter>Game\05. Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="CPaletteMgr.cpp">
       <Filter>Game\03. Manager</Filter>
     </ClCompile>
     <ClCompile Include="CMonster.cpp">
-      <Filter>Game\04. Object\Monster</Filter>
+      <Filter>Game\05. Object\Monster</Filter>
     </ClCompile>
     <ClCompile Include="CPathMgr.cpp">
       <Filter>Game\03. Manager</Filter>
@@ -154,18 +183,32 @@
       <Filter>Game\03. Manager</Filter>
     </ClCompile>
     <ClCompile Include="CProjectile.cpp">
-      <Filter>Game\04. Object\CProjectile</Filter>
+      <Filter>Game\05. Object\CProjectile</Filter>
     </ClCompile>
     <ClCompile Include="CGuidedProjectile.cpp">
-      <Filter>Game\04. Object\CProjectile</Filter>
+      <Filter>Game\05. Object\CProjectile</Filter>
     </ClCompile>
-    <ClCompile Include="func.cpp" />
     <ClCompile Include="CEntity.cpp" />
-    <ClCompile Include="CLayer.cpp" />
-    <ClCompile Include="CTaskMgr.cpp" />
-    <ClCompile Include="CCamera.cpp" />
-    <ClCompile Include="CComponent.cpp" />
-    <ClCompile Include="CCollider.cpp" />
-    <ClCompile Include="CCollisionMgr.cpp" />
+    <ClCompile Include="CComponent.cpp">
+      <Filter>Game\06. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>Game\06. Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="CCamera.cpp">
+      <Filter>Game\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollisionMgr.cpp">
+      <Filter>Game\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CLayer.cpp">
+      <Filter>Game\04. Level</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>Game\01. Header</Filter>
+    </ClCompile>
+    <ClCompile Include="CTaskMgr.cpp">
+      <Filter>Game\03. Manager</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,125 +1,112 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 
 #include "CGuidedProjectile.h"
-#include "CLevelMgr.h"
 #include "CLevel.h"
+#include "CLevelMgr.h"
 #include "CMonster.h"
 #include "CTimeMgr.h"
 
-
-CGuidedProjectile::CGuidedProjectile() :
-	target(nullptr), 
-	m_fMass(1.f), 
-	m_fRotateSpeed(PI) 
-{}
+CGuidedProjectile::CGuidedProjectile()
+    : target(nullptr), m_fMass(1.f), m_fRotateSpeed(PI) {}
 
 CGuidedProjectile::~CGuidedProjectile() {}
 
-void CGuidedProjectile::tick(float _dt)
-{
-	Super::tick(_dt);
-	if (nullptr == target) {
-		FindTarget();
-	}
+void CGuidedProjectile::tick(float _dt) {
+    Super::tick(_dt);
+    if (nullptr == target) {
+        FindTarget();
+    }
 
-	else {
-		//Update_1();
-		 //Update_2();
-		 Update_3();		
-	}
+    else {
+        // Update_1();
+        // Update_2();
+        Update_3();
+    }
 }
 
-
 void CGuidedProjectile::FindTarget() {
-	
-	CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
-	const vector<CObj*>& vecMon = pCurLevel->GetObjects(LAYER::MONSTER);
 
-	if (vecMon.empty()) {
-		return;
-	}
-	else if (vecMon.size() == 1) {
-		target = dynamic_cast<CMonster*>(vecMon.front());
+    CLevel*              pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
+    const vector<CObj*>& vecMon = pCurLevel->GetObjects(LAYER::MONSTER);
 
-		assert(target);
-	}
-	else {
-		float fMax = 2000.f;
-		
-		for (size_t i = 0; i < vecMon.size(); ++i) {
-			float fDistance = GetPos().Distance(vecMon[i]->GetPos());
-			if (fMax > fDistance) {
-				fMax = fDistance;
+    if (vecMon.empty()) {
+        return;
+    } else if (vecMon.size() == 1) {
+        target = dynamic_cast<CMonster*>(vecMon.front());
 
-				target = dynamic_cast<CMonster*>(vecMon[i]);
-				assert(target);
-			}
-		}
-	}
+        assert(target);
+    } else {
+        float fMax = 2000.f;
+
+        for (size_t i = 0; i < vecMon.size(); ++i) {
+            float fDistance = GetPos().Distance(vecMon[i]->GetPos());
+            if (fMax > fDistance) {
+                fMax = fDistance;
+
+                target = dynamic_cast<CMonster*>(vecMon[i]);
+                assert(target);
+            }
+        }
+    }
 }
 
 void CGuidedProjectile::Update_1() {
-	Vec2 vPos = GetPos();
-	Vec2 vDir = target->GetPos() - vPos;
-	vDir.Normalize();
+    Vec2 vPos = GetPos();
+    Vec2 vDir = target->GetPos() - vPos;
+    vDir.Normalize();
 
-	vPos.x += vDir.x * GetSpeed() * DT;
-	vPos.y += vDir.y * GetSpeed() * DT;
+    vPos.x += vDir.x * GetSpeed() * DT;
+    vPos.y += vDir.y * GetSpeed() * DT;
 
-	SetPos(vPos);
+    SetPos(vPos);
 }
 
 void CGuidedProjectile::Update_2() {
-	float Force = 1000.f;
-	Vec2 vForce = target->GetPos() - GetPos();
-	vForce.Normalize() *= Force;
+    float Force = 1000.f;
+    Vec2  vForce = target->GetPos() - GetPos();
+    vForce.Normalize() *= Force;
 
-	m_vAccel = vForce / m_fMass;
+    m_vAccel = vForce / m_fMass;
 
-	m_vVelocity += m_vAccel * DT;
+    m_vVelocity += m_vAccel * DT;
 
-	Vec2 vPos = GetPos();
-	vPos += m_vVelocity * DT;
+    Vec2 vPos = GetPos();
+    vPos += m_vVelocity * DT;
 
-	SetPos(vPos);
+    SetPos(vPos);
 }
 
 void CGuidedProjectile::Update_3() {
-	
-	m_vDir.Normalize();
 
-	// ¸ñÀûÁö¸¦ ÇâÇÏ´Â ¹æÇâº¤ÅÍ
-	Vec2 vDest = target->GetPos() - GetPos();
-	vDest.Normalize();
+    m_vDir.Normalize();
 
-	// ÇöÀç ÁøÇà ¹æÇâ°ú ¸ñÀûÁö¸¦ ÇâÇÏ´Â ¹æÇâÀ» ³»ÀûÇØ¼­ µÑ »çÀÌÀÇ °¢µµ¸¦ ±¸ÇÑ´Ù.
-	// m_vDir °ú vDest ¸¦ ³»Àû, vA ¡Ü vB == |vA| * |vB| * cos(@)
-	float fDot = m_vDir.x * vDest.x + m_vDir.y * vDest.y;
-	float fAngle = acosf(fDot);
-	float pi = PI;
-	float diff =PI / 90.f;
-	// ÁøÇà ¹æÇâ°ú ¸ñÀûÁö¸¦ ÇâÇÏ´Â ¹æÇâÀÌ °¢µµ 1µµ ÀÌ³»¿¡ µé¾î¿À¸é ´õÀÌ»ó ÁøÇà¹æÇâÀ» È¸ÀüÇÏÁö ¾Ê´Â´Ù.
-	if (fAngle > (PI / 90.f))
-	{
-		// Å¸°ÙÀ» ÇâÇØ¼­ ¹æÇâÀ» È¸ÀüÇÑ´Ù.
-		if (GetRotateClock(m_vDir, vDest))
-		{
-			m_vDir = Rotate(m_vDir, m_fRotateSpeed * DT);
-		}
-		else
-		{
-			m_vDir = Rotate(m_vDir, -m_fRotateSpeed * DT);
-		}
-	}
-	else {
+    // ëª©ì ì§€ë¥¼ í–¥í•˜ëŠ” ë°©í–¥ë²¡í„°
+    Vec2 vDest = target->GetPos() - GetPos();
+    vDest.Normalize();
 
-	}
+    // í˜„ì¬ ì§„í–‰ ë°©í–¥ê³¼ ëª©ì ì§€ë¥¼ í–¥í•˜ëŠ” ë°©í–¥ì„ ë‚´ì í•´ì„œ ë‘˜ ì‚¬ì´ì˜ ê°ë„ë¥¼ êµ¬í•œë‹¤.
+    // m_vDir ê³¼ vDest ë¥¼ ë‚´ì , vA â— vB == |vA| * |vB| * cos(@)
+    float fDot = m_vDir.x * vDest.x + m_vDir.y * vDest.y;
+    float fAngle = acosf(fDot);
+    float pi = PI;
+    float diff = PI / 90.f;
+    // ì§„í–‰ ë°©í–¥ê³¼ ëª©ì ì§€ë¥¼ í–¥í•˜ëŠ” ë°©í–¥ì´ ê°ë„ 1ë„ ì´ë‚´ì— ë“¤ì–´ì˜¤ë©´ ë”ì´ìƒ
+    // ì§„í–‰ë°©í–¥ì„ íšŒì „í•˜ì§€ ì•ŠëŠ”ë‹¤.
+    if (fAngle > (PI / 90.f)) {
+        // íƒ€ê²Ÿì„ í–¥í•´ì„œ ë°©í–¥ì„ íšŒì „í•œë‹¤.
+        if (GetRotateClock(m_vDir, vDest)) {
+            m_vDir = Rotate(m_vDir, m_fRotateSpeed * DT);
+        } else {
+            m_vDir = Rotate(m_vDir, -m_fRotateSpeed * DT);
+        }
+    } else {
+    }
 
-	// ÇöÀç ¹æÇâÀ» ÇâÇØ¼­ ÀÌµ¿ÇÑ´Ù.
-	float fSpeed = GetSpeed();
-	m_vVelocity = m_vDir * fSpeed;
+    // í˜„ì¬ ë°©í–¥ì„ í–¥í•´ì„œ ì´ë™í•œë‹¤.
+    float fSpeed = GetSpeed();
+    m_vVelocity = m_vDir * fSpeed;
 
-	Vec2 vPos = GetPos();
-	vPos += m_vVelocity * DT;
-	SetPos(vPos);
+    Vec2 vPos = GetPos();
+    vPos += m_vVelocity * DT;
+    SetPos(vPos);
 }

@@ -1,13 +1,13 @@
-#pragma once
+﻿#pragma once
 
-#include "CTaskMgr.h"
-#include "CEntity.h"
 #include "CCamera.h"
+#include "CEntity.h"
+#include "CTaskMgr.h"
 
-class CObj: public CEntity {
+class CObj : public CEntity {
   private:
-    Vec2 m_Pos;
-    Vec2 m_Scale;
+    Vec2                      m_Pos;
+    Vec2                      m_Scale;
     vector<class CComponent*> m_vecComponent;
 
   public:
@@ -18,9 +18,8 @@ class CObj: public CEntity {
     void SetPos(Vec2 _Pos) { m_Pos = _Pos; }
     void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
 
-protected:
-    template <typename T>
-    T* AddComponent() {
+  protected:
+    template <typename T> T* AddComponent() {
         T* pNewCom = new T(this);
         m_vecComponent.push_back(pNewCom);
         return pNewCom;
@@ -31,7 +30,7 @@ protected:
     virtual void finaltick(float _DT) final;
     virtual void render(HDC _dc);
 
-private:
+  private:
     virtual void Abstract() = 0;
 
   public:

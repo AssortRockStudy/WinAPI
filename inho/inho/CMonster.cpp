@@ -1,14 +1,11 @@
-#include "pch.h"
-
+﻿#include "pch.h"
 
 #include "CMonster.h"
 
 #include "CPaletteMgr.h"
 #include "CTimeMgr.h"
 
-CMonster::CMonster() {
-    
-}
+CMonster::CMonster() {}
 
 CMonster::~CMonster() {}
 
@@ -34,7 +31,7 @@ void CMonster::tick(float _DT) {
     }*/
 
     static float ftime = 0;
-    static bool flag = false;
+    static bool  flag = false;
     ftime += CTimeMgr::GetInst()->GetDeltaTime();
     /*if (ftime > 1.f) {
         if (!flag) {

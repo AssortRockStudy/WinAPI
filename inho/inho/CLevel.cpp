@@ -1,12 +1,11 @@
-#include "pch.h"
+﻿#include "pch.h"
 
 #include "CLevel.h"
 
-
+#include "CLayer.h"
+#include "CMonster.h"
 #include "CObj.h"
 #include "CTimeMgr.h"
-#include "CMonster.h"
-#include "CLayer.h"
 
 CLevel::CLevel() {
     for (UINT i = 0; i < LAYER::END; ++i) {
@@ -17,7 +16,7 @@ CLevel::CLevel() {
 CLevel::~CLevel() {
     for (UINT i = 0; i < LAYER::END; ++i) {
         delete m_Layer[i];
-    }    
+    }
 }
 
 void CLevel::tick() {
