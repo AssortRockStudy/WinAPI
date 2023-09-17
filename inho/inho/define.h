@@ -27,6 +27,8 @@
 #define GENERATED_OBJECT(type) typedef type Super;\
 																			virtual void Abstract() override {}
 
+#define DEBUG_RENDER CEngine::GetInst()->DebugRender()
+
 enum KEY
 {
 	_0,
@@ -116,7 +118,7 @@ enum LAYER
 	MONSTER_PJ,
 	WORLD_STATIC,
 
-	END,
+	END = 32,
 };
 
 enum TASK_TYPE

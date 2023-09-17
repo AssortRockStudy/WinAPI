@@ -28,8 +28,7 @@ void CObj::finaltick(float _DT)
 }
 
 void CObj::render(HDC _dc) {
-    Vec2 vRenderPos = GetRenderPos();
-
-    Rectangle(_dc, int(vRenderPos.x - m_Scale.x / 2), int(vRenderPos.y - m_Scale.y / 2),
-              int(vRenderPos.x + m_Scale.x / 2), int(vRenderPos.y + m_Scale.y / 2));
+    for (size_t i = 0; i < m_vecComponent.size(); ++i) {
+        m_vecComponent[i]->render(_dc);
+    }
 }

@@ -101,6 +101,7 @@
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CComponent.h" />
     <ClInclude Include="CCollider.h" />
+    <ClInclude Include="CCollisionMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="inho.rc">
@@ -165,5 +166,6 @@
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CComponent.cpp" />
     <ClCompile Include="CCollider.cpp" />
+    <ClCompile Include="CCollisionMgr.cpp" />
   </ItemGroup>
 </Project>

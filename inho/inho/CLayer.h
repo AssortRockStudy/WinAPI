@@ -9,6 +9,7 @@ class CLayer :
 
 private:
     vector<CObj*> m_vecObjects;
+    vector<class CCollider*> m_vecCollider;
 
 public:
     void tick(float _DT);

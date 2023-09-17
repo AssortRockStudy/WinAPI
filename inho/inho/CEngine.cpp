@@ -15,13 +15,16 @@
 #include "CLevelMgr.h"
 #include "CTaskMgr.h"
 #include "CCamera.h"
+#include "CCollisionMgr.h"
+
 
 CEngine::CEngine()
     : m_hWnd(nullptr),
     m_ptResolution{},
     m_Level(nullptr),
     m_dc(nullptr),
-    m_SubBitMap(nullptr)
+    m_SubBitMap(nullptr),
+    m_bDebugRender(true)
  {}
 
 CEngine::~CEngine() {
@@ -68,7 +71,12 @@ void CEngine::tick() {
     CKeyMgr::GetInst()->tick();
     CCamera::GetInst()->tick();
 
+    if (KEY_TAP(NUM8)) {
+        m_bDebugRender = !m_bDebugRender;
+    }
+
     CLevelMgr::GetInst()->tick();
+    CCollisionMgr::GetInst()->tick();
     CLevelMgr::GetInst()->render(m_SubDC);
 
     CTaskMgr::GetInst()->tick();

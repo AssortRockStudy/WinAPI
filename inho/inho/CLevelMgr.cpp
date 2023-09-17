@@ -10,6 +10,8 @@
 #include "CMonster.h"
 #include "CPaletteMgr.h"
 
+#include "CCollisionMgr.h"
+
 CLevelMgr::CLevelMgr(){}
 CLevelMgr::~CLevelMgr() {
 	if (nullptr != m_pCurLevel) {
@@ -37,6 +39,8 @@ void CLevelMgr::init() {
 	Vec2 vLookAt = CEngine::GetInst()->GetResolution();
 	vLookAt /= 2.f;
 	CCamera::GetInst()->SetLookAt(vLookAt);
+
+	CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
 }
 
 void CLevelMgr::tick() {

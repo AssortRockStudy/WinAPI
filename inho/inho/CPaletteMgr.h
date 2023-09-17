@@ -3,9 +3,9 @@ class CPaletteMgr {
     SINGLETON(CPaletteMgr);
 
   public:
-    enum PenColor { PWHITE, PBLACK, PRED, PBLUE };
+    enum PenColor { PWHITE, PBLACK, PRED, PBLUE, PGREEN };
 
-    enum BrushColor { BWHITE, BBLACK, BRED, BBLUE };
+    enum BrushColor { BWHITE, BBLACK, BRED, BBLUE, BGREEN, BHOLLOW };
 
   private:
     map<PenColor, HPEN>     pens;

@@ -15,10 +15,14 @@ private:
 
     CLevel* m_Level;
 
+    bool m_bDebugRender;
+
 public:
     HWND GetMainWind() { return m_hWnd; }
     HDC GetMainDC() { return m_dc; }
     POINT GetResolution() { return m_ptResolution; }
+
+    bool DebugRender() { return m_bDebugRender; }
 
 public:
     void init(HWND _hWnd, POINT _ptResolution);

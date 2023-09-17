@@ -30,6 +30,8 @@ CPlayer::CPlayer() : m_Speed(500.f), m_Image(nullptr) {
 
     // 컴포넌트 추가
     m_Collider = AddComponent<CCollider>();
+    m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
+    m_Collider->SetScale(Vec2(40.f, 80.f));
 }
 
 CPlayer::~CPlayer() {
@@ -84,11 +86,6 @@ void CPlayer::render(HDC _dc) {
     Vec2 vPos = GetRenderPos();
     Vec2 vScale = GetScale();
 
-    CPaletteMgr* palette = CPaletteMgr::GetInst();
-
-    palette->SelectPen(CPaletteMgr::PenColor::PBLACK);
-    palette->SelectBrush(CPaletteMgr::BrushColor::BBLACK);
-    
 
     TransparentBlt(_dc, vPos.x - (int)m_BitmapInfo.bmWidth / 2,
         vPos.y - (int)m_BitmapInfo.bmHeight / 2,
@@ -99,4 +96,6 @@ void CPlayer::render(HDC _dc) {
         m_BitmapInfo.bmWidth,
         m_BitmapInfo.bmHeight,
         RGB(255, 0, 255));
+
+    Super::render(_dc);
 }
