@@ -66,7 +66,7 @@ void CPlayer::tick(float _DT) {
             pProjectile->SetScale(Vec2(25.f, 25.f));
             pProjectile->SetDir(Vec2(0.f, -1.f));
 
-            pCurLevel->AddObject(pProjectile);
+            CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)pProjectile });
         }
     }
 
@@ -82,10 +82,14 @@ void CPlayer::render(HDC _dc) {
     palette->SelectPen(CPaletteMgr::PenColor::PBLACK);
     palette->SelectBrush(CPaletteMgr::BrushColor::BBLACK);
     
-    BitBlt(_dc, vPos.x -(int) m_BitmapInfo.bmWidth / 2,
+
+    TransparentBlt(_dc, vPos.x - (int)m_BitmapInfo.bmWidth / 2,
         vPos.y - (int)m_BitmapInfo.bmHeight / 2,
         m_BitmapInfo.bmWidth,
         m_BitmapInfo.bmHeight,
         m_ImageDC,
-        0, 0, SRCCOPY);
+        0, 0,
+        m_BitmapInfo.bmWidth,
+        m_BitmapInfo.bmHeight,
+        RGB(255, 0, 255));
 }

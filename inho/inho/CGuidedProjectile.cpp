@@ -31,15 +31,17 @@ void CGuidedProjectile::tick(float _dt)
 
 
 void CGuidedProjectile::FindTarget() {
-	vector<CMonster*> vecMon;
+	
 	CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
-	pCurLevel->GetObjects<CMonster>(vecMon);
+	const vector<CObj*>& vecMon = pCurLevel->GetObjects(LAYER::MONSTER);
 
 	if (vecMon.empty()) {
 		return;
 	}
 	else if (vecMon.size() == 1) {
-		target = vecMon.front();
+		target = dynamic_cast<CMonster*>(vecMon.front());
+
+		assert(target);
 	}
 	else {
 		float fMax = 2000.f;
@@ -49,7 +51,8 @@ void CGuidedProjectile::FindTarget() {
 			if (fMax > fDistance) {
 				fMax = fDistance;
 
-				target = vecMon[i];
+				target = dynamic_cast<CMonster*>(vecMon[i]);
+				assert(target);
 			}
 		}
 	}
@@ -93,7 +96,8 @@ void CGuidedProjectile::Update_3() {
 	// m_vDir 과 vDest 를 내적, vA ● vB == |vA| * |vB| * cos(@)
 	float fDot = m_vDir.x * vDest.x + m_vDir.y * vDest.y;
 	float fAngle = acosf(fDot);
-
+	float pi = PI;
+	float diff =PI / 90.f;
 	// 진행 방향과 목적지를 향하는 방향이 각도 1도 이내에 들어오면 더이상 진행방향을 회전하지 않는다.
 	if (fAngle > (PI / 90.f))
 	{

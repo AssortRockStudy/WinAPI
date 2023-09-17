@@ -138,7 +138,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CEngine.h" />
+    <ClInclude Include="CEntity.h" />
     <ClInclude Include="CKeyMgr.h" />
+    <ClInclude Include="CLayer.h" />
     <ClInclude Include="CLevel.h" />
     <ClInclude Include="CLevelMgr.h" />
     <ClInclude Include="CMonster.h" />
@@ -148,6 +150,7 @@
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CGuidedProjectile.h" />
     <ClInclude Include="CProjectile.h" />
+    <ClInclude Include="CTaskMgr.h" />
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="func.h" />
@@ -160,7 +163,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp" />
+    <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
+    <ClCompile Include="CLayer.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CLevelMgr.cpp" />
     <ClCompile Include="CMonster.cpp" />
@@ -170,6 +175,7 @@
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CGuidedProjectile.cpp" />
     <ClCompile Include="CProjectile.cpp" />
+    <ClCompile Include="CTaskMgr.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="inho.cpp" />

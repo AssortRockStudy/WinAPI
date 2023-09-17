@@ -102,3 +102,28 @@ enum KEY_STATE
 	PRESSED,
 	RELEASED,
 };
+
+enum LAYER
+{
+	DEFAULT,
+	TILE,
+	PLAYER,
+	MONSTER,
+	PLAYER_PJ,
+	MONSTER_PJ,
+	WORLD_STATIC,
+
+	END,
+};
+
+enum TASK_TYPE
+{
+	// Param1 : Layer Type, Param2 : Object Adress
+	CREATE_OBJECT,
+
+	// Param1 : Object Adress
+	DELETE_OBJECT,
+
+
+	LEVEL_CHANGE,
+};

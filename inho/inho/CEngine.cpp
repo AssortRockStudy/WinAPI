@@ -13,6 +13,7 @@
 #include "CKeyMgr.h"
 #include "CPathMgr.h"
 #include "CLevelMgr.h"
+#include "CTaskMgr.h"
 
 CEngine::CEngine()
     : m_hWnd(nullptr),
@@ -67,4 +68,6 @@ void CEngine::tick() {
 
     CLevelMgr::GetInst()->tick();
     CLevelMgr::GetInst()->render(m_SubDC);
+
+    CTaskMgr::GetInst()->tick();
 }

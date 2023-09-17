@@ -1,6 +1,9 @@
 #pragma once
 
-class CObj {
+#include "CTaskMgr.h"
+#include "CEntity.h"
+
+class CObj: public CEntity {
   private:
     Vec2 m_Pos;
     Vec2 m_Scale;

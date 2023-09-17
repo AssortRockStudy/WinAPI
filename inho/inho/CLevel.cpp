@@ -6,27 +6,32 @@
 #include "CObj.h"
 #include "CTimeMgr.h"
 #include "CMonster.h"
+#include "CLayer.h"
 
-CLevel::CLevel() {}
+CLevel::CLevel() {
+    for (UINT i = 0; i < LAYER::END; ++i) {
+        m_Layer[i] = new CLayer;
+    }
+}
 
 CLevel::~CLevel() {
-    for (size_t i = 0; i < m_vecObjects.size(); ++i) {
-        delete m_vecObjects[i];
-    }
-    
+    for (UINT i = 0; i < LAYER::END; ++i) {
+        delete m_Layer[i];
+    }    
 }
 
 void CLevel::tick() {
-
-    for (size_t i = 0; i < m_vecObjects.size(); ++i) {
-        m_vecObjects[i]->tick(DT);
+    for (UINT i = 0; i < LAYER::END; ++i) {
+        m_Layer[i]->tick(DT);
     }
-    
 }
 
 void CLevel::render(HDC _dc) {
-    for (size_t i = 0; i < m_vecObjects.size(); ++i) {
-        m_vecObjects[i]->render(_dc);
+    for (UINT i = 0; i < LAYER::END; ++i) {
+        m_Layer[i]->render(_dc);
     }
-    
+}
+
+void CLevel::AddObject(LAYER _LayerType, CObj* _Object) {
+    m_Layer[_LayerType]->AddObject(_Object);
 }

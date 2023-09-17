@@ -95,6 +95,9 @@
       <Filter>Game\04. Object\CProjectile</Filter>
     </ClInclude>
     <ClInclude Include="func.h" />
+    <ClInclude Include="CEntity.h" />
+    <ClInclude Include="CLayer.h" />
+    <ClInclude Include="CTaskMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="inho.rc">
@@ -153,5 +156,8 @@
       <Filter>Game\04. Object\CProjectile</Filter>
     </ClCompile>
     <ClCompile Include="func.cpp" />
+    <ClCompile Include="CEntity.cpp" />
+    <ClCompile Include="CLayer.cpp" />
+    <ClCompile Include="CTaskMgr.cpp" />
   </ItemGroup>
 </Project>

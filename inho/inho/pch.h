@@ -10,11 +10,14 @@
 #include <stdlib.h>
 #include <tchar.h>
 #include <crtdbg.h>
+#include <assert.h>
 
 #include <list>
 #include <map>
 #include <string>
 #include <vector>
+
+#pragma comment(lib, "Msimg32.lib")
 
 using std::list;
 using std::make_pair;
