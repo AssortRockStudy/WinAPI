@@ -14,6 +14,7 @@
 #include "CPathMgr.h"
 #include "CLevelMgr.h"
 #include "CTaskMgr.h"
+#include "CCamera.h"
 
 CEngine::CEngine()
     : m_hWnd(nullptr),
@@ -65,6 +66,7 @@ void CEngine::tick() {
     // TimeMgr
     CTimeMgr::GetInst()->tick();
     CKeyMgr::GetInst()->tick();
+    CCamera::GetInst()->tick();
 
     CLevelMgr::GetInst()->tick();
     CLevelMgr::GetInst()->render(m_SubDC);

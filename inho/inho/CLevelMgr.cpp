@@ -3,8 +3,9 @@
 #include "CLevelMgr.h"
 
 #include "CEngine.h"
-#include "CLevel.h"
+#include "CCamera.h"
 
+#include "CLevel.h"
 #include "CPlayer.h"
 #include "CMonster.h"
 #include "CPaletteMgr.h"
@@ -32,7 +33,10 @@ void CLevelMgr::init() {
 	pMonster->SetScale(Vec2(100.f, 100.f));
 	m_pCurLevel->AddObject(MONSTER, pMonster);
 
-	
+	// 카메라 설정
+	Vec2 vLookAt = CEngine::GetInst()->GetResolution();
+	vLookAt /= 2.f;
+	CCamera::GetInst()->SetLookAt(vLookAt);
 }
 
 void CLevelMgr::tick() {

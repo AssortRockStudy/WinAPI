@@ -2,6 +2,8 @@
 #include "CObj.h"
 
 class CMonster : public CObj {
+
+    GENERATED_OBJECT(CObj);
   private:
       FMonInfo m_Info;
 

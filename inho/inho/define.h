@@ -24,6 +24,9 @@
 #define PI 3.14159265348979f
 #define GAME_FOLDER MyGame
 
+#define GENERATED_OBJECT(type) typedef type Super;\
+																			virtual void Abstract() override {}
+
 enum KEY
 {
 	_0,

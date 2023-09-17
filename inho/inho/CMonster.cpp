@@ -13,6 +13,8 @@ CMonster::CMonster() {
 CMonster::~CMonster() {}
 
 void CMonster::tick(float _DT) {
+    Super::tick(_DT);
+
     Vec2 vPos = GetPos();
 
     /*if (GetAsyncKeyState('A') & 0x8001) {
@@ -54,7 +56,7 @@ void CMonster::tick(float _DT) {
 }
 
 void CMonster::render(HDC _dc) {
-    Vec2 vPos = GetPos();
+    Vec2 vPos = GetRenderPos();
     Vec2 vScale = GetScale();
 
     CPaletteMgr* palette = CPaletteMgr::GetInst();

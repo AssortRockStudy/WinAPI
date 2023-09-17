@@ -98,6 +98,9 @@
     <ClInclude Include="CEntity.h" />
     <ClInclude Include="CLayer.h" />
     <ClInclude Include="CTaskMgr.h" />
+    <ClInclude Include="CCamera.h" />
+    <ClInclude Include="CComponent.h" />
+    <ClInclude Include="CCollider.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="inho.rc">
@@ -159,5 +162,8 @@
     <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CLayer.cpp" />
     <ClCompile Include="CTaskMgr.cpp" />
+    <ClCompile Include="CCamera.cpp" />
+    <ClCompile Include="CComponent.cpp" />
+    <ClCompile Include="CCollider.cpp" />
   </ItemGroup>
 </Project>

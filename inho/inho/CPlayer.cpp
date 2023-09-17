@@ -14,6 +14,8 @@
 #include "CProjectile.h"
 #include "CGuidedProjectile.h"
 
+#include "CCollider.h"
+
 
 CPlayer::CPlayer() : m_Speed(500.f), m_Image(nullptr) {
     wstring strPath = CPathMgr::GetContentPath();
@@ -25,6 +27,9 @@ CPlayer::CPlayer() : m_Speed(500.f), m_Image(nullptr) {
     DeleteObject(SelectObject(m_ImageDC, m_Image));
     GetObject(m_Image, sizeof(BITMAP), & m_BitmapInfo);
     
+
+    // 컴포넌트 추가
+    m_Collider = AddComponent<CCollider>();
 }
 
 CPlayer::~CPlayer() {
@@ -33,21 +38,23 @@ CPlayer::~CPlayer() {
 }
 
 void CPlayer::tick(float _DT) {
+    Super::tick(_DT);
+
     Vec2 vPos = GetPos();
 
-    if (KEY_PRESSED(LEFT)) {
+    if (KEY_PRESSED(A)) {
         vPos.x -= m_Speed * _DT;
     }
 
-    if (KEY_PRESSED(RIGHT)) {
+    if (KEY_PRESSED(D)) {
         vPos.x += m_Speed * _DT;
     }
 
-    if (KEY_PRESSED(UP)) {
+    if (KEY_PRESSED(W)) {
         vPos.y -= m_Speed * _DT;
     }
 
-    if (KEY_PRESSED(DOWN)) {
+    if (KEY_PRESSED(S)) {
         vPos.y += m_Speed * _DT;
     }
 
@@ -74,7 +81,7 @@ void CPlayer::tick(float _DT) {
 }
 
 void CPlayer::render(HDC _dc) {
-    Vec2 vPos = GetPos();
+    Vec2 vPos = GetRenderPos();
     Vec2 vScale = GetScale();
 
     CPaletteMgr* palette = CPaletteMgr::GetInst();

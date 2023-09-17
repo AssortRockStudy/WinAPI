@@ -17,6 +17,12 @@ void CLayer::tick(float _DT) {
 	}
 }
 
+void CLayer::finaltick(float _DT) {
+	for (size_t i = 0; i < m_vecObjects.size(); ++i) {
+		m_vecObjects[i]->finaltick(_DT);
+	}
+}
+
 void CLayer::render(HDC _dc) {
 	for (size_t i = 0; i < m_vecObjects.size(); ++i) {
 		m_vecObjects[i]->render(_dc);

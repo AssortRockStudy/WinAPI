@@ -6,6 +6,7 @@ class CMonster;
 class CGuidedProjectile :
     public CProjectile
 {
+	GENERATED_OBJECT(CProjectile);
 private:
 	CMonster* target;
 

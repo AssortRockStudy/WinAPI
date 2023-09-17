@@ -7,17 +7,8 @@ CProjectile::CProjectile() :m_Speed(0.f), m_Angle(PI / 2.f) {}
 
 CProjectile::~CProjectile() {}
 
-void CProjectile::tick(float _dt) {
-	Vec2 vPos = GetPos();
-
-	vPos.x += m_Speed * cosf(m_Angle) * _dt;
-	vPos.y -= m_Speed * sinf(m_Angle) * _dt;
-
-	SetPos(vPos);
-}
-
 void CProjectile::render(HDC _dc) {
-	Vec2 vPos = GetPos();
+	Vec2 vPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 
 	CPaletteMgr::GetInst()->SelectBrush(CPaletteMgr::BrushColor::BBLACK);
