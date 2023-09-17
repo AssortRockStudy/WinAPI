@@ -6,7 +6,7 @@ class CMonster;
 class CLevel {
   private:
     vector<CObj*> m_vecObjects;
-    vector<CMonster*> m_vecMonsters;
+    
 
   public:
     void tick();
@@ -14,10 +14,23 @@ class CLevel {
 
   public:
     void AddObject(CObj* _Object) { m_vecObjects.push_back(_Object); }
-    void AddMonster(CMonster* _Monster) { m_vecMonsters.push_back(_Monster); }
-    const vector<CMonster*> GetMonsters() { return m_vecMonsters; }
+    
+    template<typename T>
+    void GetObjects(vector<T*>& _Out);
+    
 
   public:
     CLevel();
     ~CLevel();
 };
+
+template <typename T>
+inline void CLevel::GetObjects(vector<T*>& _Out) {
+    for (size_t i = 0; i < m_vecObjects.size(); ++i) {
+        T* pObj = dynamic_cast<T*>(m_vecObjects[i]);
+
+        if (nullptr != pObj) {
+            _Out.push_back(pObj);
+        }
+    }
+}

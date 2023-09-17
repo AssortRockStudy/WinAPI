@@ -91,13 +91,7 @@
     <ClInclude Include="CEngine.h">
       <Filter>Game\02. Engine</Filter>
     </ClInclude>
-    <ClInclude Include="CPosGuidedProjectile.h">
-      <Filter>Game\04. Object\CProjectile</Filter>
-    </ClInclude>
-    <ClInclude Include="CAccGuidedProjectile.h">
-      <Filter>Game\04. Object\CProjectile</Filter>
-    </ClInclude>
-    <ClInclude Include="CAngularGuidedProjectile.h">
+    <ClInclude Include="CGuidedProjectile.h">
       <Filter>Game\04. Object\CProjectile</Filter>
     </ClInclude>
   </ItemGroup>
@@ -154,13 +148,7 @@
     <ClCompile Include="CProjectile.cpp">
       <Filter>Game\04. Object\CProjectile</Filter>
     </ClCompile>
-    <ClCompile Include="CPosGuidedProjectile.cpp">
-      <Filter>Game\04. Object\CProjectile</Filter>
-    </ClCompile>
-    <ClCompile Include="CAccGuidedProjectile.cpp">
-      <Filter>Game\04. Object\CProjectile</Filter>
-    </ClCompile>
-    <ClCompile Include="CAngularGuidedProjectile.cpp">
+    <ClCompile Include="CGuidedProjectile.cpp">
       <Filter>Game\04. Object\CProjectile</Filter>
     </ClCompile>
   </ItemGroup>

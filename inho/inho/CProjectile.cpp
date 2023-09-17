@@ -3,15 +3,15 @@
 #include "CProjectile.h"
 #include "CPaletteMgr.h"
 
-CProjectile::CProjectile() :m_Speed(0.f), m_theta(PI / 2.f) {}
+CProjectile::CProjectile() :m_Speed(0.f), m_Angle(PI / 2.f) {}
 
 CProjectile::~CProjectile() {}
 
 void CProjectile::tick(float _dt) {
 	Vec2 vPos = GetPos();
 
-	vPos.x += m_Speed * cosf(m_theta) * _dt;
-	vPos.y -= m_Speed * sinf(m_theta) * _dt;
+	vPos.x += m_Speed * cosf(m_Angle) * _dt;
+	vPos.y -= m_Speed * sinf(m_Angle) * _dt;
 
 	SetPos(vPos);
 }

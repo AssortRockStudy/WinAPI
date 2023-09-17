@@ -6,7 +6,7 @@
 #include "CPaletteMgr.h"
 #include "CTimeMgr.h"
 
-CMonster::CMonster() : m_Speed(500.f) {
+CMonster::CMonster() {
     
 }
 
@@ -34,7 +34,7 @@ void CMonster::tick(float _DT) {
     static float ftime = 0;
     static bool flag = false;
     ftime += CTimeMgr::GetInst()->GetDeltaTime();
-    if (ftime > 1.f) {
+    /*if (ftime > 1.f) {
         if (!flag) {
             flag = true;
         }
@@ -48,7 +48,7 @@ void CMonster::tick(float _DT) {
     }
     else {
         vPos.x -= m_Speed * _DT;
-    }
+    }*/
 
     SetPos(vPos);
 }

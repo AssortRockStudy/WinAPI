@@ -12,9 +12,7 @@
 #include "CEngine.h"
 
 #include "CProjectile.h"
-#include "CPosGuidedProjectile.h"
-#include "CAccGuidedProjectile.h"
-#include "CAngularGuidedProjectile.h"
+#include "CGuidedProjectile.h"
 
 
 CPlayer::CPlayer() : m_Speed(500.f), m_Image(nullptr) {
@@ -57,13 +55,13 @@ void CPlayer::tick(float _DT) {
         CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
 
         for (int i = 0; i < 3; i++) {
-            CAngularGuidedProjectile* pProjectile = new CAngularGuidedProjectile;
+            CGuidedProjectile* pProjectile = new CGuidedProjectile;
 
             Vec2 ProjectilePos = GetPos();
             ProjectilePos.y -= GetScale().y / 2.f;
             
             pProjectile->SetSpeed(1000.f);
-            pProjectile->SetDir((PI / 4.f) * (float)(i + 1));
+            pProjectile->SetAngle((PI / 4.f) * (float)(i + 1));
             pProjectile->SetPos(ProjectilePos);
             pProjectile->SetScale(Vec2(25.f, 25.f));
 
@@ -83,8 +81,8 @@ void CPlayer::render(HDC _dc) {
     palette->SelectPen(CPaletteMgr::PenColor::PBLACK);
     palette->SelectBrush(CPaletteMgr::BrushColor::BBLACK);
     
-    BitBlt(_dc, vPos.x - m_BitmapInfo.bmWidth / 2.f,
-        vPos.y - m_BitmapInfo.bmHeight / 2.f,
+    BitBlt(_dc, vPos.x - m_BitmapInfo.bmWidth / 2,
+        vPos.y - m_BitmapInfo.bmHeight / 2,
         m_BitmapInfo.bmWidth,
         m_BitmapInfo.bmHeight,
         m_ImageDC,

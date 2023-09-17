@@ -23,13 +23,10 @@ void CLevelMgr::init() {
 
 	m_pCurLevel->AddObject(pPlayer);
 
-	for (int i = 0; i < 2; ++i) {
-		CMonster* pMonster = new CMonster;
-		pMonster->SetPos({ 300.f*(i+1) , 300.f});
-		pMonster->SetScale({ 25.f, 25.f });
-
-		m_pCurLevel->AddMonster(pMonster);
-	}
+	CMonster* pMonster = new CMonster;
+	pMonster->SetPos(Vec2(1200.f, 500.f));
+	pMonster->SetScale(Vec2(100.f, 100.f));
+	m_pCurLevel->AddObject(pMonster);
 
 	
 }
