@@ -54,7 +54,7 @@ void CPlayer::tick(float _DT) {
     if (KEY_TAP(SPACE)) {
         CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 1; i++) {
             CGuidedProjectile* pProjectile = new CGuidedProjectile;
 
             Vec2 ProjectilePos = GetPos();
@@ -64,6 +64,7 @@ void CPlayer::tick(float _DT) {
             pProjectile->SetAngle((PI / 4.f) * (float)(i + 1));
             pProjectile->SetPos(ProjectilePos);
             pProjectile->SetScale(Vec2(25.f, 25.f));
+            pProjectile->SetDir(Vec2(0.f, -1.f));
 
             pCurLevel->AddObject(pProjectile);
         }
@@ -81,8 +82,8 @@ void CPlayer::render(HDC _dc) {
     palette->SelectPen(CPaletteMgr::PenColor::PBLACK);
     palette->SelectBrush(CPaletteMgr::BrushColor::BBLACK);
     
-    BitBlt(_dc, vPos.x - m_BitmapInfo.bmWidth / 2,
-        vPos.y - m_BitmapInfo.bmHeight / 2,
+    BitBlt(_dc, vPos.x -(int) m_BitmapInfo.bmWidth / 2,
+        vPos.y - (int)m_BitmapInfo.bmHeight / 2,
         m_BitmapInfo.bmWidth,
         m_BitmapInfo.bmHeight,
         m_ImageDC,

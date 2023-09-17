@@ -17,7 +17,6 @@ CLevel::~CLevel() {
 }
 
 void CLevel::tick() {
-    float DT = CTimeMgr::GetInst()->GetDeltaTime();
 
     for (size_t i = 0; i < m_vecObjects.size(); ++i) {
         m_vecObjects[i]->tick(DT);

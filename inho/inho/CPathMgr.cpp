@@ -9,9 +9,10 @@ void CPathMgr::init() {
 
 	GetCurrentDirectory(255, g_szContent);
 
-	size_t Len = wcslen(g_szContent);
+	size_t Len = wcslen(g_szContent); 
 
-	for (int i = Len - 1; i >= 0; --i) {
+	for (size_t i = Len - 1; i >= 0; --i) {
+		
 		if ('\\' == g_szContent[i]) {
 			g_szContent[i + 1] = '\0';
 			break;

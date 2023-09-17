@@ -10,7 +10,11 @@
 #include "CPaletteMgr.h"
 
 CLevelMgr::CLevelMgr(){}
-CLevelMgr::~CLevelMgr() {};
+CLevelMgr::~CLevelMgr() {
+	if (nullptr != m_pCurLevel) {
+		delete m_pCurLevel;
+	}
+};
 
 void CLevelMgr::init() {
 
@@ -24,7 +28,7 @@ void CLevelMgr::init() {
 	m_pCurLevel->AddObject(pPlayer);
 
 	CMonster* pMonster = new CMonster;
-	pMonster->SetPos(Vec2(1200.f, 500.f));
+	pMonster->SetPos(Vec2(900.f, 500.f));
 	pMonster->SetScale(Vec2(100.f, 100.f));
 	m_pCurLevel->AddObject(pMonster);
 

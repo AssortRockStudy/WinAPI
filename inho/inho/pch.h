@@ -9,6 +9,7 @@
 #include <memory.h>
 #include <stdlib.h>
 #include <tchar.h>
+#include <crtdbg.h>
 
 #include <list>
 #include <map>

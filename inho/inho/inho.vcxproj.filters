@@ -94,6 +94,7 @@
     <ClInclude Include="CGuidedProjectile.h">
       <Filter>Game\04. Object\CProjectile</Filter>
     </ClInclude>
+    <ClInclude Include="func.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="inho.rc">
@@ -151,5 +152,6 @@
     <ClCompile Include="CGuidedProjectile.cpp">
       <Filter>Game\04. Object\CProjectile</Filter>
     </ClCompile>
+    <ClCompile Include="func.cpp" />
   </ItemGroup>
 </Project>
