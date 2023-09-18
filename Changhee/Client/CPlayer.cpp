@@ -30,7 +30,7 @@ CPlayer::CPlayer()
 
 	GetObject(m_hImage, sizeof(BITMAP), &m_BitmapInfo);
 
-	m_pCollider = AddComponent<CCollider>();
+	m_pCollider = AddComponent<CCollider>(L"PlayerCollider");
 	m_pCollider->SetOffsetPos(Vec2(0.f, 10.f));
 	m_pCollider->SetScale(Vec2(40.f, 80.f));
 }
@@ -43,6 +43,12 @@ CPlayer::~CPlayer()
 }
 
 
+
+void CPlayer::Overlap(CCollider* _pOwnCol, CObj* _pOtherObj, CCollider* _pOtherCol)
+{
+	wstring test = _pOwnCol->GetName();
+
+}
 
 void CPlayer::tick(float _DT)
 {

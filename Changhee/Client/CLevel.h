@@ -14,18 +14,23 @@ private:
 	CLayer* m_arrLayer[(UINT)LAYER::END];
 
 public:
-	void tick();
-	void render(HDC _dc);
+	template<typename T>
+	void GetObjects(vector<T*>& _Out);
 
+	const vector<CObj*>& GetObjects(LAYER _eLayer) { return m_arrLayer[(UINT)_eLayer]->m_vecObjects; }
+	CLayer* GetLayer(int LayerIdx)
+	{
+		assert(!(LayerIdx < 0 && (UINT)LAYER::END <= LayerIdx));
+		return m_arrLayer[LayerIdx];
+	}
 
 public:
 	void AddObject(LAYER _eLayer, CObj* _Object);
 
-	template<typename T>
-	void GetObjects(vector<T*>& _Out);
-
-
-	const vector<CObj*>& GetObjects(LAYER _eLayer) { return m_arrLayer[(UINT)_eLayer]->m_vecObjects; }
+public:
+	void begin();
+	void tick();
+	void render(HDC _dc);
 
 public:
 	CLevel();

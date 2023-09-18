@@ -155,7 +155,9 @@
     <ClInclude Include="CCollider.h">
       <Filter>Game\06. Component\Collider</Filter>
     </ClInclude>
-    <ClInclude Include="CCollisionMgr.h" />
+    <ClInclude Include="CCollisionMgr.h">
+      <Filter>Game\03. Manager\CollisionManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">

@@ -1,11 +1,14 @@
 #include "pch.h"
 #include "CProjectile.h"
 
+#include "CCollider.h"
 
 CProjectile::CProjectile()
 	: m_fSpeed(0.f)
 	, m_fTheta(0.f)
+	, m_pCollider(nullptr)
 {
+	m_pCollider = AddComponent<CCollider>(L"Collider");
 }
 
 CProjectile::~CProjectile()
@@ -13,6 +16,13 @@ CProjectile::~CProjectile()
 }
 
 
+
+void CProjectile::begin()
+{
+	Super::begin();
+
+	GetCollider()->SetScale(GetScale());
+}
 
 void CProjectile::tick(float _DT)
 {

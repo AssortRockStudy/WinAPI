@@ -12,7 +12,7 @@
 
 CEngine::CEngine()
 	: m_hWnd(nullptr)
-	, m_ptResloution{}
+	, m_ptResolution{}
 	, m_hDC(nullptr)
 	, m_hSubBitMap(nullptr)
 	, m_hSubDC(nullptr)
@@ -50,15 +50,15 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 {
 	// 멤버 변수 초기화
 	m_hWnd = _hWnd;
-	m_ptResloution = _ptResolution;
+	m_ptResolution = _ptResolution;
 	m_hDC = GetDC(m_hWnd);
 
 	// 해상도 변경
-	SetWindowPos(m_hWnd, nullptr, 50, 50, m_ptResloution.x, m_ptResloution.y, 0);
+	SetWindowPos(m_hWnd, nullptr, 50, 50, m_ptResolution.x, m_ptResolution.y, 0);
 	ShowWindow(m_hWnd, true);
 
 	// 추가 비트맵 버퍼
-	m_hSubBitMap = CreateCompatibleBitmap(m_hDC, m_ptResloution.x, m_ptResloution.y);
+	m_hSubBitMap = CreateCompatibleBitmap(m_hDC, m_ptResolution.x, m_ptResolution.y);
 	m_hSubDC = CreateCompatibleDC(m_hDC);
 	
 	// m_SubDC가 디폴트로 들고있던 비트맵을 삭제
@@ -91,6 +91,10 @@ void CEngine::tick()
 	CCollisionMgr::GetInst()->tick();
 
 
+	// ------------ clear -------------
+	Clear();
+
+
 	// ------------ render ------------
 	CLevelMgr::GetInst()->render(m_hSubDC);
 
@@ -120,8 +124,13 @@ void CEngine::CreateDefaultGDI()
 
 }
 
+void CEngine::Clear()
+{
+	Rectangle(m_hSubDC, -1, -1, m_ptResolution.x + 1, m_ptResolution.y);
+}
+
 void CEngine::CopyBackBuffer()
 {
 	// m_SubDC -> m_DC 로 복사
-	BitBlt(m_hDC, 0, 0, m_ptResloution.x, m_ptResloution.y, m_hSubDC, 0, 0, SRCCOPY);
+	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_hSubDC, 0, 0, SRCCOPY);
 }

@@ -7,7 +7,7 @@ class CEngine
 
 private:
 	HWND		m_hWnd;				// 메인 윈도우 핸들
-	POINT		m_ptResloution;		// 윈도우 해상도 정보
+	POINT		m_ptResolution;		// 윈도우 해상도 정보
 	HDC			m_hDC;				// 메인 DC
 	bool		m_bDebugRender;		// Debug render
 
@@ -20,13 +20,14 @@ private:
 
 private:
 	void CreateDefaultGDI();
+	void Clear();
 	void CopyBackBuffer();
 
 
 public:
 	HWND GetMainWind() { return m_hWnd; }
 	HDC GetMainDC() { return m_hDC; }
-	POINT GetResolution() { return m_ptResloution; }
+	POINT GetResolution() { return m_ptResolution; }
 	bool DebugRender() { return m_bDebugRender; }
 
 

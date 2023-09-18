@@ -1,5 +1,6 @@
 #pragma once
 
+class CCollider;
 
 class CCollisionMgr
 {
@@ -14,6 +15,9 @@ public:
 	void CheckCollision(LAYER _eLeft, LAYER _eRight);
 	void UnCheck(LAYER _eLeft, LAYER _eRight);
 
+private:
+	void CollisionBtwLayer(LAYER _eLeft, LAYER _eRight);
+	bool IsCollision(CCollider* _pLeft, CCollider* _pRight);
 
 };
 

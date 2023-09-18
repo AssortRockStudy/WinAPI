@@ -19,6 +19,9 @@ private:
 
 
 public:
+    virtual void Overlap(CCollider* _pOwnCol, CObj* _pOtherObj, CCollider* _pOtherCol) override;
+
+public:
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
 

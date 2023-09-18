@@ -4,6 +4,7 @@
 #include "CLevel.h"
 #include "CLevelMgr.h"
 
+#include "CCollider.h"
 
 CCollisionMgr::CCollisionMgr()
 	: m_LayerCheck{}
@@ -26,12 +27,9 @@ void CCollisionMgr::tick()
 			if (!(m_LayerCheck[iRow] & (1 << iCol)))
 				continue;
 
-			const vector<CObj*>& vecLeft = pCurLevel->GetObjects((LAYER)iRow);
-			const vector<CObj*>& vecRight = pCurLevel->GetObjects((LAYER)iCol);
-
+			CollisionBtwLayer((LAYER)iRow, (LAYER)iCol);
 		}
 	}
-
 }
 
 void CCollisionMgr::CheckCollision(LAYER _eLeft, LAYER _eRight)
@@ -69,4 +67,45 @@ void CCollisionMgr::UnCheck(LAYER _eLeft, LAYER _eRight)
 	m_LayerCheck[iRow] &= ~(1 << iCol);
 
 
+}
+
+void CCollisionMgr::CollisionBtwLayer(LAYER _eLeft, LAYER _eRight)
+{
+	CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
+
+	const vector<CCollider*>& vecLeft = pCurLevel->GetLayer((int)_eLeft)->GetColliders();
+	const vector<CCollider*>& vecRight = pCurLevel->GetLayer((int)_eRight)->GetColliders();
+
+	if (_eLeft != _eRight)
+	{
+		for (size_t i = 0; i < vecLeft.size(); ++i)
+		{
+			for (size_t j = 0; j < vecRight.size(); ++j)
+			{
+				if (IsCollision(vecLeft[i], vecRight[j]))
+				{
+					vecLeft[i]->Overlap(vecRight[j]);
+					vecRight[j]->Overlap(vecLeft[i]);
+				}
+				else
+				{
+					
+				}
+			}
+		}
+	}
+
+
+}
+
+bool CCollisionMgr::IsCollision(CCollider* _pLeft, CCollider* _pRight)
+{
+	if (_pLeft->GetScale().x / 2.f + _pRight->GetScale().x / 2.f >= fabs(_pLeft->GetPos().x - _pRight->GetPos().x)
+		&& _pLeft->GetScale().y / 2.f + _pRight->GetScale().y / 2.f >= fabs(_pLeft->GetPos().y - _pRight->GetPos().y))
+	{
+		return true;
+	}
+
+
+	return false;
 }

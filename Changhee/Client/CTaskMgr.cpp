@@ -31,6 +31,7 @@ void CTaskMgr::tick()
 			CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
 
 			pCurLevel->AddObject(eLayerType, pObject);
+			pObject->begin();
 		}
 
 			break;

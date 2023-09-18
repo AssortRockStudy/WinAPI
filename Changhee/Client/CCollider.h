@@ -9,11 +9,6 @@ private:
 
     Vec2    m_vFinalPos;        // 충돌체의 최종 위치
 
-
-public:
-    virtual void finaltick(float _DT) override;
-    virtual void render(HDC _dc) override;
-
 public:
     Vec2 GetOffsetPos() { return m_vOffsetPos; }
     Vec2 GetScale() { return m_vScale; }
@@ -21,6 +16,13 @@ public:
 
     void SetOffsetPos(Vec2 _vOffsetPos) { m_vOffsetPos = _vOffsetPos; }
     void SetScale(Vec2 _vScale) { m_vScale = _vScale; }
+
+public:
+    void Overlap(CCollider* _pOtherCol);
+
+public:
+    virtual void finaltick(float _DT) override;
+    virtual void render(HDC _dc) override;
 
 
 public:

@@ -25,8 +25,21 @@ CLevel::~CLevel()
 
 }
 
+void CLevel::begin()
+{
+	for (UINT i = 0; i < (UINT)LAYER::END; ++i)
+	{
+		m_arrLayer[i]->begin();
+	}
+}
+
 void CLevel::tick()
 {
+	for (UINT i = 0; i < (UINT)LAYER::END; ++i)
+	{
+		m_arrLayer[i]->clear();
+	}
+
 	for (UINT i = 0; i < (UINT)LAYER::END; ++i)
 	{
 		m_arrLayer[i]->tick(DT);
@@ -51,5 +64,7 @@ void CLevel::render(HDC _dc)
 void CLevel::AddObject(LAYER _eLayer, CObj* _Object)
 {
 	m_arrLayer[(UINT)_eLayer]->AddObject(_Object);
+
+	_Object->m_iLayerIdx = (int)_eLayer;
 }
 

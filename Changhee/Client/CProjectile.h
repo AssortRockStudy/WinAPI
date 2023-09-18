@@ -1,5 +1,8 @@
 #pragma once
 #include "CObj.h"
+
+class CCollider;
+
 class CProjectile :
     public CObj
 {
@@ -8,6 +11,7 @@ class CProjectile :
 private:
     float   m_fSpeed;
     float   m_fTheta;
+    CCollider* m_pCollider;
 
 public:
     void SetDir(float _fTheta) { m_fTheta = _fTheta; }
@@ -15,8 +19,10 @@ public:
 
     float GetTheta() { return m_fTheta; }
     float GetSpeed() { return m_fSpeed; }
+    CCollider* GetCollider() { return m_pCollider; }
 
 public:
+    virtual void begin() override;
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
 
