@@ -25,6 +25,7 @@ private:
 	CMonster* pcm;
 
 public:
+	void begin();
 	void AddObject(LAYER _LayerType, CObj* _Object);
 	void tick();
 	void render(HDC _dc);
@@ -61,7 +62,11 @@ public:
 
 	// 레벨이 소유하고 있는 특정 레이어의 오브젝트 목록을 반환한다.
 	const vector<CObj*>& GetObjects(LAYER _LayerType) { return m_Layer[_LayerType]->m_vecObjects; }
-
+	CLayer* GetLayer(int LayerIdx)
+	{
+		assert(!(LayerIdx < 0 && LAYER::END <= LayerIdx));
+		return m_Layer[LayerIdx];
+	}
 
 
 

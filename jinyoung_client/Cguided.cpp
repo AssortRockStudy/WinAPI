@@ -7,18 +7,27 @@
 #include "CMonster.h"
 #include "CTimeManager.h"
 
+#include "CCollider.h"
+
 CGuided::CGuided()
 	: m_Target(nullptr)
 	, m_fMass(1.f)
 	, m_fRotateSpeed(PI)
 {
-	m_vVelocity = Vec2(0, -300);
 
 }
 
 CGuided::~CGuided()
 {
 }
+
+void CGuided::begin()
+{
+	Super::begin();
+
+	GetCollider()->SetScale((GetScale()));
+}
+
 
 void CGuided::tick(float _DT)
 {
@@ -34,11 +43,11 @@ void CGuided::tick(float _DT)
 		//update1();
 
 		// 2.
-		update2();
+		//update2();
 
 
 		// 3.
-		//update3();
+		update3();
 	}
 }
 

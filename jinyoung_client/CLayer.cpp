@@ -17,6 +17,14 @@ CLayer::~CLayer()
 	}
 }
 
+void CLayer::begin()
+{
+	for (size_t i = 0; i < m_vecObjects.size(); ++i)
+	{
+		m_vecObjects[i]->begin();
+	}
+}
+
 void CLayer::tick(float _DT)
 {
 	for (size_t i = 0; i < m_vecObjects.size(); ++i)
