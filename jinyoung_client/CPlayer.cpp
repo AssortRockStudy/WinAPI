@@ -142,3 +142,8 @@ void CPlayer::render(HDC _dc)
 	//	, int(vPos.y + vScale.y / 2));
 
 }
+
+void CPlayer::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+{
+	_OwnCol->GetName();
+}

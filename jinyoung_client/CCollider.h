@@ -23,6 +23,8 @@ public:
     Vec2 GetOffsetPos() { return m_vOffsetPos; }
     Vec2 GetScale() { return m_vScale; }
 
+    void Overlap(CCollider* _OtherCol);
+
 
 public:
     CCollider(CObj* _Owner);

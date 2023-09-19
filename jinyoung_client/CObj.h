@@ -7,6 +7,9 @@
 
 
 class CComponent;
+class CCollider;
+
+
 class CObj
 	: public CEntity
 {
@@ -48,6 +51,11 @@ public:
 	// 렌더링 함수
 	// 매 프레임마다 화면에 오브젝트를 그리는 함수
 	virtual void render(HDC _dc);
+
+	// 오버랩 발생 시 호출
+	virtual void Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
+
+
 
 public:
 	CObj();

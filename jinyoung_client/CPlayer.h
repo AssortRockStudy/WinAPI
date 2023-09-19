@@ -21,6 +21,8 @@ public:
     virtual void tick(float _DT) override;
     void render(HDC _dc) override;
 
+    virtual void Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
+
 public:
     CPlayer();
     ~CPlayer();
