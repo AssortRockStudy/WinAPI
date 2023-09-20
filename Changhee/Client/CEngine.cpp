@@ -8,6 +8,7 @@
 #include "CTaskMgr.h"
 #include "CCamera.h"
 #include "CCollisionMgr.h"
+#include "CGCMgr.h"
 
 
 CEngine::CEngine()
@@ -86,7 +87,7 @@ void CEngine::tick()
 	}
 
 
-	// ------------ update ------------
+	// ------------ tick ------------
 	CLevelMgr::GetInst()->tick();
 	CCollisionMgr::GetInst()->tick();
 
@@ -102,10 +103,12 @@ void CEngine::tick()
 	// -------- Task Execute --------
 	CTaskMgr::GetInst()->tick();
 
-
 	// SubDC -> mainDC บนป็
 	CopyBackBuffer();
-	
+
+	// Garbage Collector tick
+	CGCMgr::GetInst()->tick();
+
 }
 
 void CEngine::CreateDefaultGDI()

@@ -5,11 +5,13 @@ UINT_PTR CEntity::g_NextID = 0;
 
 CEntity::CEntity()
 	: m_ID(g_NextID++)
+	, m_bDead(false)
 {
 }
 
 CEntity::CEntity(const CEntity& _Other)
 	: m_ID(g_NextID++)
+	, m_bDead(false)
 {
 }
 

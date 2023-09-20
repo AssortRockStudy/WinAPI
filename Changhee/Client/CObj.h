@@ -13,9 +13,7 @@ private:
 	Vec2				m_vPos;
 	Vec2				m_vScale;
 	int					m_iLayerIdx;
-	bool				m_bDead;
-
-
+	
 	vector<CComponent*> m_vecComponent;		// ÄÄÆ÷³ÍÆ® º¤ÅÍ
 
 public:
@@ -27,7 +25,7 @@ public:
 	void SetScale(Vec2 _vScale) { m_vScale = _vScale; }
 
 	int  GetLayerIdx() { return m_iLayerIdx; }
-	bool IsDead() { return m_bDead; }
+	
 
 protected:
 	template<typename T>
@@ -51,6 +49,8 @@ public:
 	virtual void render(HDC _dc);
 	void Destroy();
 
+private:
+	void SetDead();
 
 private:
 	virtual void Abstract() = 0;

@@ -71,6 +71,9 @@
     <Filter Include="Game\03. Manager\CollisionManager">
       <UniqueIdentifier>{a8fdf6c8-6e2c-41ca-8fff-82fdc1b152b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03. Manager\GCManager">
+      <UniqueIdentifier>{21b78632-6fd2-4499-bf8b-170fbc7aaa14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -158,6 +161,9 @@
     <ClInclude Include="CCollisionMgr.h">
       <Filter>Game\03. Manager\CollisionManager</Filter>
     </ClInclude>
+    <ClInclude Include="CGCMgr.h">
+      <Filter>Game\03. Manager\GCManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -242,6 +248,9 @@
     </ClCompile>
     <ClCompile Include="CCollisionMgr.cpp">
       <Filter>Game\03. Manager\CollisionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CGCMgr.cpp">
+      <Filter>Game\03. Manager\GCManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

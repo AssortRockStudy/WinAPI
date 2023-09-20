@@ -8,6 +8,7 @@ private:
 private:
 	const UINT_PTR	m_ID;
 	wstring			m_strName;
+	bool			m_bDead;
 
 public:
 	UINT_PTR GetID() { return m_ID; }
@@ -17,11 +18,15 @@ public:
 
 public:
 	virtual CEntity* Clone() { return nullptr; }
+	bool IsDead() { return m_bDead; }
+
 
 public:
 	CEntity();
 	CEntity(const CEntity& _Other);
 	virtual ~CEntity();
 
+
+	friend class CObj;
 };
 

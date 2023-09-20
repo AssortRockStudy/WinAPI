@@ -28,6 +28,8 @@ void CProjectile::begin()
 
 void CProjectile::tick(float _DT)
 {
+	Super::tick(_DT);
+
 	Vec2 vPos = GetPos();
 
 	vPos.x += m_fSpeed * cosf(m_fTheta) * _DT;

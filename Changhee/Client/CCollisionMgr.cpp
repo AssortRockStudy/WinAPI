@@ -96,13 +96,25 @@ void CCollisionMgr::CollisionBtwLayer(LAYER _eLeft, LAYER _eRight)
 				{
 					if (false == iter->second)
 					{
-						vecLeft[i]->BeginOverlap(vecRight[j]);
-						vecRight[j]->BeginOverlap(vecLeft[i]);
+						if (!vecLeft[i]->IsDead() && !vecRight[j]->IsDead())
+						{
+							vecLeft[i]->BeginOverlap(vecRight[j]);
+							vecRight[j]->BeginOverlap(vecLeft[i]);
+						}
+						
 					}
 					else
 					{
-						vecLeft[i]->Overlap(vecRight[j]);
-						vecRight[j]->Overlap(vecLeft[i]);
+						if (!vecLeft[i]->IsDead() && !vecRight[j]->IsDead())
+						{
+							vecLeft[i]->Overlap(vecRight[j]);
+							vecRight[j]->Overlap(vecLeft[i]);
+						}
+						else
+						{
+							vecLeft[i]->EndOverlap(vecRight[j]);
+							vecRight[j]->EndOverlap(vecLeft[i]);
+						}
 					}
 
 					iter->second = true;

@@ -3,20 +3,18 @@
 
 #include "CCollider.h"
 
+#include "CProjectile.h"
+
 CMonster::CMonster()
 	: m_Info{}
 	, m_pCollider(nullptr)
 {
 	m_pCollider = AddComponent<CCollider>(L"MonsterCollider");
+	m_Info.HP = 5;
 }
 
 CMonster::~CMonster()
 {
-}
-
-void CMonster::Overlap(CCollider* _pOwnCol, CObj* _pOtherObj, CCollider* _pOtherCol)
-{
-	wstring test = _pOwnCol->GetName();
 }
 
 void CMonster::begin()
@@ -41,4 +39,19 @@ void CMonster::render(HDC _dc)
 		, int(vRenderPos.y + vScale.y / 2));
 
 	Super::render(_dc);
+}
+
+
+void CMonster::BeginOverlap(CCollider* _pOwnCol, CObj* _pOtherObj, CCollider* _pOtherCol)
+{
+	if (dynamic_cast<CProjectile*>(_pOtherObj))
+	{
+		m_Info.HP -= 1.f;
+
+		if (m_Info.HP <= 0.f)
+		{
+			Destroy();
+		}
+	}
+
 }

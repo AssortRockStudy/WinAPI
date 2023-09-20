@@ -99,8 +99,6 @@ void CPlayer::tick(float _DT)
 
 void CPlayer::render(HDC _dc)
 {
-
-
 	Vec2 vPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 
