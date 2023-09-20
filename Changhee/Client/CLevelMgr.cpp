@@ -32,6 +32,7 @@ void CLevelMgr::init()
 
 	// 충돌 설정
 	CCollisionMgr::GetInst()->CheckCollision(LAYER::MONSTER, LAYER::PLAYER);
+	CCollisionMgr::GetInst()->CheckCollision(LAYER::PLAYER_PJ, LAYER::MONSTER);
 
 
 	// Level 생성

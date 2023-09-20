@@ -2,6 +2,8 @@
 #include "CProjectile.h"
 
 #include "CCollider.h"
+#include "CMonster.h"
+
 
 CProjectile::CProjectile()
 	: m_fSpeed(0.f)
@@ -47,5 +49,13 @@ void CProjectile::render(HDC _dc)
 		, int(vPos.y + vScale.y / 2));
 
 	Super::render(_dc);
+}
+
+void CProjectile::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+{
+	if (dynamic_cast<CMonster*>(_OtherObj))
+	{
+		Destroy();
+	}
 }
 

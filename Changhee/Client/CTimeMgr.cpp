@@ -30,6 +30,14 @@ void CTimeMgr::tick()
 
 	m_fDeltaTime = float(m_llCurCount.QuadPart - m_llPrevCount.QuadPart)/ float(m_llFrequency.QuadPart);
 
+
+	//DT º¸Á¤
+	if (m_fDeltaTime > (1.f / 60.f))
+	{
+		m_fDeltaTime = 1.f / 60.f;
+	}
+
+
 	m_fTime += m_fDeltaTime;
 
 	if (m_fTime>= 1.f)

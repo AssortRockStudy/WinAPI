@@ -1,5 +1,28 @@
 #pragma once
 
+struct COLLIDER_ID
+{
+	INT_PTR	left;
+	INT_PTR right;
+
+	bool operator < (const COLLIDER_ID& _Other) const
+	{
+		if (left < _Other.left)
+			return true;
+		else if (left > _Other.left)
+			return false;
+		else
+		{
+			if (right < _Other.right)
+				return true;
+			else
+				return false;
+		}
+	}
+};
+
+
+
 class CCollider;
 
 class CCollisionMgr
@@ -7,8 +30,8 @@ class CCollisionMgr
 	SINGLETON(CCollisionMgr);
 
 private:
-	UINT		m_LayerCheck[(UINT)LAYER::END];
-
+	UINT						m_LayerCheck[(UINT)LAYER::END];
+	map<COLLIDER_ID, bool>		m_mapID;
 
 public:
 	void tick();
@@ -20,4 +43,3 @@ private:
 	bool IsCollision(CCollider* _pLeft, CCollider* _pRight);
 
 };
-

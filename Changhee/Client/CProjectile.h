@@ -26,6 +26,9 @@ public:
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
 
+public:
+    virtual void BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
+
 
 public:
     CProjectile();

@@ -11,6 +11,7 @@
 
 CCollider::CCollider(CObj* _pOwner)
 	: CComponent(_pOwner)
+	, m_iCollisionCount(0)
 {
 }
 
@@ -40,21 +41,52 @@ void CCollider::render(HDC _dc)
 	if (!DEBUG_RENDER)
 		return;
 
-	SELECT_PEN(_dc, PEN_TYPE::GREEN);
-
-
 	Vec2 vRenderPos = CCamera::GetInst()->GetRenderPos(m_vFinalPos);
 
-	// render
-	Rectangle(_dc, int(vRenderPos.x - m_vScale.x / 2.f)
-		, int(vRenderPos.y - m_vScale.y / 2.f)
-		, int(vRenderPos.x + m_vScale.x / 2.f)
-		, int(vRenderPos.y + m_vScale.y / 2.f));
+	if (m_iCollisionCount > 0)
+	{
+		SELECT_PEN(_dc, PEN_TYPE::RED);
+
+		// render
+		Rectangle(_dc, int(vRenderPos.x - m_vScale.x / 2.f)
+			, int(vRenderPos.y - m_vScale.y / 2.f)
+			, int(vRenderPos.x + m_vScale.x / 2.f)
+			, int(vRenderPos.y + m_vScale.y / 2.f));
+	}
+	else
+	{
+		SELECT_PEN(_dc, PEN_TYPE::GREEN);
+
+		// render
+		Rectangle(_dc, int(vRenderPos.x - m_vScale.x / 2.f)
+			, int(vRenderPos.y - m_vScale.y / 2.f)
+			, int(vRenderPos.x + m_vScale.x / 2.f)
+			, int(vRenderPos.y + m_vScale.y / 2.f));
+	}
+
+
+	
+
+	
+
+	
 
 }
 
 
+void CCollider::BeginOverlap(CCollider* _pOtherCol)
+{
+	++m_iCollisionCount;
+	GetOwner()->BeginOverlap(this, _pOtherCol->GetOwner(), _pOtherCol);
+}
+
 void CCollider::Overlap(CCollider* _pOtherCol)
 {
 	GetOwner()->Overlap(this, _pOtherCol->GetOwner(), _pOtherCol);
+}
+
+void CCollider::EndOverlap(CCollider* _pOtherCol)
+{
+	--m_iCollisionCount;
+	GetOwner()->EndOverlap(this, _pOtherCol->GetOwner(), _pOtherCol);
 }

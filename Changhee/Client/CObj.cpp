@@ -2,8 +2,11 @@
 #include "CObj.h"
 
 #include "CComponent.h"
+#include "CTaskMgr.h"
 
 CObj::CObj()
+	: m_iLayerIdx(-1)
+	, m_bDead(false)
 {
 }
 
@@ -41,7 +44,14 @@ void CObj::render(HDC _dc)
 	{
 		m_vecComponent[i]->render(_dc);
 	}
+}
 
+void CObj::Destroy()
+{
+	FTask task;
+	task.Type = TASK_TYPE::DELETE_OBJECT;
+	task.Param_1 = (INT_PTR)this;
 
+	CTaskMgr::GetInst()->AddTask(task);
 }
 

@@ -6,8 +6,9 @@ class CCollider :
 private:
     Vec2    m_vOffsetPos;       // Owner로부터 떨어진 자리
     Vec2    m_vScale;           // Collider 크기
-
     Vec2    m_vFinalPos;        // 충돌체의 최종 위치
+
+    int     m_iCollisionCount;
 
 public:
     Vec2 GetOffsetPos() { return m_vOffsetPos; }
@@ -18,7 +19,9 @@ public:
     void SetScale(Vec2 _vScale) { m_vScale = _vScale; }
 
 public:
+    void BeginOverlap(CCollider* _pOtherCol);
     void Overlap(CCollider* _pOtherCol);
+    void EndOverlap(CCollider* _pOtherCol);
 
 public:
     virtual void finaltick(float _DT) override;
