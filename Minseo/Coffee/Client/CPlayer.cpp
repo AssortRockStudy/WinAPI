@@ -20,6 +20,7 @@
 
 CPlayer::CPlayer()
 	:m_Speed(500.f) 
+	,m_Image(nullptr)
 	//,m_Acc(0) // 근데 나중에 게임 시간이 얼마나 흘렀는지 체크하기 위해서 m_Acc를 사용할 일이 있을 것 같음. 
 	// 물론 여기서 사용하는 것은 아니고 레벨 단위로 만들겠지만.
 {
@@ -29,7 +30,14 @@ CPlayer::CPlayer()
 
 	// 내가 로딩하려는 파일의 크기를 재서 원본 파일과 같은 크기의 비트맵에 데이터를 그대로 옮겨와서 이미지와 동일한 비트맵 조각이 만들어짐.
 	m_Image = (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE|LR_CREATEDIBSECTION); // 이미지 로딩
-	//m_ImageDC = 
+	m_ImageDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
+
+	// select로 1x1 비트맵 빼고 비행기 이미지 넣은 다음, 원본 1x1 비트맵은 반환 되자 마자 삭제
+	DeleteObject(SelectObject(m_ImageDC, m_Image));
+
+	// m_BitMapInfo에 GetObject함수를 사용해 이미지를 비트맵에 저장
+	GetObject(m_Image, sizeof(BITMAP), &m_BitmapInfo); 
+
 }
 
 CPlayer::~CPlayer()

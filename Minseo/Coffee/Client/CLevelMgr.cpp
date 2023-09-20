@@ -14,7 +14,7 @@ void CLevelMgr::init()
 	m_pCurLevel = new CLevel;
 
 	
-
+	// 여기서 입력하는 순서에 따라서 화면에 보여지는 순서도 달라지는걸까?
 	CMonster* pMonster1 = new CMonster;
 	pMonster1->SetPos(Vec2{ 1000,1200 });
 	pMonster1->SetScale(Vec2{ 120,120 });
