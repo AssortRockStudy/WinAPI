@@ -6,10 +6,17 @@
 #include "CMonster.h"
 #include "CTimeMgr.h"
 
+#include "CCollider.h"
+
 CGuidedProjectile::CGuidedProjectile()
     : target(nullptr), m_fMass(1.f), m_fRotateSpeed(PI) {}
 
 CGuidedProjectile::~CGuidedProjectile() {}
+
+void CGuidedProjectile::begin() {
+    Super::begin();
+    GetCollider()->SetScale(GetScale());
+}
 
 void CGuidedProjectile::tick(float _dt) {
     Super::tick(_dt);
@@ -89,10 +96,10 @@ void CGuidedProjectile::Update_3() {
     float fDot = m_vDir.x * vDest.x + m_vDir.y * vDest.y;
     float fAngle = acosf(fDot);
     float pi = PI;
-    float diff = PI / 90.f;
+    float diff = (PI / 90.f);
     // 진행 방향과 목적지를 향하는 방향이 각도 1도 이내에 들어오면 더이상
     // 진행방향을 회전하지 않는다.
-    if (fAngle > (PI / 90.f)) {
+    if (fAngle > diff) {
         // 타겟을 향해서 방향을 회전한다.
         if (GetRotateClock(m_vDir, vDest)) {
             m_vDir = Rotate(m_vDir, m_fRotateSpeed * DT);
@@ -100,6 +107,7 @@ void CGuidedProjectile::Update_3() {
             m_vDir = Rotate(m_vDir, -m_fRotateSpeed * DT);
         }
     } else {
+        int a = 0;
     }
 
     // 현재 방향을 향해서 이동한다.

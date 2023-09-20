@@ -9,6 +9,7 @@ class CObj : public CEntity {
     Vec2                      m_Pos;
     Vec2                      m_Scale;
     vector<class CComponent*> m_vecComponent;
+    int m_iLayerIdx;
 
   public:
     Vec2 GetPos() { return m_Pos; }
@@ -17,15 +18,19 @@ class CObj : public CEntity {
 
     void SetPos(Vec2 _Pos) { m_Pos = _Pos; }
     void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
+    
+    int GetLayerIdx() { return m_iLayerIdx; }
 
   protected:
-    template <typename T> T* AddComponent() {
+    template <typename T> T* AddComponent(const wstring& _strName = L"") {
         T* pNewCom = new T(this);
         m_vecComponent.push_back(pNewCom);
+        pNewCom->SetName(_strName);
         return pNewCom;
     }
 
   public:
+      virtual void begin() {};
     virtual void tick(float _DT);
     virtual void finaltick(float _DT) final;
     virtual void render(HDC _dc);
@@ -36,4 +41,6 @@ class CObj : public CEntity {
   public:
     CObj();
     virtual ~CObj();
+
+    friend class CLevel;
 };

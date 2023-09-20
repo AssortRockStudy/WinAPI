@@ -30,6 +30,7 @@ class CGuidedProjectile : public CProjectile {
     }
 
   public:
+      virtual void begin() override;
     virtual void tick(float _dt) override;
 
   public:

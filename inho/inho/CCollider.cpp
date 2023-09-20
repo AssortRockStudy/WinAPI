@@ -19,6 +19,13 @@ void CCollider::finaltick(float _DT) {
     Vec2 vOwnerPos = GetOwner()->GetPos();
 
     m_vFinalPos = vOwnerPos + m_vOffsetPos;
+
+    int iLayerIdx = GetOwner()->GetLayerIdx();
+
+    assert(!(iLayerIdx < 0));
+    CLayer* pCurLayer = CLevelMgr::GetInst()->GetCurLevel()->GetLayer(iLayerIdx);
+
+    pCurLayer->RegisterCollider(this);
 }
 
 void CCollider::render(HDC _dc) {

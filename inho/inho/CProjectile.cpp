@@ -2,8 +2,15 @@
 
 #include "CPaletteMgr.h"
 #include "CProjectile.h"
+#include "CCollider.h"
 
-CProjectile::CProjectile() : m_Speed(0.f), m_Angle(PI / 2.f) {}
+CProjectile::CProjectile() :
+    m_Speed(0.f),
+    m_Angle(PI / 2.f),
+    m_Collider(nullptr)
+{
+    m_Collider = AddComponent<CCollider>(L"Collider");
+}
 
 CProjectile::~CProjectile() {}
 

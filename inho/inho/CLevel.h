@@ -11,6 +11,7 @@ class CLevel : public CEntity {
     CLayer* m_Layer[LAYER::END];
 
   public:
+      void begin();
     void tick();
     void render(HDC _dc);
 
@@ -19,6 +20,11 @@ class CLevel : public CEntity {
 
     const vector<CObj*>& GetObjects(LAYER _LayerType) {
         return m_Layer[_LayerType]->m_vecObjects;
+    }
+
+    CLayer* GetLayer(int LayerIdx) {
+        assert(!(LayerIdx < 0 || LAYER::END <= LayerIdx));
+        return m_Layer[LayerIdx];
     }
 
   private:

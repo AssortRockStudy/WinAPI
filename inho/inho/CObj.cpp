@@ -3,7 +3,7 @@
 #include "CComponent.h"
 #include "CObj.h"
 
-CObj::CObj() {}
+CObj::CObj(): m_iLayerIdx(-1) {}
 
 CObj::~CObj() {
     for (size_t i = 0; i < m_vecComponent.size(); ++i) {

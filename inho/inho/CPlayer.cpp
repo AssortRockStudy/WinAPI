@@ -27,7 +27,7 @@ CPlayer::CPlayer() : m_Speed(500.f), m_Image(nullptr) {
     GetObject(m_Image, sizeof(BITMAP), &m_BitmapInfo);
 
     // 컴포넌트 추가
-    m_Collider = AddComponent<CCollider>();
+    m_Collider = AddComponent<CCollider>(L"PlayerCollider");
     m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
     m_Collider->SetScale(Vec2(40.f, 80.f));
 }

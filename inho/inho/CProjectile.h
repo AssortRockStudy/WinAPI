@@ -1,8 +1,11 @@
 ﻿#pragma once
 #include "CObj.h"
 
+class CCollider;
+
 class CProjectile : public CObj {
   private:
+      CCollider* m_Collider;
     float m_Speed;
     float m_Angle;
 
@@ -12,6 +15,8 @@ class CProjectile : public CObj {
 
     float GetSpeed() { return m_Speed; }
     float GetAngle() { return m_Angle; }
+
+    CCollider* GetCollider() { return m_Collider; }
 
   public:
     virtual void render(HDC _dc) override;
