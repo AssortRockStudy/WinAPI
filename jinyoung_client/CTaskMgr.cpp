@@ -5,6 +5,7 @@
 #include "CLevelMgr.h"
 #include "CLevel.h"
 #include "CObj.h"
+#include "CComponent.h"
 
 CTaskMgr::CTaskMgr()
 {
@@ -36,6 +37,7 @@ void CTaskMgr::tick()
 		{
 			CObj* pDeadObj = (CObj*)m_vecTask[i].Param_1;
 			pDeadObj->m_bDead = true;
+			pDeadObj->SetDead();
 		}
 			break;
 		case LEVEL_CHANGE:

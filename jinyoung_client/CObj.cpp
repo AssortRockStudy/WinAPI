@@ -7,7 +7,6 @@
 
 CObj::CObj()
 	: m_iLayerIdx(-1)
-	, m_bDead(false)
 {
 }
 
@@ -57,4 +56,14 @@ void CObj::Destroy()
 	task.Param_1 = (INT_PTR)this;
 
 	CTaskMgr::GetInst()->AddTask(task);
+}
+
+void CObj::SetDead()
+{
+	m_bDead = true;
+
+	for (size_t i = 0; i < m_vecComponent.size(); ++i)
+	{
+		m_vecComponent[i]->m_bDead = true;
+	}
 }

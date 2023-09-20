@@ -114,6 +114,9 @@
     <ClInclude Include="CCollisionMgr.h">
       <Filter>Game\03.Manager</Filter>
     </ClInclude>
+    <ClInclude Include="CGCMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -195,6 +198,9 @@
       <Filter>Game\02.Engine</Filter>
     </ClCompile>
     <ClCompile Include="CCollisionMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CGCMgr.cpp">
       <Filter>Game\03.Manager</Filter>
     </ClCompile>
   </ItemGroup>

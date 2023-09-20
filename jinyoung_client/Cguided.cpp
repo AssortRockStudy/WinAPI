@@ -33,20 +33,25 @@ void CGuided::tick(float _DT)
 {
 	Super::tick(_DT);
 
-	if (nullptr == m_Target)
+	if (!IsValid(m_Target))
 	{
 		FindTarget();
 	}
+
+	if (!IsValid(m_Target))
+	{
+		Vec2 vPos = GetPos();
+
+		vPos.x += m_vDir.x * GetSpeed() * DT;
+		vPos.y += m_vDir.y * GetSpeed() * DT;
+
+		SetPos(vPos);
+	}
 	else
 	{
-		// 1. 대상을 향해서 이동한다.
+
 		//update1();
-
-		// 2.
 		//update2();
-
-
-		// 3.
 		update3();
 	}
 }

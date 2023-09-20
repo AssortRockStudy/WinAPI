@@ -3,6 +3,7 @@
 
 #include "CObj.h"
 
+#include "CGCMgr.h"
 
 
 CLayer::CLayer()
@@ -41,8 +42,19 @@ void CLayer::finaltick(float _DT)
 }
 void CLayer::render(HDC _dc)
 {
-	for (size_t i = 0; i < m_vecObjects.size(); ++i)
+	vector<CObj*>::iterator iter = m_vecObjects.begin();
+
+	for (; iter != m_vecObjects.end();)
 	{
-		m_vecObjects[i]->render(_dc);
+		if ((*iter)->IsDead())
+		{
+			CGCMgr::GetInst()->AddEntity((*iter));
+			iter = m_vecObjects.erase(iter);
+		}
+		else
+		{
+			(*iter)->render(_dc);
+			++iter;
+		}
 	}
 }

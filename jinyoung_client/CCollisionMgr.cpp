@@ -105,7 +105,14 @@ void CCollisionMgr::CollisionBtwLayer(LAYER _Left, LAYER _Right)
 				// 현재 충돌 중이다.
 				if (IsCollision(vecLeft[i], vecRight[j]))
 				{
-					if (false == iter->second)
+					//if (false == iter->second)
+					//{
+					//	// 이전에 충돌한 적이 없다.
+					//	vecLeft[i]->BeginOverlap(vecRight[j]);
+					//	vecRight[j]->BeginOverlap(vecLeft[i]);
+					//}
+					// 둘다 Dead 상태가 아니라면
+					if (!vecLeft[i]->IsDead() && !vecRight[j]->IsDead())
 					{
 						// 이전에 충돌한 적이 없다.
 						vecLeft[i]->BeginOverlap(vecRight[j]);
@@ -115,8 +122,19 @@ void CCollisionMgr::CollisionBtwLayer(LAYER _Left, LAYER _Right)
 					else
 					{
 						// 이전에도 충돌 중이었다.
-						vecLeft[i]->Overlap(vecRight[j]);
-						vecRight[j]->Overlap(vecLeft[i]);
+						//vecLeft[i]->Overlap(vecRight[j]);
+						//vecRight[j]->Overlap(vecLeft[i]);
+						// 둘 중 하나 이상 Dead 상태
+						if (vecLeft[i]->IsDead() || vecRight[j]->IsDead())
+						{
+							vecLeft[i]->EndOverlap(vecRight[j]);
+							vecRight[j]->EndOverlap(vecLeft[i]);
+						}
+						else
+						{
+							vecLeft[i]->Overlap(vecRight[j]);
+							vecRight[j]->Overlap(vecLeft[i]);
+						}
 					}
 					iter->second = true;
 				}
