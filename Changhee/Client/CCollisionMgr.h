@@ -2,8 +2,8 @@
 
 struct COLLIDER_ID
 {
-	INT_PTR	left;
-	INT_PTR right;
+	UINT_PTR	left;
+	UINT_PTR	right;
 
 	bool operator < (const COLLIDER_ID& _Other) const
 	{
