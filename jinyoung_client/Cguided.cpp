@@ -176,3 +176,11 @@ void CGuided::FindTarget()
 		}
 	}
 }
+
+void CGuided::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+{
+	if (dynamic_cast<CMonster*>(_OtherObj))
+	{
+		Destroy();
+	}
+}

@@ -11,6 +11,7 @@ private:
 
     Vec2    m_vFinalPos;   // 충돌체의 최종 위치
 
+    int     m_iCollisionCount;
 
 public:
     virtual void finaltick(float _DT) override;
@@ -23,7 +24,9 @@ public:
     Vec2 GetOffsetPos() { return m_vOffsetPos; }
     Vec2 GetScale() { return m_vScale; }
 
+    void BeginOverlap(CCollider* _OtherCol);
     void Overlap(CCollider* _OtherCol);
+    void EndOverlap(CCollider* _OtherCol);
 
 
 public:

@@ -80,6 +80,7 @@ void CLevelMgr::init()
 
 	// 충돌 설정
 	CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
+	CCollisionMgr::GetInst()->CheckCollision(PLAYER_PJ, MONSTER);
 	// 레벨 시작
 	m_pCurLevel->begin();
 

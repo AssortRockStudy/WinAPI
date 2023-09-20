@@ -7,6 +7,7 @@
 
 CObj::CObj()
 	: m_iLayerIdx(-1)
+	, m_bDead(false)
 {
 }
 
@@ -47,4 +48,13 @@ void CObj::render(HDC _dc)
 	//	, int(vRenderPos.y - m_Scale.y / 2)
 	//	, int(vRenderPos.x + m_Scale.x / 2)
 	//	, int(vRenderPos.y + m_Scale.y / 2));
+}
+
+void CObj::Destroy()
+{
+	FTask task;
+	task.Type = TASK_TYPE::DELETE_OBJECT;
+	task.Param_1 = (INT_PTR)this;
+
+	CTaskMgr::GetInst()->AddTask(task);
 }

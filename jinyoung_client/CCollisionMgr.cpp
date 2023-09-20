@@ -91,16 +91,46 @@ void CCollisionMgr::CollisionBtwLayer(LAYER _Left, LAYER _Right)
 		{
 			for (size_t j = 0; j < vecRight.size(); ++j)
 			{
+				COLLIDER_ID ID(vecLeft[i]->GetID(), vecRight[j]->GetID());
+
+				map<COLLIDER_ID, bool>::iterator iter = m_mapID.find(ID);
+
+				if (iter == m_mapID.end())
+				{
+					m_mapID.insert(make_pair(ID, false));
+					iter = m_mapID.find(ID);
+				}
+
+
+				// 현재 충돌 중이다.
 				if (IsCollision(vecLeft[i], vecRight[j]))
 				{
-					// 충돌 중이다.
-					vecLeft[i]->Overlap(vecRight[j]);
-					vecRight[j]->Overlap(vecLeft[i]);
+					if (false == iter->second)
+					{
+						// 이전에 충돌한 적이 없다.
+						vecLeft[i]->BeginOverlap(vecRight[j]);
+						vecRight[j]->BeginOverlap(vecLeft[i]);
+					}
+
+					else
+					{
+						// 이전에도 충돌 중이었다.
+						vecLeft[i]->Overlap(vecRight[j]);
+						vecRight[j]->Overlap(vecLeft[i]);
+					}
+					iter->second = true;
 				}
+
+				// 현재 충돌하지 않고 있다.
 				else
 				{
-					// 충돌하지 않는다.
-
+					if (iter->second)
+					{
+						// 이전에는 충돌하고 있었다.
+						vecLeft[i]->EndOverlap(vecRight[j]);
+						vecRight[j]->EndOverlap(vecLeft[i]);
+					}
+					iter->second = false;
 				}
 			}
 		}

@@ -81,30 +81,27 @@ void CPlayer::tick(float _DT)
 	{
 		CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
 
-		for (int i = 0; i < 3; ++i)
-		{
-			//CProjectile* pProjectile = new CProjectile;
-			CGuided* pProjectile = new CGuided;
-
-			Vec2 ProjectilePos = GetPos();
-			ProjectilePos.y -= GetScale().y / 2.f;
-			
-			pProjectile->SetSpeed(500.f);
-			pProjectile->SetAngle(PI / 2.f);
-
-
-			//pProjectile->SetSpeed(1000.f);
-			//pProjectile->SetDir(PI / 4.f + (PI / 4.f) * (float)i);
-			pProjectile->SetPos(ProjectilePos);
-			pProjectile->SetScale(Vec2(25.f, 25.f));
-			pProjectile->SetDir(Vec2(0.f, -1.f));
-
-			//pCurLevel->AddObject(pProjectile);
-
-			//pCurLevel->AddObject(PLAYER_PJ, pProjectile);
-
-			CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)pProjectile });
-		}
+		//CProjectile* pProjectile = new CProjectile;
+		CGuided* pProjectile = new CGuided;
+		
+		Vec2 ProjectilePos = GetPos();
+		ProjectilePos.y -= GetScale().y / 2.f;
+		
+		pProjectile->SetSpeed(500.f);
+		pProjectile->SetAngle(PI / 2.f);
+		
+		
+		//pProjectile->SetSpeed(1000.f);
+		//pProjectile->SetDir(PI / 4.f + (PI / 4.f) * (float)i);
+		pProjectile->SetPos(ProjectilePos);
+		pProjectile->SetScale(Vec2(25.f, 25.f));
+		pProjectile->SetDir(Vec2(0.f, -1.f));
+		
+		//pCurLevel->AddObject(pProjectile);
+		
+		//pCurLevel->AddObject(PLAYER_PJ, pProjectile);
+		
+		CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)pProjectile });
 	}
 	SetPos(vPos);
 }

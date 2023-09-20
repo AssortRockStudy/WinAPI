@@ -18,6 +18,7 @@ private:
 	Vec2	m_Scale;
 	vector<CComponent*>	m_vecComponent;
 	int					m_iLayerIdx;
+	bool				m_bDead;
 
 public:
 	Vec2 GetPos() { return m_Pos; }
@@ -28,6 +29,7 @@ public:
 	void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
 
 	int GetLayerIdx() { return m_iLayerIdx; }
+	bool IsDead() { return m_bDead; }
 protected:
 	template<typename T>
 	T* AddComponent(const wstring& _strName = L"")
@@ -52,8 +54,15 @@ public:
 	// 매 프레임마다 화면에 오브젝트를 그리는 함수
 	virtual void render(HDC _dc);
 
+	void Destroy();
+
+
+	// 충돌 이벤트
+	virtual void BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
+
 	// 오버랩 발생 시 호출
 	virtual void Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
+	virtual void EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
 
 
 
@@ -65,4 +74,5 @@ private:
 	
 
 	friend class CLevel;
+	friend class CTaskMgr;
 };

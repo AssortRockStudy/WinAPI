@@ -36,6 +36,9 @@ public:
     virtual void begin() override;
     virtual void tick(float _DT) override;
 
+    virtual void BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
+
+
 public:
     CGuided();
     ~CGuided();
