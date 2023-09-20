@@ -8,6 +8,7 @@ class CObj;
 
 class CLayer : public CEntity
 {
+	// 레벨에서 갖고 있던 멤버 변수 및 함수 가져옴
 private:
 	vector<CObj*> mVecObjects;
 
@@ -24,6 +25,7 @@ public:
 	CLayer();
 	~CLayer();
 
+	// 앞으로 레벨에서 레이어에 접근할 일이 많기 때문에 friend 키워드 사용
 	friend class CLevel;
 
 };

@@ -39,9 +39,11 @@ public:
 		return Vec2(x - _f, y - _f);
 	}
 
-	Vec2 operator *(Vec2 _oth) {
+	Vec2 operator * (Vec2 _oth)
+	{
 		return Vec2(x * _oth.x, y * _oth.y);
 	}
+
 
 	Vec2 operator *(float _f) {
 		return Vec2(x * _f, y * _f);
@@ -67,6 +69,12 @@ public:
 
 	Vec2 operator /(float _f) {
 		return Vec2(x / _f, y / _f);
+	}
+
+	void operator /= (float _f)
+	{
+		x /= _f;
+		y /= _f;
 	}
 
 public:

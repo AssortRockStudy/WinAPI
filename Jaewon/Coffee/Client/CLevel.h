@@ -1,27 +1,30 @@
 #pragma once
-// 오브젝트를 담기 위한 Level 클래스
-// 멤버 변수
-// mVecObjects
-// 오브젝트 포인터로 만든 벡터이기 때문에
-// 오브젝트 클래스를 상속받은 모든 객체를 담을 수 있음
+#include "CEntity.h"
+#include "CLayer.h"
 
 class CObj;
-class Monster;
 
 class CLevel
+	: public CEntity
 {
 private:
-	vector<CObj*> mVecObjects; 
+	CLayer* m_Layer[LAYER::END];
 
 public:
 	void tick();
 	void render(HDC _dc);
+	
+	template<typename T>
+	void getObjects(vector<T*>& _Out);
+	const vector<CObj*>& getObjects(LAYER _type) { return m_Layer[_type]->mVecObjects; }
+
+	CLayer* GetLayer(int _idx){
+		assert(!(_idx < 0 && LAYER::END <= _idx));
+		return m_Layer[_idx];
+	}
 
 public:
-	void AddObj(CObj* _obj) {
-		mVecObjects.push_back(_obj);
-	}
-	Monster* findCloseMon(Vec2 mPos);
+	void addObject(LAYER _type, CObj* _obj);
 
 public:
 	CLevel();

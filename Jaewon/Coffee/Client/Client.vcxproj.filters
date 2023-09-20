@@ -92,7 +92,12 @@
       <Filter>Game\01.Header</Filter>
     </ClInclude>
     <ClInclude Include="CEntity.h" />
-    <ClInclude Include="CLayer.h" />
+    <ClInclude Include="Guided.h">
+      <Filter>Game\04.Object\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="CLayer.h">
+      <Filter>Game\05.Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -148,6 +153,11 @@
       <Filter>Game\01.Header</Filter>
     </ClCompile>
     <ClCompile Include="CEntity.cpp" />
-    <ClCompile Include="CLayer.cpp" />
+    <ClCompile Include="Guided.cpp">
+      <Filter>Game\04.Object\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="CLayer.cpp">
+      <Filter>Game\05.Level</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

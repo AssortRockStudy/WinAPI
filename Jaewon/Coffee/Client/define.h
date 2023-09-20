@@ -18,6 +18,9 @@
 #define CREATEBLACKBRUSH CreateSolidBrush(RGB(0, 0, 0));
 #define CREATEREDBRUSH CreateSolidBrush(RGB(255, 0, 0));
 
+#define GENERATED_OBJECT(type) typedef type Super;\
+							   virtual void Abstract() override {}
+
 enum COLOR {
 	red,
 	blue,
@@ -104,9 +107,43 @@ enum KEYSTATE
 	RELEASED,
 };
 
-enum OBJECTTYPE
+enum LAYER
 {
+	DEFAULT,
+	TILE,
 	PLAYER,
 	MONSTER,
+	PLAYER_PJ,
+	MONSTER_PJ,
+	WORLD_STATIC,
 
+
+
+
+
+	END = 32,
+};
+
+
+enum TASK_TYPE
+{
+	// Param1 : Layer Type, Param2 : Object Adress
+	CREATE_OBJECT,
+
+	// Param1 : Object Adress
+	DELETE_OBJECT,
+
+
+	LEVEL_CHANGE,
+};
+
+
+
+enum PEN_TYPE
+{
+	GREEN_PEN,
+	BLUE_PEN,
+	RED_PEN,
+
+	PEN_END,
 };

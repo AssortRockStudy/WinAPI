@@ -10,7 +10,7 @@
 
 #define _USE_MATH_DEFINES
 #include <cmath>
-
+#include <assert.h>
 #include <vector>
 #include <list>
 #include <map>

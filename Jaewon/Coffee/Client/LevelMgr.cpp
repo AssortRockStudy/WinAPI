@@ -20,21 +20,18 @@ void LevelMgr::init()
 	mPlayer->setScale(Vec2{ 50.f, 50.f });
 	mPlayer->setColor(black);
 	mPlayer->setReverseMove(true);
-	mPlayer->setType(PLAYER);
-	curLevel->AddObj(mPlayer);
+	curLevel->addObject(PLAYER, mPlayer);
 
 	Monster* mMonster = new Monster;
 	mMonster->setPos(Vec2{ 100.f, 100.f });
 	mMonster->setScale(Vec2{ 80.f, 80.f });
-	mMonster->setType(MONSTER);
-	curLevel->AddObj(mMonster);
+	curLevel->addObject(MONSTER, mMonster);
 
 
 	Monster* m2Monster = new Monster;
 	m2Monster->setPos(Vec2{ 700.f, 600.f });
 	m2Monster->setScale(Vec2{ 80.f, 80.f });
-	m2Monster->setType(MONSTER);
-	curLevel->AddObj(m2Monster);
+	curLevel->addObject(MONSTER, m2Monster);
 
 }
 

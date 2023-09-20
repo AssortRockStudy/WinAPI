@@ -4,6 +4,7 @@
 #include "CLevel.h"
 #include "LevelMgr.h"
 #include "CProjectile.h"
+#include "Guided.h"
 #include "CPathMgr.h"
 #include "CEngine.h"
 
@@ -26,14 +27,14 @@ void Player::tick(float _dt)
 			
 			CLevel* curLevel = LevelMgr::GetInst()->getCurLevel();
 			
-			CProjectile* mProjectile = new CProjectile;
+			Guided* mProjectile = new Guided;
 
 			mProjectile->setSpeed(500.f);
 			mProjectile->setAngle(M_PI / 2.f);
 			mProjectile->setPos(getPos());
 			mProjectile->setScale(Vec2{ 25.f, 25.f });
-			mProjectile->setDir(Vec2(0.f, -1.f));
-			curLevel->AddObj(mProjectile);
+			mProjectile->SetDir(Vec2(0.f, -1.f));
+			curLevel->addObject(PLAYER_PJ ,mProjectile);
 		}
 	}
 	else {
