@@ -142,9 +142,6 @@
     <ClInclude Include="CLevel.h" />
     <ClInclude Include="CLevelMgr.h" />
     <ClInclude Include="Client.h" />
-    <ClInclude Include="CMissile1.h" />
-    <ClInclude Include="CMissile2.h" />
-    <ClInclude Include="CMissile3.h" />
     <ClInclude Include="CMonster.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="CPathMgr.h" />
@@ -164,9 +161,6 @@
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CLevelMgr.cpp" />
-    <ClCompile Include="CMissile1.cpp" />
-    <ClCompile Include="CMissile2.cpp" />
-    <ClCompile Include="CMissile3.cpp" />
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPathMgr.cpp" />

@@ -145,15 +145,19 @@ void CPlayer::render(HDC _dc)
 
 	// HBRUSH 를 사용해서 브러시도 똑같이 만들 수 있다.
 
-	Rectangle(_dc,
-		int(pos.x - sca.x) / 2,
-		int(pos.y - sca.y) / 2,
-		int(pos.x + sca.x) / 2,
-		int(pos.y + sca.y) / 2);
+	TransparentBlt(_dc, (int)pos.x - m_BitmapInfo.bmWidth / 2
+		, (int)pos.y - m_BitmapInfo.bmHeight / 2
+		, m_BitmapInfo.bmWidth
+		, m_BitmapInfo.bmHeight
+		, m_ImageDC
+		, 0, 0
+		, m_BitmapInfo.bmWidth
+		, m_BitmapInfo.bmHeight
+		, RGB(255, 0, 255));
 	
-	SelectObject(_dc, PrevPen);
+	//SelectObject(_dc, PrevPen);
 
-	DeleteObject(RedPen);
+	//DeleteObject(RedPen);
 	//DeleteObject(PrevPen);
 
 }
