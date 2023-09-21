@@ -39,19 +39,19 @@ public:
 template<typename T>
 inline void CLevel::GetObjects(vector<T*>& _Out)
 {
-	// 마지막 레이어 까지 for문 돌기
-	for (UINT j = 0; j < LAYER::END; ++j)
-	{
-		// 레이어의 모든 오브젝트를 T*로 dynamic_cast 
-		for (size_t i = 0; i < m_Layer[j]->m_vecObjects.size(); ++i)
-		{
-			T* pObj = dynamic_cast<T*>(m_Layer[j]->m_vecObjects[i]);
+	//// 마지막 레이어 까지 for문 돌기
+	//for (UINT j = 0; j < LAYER::END; ++j)
+	//{
+	//	// 레이어의 모든 오브젝트를 T*로 dynamic_cast 
+	//	for (size_t i = 0; i < m_Layer[j]->m_vecObjects.size(); ++i)
+	//	{
+	//		T* pObj = dynamic_cast<T*>(m_Layer[j]->m_vecObjects[i]);
 
-			// 만약 nullptr이 아니라면(T* 라면)
-			if (nullptr != pObj)
-			{
-				_Out.push_back(pObj); // 인자로 받아온 벡터에 넣기
-			}
-		}
-	}
+	//		// 만약 nullptr이 아니라면(T* 라면)
+	//		if (nullptr != pObj)
+	//		{
+	//			_Out.push_back(pObj); // 인자로 받아온 벡터에 넣기
+	//		}
+	//	}
+	//}
 }

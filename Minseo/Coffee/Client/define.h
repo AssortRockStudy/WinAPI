@@ -14,6 +14,9 @@
 								public:\
 									~ClassType();
 
+#define DT	CTimeMgr::GetInst()->GetDeltaTime()
+
+
 #define KEY_CHECK(Key, State) CKeyMgr::GetInst()->GetKeyState(Key) == State
 
 #define KEY_TAP(Key)		KEY_CHECK(Key, TAP)

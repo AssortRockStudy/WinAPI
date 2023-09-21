@@ -91,6 +91,12 @@
     <ClInclude Include="CMonster.h">
       <Filter>Game\04. Object\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="CGuided.h">
+      <Filter>Game\04. Object\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>Game\01. Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -141,6 +147,12 @@
     </ClCompile>
     <ClCompile Include="CMonster.cpp">
       <Filter>Game\04. Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CGuided.cpp">
+      <Filter>Game\04. Object\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>Game\01. Header</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
