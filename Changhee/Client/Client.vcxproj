@@ -143,6 +143,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CAnim.h" />
+    <ClInclude Include="CAnimator.h" />
+    <ClInclude Include="CAssetMgr.h" />
+    <ClInclude Include="CAsset.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CCollider.h" />
     <ClInclude Include="CCollisionMgr.h" />
@@ -163,7 +167,9 @@
     <ClInclude Include="CProjectile1.h" />
     <ClInclude Include="CProjectile2.h" />
     <ClInclude Include="CProjectile3.h" />
+    <ClInclude Include="CSound.h" />
     <ClInclude Include="CTaskMgr.h" />
+    <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="enum.h" />
@@ -175,6 +181,10 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CAnim.cpp" />
+    <ClCompile Include="CAnimator.cpp" />
+    <ClCompile Include="CAssetMgr.cpp" />
+    <ClCompile Include="CAsset.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CCollider.cpp" />
     <ClCompile Include="CCollisionMgr.cpp" />
@@ -194,7 +204,9 @@
     <ClCompile Include="CProjectile1.cpp" />
     <ClCompile Include="CProjectile2.cpp" />
     <ClCompile Include="CProjectile3.cpp" />
+    <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CTaskMgr.cpp" />
+    <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="main.cpp" />

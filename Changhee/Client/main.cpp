@@ -9,8 +9,6 @@
 HINSTANCE   hInst = 0;
 HWND        g_hWnd = 0;
 
-
-
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -56,8 +54,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         {
             CEngine::GetInst()->tick();
         }
-
-        
     }
 
     return (int) msg.wParam;

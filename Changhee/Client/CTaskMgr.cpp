@@ -8,12 +8,10 @@
 
 CTaskMgr::CTaskMgr()
 {
-
 }
 
 CTaskMgr::~CTaskMgr()
 {
-
 }
 
 

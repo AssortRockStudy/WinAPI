@@ -1,54 +1,40 @@
 #include "pch.h"
 #include "CPlayer.h"
 
-#include "CEngine.h"
-
 #include "CKeyMgr.h"
-#include "CLevelMgr.h"
-#include "CPathMgr.h"
 #include "CTaskMgr.h"
-#include "CCamera.h"
+#include "CAssetMgr.h"
+
+#include "CTexture.h"
 
 #include "CCollider.h"
-
-
-#include "CLevel.h"
+#include "CAnimator.h"
 
 #include "CProjectile.h"
 
 
+
 CPlayer::CPlayer()
 	: m_fSpeed(200.f)
-	, m_hImage(nullptr)
+	, m_pTexture(nullptr)
 {
-	wstring strPath = CPathMgr::GetContentDirectory();
-	strPath += L"texture\\Fighter.bmp";
+	// Asset
+	m_pTexture = CAssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\fighter.bmp");
 
-	m_hImage = (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
-	m_hImageDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
-	DeleteObject((HBITMAP)SelectObject(m_hImageDC, m_hImage));
-
-	GetObject(m_hImage, sizeof(BITMAP), &m_BitmapInfo);
-
+	// Component
 	m_pCollider = AddComponent<CCollider>(L"PlayerCollider");
 	m_pCollider->SetOffsetPos(Vec2(0.f, 10.f));
 	m_pCollider->SetScale(Vec2(40.f, 80.f));
+
+	m_pAnimator = AddComponent<CAnimator>(L"PlayerAnimator");
 }
 
 CPlayer::~CPlayer()
 {
-	DeleteObject(m_hImage);
-	DeleteDC(m_hImageDC);
 
 }
 
 
-
-void CPlayer::Overlap(CCollider* _pOwnCol, CObj* _pOtherObj, CCollider* _pOtherCol)
-{
-	wstring test = _pOwnCol->GetName();
-
-}
 
 void CPlayer::tick(float _DT)
 {
@@ -78,8 +64,6 @@ void CPlayer::tick(float _DT)
 
 	if (KEY_TAP(KEY::SPACE))
 	{
-		CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
-
 		CProjectile* pProjectile = new CProjectile;
 
 		Vec2 ProjectilePos = GetPos();
@@ -91,7 +75,6 @@ void CPlayer::tick(float _DT)
 		pProjectile->SetScale(Vec2(25.f, 25.f));
 
 		CTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT)LAYER::PLAYER_PJ, (UINT_PTR)pProjectile });
-
 	}
 
 	SetPos(vPos);
@@ -102,16 +85,26 @@ void CPlayer::render(HDC _dc)
 	Vec2 vPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 
+	UINT width = m_pTexture->GetWidth();
+	UINT height = m_pTexture->GetHeight();
 
 	TransparentBlt(_dc
-		, int(vPos.x - m_BitmapInfo.bmWidth / 2)
-		, int(vPos.y - m_BitmapInfo.bmHeight / 2)
-		, m_BitmapInfo.bmWidth
-		, m_BitmapInfo.bmHeight
-		, m_hImageDC, 0, 0
-		, m_BitmapInfo.bmWidth
-		, m_BitmapInfo.bmHeight
+		, int(vPos.x - width / 2)
+		, int(vPos.y - height / 2)
+		, width
+		, height
+		, m_pTexture->GetDC()
+		, 0, 0
+		, width
+		, height
 		, RGB(255, 0, 255));
 
 	Super::render(_dc);
+}
+
+
+void CPlayer::Overlap(CCollider* _pOwnCol, CObj* _pOtherObj, CCollider* _pOtherCol)
+{
+	wstring test = _pOwnCol->GetName();
+
 }

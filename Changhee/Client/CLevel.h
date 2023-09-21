@@ -20,7 +20,7 @@ public:
 	const vector<CObj*>& GetObjects(LAYER _eLayer) { return m_arrLayer[(UINT)_eLayer]->m_vecObjects; }
 	CLayer* GetLayer(int LayerIdx)
 	{
-		assert(!(LayerIdx < 0 && (UINT)LAYER::END <= LayerIdx));
+		assert(!(LayerIdx < 0 || (UINT)LAYER::END <= LayerIdx));
 		return m_arrLayer[LayerIdx];
 	}
 

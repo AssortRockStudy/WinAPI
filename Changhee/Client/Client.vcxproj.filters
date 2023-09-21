@@ -74,6 +74,21 @@
     <Filter Include="Game\03. Manager\GCManager">
       <UniqueIdentifier>{21b78632-6fd2-4499-bf8b-170fbc7aaa14}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\07. Asset">
+      <UniqueIdentifier>{858a6ee2-3c1f-49d7-96c9-d8eb589546ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\AssetManager">
+      <UniqueIdentifier>{dde2084d-a3a6-44f7-9515-cb6e4155cec2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\07. Asset\Texture">
+      <UniqueIdentifier>{594ec6bd-23d3-47dd-b972-7a56f91e3072}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\07. Asset\Sound">
+      <UniqueIdentifier>{4c40f270-74c4-42e2-af1a-851f389b2da8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\Animator\Animation">
+      <UniqueIdentifier>{0bde55d3-c92a-43e8-a0be-8a388807e876}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -164,6 +179,24 @@
     <ClInclude Include="CGCMgr.h">
       <Filter>Game\03. Manager\GCManager</Filter>
     </ClInclude>
+    <ClInclude Include="CAsset.h">
+      <Filter>Game\07. Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="CTexture.h">
+      <Filter>Game\07. Asset\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="CAssetMgr.h">
+      <Filter>Game\03. Manager\AssetManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CSound.h">
+      <Filter>Game\07. Asset\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnim.h">
+      <Filter>Game\06. Component\Animator\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimator.h">
+      <Filter>Game\06. Component\Animator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -251,6 +284,24 @@
     </ClCompile>
     <ClCompile Include="CGCMgr.cpp">
       <Filter>Game\03. Manager\GCManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CAsset.cpp">
+      <Filter>Game\07. Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="CTexture.cpp">
+      <Filter>Game\07. Asset\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="CAssetMgr.cpp">
+      <Filter>Game\03. Manager\AssetManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CSound.cpp">
+      <Filter>Game\07. Asset\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnim.cpp">
+      <Filter>Game\06. Component\Animator\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimator.cpp">
+      <Filter>Game\06. Component\Animator</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
