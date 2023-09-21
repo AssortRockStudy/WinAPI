@@ -6,6 +6,8 @@
 #include "KeyMgr.h"
 #include "LevelMgr.h"
 #include "CPathMgr.h"
+#include "Camera.h"
+#include "TaskMgr.h"
 
 CEngine::CEngine():mHwnd(nullptr), mPtResolution(), mDc(nullptr), subBitMap(nullptr), subDc(nullptr)
 {
@@ -54,6 +56,9 @@ void CEngine::tick()
 {
 	CTimeMgr::GetInst()->tick();
 	KeyMgr::GetInst()->tick();
+	Camera::GetInst()->tick();
 	LevelMgr::GetInst()->tick();
 	LevelMgr::GetInst()->render(subDc);
+
+	TaskMgr::GetInst()->tick();
 }

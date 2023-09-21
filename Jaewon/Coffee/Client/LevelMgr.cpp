@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "CEngine.h"
 #include "Monster.h"
+#include "Camera.h"
 
 LevelMgr::LevelMgr(){}
 LevelMgr::~LevelMgr(){
@@ -32,6 +33,10 @@ void LevelMgr::init()
 	m2Monster->setPos(Vec2{ 700.f, 600.f });
 	m2Monster->setScale(Vec2{ 80.f, 80.f });
 	curLevel->addObject(MONSTER, m2Monster);
+
+	Vec2 vLookAt = CEngine::GetInst()->getMainResol();
+	vLookAt /= 2.f;
+	Camera::GetInst()->SetLookAt(vLookAt);
 
 }
 

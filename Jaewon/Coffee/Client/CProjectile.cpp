@@ -7,7 +7,7 @@
 
 void CProjectile::render(HDC _dc)
 {
-	Vec2 vPos = getPos();
+	Vec2 vPos = getRenderPos();
 	Vec2 vScale = getScale();
 	//POINT vertices[3] = { {int(vPos.x), int(vPos.y - vScale.y / 2)},
 	//					  {int(vPos.x - vScale.x/2), int(vPos.y + vScale.y/2)},

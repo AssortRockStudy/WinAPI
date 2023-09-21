@@ -14,6 +14,7 @@ private:
 
 public:
 	void tick();
+	void finalTick();
 	void render(HDC _dc);
 
 public:

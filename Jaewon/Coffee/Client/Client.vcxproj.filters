@@ -35,6 +35,9 @@
     <Filter Include="Game\04.Object\Monster">
       <UniqueIdentifier>{d86e047f-946a-4a7e-be7f-9965ecc00906}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\06.Component">
+      <UniqueIdentifier>{43aaf310-df0d-447a-8e65-280ee14dc80f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -98,6 +101,18 @@
     <ClInclude Include="CLayer.h">
       <Filter>Game\05.Level</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Game\06.Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Game\06.Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -158,6 +173,18 @@
     </ClCompile>
     <ClCompile Include="CLayer.cpp">
       <Filter>Game\05.Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Game\06.Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Game\06.Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

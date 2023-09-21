@@ -3,7 +3,8 @@
 
 void Monster::tick(float _dt)
 {
-	Vec2 vPos = getPos();
+	Super::tick(_dt);
+	Vec2 vPos = getRenderPos();
 	if (vPos.x < 20.f) {
 		mSpeed = mSpeed * -1.f;
 	}

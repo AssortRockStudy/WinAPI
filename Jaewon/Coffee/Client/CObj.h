@@ -1,33 +1,42 @@
 ﻿#pragma once
-// CObj 추상 클래스 생성
-// 멤버 변수
-// 1. mPos : 오브젝트의 위치 좌표를 저장
-// 2. mScale : 오브젝트의 크기를 저장
-// 멤버 함수
-// 순수 가상함수로 만들어 상속받는 클래스에서 직접 구현하도록 & CObj는 객체 생성이 안되도록
-// tick() : 1프레임 마다 오브젝트 하는 일 
-// render() : 1프레임마다 오브젝트를 그리는 함수
-// 소멸자는 상속된 클래스마다 달라질 수 있어야 하기 때문에 가상함수로 만들어둔다.
-// 
+#include "CEntity.h"
+#include "TaskMgr.h"
+#include "Camera.h"
+
+class Component;
 
 class CObj
 {
+private:
+	virtual void Abstract() = 0;
 private:
 	
 	Vec2 mPos;
 	Vec2 mScale;
 	int mLayerIdx;
+	vector<Component*> mVecComponent;
 
 public:
 	Vec2 getPos() { return mPos; }
+	Vec2 getRenderPos() { return Camera::GetInst()->GetRenderPos(mPos); }
 	Vec2 getScale() { return mScale; }
 
 	void setPos(Vec2 _pos) { mPos = _pos; }
 	void setScale(Vec2 _scale) { mScale = _scale; }
 
+protected:
+	template<typename T>
+	T* addComponent() {
+		T* newCom = new T(this);
+		mVecComponent.push_back(newCom);
+		return newCom;
+	}
+
 public:
-	virtual void tick(float _dt) = 0;
+	virtual void tick(float _dt);
+	virtual void finalTick(float _dt) final;
 	virtual void render(HDC _dc);
+
 
 public:
 	CObj();

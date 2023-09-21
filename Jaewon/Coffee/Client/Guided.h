@@ -6,6 +6,7 @@ class Monster;
 class Guided :
     public CProjectile
 {
+    GENERATED_OBJECT(CProjectile);
 private:
     Monster* mTarget;
 

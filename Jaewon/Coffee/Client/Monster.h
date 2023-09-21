@@ -2,6 +2,7 @@
 #include "CObj.h"
 class Monster : public CObj
 {
+	GENERATED_OBJECT(CObj);
 private:
 	float mSpeed;
 

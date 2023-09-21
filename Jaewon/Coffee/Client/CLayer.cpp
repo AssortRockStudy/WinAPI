@@ -11,6 +11,14 @@ void CLayer::tick()
 	}
 }
 
+void CLayer::finalTick()
+{
+	float delta = CTimeMgr::GetInst()->getDeltaTime();
+	for (int i = 0; i < mVecObjects.size(); ++i) {
+		mVecObjects[i]->finalTick(delta);
+	}
+}
+
 void CLayer::render(HDC _dc)
 {
 	for (int i = 0; i < mVecObjects.size(); ++i) {

@@ -7,9 +7,12 @@
 #include "Guided.h"
 #include "CPathMgr.h"
 #include "CEngine.h"
+#include "TaskMgr.h"
 
 void Player::tick(float _dt)
 {
+	Super::tick(_dt);
+
 	Vec2 vPos = getPos();
 
 	// 키입력(이전에 누른 적이 있고 호출 시점에도 눌려있는 상태)이 발생하면 true
@@ -34,7 +37,8 @@ void Player::tick(float _dt)
 			mProjectile->setPos(getPos());
 			mProjectile->setScale(Vec2{ 25.f, 25.f });
 			mProjectile->SetDir(Vec2(0.f, -1.f));
-			curLevel->addObject(PLAYER_PJ ,mProjectile);
+			TaskMgr::GetInst()->addTask(FTask{ CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)mProjectile });
+			
 		}
 	}
 	else {
@@ -52,7 +56,7 @@ void Player::tick(float _dt)
 
 void Player::render(HDC _dc)
 {
-	Vec2 vPos = getPos();
+	Vec2 vPos = getRenderPos();
 	Vec2 vScale = getScale();
 
 	// 펜, 브러쉬 생성
@@ -75,13 +79,24 @@ void Player::render(HDC _dc)
 	HBRUSH prevBrush = (HBRUSH)SelectObject(_dc, renderBrush);
 	*/
 	
-	
+	/*
 	BitBlt(_dc, vPos.x - pBitMapInfo.bmWidth / 2.f
 		, vPos.y - pBitMapInfo.bmHeight / 2.f
 		, pBitMapInfo.bmWidth
 		, pBitMapInfo.bmHeight
 		, pImageDc
 		, 0, 0, SRCCOPY);
+	*/
+
+	TransparentBlt(_dc, vPos.x - pBitMapInfo.bmWidth / 2.f
+		, vPos.y - pBitMapInfo.bmHeight / 2.f
+		, pBitMapInfo.bmWidth
+		, pBitMapInfo.bmHeight
+		, pImageDc
+		, 0, 0
+		, pBitMapInfo.bmWidth
+		, pBitMapInfo.bmHeight
+		, RGB(255, 0, 255));
 
 	// 렌더링 끝나고 다시 바꾸고
 	// 만들었던 펜 삭제

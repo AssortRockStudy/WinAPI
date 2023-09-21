@@ -11,7 +11,7 @@
 
 void Guided::tick(float _dt)
 {
-	
+	Super::tick(_dt);
 	if (nullptr == mTarget)
 	{
 		FindTarget();

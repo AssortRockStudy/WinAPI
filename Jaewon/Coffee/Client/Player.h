@@ -2,6 +2,7 @@
 #include "CObj.h"
 class Player : public CObj
 {
+	GENERATED_OBJECT(CObj);
 private:
 	float mSpeed;
 	COLOR col;

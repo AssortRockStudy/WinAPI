@@ -10,6 +10,9 @@ void CLevel::tick()
 	for (UINT i = 0; i < LAYER::END; ++i){
 		m_Layer[i]->tick();
 	}
+	for (UINT i = 0; i < LAYER::END; ++i) {
+		m_Layer[i]->finalTick();
+	}
 }
 
 // 레벨에 들어있는 오브젝트들의 render을 다 실행
