@@ -7,6 +7,6 @@ private:
 
 public:
 	static void init();
-	__inline static wchar_t* GetContentDir() { return g_szContent; }
+	__inline static wchar_t* GetContentPath() { return g_szContent; }
 };
 

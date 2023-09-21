@@ -31,6 +31,7 @@ void CLevelMgr::init()
 	// Level 
 	m_pCurLevel = new CLevel;
 
+	// 플레이어 생성
 	CPlayer* pPlayer = new CPlayer;
 
 	pPlayer->SetPos(Vec2(500.f, 500.f));
@@ -40,6 +41,16 @@ void CLevelMgr::init()
 	m_pCurLevel->AddObject(PLAYER, pPlayer);
 	//m_pCurLevel->AddObject(pPlayer);
 
+
+	CPlayer* pPlayer2 = new CPlayer;
+
+	pPlayer->SetPos(Vec2(800.f, 500.f));
+	pPlayer->SetScale(Vec2(50.f, 50.f));
+
+	m_pCurLevel->AddObject(PLAYER, pPlayer);
+
+
+	// 몬스터 생성
 	CMonster* pMonster = new CMonster;
 
 	pMonster->SetPos(Vec2(600.f, 500.f));

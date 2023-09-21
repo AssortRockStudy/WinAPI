@@ -15,6 +15,8 @@
 #include "CGuided.h"
 #include "CCollider.h"
 
+#include "CAssetMgr.h"
+#include "CTexture.h"
 class CCollider;
 
 
@@ -22,12 +24,12 @@ using std::wstring;
 
 CPlayer::CPlayer()
 	: m_Speed(500.f)
-	, m_Image(nullptr)
+	//, m_Image(nullptr)
 {
 	//이미지가 존재하는 상대경로 (contents 폴더로 부터)
 	//힙메모리에할당
-	wstring strPath = CPathMgr::GetContentDir();
-	strPath+= L"texture\\Fighter.bmp";
+	//wstring strPath = CPathMgr::GetContentDir();
+	//strPath+= L"texture\\Fighter.bmp";
 
 	// 필요한 컴포넌트 추가
 	m_Collider = AddComponent<CCollider>(L"PlayerCollider");
@@ -35,19 +37,20 @@ CPlayer::CPlayer()
 	m_Collider->SetScale(Vec2(40.f, 80.f));
 	//AddComponent<CAnimator>();
 	//AddComponent<CMovement>();
+	// 이미지가 존재하는 상대경로(constent 폴더로부터)
+	m_pTexture = CAssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\fighter.bmp");
 
-
-	m_Image= (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
-	m_ImageDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
-	DeleteObject(SelectObject(m_ImageDC, m_Image));
- 	GetObject(m_Image, sizeof(BITMAP), &m_BitmapInfo);
+	//m_Image= (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+	//m_ImageDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
+	//DeleteObject(SelectObject(m_ImageDC, m_Image));
+ //	GetObject(m_Image, sizeof(BITMAP), &m_BitmapInfo);
 }
 
 CPlayer::~CPlayer()
 {
 	//DeleteObject(hLoadBit);
-	DeleteObject(m_Image);
-	DeleteDC(m_ImageDC);
+	//DeleteObject(m_Image);
+	//DeleteDC(m_ImageDC);
 }
 
 void CPlayer::tick(float _DT)
@@ -114,20 +117,33 @@ void CPlayer::render(HDC _dc)
 	SelectObject(_dc, CPal::GetInst()->getHPen(BLACK));
 	SelectObject(_dc, CPal::GetInst()->getHBrush(BLACK));
 	
+
+	UINT width = m_pTexture->GetWidth();
+	UINT height = m_pTexture->GetHeight();
+
+
+	TransparentBlt(_dc
+		, (int)vPos.x - width / 2
+		, (int)vPos.y - height / 2
+		, width
+		, height
+		, m_pTexture->GetDC()
 	/*BitBlt(_dc, (int)vPos.x - m_BitmapInfo.bmWidth / 2
 				, (int)vPos.y - m_BitmapInfo.bmHeight / 2
 				, m_BitmapInfo.bmWidth
 				, m_BitmapInfo.bmHeight
 				, m_ImageDC
 				, 0, 0, SRCCOPY);*/
-	TransparentBlt(_dc, (int)vPos.x - m_BitmapInfo.bmWidth / 2
-		, (int)vPos.y - m_BitmapInfo.bmHeight / 2
-		, m_BitmapInfo.bmWidth
-		, m_BitmapInfo.bmHeight
-		, m_ImageDC
+	//TransparentBlt(_dc, (int)vPos.x - m_BitmapInfo.bmWidth / 2
+	//	, (int)vPos.y - m_BitmapInfo.bmHeight / 2
+	//	, m_BitmapInfo.bmWidth
+	//	, m_BitmapInfo.bmHeight
+	//	, m_ImageDC
 		, 0, 0
-		, m_BitmapInfo.bmWidth
-		, m_BitmapInfo.bmHeight
+		, width
+		, height
+		//, m_BitmapInfo.bmWidth
+		//, m_BitmapInfo.bmHeight
 		, RGB(255, 0, 255));
 
 	Super::render(_dc);

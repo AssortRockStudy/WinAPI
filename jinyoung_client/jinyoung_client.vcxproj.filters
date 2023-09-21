@@ -29,6 +29,9 @@
     <Filter Include="Game\06.Component">
       <UniqueIdentifier>{2a27e9ef-0729-447c-bfb3-9f45a885b415}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\07.Asset">
+      <UniqueIdentifier>{3a593f6f-35c2-4031-8b55-c3a00676fa33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -117,6 +120,18 @@
     <ClInclude Include="CGCMgr.h">
       <Filter>Game\03.Manager</Filter>
     </ClInclude>
+    <ClInclude Include="CAsset.h">
+      <Filter>Game\07.Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="CTexture.h">
+      <Filter>Game\07.Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="CSound.h">
+      <Filter>Game\07.Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="CAssetMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -201,6 +216,18 @@
       <Filter>Game\03.Manager</Filter>
     </ClCompile>
     <ClCompile Include="CGCMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CAsset.cpp">
+      <Filter>Game\07.Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="CTexture.cpp">
+      <Filter>Game\07.Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="CSound.cpp">
+      <Filter>Game\07.Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="CAssetMgr.cpp">
       <Filter>Game\03.Manager</Filter>
     </ClCompile>
   </ItemGroup>
