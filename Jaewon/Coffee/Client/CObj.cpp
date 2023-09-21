@@ -12,7 +12,7 @@ void CObj::tick(float _dt)
 void CObj::finalTick(float _dt)
 {
 	for (size_t i = 0; i < mVecComponent.size(); ++i) {
-		mVecComponent[i]->tick(_dt);
+		mVecComponent[i]->finalTick(_dt);
 	}
 }
 

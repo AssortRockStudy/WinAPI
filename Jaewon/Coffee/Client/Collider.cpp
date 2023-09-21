@@ -6,7 +6,7 @@
 
 void Collider::finalTick(float _dt)
 {
-	Vec2 ownerPos = getOwner()->getPos();
+	Vec2 ownerPos = getOwner()->getRenderPos();
 	finalPos = ownerPos + offsetPos;
 }
 
