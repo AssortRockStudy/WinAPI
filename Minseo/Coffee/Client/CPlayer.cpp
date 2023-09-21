@@ -10,9 +10,7 @@
 
 // 파생 오브젝트
 #include "CProjectile.h"
-#include "CMissile1.h"
-#include "CMissile2.h"
-#include "CMissile3.h"
+#include "CGuided.h"
 
 // Engine
 #include "CEngine.h"
@@ -73,64 +71,17 @@ void CPlayer::tick(float _DT)
 	{
 		CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
 
-		for (int i = 0; i < 3; ++i)
-		{
-			CProjectile* pProjectile = new CProjectile; // 새롭게 동적 할당
+		CGuided* pProjectile = new CGuided;
 
-			Vec2 ProjectilePos = GetPos();
-			pProjectile->SetPos(ProjectilePos);
+		Vec2 ProjectilePos = GetPos();
+		ProjectilePos.y -= GetScale().y / 2.f;
 
-			ProjectilePos.y -= GetScale().y / 2.f;
-			pProjectile->SetScale(Vec2(25.f, 25.f));
-
-			pProjectile->SetSpeed(1000.f); // 빠른 총알...
-			pProjectile->SetDir(PI / 4.f + (PI / 4.f) * (float)i); // 각도를 45 + (45*i)로 계산해서 넣기(총 3발)
-
-			pCurLevel->AddObject(pProjectile); // 레벨에 넣어서 지속적으로 움직이게 하기, 나중에 할당 해제하기
-		}
-	}
-
-	if (KEY_TAP(_1))
-	{
-		CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
-
-		CMissile1* pMissile1 = new CMissile1; // 새롭게 동적 할당
-
-		Vec2 MissilePos = GetPos();
-		pMissile1->SetPos(MissilePos);
-		pMissile1->SetScale(Vec2(25.f, 25.f));
-		pMissile1->SetSpeed(1000.f); // 빠른 총알...
-		pMissile1->SetTarget(pCurLevel->GetCurruntMonster(MissilePos));
-		pCurLevel->AddObject(pMissile1); // 레벨에 넣어서 지속적으로 움직이게 하기, 나중에 할당 해제하기
-		
-	}
-	if (KEY_TAP(_2))
-	{
-		CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
-
-		CMissile2* pMissile2 = new CMissile2; // 새롭게 동적 할당
-
-		Vec2 MissilePos = GetPos();
-		pMissile2->SetPos(MissilePos);
-		pMissile2->SetScale(Vec2(25.f, 25.f));
-		pMissile2->SetSpeed(300.f); // 빠른 총알...
-		pMissile2->SetTarget(pCurLevel->GetCurruntMonster(MissilePos));
-		pCurLevel->AddObject(pMissile2); // 레벨에 넣어서 지속적으로 움직이게 하기, 나중에 할당 해제하기
-
-	}
-	if (KEY_PRESSED(_3))
-	{
-		CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
-
-		CMissile3* pMissile3 = new CMissile3; // 새롭게 동적 할당
-
-		Vec2 MissilePos = GetPos();
-		pMissile3->SetPos(MissilePos);
-		pMissile3->SetScale(Vec2(25.f, 25.f));
-		pMissile3->SetSpeed(1000.f); // 빠른 총알...
-		pMissile3->SetTarget(pCurLevel->GetCurruntMonster(MissilePos));
-		pCurLevel->AddObject(pMissile3); // 레벨에 넣어서 지속적으로 움직이게 하기, 나중에 할당 해제하기
-
+		pProjectile->SetSpeed(500.f);
+		pProjectile->SetAngle(PI / 2.f);
+		pProjectile->SetPos(ProjectilePos);
+		pProjectile->SetScale(Vec2(25.f, 25.f));
+		pProjectile->SetDir(Vec2(0.f, -1.f));
+		pCurLevel->AddObject(pProjectile); // 레벨에 넣어서 지속적으로 움직이게 하기, 나중에 할당 해제하기
 	}
 	//m_Acc += _DT; 간략하게 전체 시간 구하기
 	SetPos(vPos);

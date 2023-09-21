@@ -20,6 +20,12 @@ private:
 
 public:
     virtual void tick(float _DT) override;
+    
+    void SetDir(Vec2 _vDir)
+    {
+        m_vDir = _vDir;
+        m_vDir.Normalize();
+    }
 
 
 

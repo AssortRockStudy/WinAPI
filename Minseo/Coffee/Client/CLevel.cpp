@@ -4,20 +4,20 @@
 #include "CTimeMgr.h"
 #include "CObj.h"
 
-CMonster* CLevel::GetCurruntMonster(Vec2 playerPos)
-{
-	float m1pos, m2pos;
-
-	m1pos = sqrt((m_Monster1->GetPos().y - playerPos.y) * (m_Monster1->GetPos().y - playerPos.y) + 
-		(m_Monster1->GetPos().x - playerPos.x) * (m_Monster1->GetPos().x - playerPos.x));
-	m2pos = sqrt((m_Monster2->GetPos().y - playerPos.y) * (m_Monster2->GetPos().y - playerPos.y) + 
-		(m_Monster2->GetPos().x - playerPos.x) * (m_Monster2->GetPos().x - playerPos.x));
-
-	if (m1pos > m2pos)
-		return m_Monster2;
-	else 
-		return m_Monster1;
-}
+//CMonster* CLevel::GetCurruntMonster(Vec2 playerPos)
+//{
+//	float m1pos, m2pos;
+//
+//	m1pos = sqrt((m_Monster1->GetPos().y - playerPos.y) * (m_Monster1->GetPos().y - playerPos.y) + 
+//		(m_Monster1->GetPos().x - playerPos.x) * (m_Monster1->GetPos().x - playerPos.x));
+//	m2pos = sqrt((m_Monster2->GetPos().y - playerPos.y) * (m_Monster2->GetPos().y - playerPos.y) + 
+//		(m_Monster2->GetPos().x - playerPos.x) * (m_Monster2->GetPos().x - playerPos.x));
+//
+//	if (m1pos > m2pos)
+//		return m_Monster2;
+//	else 
+//		return m_Monster1;
+//}
 
 CLevel::CLevel()
 {
@@ -35,7 +35,6 @@ CLevel::~CLevel()
 
 void CLevel::tick()
 {
-	float DT = CTimeMgr::GetInst()->GetDeltaTime();
 	for (size_t i = 0; i < m_vecObjects.size(); ++i)
 	{
 		m_vecObjects[i]->tick(DT); // 모든 인자의 tick() 수행

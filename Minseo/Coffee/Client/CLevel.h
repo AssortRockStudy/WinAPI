@@ -24,16 +24,20 @@ public:
 		m_vecObjects.push_back(_Object);
 	}
 
-	CMonster* GetMonster1() { return m_Monster1; }
-	void SetMonster1(CMonster* mon1) { m_Monster1 = mon1; }
+	//CMonster* GetMonster1() { return m_Monster1; }
+	//void SetMonster1(CMonster* mon1) { m_Monster1 = mon1; }
 
-	CMonster* GetMonster2() { return m_Monster2; }
-	void SetMonster2(CMonster* mon2) { m_Monster2 = mon2; }
+	//CMonster* GetMonster2() { return m_Monster2; }
+	//void SetMonster2(CMonster* mon2) { m_Monster2 = mon2; }
 
-	CMonster* GetCurruntMonster(Vec2 playerPos);
+	//CMonster* GetCurruntMonster(Vec2 playerPos);
 public:
 	CLevel();
 	~CLevel();
+
+
+friend class CLevelMgr;
+
 };
 
 template<typename T>

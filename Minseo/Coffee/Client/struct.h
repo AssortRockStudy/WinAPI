@@ -96,7 +96,15 @@ public:
 	{}
 };
 
-
+struct FMonInfo
+{
+	wchar_t szName[50];
+	float HP;
+	float MP;
+	float Att;
+	float Int;
+	float Speed;
+};
 
 struct FKeyData
 {
