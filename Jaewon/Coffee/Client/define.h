@@ -21,6 +21,11 @@
 #define GENERATED_OBJECT(type) typedef type Super;\
 							   virtual void Abstract() override {}
 
+
+#define DEBUG_RENDER CEngine::GetInst()->chkDebugRender()
+#define SELECT_PEN(DC, TYPE) SelectPen tempPenSelect(DC, TYPE)
+#define SELECT_BRUSH(DC, hBrush) SelectBrush tempBrushSelect(DC, hBrush)
+
 enum COLOR {
 	red,
 	blue,

@@ -183,6 +183,7 @@
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="struct.cpp" />
     <ClCompile Include="TaskMgr.cpp" />
   </ItemGroup>
   <ItemGroup>

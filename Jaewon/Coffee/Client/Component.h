@@ -15,6 +15,7 @@ public:
 public:
     virtual void tick(float _dt) {}
     virtual void finalTick(float _dt) = 0;
+    virtual void render(HDC _dc){}
 
 public:
     Component(CObj* _owner);

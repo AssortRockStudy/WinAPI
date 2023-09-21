@@ -95,3 +95,23 @@ struct FTask {
 	UINT_PTR Param1;
 	UINT_PTR Param2;
 };
+
+struct SelectPen {
+private:
+	HPEN prevPen;
+	HDC curDC;
+
+public:
+	SelectPen(HDC _dc, PEN_TYPE _type);
+	~SelectPen();
+};
+
+struct SelectBrush {
+private:
+	HBRUSH prevBrush;
+	HDC curDC;
+
+public:
+	SelectBrush(HDC _dc, HBRUSH _brush);
+	~SelectBrush();
+};

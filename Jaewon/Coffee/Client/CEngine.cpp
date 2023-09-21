@@ -9,7 +9,7 @@
 #include "Camera.h"
 #include "TaskMgr.h"
 
-CEngine::CEngine():mHwnd(nullptr), mPtResolution(), mDc(nullptr), subBitMap(nullptr), subDc(nullptr)
+CEngine::CEngine():mHwnd(nullptr), mPtResolution(), mDc(nullptr), subBitMap(nullptr), subDc(nullptr), debugRender(true), arrPen{}
 {
 }
 
@@ -20,6 +20,15 @@ CEngine::~CEngine()
 
 	DeleteObject(subBitMap);
 	DeleteDC(subDc);
+	for (UINT i = 0; i < PEN_END; ++i)
+		DeleteObject(arrPen[i]);
+}
+
+void CEngine::createGDI()
+{
+	arrPen[RED_PEN] = CreatePen(PS_SOLID, 1, RGB(255, 20, 20));
+	arrPen[GREEN_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 255, 20));
+	arrPen[BLUE_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 20, 255));
 }
 
 void CEngine::init(HWND _hwnd, POINT _ptResolution)
@@ -49,7 +58,7 @@ void CEngine::init(HWND _hwnd, POINT _ptResolution)
 	KeyMgr::GetInst()->init();
 	LevelMgr::GetInst()->init();
 	
-	
+	createGDI();
 }
 
 void CEngine::tick()
@@ -57,6 +66,10 @@ void CEngine::tick()
 	CTimeMgr::GetInst()->tick();
 	KeyMgr::GetInst()->tick();
 	Camera::GetInst()->tick();
+
+	if (KeyMgr::GetInst()->getKeyState(NUM8) == TAP)
+		debugRender ? debugRender = false : debugRender = true;
+
 	LevelMgr::GetInst()->tick();
 	LevelMgr::GetInst()->render(subDc);
 

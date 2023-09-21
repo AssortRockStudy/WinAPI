@@ -1,5 +1,8 @@
 ﻿#pragma once
 #include "CObj.h"
+
+class Collider;
+
 class Player : public CObj
 {
 	GENERATED_OBJECT(CObj);
@@ -11,6 +14,8 @@ private:
 	HBITMAP pImage;
 	HDC pImageDc;
 	BITMAP pBitMapInfo;
+
+	Collider* mCollider;
 
 
 public:

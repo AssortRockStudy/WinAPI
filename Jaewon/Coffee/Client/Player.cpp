@@ -8,6 +8,7 @@
 #include "CPathMgr.h"
 #include "CEngine.h"
 #include "TaskMgr.h"
+#include "Collider.h"
 
 void Player::tick(float _dt)
 {
@@ -59,35 +60,6 @@ void Player::render(HDC _dc)
 	Vec2 vPos = getRenderPos();
 	Vec2 vScale = getScale();
 
-	// 펜, 브러쉬 생성
-	// 현재 사용하던 객체를 따로 저장해두고
-	// 새로 만든 펜을 dc에 바꿔둠
-
-	/*
-	HPEN renderPen;
-	HBRUSH renderBrush;
-	if (col == red) {
-		renderPen = CREATEREDPEN;
-		renderBrush = CREATEREDBRUSH;
-			
-	}
-	else {
-		renderPen = CREATEBLACKPEN;
-		renderBrush = CREATEBLACKBRUSH;
-	}
-	HPEN prevPen = (HPEN)SelectObject(_dc, renderPen);
-	HBRUSH prevBrush = (HBRUSH)SelectObject(_dc, renderBrush);
-	*/
-	
-	/*
-	BitBlt(_dc, vPos.x - pBitMapInfo.bmWidth / 2.f
-		, vPos.y - pBitMapInfo.bmHeight / 2.f
-		, pBitMapInfo.bmWidth
-		, pBitMapInfo.bmHeight
-		, pImageDc
-		, 0, 0, SRCCOPY);
-	*/
-
 	TransparentBlt(_dc, vPos.x - pBitMapInfo.bmWidth / 2.f
 		, vPos.y - pBitMapInfo.bmHeight / 2.f
 		, pBitMapInfo.bmWidth
@@ -98,15 +70,7 @@ void Player::render(HDC _dc)
 		, pBitMapInfo.bmHeight
 		, RGB(255, 0, 255));
 
-	// 렌더링 끝나고 다시 바꾸고
-	// 만들었던 펜 삭제
-	/*
-	SelectObject(_dc, prevPen);
-	DeleteObject(renderPen);
-
-	SelectObject(_dc, prevBrush);
-	DeleteObject(renderBrush);
-	*/
+	Super::render(_dc);
 }
 
 Player::Player():mSpeed(500.f), col(black), reverseMove(true), pImage(nullptr), pImageDc(nullptr)
@@ -115,6 +79,11 @@ Player::Player():mSpeed(500.f), col(black), reverseMove(true), pImage(nullptr), 
 	wstring strPath = CPathMgr::getContentPath();
 	strPath += L"texture\\Fighter.bmp";
 	//MessageBox(nullptr, CPathMgr::getContentPath(), L"Current Directory Check", MB_OK);
+
+	mCollider = addComponent<Collider>();
+	mCollider->setOffsetPos(Vec2(0.f, 10.f));
+	mCollider->setScale(Vec2(40.f, 80.f));
+
 
 	// 비트맵 로딩
 	pImage = (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);

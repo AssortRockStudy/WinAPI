@@ -1,10 +1,13 @@
 ﻿#pragma once
 #include "CObj.h"
+
+class Collider;
+
 class Monster : public CObj
 {
 	GENERATED_OBJECT(CObj);
 private:
-	float mSpeed;
+	Collider* collider;
 
 private:
 	virtual void tick(float _dt) override;
