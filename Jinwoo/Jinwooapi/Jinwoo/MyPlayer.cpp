@@ -21,15 +21,27 @@
 
 MyPlayer::MyPlayer() : m_Speed(300.f), m_Collider(nullptr)
 {
+	// Player가 사용하는 텍스처 불러오기
+	m_Texture = MyAssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\link.bmp");
+
+
 	// Player가 사용하는 Component 추가
 	m_Collider = AddComponent<MyCollider>(L"PlayerCollider");
 	m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
 	m_Collider->SetOffsetScale(Vec2(40.f, 80.f));
 
 	m_Animator = AddComponent<MyAnimator>(L"PlayerAnimator");
+	m_Animator->CreateAnimation(L"IdleDown", m_Texture, Vec2(0.f, 0.f), Vec2(120, 130), 0.5f, 3);
+	m_Animator->CreateAnimation(L"IdleLeft", m_Texture, Vec2(0.f, 130.f), Vec2(120, 130), 0.5f, 3);
+	m_Animator->CreateAnimation(L"IdleUp", m_Texture, Vec2(0.f, 260.f), Vec2(120, 130), 0.5f, 1);
+	m_Animator->CreateAnimation(L"IdleRight", m_Texture, Vec2(0.f, 390.f), Vec2(120, 130), 0.5f, 3);
 
-	// Player가 사용하는 텍스처 불러오기
-	m_Texture = MyAssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\Fighter.bmp");
+	m_Animator->CreateAnimation(L"WalkDown", m_Texture, Vec2(0.f, 520.f), Vec2(120, 130), 0.05f, 10);
+	m_Animator->CreateAnimation(L"WalkLeft", m_Texture, Vec2(0.f, 650.f), Vec2(120, 130), 0.05f, 10);
+	m_Animator->CreateAnimation(L"WalkUp", m_Texture, Vec2(0.f, 780.f), Vec2(120, 130), 0.05f, 10);
+	m_Animator->CreateAnimation(L"WalkRight", m_Texture, Vec2(0.f, 910.f), Vec2(120, 130), 0.05f, 10);
+
+	m_Animator->Play(L"IdleDown", true);
 }
 
 MyPlayer::~MyPlayer()
@@ -46,21 +58,41 @@ void MyPlayer::tick(float _DT)
 	if (KEY_PRESSED(A))
 	{
 		vPos.x -= m_Speed * _DT;
+		m_Animator->Play(L"WalkLeft", true);
+	}
+	if (KEY_RELEASED(A))
+	{
+		m_Animator->Play(L"IdleLeft", true);
 	}
 
 	if (KEY_PRESSED(D))
 	{
 		vPos.x += m_Speed * _DT;
+		m_Animator->Play(L"WalkRight", true);
+	}
+	if (KEY_RELEASED(D))
+	{
+		m_Animator->Play(L"IdleRight", true);
 	}
 
 	if (KEY_PRESSED(W))
 	{
 		vPos.y -= m_Speed * _DT;
+		m_Animator->Play(L"WalkUp", true);
+	}
+	if (KEY_RELEASED(W))
+	{
+		m_Animator->Play(L"IdleUp", true);
 	}
 
 	if (KEY_PRESSED(S))
 	{
 		vPos.y += m_Speed * _DT;
+		m_Animator->Play(L"WalkDown", true);
+	}
+	if (KEY_RELEASED(S))
+	{
+		m_Animator->Play(L"IdleDown", true);
 	}
 
 	if (KEY_TAP(SPACE))
@@ -82,28 +114,6 @@ void MyPlayer::tick(float _DT)
 	}
 
 	SetPos(vPos);
-}
-
-void MyPlayer::render(HDC _dc)
-{
-	Vec2 vPos = GetRenderPos();
-	Vec2 vScale = GetScale();
-
-	UINT width = m_Texture->GetWidth();
-	UINT height = m_Texture->GetHeight();
-
-	TransparentBlt(_dc,
-		(int)(vPos.x -= width / 2.f),
-		(int)(vPos.y -= height / 2.f),
-		width,
-		height,
-		m_Texture->GetDC(),
-		0, 0,
-		width,
-		height,
-		RGB(255, 0, 255));
-
-	Super::render(_dc);
 }
 
 void MyPlayer::Overlap(MyCollider* _OwnCol, MyObject* _OtherObject, MyCollider* _OtherCol)

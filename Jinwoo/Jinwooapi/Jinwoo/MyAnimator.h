@@ -2,6 +2,7 @@
 #include "MyComponent.h"
 
 class MyAnim;
+class MyTexture;
 
 class MyAnimator :
     public MyComponent
@@ -19,7 +20,12 @@ private:
 public:
     void Play(const wstring& _strName, bool _repeat);
     void Stop();
-    void CreateAnimation();
+
+    // 애니메이션 찾기
+    MyAnim* FindAnim(const wstring& _strName);
+
+    // 애니메이션 생성
+    void CreateAnimation(const wstring& _strName, MyTexture* _Atlas, Vec2 _vLeftTop, Vec2 _vCutSize, float _Duration, int _MaxFrame);
 
 public:
     virtual void finaltick(float _DT) override;
