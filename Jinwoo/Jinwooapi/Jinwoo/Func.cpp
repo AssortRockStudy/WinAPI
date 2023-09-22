@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Func.h"
 
+#include "MyEntity.h"
+
 Vec2 RotateBullet(Vec2 _Dir, float _f)
 {
 	return Vec2(_Dir.x * cosf(_f) - _Dir.y * sinf(_f),

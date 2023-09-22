@@ -163,3 +163,13 @@ public:
 	FSelectBrush(HDC _dc, HBRUSH _Brush);
 	~FSelectBrush();
 };
+
+struct FMonInfo
+{
+	wchar_t szName[50];
+	float HP;
+	float MP;
+	float Att;
+	float Int;
+	float Speed;
+};

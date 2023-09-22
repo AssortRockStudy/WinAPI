@@ -4,6 +4,7 @@
 #include "MyLevelMgr.h"
 #include "MyLevel.h"
 #include "MyObject.h"
+#include "MyComponent.h"
 
 MyTaskMgr::MyTaskMgr()
 {
@@ -28,11 +29,14 @@ void MyTaskMgr::tick()
 
 			MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
 			pCurLevel->AddObject(LayerType, Object);
+			Object->begin();
 		}
 		break;
 
 		case TASK_TYPE::DELETE_OBJECT:
 		{
+			MyObject* pDeadObject = (MyObject*)m_vecTask[i].Param1;
+			pDeadObject->SetDead();
 		}
 		break;
 

@@ -5,10 +5,12 @@ class MyCollider :
     public MyComponent
 {
 private:
-    Vec2 m_OffsetPos;
-    Vec2 m_OffsetScale;
+    Vec2    m_OffsetPos;
+    Vec2    m_OffsetScale;
 
-    Vec2 m_finalPos;
+    Vec2    m_finalPos;
+
+    int     m_CollisionCount;
 
 public:
     Vec2 GetColliderPos() { return m_finalPos; }
@@ -22,6 +24,11 @@ public:
     virtual void finaltick(float _DT) override;
 
     virtual void render(HDC _dc) override;
+
+public:
+    void BeginOverlap(MyCollider* _OtherCol);
+    void Overlap(MyCollider* _OtherCol);
+    void EndOverlap(MyCollider* _OtherCol);
 
 public:
     MyCollider(MyObject* _Object);

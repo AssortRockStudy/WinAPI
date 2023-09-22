@@ -6,6 +6,7 @@
 
 #include "MyLevel.h"
 #include "MyMonster.h"
+#include "MyCollider.h"
 
 HomingBullet::HomingBullet() : m_TargetMonster(nullptr), m_Mass(1.f), m_RotateSpeed(PI)
 {
@@ -15,17 +16,42 @@ HomingBullet::~HomingBullet()
 {
 }
 
+void HomingBullet::begin()
+{
+	Super::begin();
+
+	GetCollider()->SetOffsetScale(GetScale() * 3.f / 4.f);
+}
+
 void HomingBullet::tick(float _DT)
 {
-	ParentClass::tick(_DT);
+	Super::tick(_DT);
 
-	if (nullptr == m_TargetMonster)
+	if (!IsValid(m_TargetMonster))
 	{
 		FindTarget();
+	}
+
+	if (!IsValid(m_TargetMonster))
+	{
+		Vec2 vPos = GetPos();
+
+		vPos.x += m_Dir.x * GetSpeed() * DT;
+		vPos.y += m_Dir.y * GetSpeed() * DT;
+
+		SetPos(vPos);
 	}
 	else
 	{
 		Fire03();
+	}
+}
+
+void HomingBullet::BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObject, MyCollider* _OtherCol)
+{
+	if (dynamic_cast<MyMonster*>(_OtherObject))
+	{
+		Destroy();
 	}
 }
 
@@ -112,6 +138,8 @@ void HomingBullet::Fire03()
 
 	float vSpeed = GetSpeed();
 	m_Velocity = m_Dir * vSpeed;
+
+	float Temp = PI / 180.f;
 
 	if (vAngle > PI / 180.f)
 	{

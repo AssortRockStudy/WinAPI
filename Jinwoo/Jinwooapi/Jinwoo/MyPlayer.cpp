@@ -16,14 +16,14 @@
 #include "HomingBullet.h"
 #include "MyMonster.h"
 
-MyPlayer::MyPlayer() : m_Speed(300.f), m_PlayerImage(nullptr)
+MyPlayer::MyPlayer() : m_Speed(300.f), m_PlayerImage(nullptr), m_Collider(nullptr)
 {
 	// 이미지가 존재하는 경로 탐색
 	wstring strPath = MyPathMgr::GetContentPath();
 	strPath += L"Fighter.bmp";
 
 	// Player가 사용하는 Component 추가
-	m_Collider = AddComponent<MyCollider>();
+	m_Collider = AddComponent<MyCollider>(L"PlayerCollider");
 	m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
 	m_Collider->SetOffsetScale(Vec2(40.f, 80.f));
 
@@ -42,7 +42,7 @@ MyPlayer::~MyPlayer()
 
 void MyPlayer::tick(float _DT)
 {
-	ParentClass::tick(_DT);
+	Super::tick(_DT);
 
 	Vec2 vPos = GetPos();
 
@@ -92,14 +92,6 @@ void MyPlayer::render(HDC _dc)
 	Vec2 vPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 
-	//BitBlt(_dc,
-	//	(int)(vPos.x -= m_BitmapInfo.bmWidth / 2),
-	//	(int)(vPos.y -= m_BitmapInfo.bmHeight / 2),
-	//	m_BitmapInfo.bmWidth,
-	//	m_BitmapInfo.bmHeight,
-	//	m_PlayerDC,
-	//	0, 0, SRCCOPY);
-
 	TransparentBlt(_dc,
 		(int)(vPos.x -= m_BitmapInfo.bmWidth / 2.f),
 		(int)(vPos.y -= m_BitmapInfo.bmHeight / 2.f),
@@ -111,5 +103,10 @@ void MyPlayer::render(HDC _dc)
 		m_BitmapInfo.bmHeight,
 		RGB(255, 0, 255));
 
-	ParentClass::render(_dc);
+	Super::render(_dc);
+}
+
+void MyPlayer::Overlap(MyCollider* _OwnCol, MyObject* _OtherObject, MyCollider* _OtherCol)
+{
+	_OwnCol->GetName();
 }

@@ -16,6 +16,7 @@ private:
 	MyLayer* m_Layer[(UINT_PTR)LAYER::END];
 	
 public:
+	void begin();
 	void tick();
 	void render(HDC _dc);
 
@@ -25,6 +26,12 @@ public:
 
 	// 레벨이 소유하고 있는 특정 레이어의 오브젝트 목록을 반환
 	const vector<MyObject*>& GetObjects(LAYER _LayerType) { return m_Layer[(UINT)_LayerType]->m_vecObject; }
+
+	MyLayer* GetLayer(int _LayerIdx)
+	{
+		assert(!(_LayerIdx < 0 || (int)LAYER::END <= _LayerIdx));
+		return m_Layer[_LayerIdx];
+	}
 
 private:
 	void AddObject(LAYER _LayerType, MyObject* _Object);

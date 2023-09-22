@@ -4,17 +4,27 @@
 #include "MyKeyMgr.h"
 #include "MyTimeMgr.h"
 
-MyMonster::MyMonster() : m_Speed(300.f), monsterTime(0.f)
+#include "MyCollider.h"
+#include "MyProjectile.h"
+
+MyMonster::MyMonster() : m_Speed(300.f), monsterTime(0.f), m_Collider(nullptr), m_Info{}
 {
+	m_Collider = AddComponent<MyCollider>(L"MonsterCollider");
+	m_Info.HP = 5.f;
 }
 
 MyMonster::~MyMonster()
 {
 }
 
+void MyMonster::begin()
+{
+	m_Collider->SetOffsetScale(GetScale() - 10.f);
+}
+
 void MyMonster::tick(float _DT)
 {
-	ParentClass::tick(_DT);
+	Super::tick(_DT);
 
 	MonsterPos = GetPos();
 
@@ -41,28 +51,24 @@ void MyMonster::render(HDC _dc)
 	MonsterPos = GetRenderPos();
 	MonsterScale = GetScale();
 
-	// 새로운 펜 객체를 생성
-	//						선의 스타일 / 두께 / 색상
-	HPEN hCurPen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
-	// 그리기에 사용할 개체를 현재 DC(device context)에 적용
-	//								현재 dc / 사용할 개체
-	HPEN hPrevPen = (HPEN)SelectObject(_dc, hCurPen);
-
-	// 새로운 브러쉬 생성
-	// 펜으로 그린 것의 내부를 채운다
-	HBRUSH hCurBrush = CreateSolidBrush(RGB(255, 0, 0));
-	HBRUSH hPrevBrush = (HBRUSH)SelectObject(_dc, hCurBrush);
-
 	Ellipse(_dc
 		, int(MonsterPos.x - MonsterScale.x / 2)
 		, int(MonsterPos.y - MonsterScale.y / 2)
 		, int(MonsterPos.x + MonsterScale.x / 2)
 		, int(MonsterPos.y + MonsterScale.y / 2));
 
-	// 되돌리고 사용했던 펜과 브러쉬를 삭제한다
-	SelectObject(_dc, hPrevPen);
-	DeleteObject(hCurPen);
+	Super::render(_dc);
+}
 
-	SelectObject(_dc, hPrevBrush);
-	DeleteObject(hCurBrush);
+void MyMonster::BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObject, MyCollider* _OtherCol)
+{
+	if (dynamic_cast<MyProjectile*>(_OtherObject))
+	{
+		m_Info.HP -= 1.f;
+
+		if (m_Info.HP <= 0)
+		{
+			Destroy();
+		}
+	}
 }

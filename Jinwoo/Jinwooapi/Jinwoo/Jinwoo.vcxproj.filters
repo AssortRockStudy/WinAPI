@@ -134,6 +134,9 @@
     <ClInclude Include="MyColliderMgr.h">
       <Filter>Game\03.Manager</Filter>
     </ClInclude>
+    <ClInclude Include="MyGCMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jinwoo.rc">
@@ -212,6 +215,9 @@
     </ClCompile>
     <ClCompile Include="struct.cpp">
       <Filter>Game\01.Header</Filter>
+    </ClCompile>
+    <ClCompile Include="MyGCMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

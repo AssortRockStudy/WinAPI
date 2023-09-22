@@ -24,7 +24,7 @@
 
 #define DT MyTimeMgr::GetInst()->GetDeltaTime()
 
-#define GENERATED_OBJECT(Type)	typedef Type ParentClass;\
+#define GENERATED_OBJECT(Type)	typedef Type Super;\
 								virtual void Abstract() override {}
 
 #define DEBUG_RENDER	MyEngine::GetInst()->DebugRender()

@@ -20,6 +20,8 @@ private:
 public:
 	virtual void tick(float _DT) override;
 	virtual void render(HDC _dc) override;
+	
+	virtual void Overlap(MyCollider* _OwnCol, MyObject* _OtherObject, MyCollider* _OtherCol) override;
 
 public:
 	MyPlayer();

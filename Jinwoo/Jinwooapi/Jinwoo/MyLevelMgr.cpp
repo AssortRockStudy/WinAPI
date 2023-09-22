@@ -48,6 +48,9 @@ void MyLevelMgr::init()
 	MyCameraMgr::GetInst()->SetLookAt(vLookAt);
 
 	MyColliderMgr::GetInst()->CheckCollision(LAYER::MONSTER, LAYER::PLAYER);
+	MyColliderMgr::GetInst()->CheckCollision(LAYER::MONSTER, LAYER::PLAYERBULLET);
+
+	m_pCurLevel->begin();
 }
 
 void MyLevelMgr::tick()

@@ -150,6 +150,7 @@
     <ClInclude Include="MyComponent.h" />
     <ClInclude Include="MyEngine.h" />
     <ClInclude Include="MyEntity.h" />
+    <ClInclude Include="MyGCMgr.h" />
     <ClInclude Include="MyKeyMgr.h" />
     <ClInclude Include="MyLayer.h" />
     <ClInclude Include="MyLevel.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="MyComponent.cpp" />
     <ClCompile Include="MyEngine.cpp" />
     <ClCompile Include="MyEntity.cpp" />
+    <ClCompile Include="MyGCMgr.cpp" />
     <ClCompile Include="MyKeyMgr.cpp" />
     <ClCompile Include="MyLayer.cpp" />
     <ClCompile Include="MyLevel.cpp" />

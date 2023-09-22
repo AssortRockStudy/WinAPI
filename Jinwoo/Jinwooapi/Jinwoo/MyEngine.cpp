@@ -8,6 +8,7 @@
 #include "MyTaskMgr.h"
 #include "MyCameraMgr.h"
 #include "MyColliderMgr.h"
+#include "MyGCMgr.h"
 
 #include "MyLevel.h"
 
@@ -96,4 +97,7 @@ void MyEngine::tick()
 
 	// Task 매니저 업데이트
 	MyTaskMgr::GetInst()->tick();
+
+	// GC 매니저 업데이트
+	MyGCMgr::GetInst()->tick();
 }
