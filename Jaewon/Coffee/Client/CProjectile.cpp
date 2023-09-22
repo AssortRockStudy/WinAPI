@@ -3,6 +3,7 @@
 #include "Monster.h"
 #include "CLevel.h"
 #include "LevelMgr.h"
+#include "Collider.h"
 
 
 void CProjectile::render(HDC _dc)
@@ -24,8 +25,9 @@ void CProjectile::render(HDC _dc)
 
 
 
-CProjectile::CProjectile() : mSpeed(0.f), mAngle(M_PI / 2.f)
+CProjectile::CProjectile() : mSpeed(0.f), mAngle(M_PI / 2.f), mCollider(nullptr)
 {
+	mCollider = addComponent<Collider>(L"Collider");
 }
 
 CProjectile::~CProjectile()

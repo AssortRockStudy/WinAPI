@@ -22,7 +22,7 @@ void CObj::render(HDC _dc)
 		mVecComponent[i]->render(_dc);
 }
 
-CObj::CObj()
+CObj::CObj():mLayerIdx(-1)
 {
 }
 

@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "CObj.h"
-class Monster;
+
+class Collider;
 
 class CProjectile : public CObj
 {
@@ -8,13 +9,7 @@ private:
 	
 	float   mSpeed;
 	float   mAngle;
-
-	float mMass;
-	Vec2 mAccel;
-	Vec2 mVelocity;
-	Vec2 mForce;
-	Vec2 mDir;
-	float mRotateSpeed;
+	Collider* mCollider;
 
 public:
 	void setAngle(float _theta) { mAngle = _theta; }
@@ -23,7 +18,8 @@ public:
 public:
 	float getSpeed() { return mSpeed; }
 	float getAngle() { return mAngle; };
-	
+	Collider* getCollider() { return mCollider; }
+
 public:
 	virtual void render(HDC _dc) override;
 

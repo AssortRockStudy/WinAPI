@@ -6,7 +6,7 @@
 
 #include "Monster.h"
 #include "CTimeMgr.h"
-
+#include "Collider.h"
 
 
 void Guided::tick(float _dt)
@@ -24,7 +24,10 @@ void Guided::tick(float _dt)
 	}
 }
 
-
+void Guided::begin() {
+	Super::begin();
+	getCollider()->setScale(getScale());
+}
 void Guided::FindTarget()
 {
 

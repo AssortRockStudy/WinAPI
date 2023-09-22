@@ -80,7 +80,7 @@ Player::Player():mSpeed(500.f), col(black), reverseMove(true), pImage(nullptr), 
 	strPath += L"texture\\Fighter.bmp";
 	//MessageBox(nullptr, CPathMgr::getContentPath(), L"Current Directory Check", MB_OK);
 
-	mCollider = addComponent<Collider>();
+	mCollider = addComponent<Collider>(L"PlayerCollider");
 	mCollider->setOffsetPos(Vec2(0.f, 10.f));
 	mCollider->setScale(Vec2(40.f, 80.f));
 

@@ -3,6 +3,7 @@
 #include "CLayer.h"
 #include "CLevel.h"
 #include "LevelMgr.h"
+#include "CObj.h"
 
 
 void TaskMgr::tick()
@@ -15,6 +16,7 @@ void TaskMgr::tick()
 			CObj* obj = (CObj*)mVecTask[i].Param2;
 			CLevel* curLevel = LevelMgr::GetInst()->getCurLevel();
 			curLevel->addObject(layerType, obj);
+			obj->begin();
 		}
 			break;
 		case DELETE_OBJECT:

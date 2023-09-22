@@ -11,6 +11,7 @@ private:
 	CLayer* m_Layer[LAYER::END];
 
 public:
+	void begin();
 	void tick();
 	void render(HDC _dc);
 	

@@ -10,6 +10,7 @@ private:
 	Collider* collider;
 
 private:
+	virtual void begin() override;
 	virtual void tick(float _dt) override;
 	virtual void render(HDC _dc) override;
 public:

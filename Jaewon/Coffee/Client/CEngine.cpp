@@ -8,6 +8,7 @@
 #include "CPathMgr.h"
 #include "Camera.h"
 #include "TaskMgr.h"
+#include "CollisionMgr.h"
 
 CEngine::CEngine():mHwnd(nullptr), mPtResolution(), mDc(nullptr), subBitMap(nullptr), subDc(nullptr), debugRender(true), arrPen{}
 {
@@ -71,6 +72,7 @@ void CEngine::tick()
 		debugRender ? debugRender = false : debugRender = true;
 
 	LevelMgr::GetInst()->tick();
+	CollisionMgr::GetInst()->tick();
 	LevelMgr::GetInst()->render(subDc);
 
 	TaskMgr::GetInst()->tick();

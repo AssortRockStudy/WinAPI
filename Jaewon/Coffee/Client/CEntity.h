@@ -9,9 +9,13 @@ private:
 
 private:
 	const UINT_PTR mID;
+	wstring strName;
 
 public: 
 	UINT_PTR getID() { return mID; }
+	const wstring& getName() { return strName; }
+	void setName(const wstring& _strname) { strName = _strname; }
+
 
 public:
 	virtual CEntity* Clone() { return nullptr; } // 나중에 변경할듯?

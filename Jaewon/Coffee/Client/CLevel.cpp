@@ -4,9 +4,20 @@
 #include "CTimeMgr.h"
 #include "Monster.h"
 
+void CLevel::begin()
+{
+	for (UINT i = 0; i < LAYER::END; ++i) {
+		m_Layer[i]->begin();
+	}
+	
+}
+
 // 레벨에 들어있는 오브젝트들의 tick을 다 실행
 void CLevel::tick()
 {
+	for (UINT i = 0; i < LAYER::END; ++i) {
+		m_Layer[i]->clear();
+	}
 	for (UINT i = 0; i < LAYER::END; ++i){
 		m_Layer[i]->tick();
 	}

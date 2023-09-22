@@ -3,6 +3,13 @@
 #include "CTimeMgr.h"
 #include "CObj.h"
 
+void CLayer::begin()
+{
+	for (int i = 0; i < mVecObjects.size(); ++i) {
+		mVecObjects[i]->begin();
+	}
+}
+
 void CLayer::tick()
 {
 	float delta = CTimeMgr::GetInst()->getDeltaTime();
