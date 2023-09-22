@@ -9,6 +9,7 @@
 #include "LevelMgr.h"
 #include "PathMgr.h"
 #include "Level.h"
+#include "Projectile.h"
 
 
 Player::Player()
@@ -58,22 +59,22 @@ void Player::tick(float _DT)
 
 	if (KEY_TAP(SPACE))
 	{
-		Level* p_CurLevel = LevelMgr::GetInst()->GetCurLevel();
+		Level* pCurLevel = LevelMgr::GetInst()->GetCurLevel();
 
-		//for (int i = 0; i < 3; ++i)
-		//{
-		//	CProjectile* pProjectile = new CProjectile;
+		for (int i = 0; i < 3; ++i)
+		{
+			Projectile* pProjectile = new Projectile;
 
-		//	Vec2 ProjectilePos = GetPos();
-		//	ProjectilePos.y -= GetScale().y / 2.f;
+			Vec2 ProjectilePos = GetPos();
+			ProjectilePos.y -= GetScale().y / 2.f;
 
-		//	pProjectile->SetSpeed(1000.f);
-		//	pProjectile->SetDir(PI / 4.f + (PI / 4.f) * (float)i);
-		//	pProjectile->SetPos(ProjectilePos);
-		//	pProjectile->SetScale(Vec2(25.f, 25.f));
+			pProjectile->SetSpeed(1000.f);
+			pProjectile->SetDir(PI / 4.f + (PI / 4.f) * (float)i);
+			pProjectile->SetPos(ProjectilePos);
+			pProjectile->SetScale(Vec2(25.f, 25.f));
 
-		//	pCurLevel->AddObject(pProjectile);
-		//}
+			pCurLevel->AddObject(pProjectile);
+		}
 	}
 
 	SetPos(vPos);
@@ -94,8 +95,6 @@ void Player::render(HDC _dc)
 		 , int(vPos.x + vScale.x / 2)
 		 , int(vPos.y + vScale.y / 2));
 
-	 //DeleteObject(SelectObject(_dc, oldPen));
-	 //DeleteObject(SelectObject(_dc, oldBrush));
 
 
 }

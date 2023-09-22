@@ -80,7 +80,10 @@
     <ClCompile Include="LevelMgr.cpp">
       <Filter>Game\03. Manager</Filter>
     </ClCompile>
-    <ClCompile Include="PathMgr.cpp" />
+    <ClCompile Include="PathMgr.cpp">
+      <Filter>Game\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -134,6 +137,9 @@
     <ClInclude Include="LevelMgr.h">
       <Filter>Game\03. Manager</Filter>
     </ClInclude>
-    <ClInclude Include="PathMgr.h" />
+    <ClInclude Include="PathMgr.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h" />
   </ItemGroup>
 </Project>
