@@ -3,6 +3,7 @@
 #include "MyObject.h"
 
 class MyCollider;
+class MyTexture;
 
 class MyMonster : public MyObject
 {	
@@ -12,11 +13,9 @@ private:
 	float m_Speed;
 	float monsterTime;
 
-	Vec2 MonsterPos;
-	Vec2 MonsterScale;
-
 	MyCollider* m_Collider;
 	FMonInfo	m_Info;
+	MyTexture*	m_Texture;
 
 public:
 	virtual void begin() override;

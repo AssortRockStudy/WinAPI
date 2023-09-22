@@ -144,6 +144,10 @@
     <ClInclude Include="global.h" />
     <ClInclude Include="HomingBullet.h" />
     <ClInclude Include="Jinwoo.h" />
+    <ClInclude Include="MyAnim.h" />
+    <ClInclude Include="MyAnimator.h" />
+    <ClInclude Include="MyAsset.h" />
+    <ClInclude Include="MyAssetMgr.h" />
     <ClInclude Include="MyCameraMgr.h" />
     <ClInclude Include="MyCollider.h" />
     <ClInclude Include="MyColliderMgr.h" />
@@ -160,7 +164,9 @@
     <ClInclude Include="MyPathMgr.h" />
     <ClInclude Include="MyPlayer.h" />
     <ClInclude Include="MyProjectile.h" />
+    <ClInclude Include="MySound.h" />
     <ClInclude Include="MyTaskMgr.h" />
+    <ClInclude Include="MyTexture.h" />
     <ClInclude Include="MyTimeMgr.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
@@ -171,6 +177,10 @@
     <ClCompile Include="Func.cpp" />
     <ClCompile Include="HomingBullet.cpp" />
     <ClCompile Include="Jinwoo.cpp" />
+    <ClCompile Include="MyAnim.cpp" />
+    <ClCompile Include="MyAnimator.cpp" />
+    <ClCompile Include="MyAsset.cpp" />
+    <ClCompile Include="MyAssetMgr.cpp" />
     <ClCompile Include="MyCameraMgr.cpp" />
     <ClCompile Include="MyCollider.cpp" />
     <ClCompile Include="MyColliderMgr.cpp" />
@@ -187,7 +197,9 @@
     <ClCompile Include="MyPathMgr.cpp" />
     <ClCompile Include="MyPlayer.cpp" />
     <ClCompile Include="MyProjectile.cpp" />
+    <ClCompile Include="MySound.cpp" />
     <ClCompile Include="MyTaskMgr.cpp" />
+    <ClCompile Include="MyTexture.cpp" />
     <ClCompile Include="MyTimeMgr.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="struct.cpp" />

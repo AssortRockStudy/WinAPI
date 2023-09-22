@@ -21,8 +21,8 @@ public:
     void SetOffsetPos(Vec2 _OffsetPos) { m_OffsetPos = _OffsetPos; }
     void SetOffsetScale(Vec2 _OffsetScale) { m_OffsetScale = _OffsetScale; }
 
+public:
     virtual void finaltick(float _DT) override;
-
     virtual void render(HDC _dc) override;
 
 public:

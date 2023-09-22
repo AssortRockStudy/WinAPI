@@ -33,11 +33,11 @@ void MyLevelMgr::init()
 
 	MyMonster* pMonster = new MyMonster;
 	pMonster->SetPos(Vec2(200.f, 200.f));
-	pMonster->SetScale(Vec2(50.f, 50.f));
+	pMonster->SetScale(Vec2(80.f, 80.f));
 	
 	MyMonster* pMonster2 = new MyMonster;
 	pMonster2->SetPos(Vec2(800.f, 200.f));
-	pMonster2->SetScale(Vec2(50.f, 50.f));
+	pMonster2->SetScale(Vec2(80.f, 80.f));
 
 	m_pCurLevel->AddObject(LAYER::PLAYER, pPlayer);
 	m_pCurLevel->AddObject(LAYER::MONSTER, pMonster);

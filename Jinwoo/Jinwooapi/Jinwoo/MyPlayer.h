@@ -3,6 +3,8 @@
 #include "MyObject.h"
 
 class MyCollider;
+class MyTexture;
+class MyAnimator;
 
 class MyPlayer : public MyObject
 {
@@ -11,11 +13,9 @@ class MyPlayer : public MyObject
 private:
 	float m_Speed;
 
-	HBITMAP		m_PlayerImage;
-	HDC			m_PlayerDC;
-	BITMAP		m_BitmapInfo;
-
 	MyCollider* m_Collider;
+	MyTexture*	m_Texture;
+	MyAnimator* m_Animator;
 	
 public:
 	virtual void tick(float _DT) override;

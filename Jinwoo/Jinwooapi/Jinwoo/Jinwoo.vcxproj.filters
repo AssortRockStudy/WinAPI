@@ -53,6 +53,18 @@
     <Filter Include="Game\06.Component\AI">
       <UniqueIdentifier>{e82e42be-e851-4b0e-b332-b52957372643}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\07.Asset">
+      <UniqueIdentifier>{88c0d1af-07f5-47bf-9b38-27a7ff3782df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\07.Asset\Texture">
+      <UniqueIdentifier>{33a5de48-e2ef-4a3e-bc46-e9e3901d3fdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\07.Asset\Sound">
+      <UniqueIdentifier>{448d2349-6f53-4133-ad09-2630296db279}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06.Component\Animator\Anim">
+      <UniqueIdentifier>{b6be2b2c-c21a-4c0e-892f-a9c4e599a27f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -87,9 +99,6 @@
     </ClInclude>
     <ClInclude Include="MyLevel.h">
       <Filter>Game\05.Level</Filter>
-    </ClInclude>
-    <ClInclude Include="MyPlayer.h">
-      <Filter>Game\04.Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="struct.h">
       <Filter>Game\01.Header</Filter>
@@ -136,6 +145,27 @@
     </ClInclude>
     <ClInclude Include="MyGCMgr.h">
       <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MyAsset.h">
+      <Filter>Game\07.Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="MyAssetMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MyTexture.h">
+      <Filter>Game\07.Asset\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="MyPlayer.h">
+      <Filter>Game\04.Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="MySound.h">
+      <Filter>Game\07.Asset\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="MyAnimator.h">
+      <Filter>Game\06.Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="MyAnim.h">
+      <Filter>Game\06.Component\Animator\Anim</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +248,24 @@
     </ClCompile>
     <ClCompile Include="MyGCMgr.cpp">
       <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MyAsset.cpp">
+      <Filter>Game\07.Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="MyAssetMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MyTexture.cpp">
+      <Filter>Game\07.Asset\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="MySound.cpp">
+      <Filter>Game\07.Asset\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="MyAnimator.cpp">
+      <Filter>Game\06.Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="MyAnim.cpp">
+      <Filter>Game\06.Component\Animator\Anim</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

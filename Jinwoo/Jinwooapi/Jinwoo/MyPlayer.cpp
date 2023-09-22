@@ -7,37 +7,34 @@
 #include "MyKeyMgr.h"
 #include "MyLevelMgr.h"
 #include "MyPathMgr.h"
+#include "MyAssetMgr.h"
 
 #include "MyLevel.h"
 #include "MyProjectile.h"
 
 #include "MyCollider.h"
+#include "MyAnimator.h"
 
 #include "HomingBullet.h"
 #include "MyMonster.h"
+#include "MyTexture.h"
 
-MyPlayer::MyPlayer() : m_Speed(300.f), m_PlayerImage(nullptr), m_Collider(nullptr)
+MyPlayer::MyPlayer() : m_Speed(300.f), m_Collider(nullptr)
 {
-	// 이미지가 존재하는 경로 탐색
-	wstring strPath = MyPathMgr::GetContentPath();
-	strPath += L"Fighter.bmp";
-
 	// Player가 사용하는 Component 추가
 	m_Collider = AddComponent<MyCollider>(L"PlayerCollider");
 	m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
 	m_Collider->SetOffsetScale(Vec2(40.f, 80.f));
 
-	// 플레이어가 사용할 이미지 로드
-	m_PlayerImage = (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
-	m_PlayerDC = CreateCompatibleDC(MyEngine::GetInst()->GetMainDC());
-	DeleteObject(SelectObject(m_PlayerDC, m_PlayerImage));
-	GetObject(m_PlayerImage, sizeof(BITMAP), &m_BitmapInfo);
+	m_Animator = AddComponent<MyAnimator>(L"PlayerAnimator");
+
+	// Player가 사용하는 텍스처 불러오기
+	m_Texture = MyAssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\Fighter.bmp");
 }
 
 MyPlayer::~MyPlayer()
 {
-	DeleteObject(m_PlayerImage);
-	DeleteDC(m_PlayerDC);
+	
 }
 
 void MyPlayer::tick(float _DT)
@@ -92,15 +89,18 @@ void MyPlayer::render(HDC _dc)
 	Vec2 vPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 
+	UINT width = m_Texture->GetWidth();
+	UINT height = m_Texture->GetHeight();
+
 	TransparentBlt(_dc,
-		(int)(vPos.x -= m_BitmapInfo.bmWidth / 2.f),
-		(int)(vPos.y -= m_BitmapInfo.bmHeight / 2.f),
-		m_BitmapInfo.bmWidth,
-		m_BitmapInfo.bmHeight,
-		m_PlayerDC,
+		(int)(vPos.x -= width / 2.f),
+		(int)(vPos.y -= height / 2.f),
+		width,
+		height,
+		m_Texture->GetDC(),
 		0, 0,
-		m_BitmapInfo.bmWidth,
-		m_BitmapInfo.bmHeight,
+		width,
+		height,
 		RGB(255, 0, 255));
 
 	Super::render(_dc);
