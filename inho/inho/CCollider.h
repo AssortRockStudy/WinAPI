@@ -1,11 +1,14 @@
 ﻿#pragma once
 #include "CComponent.h"
+
 class CCollider : public CComponent {
 
   private:
     Vec2 m_vOffsetPos;
     Vec2 m_vScale;
     Vec2 m_vFinalPos;
+
+    int m_iCollisionCount;
 
   public:
     virtual void finaltick(float _DT) override;
@@ -19,7 +22,9 @@ class CCollider : public CComponent {
     Vec2 GetScale() { return m_vScale; }
 
 public:
+    void BeginOverlap(CCollider* _OtherCol);
     void Overlap(CCollider* _OtherCol);
+    void EndOverlap(CCollider* _OtherCol);
 
   public:
     CCollider(class CObj* _Owner);

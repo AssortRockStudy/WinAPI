@@ -33,6 +33,8 @@ class CGuidedProjectile : public CProjectile {
       virtual void begin() override;
     virtual void tick(float _dt) override;
 
+    virtual void BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
+
   public:
     CGuidedProjectile();
     ;

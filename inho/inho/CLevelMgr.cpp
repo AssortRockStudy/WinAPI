@@ -41,6 +41,7 @@ void CLevelMgr::init() {
     CCamera::GetInst()->SetLookAt(vLookAt);
 
     CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
+    CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER_PJ);
 
     m_pCurLevel->begin();
 }

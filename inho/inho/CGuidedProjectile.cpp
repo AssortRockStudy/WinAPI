@@ -118,3 +118,10 @@ void CGuidedProjectile::Update_3() {
     vPos += m_vVelocity * DT;
     SetPos(vPos);
 }
+
+void CGuidedProjectile::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+{
+    if (dynamic_cast<CMonster*> (_OtherObj)) {
+        Destroy();
+    }
+}

@@ -24,7 +24,11 @@ void CTaskMgr::tick() {
         }
 
         case DELETE_OBJECT:
+        {
+            CObj* pDeadObj = (CObj*)m_vecTask[i].Param_1;
+            pDeadObj->m_bDead = true;
             break;
+        }
         case LEVEL_CHANGE:
             break;
         default:

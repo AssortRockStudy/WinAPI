@@ -61,12 +61,33 @@ void CCollisionMgr::CollisionBtwLayer(LAYER _Left, LAYER _Right)
     if (_Left != _Right) {
         for (size_t i = 0; i < vecLeft.size(); ++i) {
             for (size_t j = 0; j < vecRight.size(); ++j) {
+
+                COLLIDER_ID ID(vecLeft[i]->GetID(), vecRight[j]->GetID());
+
+                auto iter = m_mapID.find(ID);
+
+                if (iter == m_mapID.end()) {
+                    m_mapID.insert(make_pair(ID, false));
+                    iter = m_mapID.find(ID);
+                }
+
                 if (IsCollision(vecLeft[i], vecRight[j])) {
-                    vecLeft[i]->Overlap(vecRight[j]);
-                    vecRight[j]->Overlap(vecLeft[i]);
+                    if (false == iter->second) {
+                        vecLeft[i]->BeginOverlap(vecRight[j]);
+                        vecRight[j]->BeginOverlap(vecLeft[i]);
+                    }
+                    else {
+                        vecLeft[i]->Overlap(vecRight[j]);
+                        vecRight[j]->Overlap(vecLeft[i]);
+                    }
+                    iter->second = true;
                 }
                 else {
-
+                    if (iter->second) {
+                        vecLeft[i]->EndOverlap(vecRight[j]);
+                        vecRight[j]->EndOverlap(vecLeft[i]);
+                    }
+                    iter->second = false;
                 }
             }
         }
