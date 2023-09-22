@@ -12,15 +12,13 @@ CCollisionMgr::CCollisionMgr() : m_LayerCheck{} {}
 CCollisionMgr::~CCollisionMgr() {}
 
 void CCollisionMgr::tick() {
-    CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
-
     for (UINT iRow = 0; iRow < LAYER::END; ++iRow) {
         for (UINT iCol = iRow; iCol < LAYER::END; ++iCol) {
             if (!(m_LayerCheck[iRow] & (1 << iCol)))
                 continue;
 
-            const vector<CCollider*>& vecLeft = pCurLevel->GetLayer((LAYER)iRow)->GetColliders();
-            const vector<CCollider*>& vecRight = pCurLevel->GetLayer((LAYER)iCol)->GetColliders();
+            CollisionBtwLayer((LAYER)iRow, (LAYER)iCol);
+            
         }
     }
 }
@@ -51,4 +49,49 @@ void CCollisionMgr::UncheckCollision(LAYER _Left, LAYER _Right) {
     }
 
     m_LayerCheck[row] &= ~(1 << col);
+}
+
+void CCollisionMgr::CollisionBtwLayer(LAYER _Left, LAYER _Right)
+{
+    CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
+
+    const vector<CCollider*>& vecLeft = pCurLevel->GetLayer(_Left)->GetColliders();
+    const vector<CCollider*>& vecRight = pCurLevel->GetLayer(_Right)->GetColliders();
+
+    if (_Left != _Right) {
+        for (size_t i = 0; i < vecLeft.size(); ++i) {
+            for (size_t j = 0; j < vecRight.size(); ++j) {
+                if (IsCollision(vecLeft[i], vecRight[j])) {
+                    vecLeft[i]->Overlap(vecRight[j]);
+                    vecRight[j]->Overlap(vecLeft[i]);
+                }
+                else {
+
+                }
+            }
+        }
+    }
+    else {
+        for (size_t i = 0; i < vecLeft.size() - 1; ++i) {
+            for (size_t j = i+1; j < vecRight.size(); ++j) {
+                if (IsCollision(vecLeft[i], vecRight[j])) {
+                    vecLeft[i]->Overlap(vecRight[j]);
+                    vecRight[j]->Overlap(vecLeft[i]);
+                }
+                else {
+
+                }
+            }
+        }
+    }
+}
+
+bool CCollisionMgr::IsCollision(CCollider* _Left, CCollider* _Right)
+{
+    if (fabs(_Left->GetScale().x / 2.f + _Right->GetScale().x / 2.f) >= fabs(_Left->GetPos().x - _Right->GetPos().x)
+        && fabs(_Left->GetScale().y / 2.f + _Right->GetScale().y / 2.f) >= fabs(_Left->GetPos().y - _Right->GetPos().y)) {
+        return true;
+    }
+
+    return false;
 }

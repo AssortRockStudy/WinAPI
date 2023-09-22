@@ -5,9 +5,19 @@
 #include "CPaletteMgr.h"
 #include "CTimeMgr.h"
 
-CMonster::CMonster() {}
+#include "CCollider.h"
+
+CMonster::CMonster() : m_Info{}, m_Collider(nullptr)
+{
+    m_Collider = AddComponent<CCollider>(L"MonsterCollider");
+}
 
 CMonster::~CMonster() {}
+
+void CMonster::begin()
+{
+    m_Collider->SetScale(GetScale() - 10.f);
+}
 
 void CMonster::tick(float _DT) {
     Super::tick(_DT);
@@ -62,4 +72,6 @@ void CMonster::render(HDC _dc) {
     palette->SelectBrush(CPaletteMgr::BrushColor::BRED);
     Ellipse(_dc, int(vPos.x - vScale.x / 2), int(vPos.y - vScale.y / 2),
             int(vPos.x + vScale.x / 2), int(vPos.y + vScale.y / 2));
+
+    Super::render(_dc);
 }

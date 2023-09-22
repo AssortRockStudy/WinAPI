@@ -18,6 +18,9 @@ class CCollider : public CComponent {
     Vec2 GetOffsetPos() { return m_vOffsetPos; }
     Vec2 GetScale() { return m_vScale; }
 
+public:
+    void Overlap(CCollider* _OtherCol);
+
   public:
     CCollider(class CObj* _Owner);
     ~CCollider();

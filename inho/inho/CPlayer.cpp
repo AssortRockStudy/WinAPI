@@ -93,3 +93,8 @@ void CPlayer::render(HDC _dc) {
 
     Super::render(_dc);
 }
+
+void CPlayer::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+{
+    _OwnCol->GetName();
+}

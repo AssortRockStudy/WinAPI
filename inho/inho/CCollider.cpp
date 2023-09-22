@@ -11,6 +11,7 @@
 #include "CLevel.h"
 #include "CLevelMgr.h"
 
+
 CCollider::CCollider(CObj* _Owner) : CComponent(_Owner) {}
 
 CCollider::~CCollider() {}
@@ -42,4 +43,9 @@ void CCollider::render(HDC _dc) {
               int(vRenderPos.y - m_vScale.y / 2.f),
               int(vRenderPos.x + m_vScale.x / 2.f),
               int(vRenderPos.y + m_vScale.y / 2.f));
+}
+
+void CCollider::Overlap(CCollider* _OtherCol)
+{
+    GetOwner()->Overlap(this, _OtherCol->GetOwner(), _OtherCol);
 }

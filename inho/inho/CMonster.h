@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "CObj.h"
 
+class CCollider;
+
 class CMonster : public CObj {
 
     GENERATED_OBJECT(CObj);
@@ -8,10 +10,13 @@ class CMonster : public CObj {
   private:
     FMonInfo m_Info;
 
+    CCollider* m_Collider;
+
   public:
     void SetMonsterInfo(const FMonInfo& _Info) { m_Info = _Info; }
 
   public:
+      virtual void begin() override;
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
 

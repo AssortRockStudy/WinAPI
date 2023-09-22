@@ -1,4 +1,7 @@
 ﻿#pragma once
+
+class CCollider;
+
 class CCollisionMgr {
     SINGLETON(CCollisionMgr);
 
@@ -9,5 +12,9 @@ class CCollisionMgr {
     void tick();
     void CheckCollision(LAYER _Left, LAYER _Right);
     void UncheckCollision(LAYER _Left, LAYER _Right);
+
+private:
+    void CollisionBtwLayer(LAYER _Left, LAYER _Right);
+    bool IsCollision(CCollider* _Left, CCollider* _Right);
 };
 

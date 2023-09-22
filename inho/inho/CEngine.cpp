@@ -71,6 +71,7 @@ void CEngine::tick() {
 
     CLevelMgr::GetInst()->tick();
     CCollisionMgr::GetInst()->tick();
+
     CLevelMgr::GetInst()->render(m_SubDC);
 
     CTaskMgr::GetInst()->tick();

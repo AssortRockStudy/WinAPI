@@ -4,6 +4,8 @@
 #include "CEntity.h"
 #include "CTaskMgr.h"
 
+class CCollider;
+
 class CObj : public CEntity {
   private:
     Vec2                      m_Pos;
@@ -34,6 +36,7 @@ class CObj : public CEntity {
     virtual void tick(float _DT);
     virtual void finaltick(float _DT) final;
     virtual void render(HDC _dc);
+    virtual void Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
 
   private:
     virtual void Abstract() = 0;
