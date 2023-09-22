@@ -16,6 +16,8 @@
 #include "CPlayer.h"
 #include "CTaskMgr.h"
 
+#include "CGCMgr.h"
+
 CEngine::CEngine()
     : m_hWnd(nullptr), m_ptResolution{}, m_Level(nullptr), m_dc(nullptr),
       m_SubBitMap(nullptr), m_bDebugRender(true) {}
@@ -75,4 +77,8 @@ void CEngine::tick() {
     CLevelMgr::GetInst()->render(m_SubDC);
 
     CTaskMgr::GetInst()->tick();
+
+    CGCMgr::GetInst()->tick();
+
+    
 }

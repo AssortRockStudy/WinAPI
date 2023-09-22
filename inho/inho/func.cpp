@@ -2,6 +2,8 @@
 
 #include "func.h"
 
+#include "CEntity.h"
+
 Vec2 Rotate(Vec2 _vDir, float _angle) {
     _vDir.Normalize();
 

@@ -5,9 +5,7 @@
 #include "CTaskMgr.h"
 
 CObj::CObj(): 
-    m_iLayerIdx(-1),
-    m_bDead(false)
-
+    m_iLayerIdx(-1)
 {}
 
 CObj::~CObj() {
@@ -41,4 +39,12 @@ void CObj::Destroy() {
     task.Type = TASK_TYPE::DELETE_OBJECT;
     task.Param_1 = (INT_PTR)this;
     CTaskMgr::GetInst()->AddTask(task);
+}
+
+void CObj::SetDead() {
+    m_bDead = true;
+
+    for (size_t i = 0; i < m_vecComponent.size(); ++i) {
+        m_vecComponent[i]->m_bDead = true;
+    }
 }

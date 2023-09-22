@@ -20,11 +20,17 @@ void CGuidedProjectile::begin() {
 
 void CGuidedProjectile::tick(float _dt) {
     Super::tick(_dt);
-    if (nullptr == target) {
+    if (!IsValid(target)) {
         FindTarget();
     }
+    if (!IsValid(target)) {
+        Vec2 vPos = GetPos();
 
-    else {
+        vPos.x += m_vDir.x * GetSpeed() * DT;
+        vPos.y += m_vDir.y * GetSpeed() * DT;
+
+        SetPos(vPos);
+    } else {
         // Update_1();
         // Update_2();
         Update_3();

@@ -131,6 +131,7 @@
     <ClInclude Include="CTaskMgr.h">
       <Filter>Game\03. Manager</Filter>
     </ClInclude>
+    <ClInclude Include="CGCMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="inho.rc">
@@ -210,5 +211,6 @@
     <ClCompile Include="CTaskMgr.cpp">
       <Filter>Game\03. Manager</Filter>
     </ClCompile>
+    <ClCompile Include="CGCMgr.cpp" />
   </ItemGroup>
 </Project>
