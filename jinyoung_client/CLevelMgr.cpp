@@ -42,13 +42,6 @@ void CLevelMgr::init()
 	//m_pCurLevel->AddObject(pPlayer);
 
 
-	CPlayer* pPlayer2 = new CPlayer;
-
-	pPlayer->SetPos(Vec2(800.f, 500.f));
-	pPlayer->SetScale(Vec2(50.f, 50.f));
-
-	m_pCurLevel->AddObject(PLAYER, pPlayer);
-
 
 	// 몬스터 생성
 	CMonster* pMonster = new CMonster;
