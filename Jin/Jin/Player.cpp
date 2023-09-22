@@ -88,13 +88,11 @@ void Player::render(HDC _dc)
 	HPEN oldPen = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->pens[BLACK]));
 	HPEN oldBrush = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->brushes[BLACK]));
 
-
-	 Rectangle(_dc
-		 , int(vPos.x - vScale.x / 2)
-		 , int(vPos.y - vScale.y / 2)
-		 , int(vPos.x + vScale.x / 2)
-		 , int(vPos.y + vScale.y / 2));
-
-
+	BitBlt(_dc, vPos.x - m_BitmapInfo.bmWidth / 2.f
+		, vPos.y - m_BitmapInfo.bmHeight / 2.f
+		, m_BitmapInfo.bmWidth
+		, m_BitmapInfo.bmHeight
+		, m_ImageDC
+		, 0, 0, SRCCOPY);
 
 }
