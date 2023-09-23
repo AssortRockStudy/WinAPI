@@ -9,6 +9,7 @@
 #include "CMonster.h"
 #include "CPaletteMgr.h"
 #include "CPlayer.h"
+#include "CLogMgr.h"
 
 #include "CCollisionMgr.h"
 
@@ -55,6 +56,8 @@ void CLevelMgr::render(HDC _dc) {
 
     m_pCurLevel->render(_dc);
     CPaletteMgr::GetInst()->SelectBrush(CPaletteMgr::BrushColor::BWHITE);
+
+    CLogMgr::GetInst()->tick(_dc);
     BitBlt(CEngine::GetInst()->GetMainDC(), 0, 0, ptResolution.x,
            ptResolution.y, _dc, 0, 0, SRCCOPY);
 }

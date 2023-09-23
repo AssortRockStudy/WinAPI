@@ -93,3 +93,9 @@ struct FTask {
     UINT_PTR  Param_1;
     UINT_PTR  Param_2;
 };
+
+struct FLog {
+    LOG_LEVEL Level;
+    wstring Message;
+    float AccTime;
+};

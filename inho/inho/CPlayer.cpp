@@ -18,6 +18,7 @@
 #include "CCollider.h"
 #include "CAnimator.h"
 
+#include "CLogMgr.h"
 
 
 CPlayer::CPlayer() : m_Speed(500.f) {
@@ -113,7 +114,16 @@ void CPlayer::tick(float _DT) {
             CTaskMgr::GetInst()->AddTask(
                 FTask{CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)pProjectile});
         }
+        wstring strLogMessage = L"Shoot ";
+        string funcname = __FUNCTION__;
+        strLogMessage += wstring(funcname.begin(), funcname.end());
+        strLogMessage += L"  Line : ";
+        wchar_t szBuffer[20] = {};
+        _itow_s(__LINE__, szBuffer, 20, 10);
+        strLogMessage += szBuffer;
+        CLogMgr::GetInst()->AddLog(FLog{ LOG_LEVEL::LOG, strLogMessage });
     }
+
 
     SetPos(vPos);
 }

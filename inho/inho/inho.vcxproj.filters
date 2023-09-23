@@ -59,6 +59,9 @@
     <Filter Include="Game\07. Asset\Texture">
       <UniqueIdentifier>{9d45c93c-c0b0-4cdb-b808-4bd0781381f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\06. Component\Animator\Anim">
+      <UniqueIdentifier>{e42b1127-b2a3-41cd-acae-a93dd0ae247a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inho.h">
@@ -155,6 +158,13 @@
     <ClInclude Include="CTexture.h">
       <Filter>Game\07. Asset\Texture</Filter>
     </ClInclude>
+    <ClInclude Include="CLogMgr.h" />
+    <ClInclude Include="CAnimator.h">
+      <Filter>Game\06. Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnim.h">
+      <Filter>Game\06. Component\Animator\Anim</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="inho.rc">
@@ -248,6 +258,13 @@
     </ClCompile>
     <ClCompile Include="CTexture.cpp">
       <Filter>Game\07. Asset\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="CLogMgr.cpp" />
+    <ClCompile Include="CAnimator.cpp">
+      <Filter>Game\06. Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnim.cpp">
+      <Filter>Game\06. Component\Animator\Anim</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

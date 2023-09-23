@@ -130,3 +130,9 @@ enum TASK_TYPE {
 
     LEVEL_CHANGE,
 };
+
+enum LOG_LEVEL {
+    LOG,
+    WARNING,
+    ERR,
+};
