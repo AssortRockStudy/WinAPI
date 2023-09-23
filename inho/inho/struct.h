@@ -28,45 +28,45 @@ struct Vec2 {
         return *this;
     }
 
-    Vec2 operator+(Vec2 _Other) { return Vec2(x + _Other.x, y + _Other.y); }
+    Vec2 operator+(Vec2 _Other) const { return Vec2(x + _Other.x, y + _Other.y); }
     void operator+=(Vec2 _Other) {
         x += _Other.x;
         y += _Other.y;
     }
-    Vec2 operator+(float _f) { return Vec2(x + _f, y + _f); }
+    Vec2 operator+(float _f) const { return Vec2(x + _f, y + _f); }
     void operator+=(float _f) {
         x += _f;
         y += _f;
     }
 
-    Vec2 operator-(Vec2 _Other) { return Vec2(x - _Other.x, y - _Other.y); }
+    Vec2 operator-(Vec2 _Other) const { return Vec2(x - _Other.x, y - _Other.y); }
     void operator-=(Vec2 _Other) {
         x -= _Other.x;
         y -= _Other.y;
     }
-    Vec2 operator-(float _f) { return Vec2(x - _f, y - _f); }
+    Vec2 operator-(float _f) const { return Vec2(x - _f, y - _f); }
     void operator-=(float _f) {
         x -= _f;
         y -= _f;
     }
 
-    Vec2 operator*(Vec2 _Other) { return Vec2(x * _Other.x, y * _Other.y); }
+    Vec2 operator*(Vec2 _Other) const { return Vec2(x * _Other.x, y * _Other.y); }
     void operator*=(Vec2 _Other) {
         x *= _Other.x;
         y *= _Other.y;
     }
-    Vec2 operator*(float _f) { return Vec2(x * _f, y * _f); }
+    Vec2 operator*(float _f) const { return Vec2(x * _f, y * _f); }
     void operator*=(float _f) {
         x *= _f;
         y *= _f;
     }
 
-    Vec2 operator/(Vec2 _Other) { return Vec2(x / _Other.x, y / _Other.y); }
+    Vec2 operator/(Vec2 _Other) const { return Vec2(x / _Other.x, y / _Other.y); }
     void operator/=(Vec2 _Other) {
         x /= _Other.x;
         y /= _Other.y;
     }
-    Vec2 operator/(float _f) { return Vec2(x / _f, y / _f); }
+    Vec2 operator/(float _f) const { return Vec2(x / _f, y / _f); }
     void operator/=(float _f) {
         x /= _f;
         y /= _f;

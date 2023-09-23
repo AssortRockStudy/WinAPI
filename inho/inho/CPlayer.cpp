@@ -27,7 +27,19 @@ CPlayer::CPlayer() : m_Speed(500.f) {
     m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
     m_Collider->SetScale(Vec2(40.f, 80.f));
 
+    CTexture* pAtlas = CAssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\link.bmp");
     m_Animator = AddComponent<CAnimator>(L"Animator");
+    m_Animator->CreateAnimation(L"WalkDown", pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), 0.05f, 10);
+    m_Animator->CreateAnimation(L"WalkLeft", pAtlas, Vec2(0.f, 650.f), Vec2(120, 130), 0.05f, 10);
+    m_Animator->CreateAnimation(L"WalkUp", pAtlas, Vec2(0.f, 780.f), Vec2(120, 130), 0.05f, 10);
+    m_Animator->CreateAnimation(L"WalkRight", pAtlas, Vec2(0.f, 910.f), Vec2(120, 130), 0.05f, 10);
+
+    m_Animator->CreateAnimation(L"IdleDown", pAtlas, Vec2(0.f, 0.f), Vec2(120, 130), 0.05f, 3);
+    m_Animator->CreateAnimation(L"IdleLeft", pAtlas, Vec2(0.f, 130.f), Vec2(120, 130), 0.05f, 3);
+    m_Animator->CreateAnimation(L"IdleUp", pAtlas, Vec2(0.f, 260.f), Vec2(120, 130), 0.05f, 1);
+    m_Animator->CreateAnimation(L"IdleRight", pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), 0.05f, 3);
+
+    m_Animator->Play(L"WalkDown", true);
 
     m_pTexture = CAssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\fighter.bmp");
 }
@@ -41,20 +53,46 @@ void CPlayer::tick(float _DT) {
 
     Vec2 vPos = GetPos();
 
-    if (KEY_PRESSED(A)) {
+    if (KEY_PRESSED(A))
+    {
         vPos.x -= m_Speed * _DT;
+        m_Animator->Play(L"WalkLeft", true);
     }
 
-    if (KEY_PRESSED(D)) {
+    if (KEY_RELEASED(A))
+    {
+        m_Animator->Play(L"IdleLeft", true);
+    }
+
+    if (KEY_PRESSED(D))
+    {
         vPos.x += m_Speed * _DT;
+        m_Animator->Play(L"WalkRight", true);
+    }
+    if (KEY_RELEASED(D))
+    {
+        m_Animator->Play(L"IdleRight", true);
     }
 
-    if (KEY_PRESSED(W)) {
+
+    if (KEY_PRESSED(W))
+    {
         vPos.y -= m_Speed * _DT;
+        m_Animator->Play(L"WalkUp", true);
+    }
+    if (KEY_RELEASED(W))
+    {
+        m_Animator->Play(L"IdleUp", true);
     }
 
-    if (KEY_PRESSED(S)) {
+    if (KEY_PRESSED(S))
+    {
         vPos.y += m_Speed * _DT;
+        m_Animator->Play(L"WalkDown", true);
+    }
+    if (KEY_RELEASED(S))
+    {
+        m_Animator->Play(L"IdleDown", true);
     }
 
     if (KEY_TAP(SPACE)) {
@@ -80,23 +118,6 @@ void CPlayer::tick(float _DT) {
     SetPos(vPos);
 }
 
-void CPlayer::render(HDC _dc) {
-    Vec2 vPos = GetRenderPos();
-    Vec2 vScale = GetScale();
-
-    UINT width = m_pTexture->GetWidth();
-    UINT height = m_pTexture->GetHeight();
-
-    TransparentBlt(_dc
-        , (int)vPos.x - width / 2, (int)vPos.y - height / 2
-        , width, height
-        , m_pTexture->GetDC()
-        , 0, 0
-        , width, height
-        , RGB(255, 0, 255));
-
-    Super::render(_dc);
-}
 
 void CPlayer::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {

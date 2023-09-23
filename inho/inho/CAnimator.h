@@ -2,6 +2,7 @@
 #include "CComponent.h"
 
 class CAnim;
+class CTexture;
 
 class CAnimator :
     public CComponent
@@ -16,7 +17,10 @@ private:
 public:
     void Play(const wstring& _strName, bool _bRepeat);
     void Stop();
-    void CreateAnimation();
+
+    CAnim* FindAnim(const wstring& _strName);
+    void CreateAnimation(const wstring& _strName, CTexture* _Altas, Vec2 _vLeftTop, Vec2 _vCutSize, float _duration, int _MaxFrm);
+
 
 public:
     virtual void finaltick(float _DT) override;
