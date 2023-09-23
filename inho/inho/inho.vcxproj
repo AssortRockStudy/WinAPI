@@ -137,6 +137,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CAsset.h" />
+    <ClInclude Include="CAssetMgr.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CCollider.h" />
     <ClInclude Include="CCollisionMgr.h" />
@@ -155,7 +157,9 @@
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CGuidedProjectile.h" />
     <ClInclude Include="CProjectile.h" />
+    <ClInclude Include="CSound.h" />
     <ClInclude Include="CTaskMgr.h" />
+    <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="func.h" />
@@ -167,6 +171,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CAsset.cpp" />
+    <ClCompile Include="CAssetMgr.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CCollider.cpp" />
     <ClCompile Include="CCollisionMgr.cpp" />
@@ -185,7 +191,9 @@
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CGuidedProjectile.cpp" />
     <ClCompile Include="CProjectile.cpp" />
+    <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CTaskMgr.cpp" />
+    <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="inho.cpp" />

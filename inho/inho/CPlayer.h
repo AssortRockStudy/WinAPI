@@ -1,17 +1,17 @@
 ﻿#pragma once
 #include "CObj.h"
 
+class CCollider;
+class CTexture;
+
 class CPlayer : public CObj {
     GENERATED_OBJECT(CObj);
 
   private:
     float m_Speed;
 
-    HBITMAP m_Image;
-    HDC     m_ImageDC;
-    BITMAP  m_BitmapInfo;
-
-    class CCollider* m_Collider;
+    CCollider* m_Collider;
+    CTexture* m_pTexture;
 
   public:
     virtual void tick(float _DT) override;

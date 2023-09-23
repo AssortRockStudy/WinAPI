@@ -50,6 +50,15 @@
     <Filter Include="Game\05. Object\CProjectile">
       <UniqueIdentifier>{7ca5b44a-7707-4706-ba7f-323fcdfbd5c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\07. Asset">
+      <UniqueIdentifier>{13edf456-d223-4a67-abb8-836479e3058f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\07. Asset\Sound">
+      <UniqueIdentifier>{7e81da10-1381-4c70-a896-f1f7b95603c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\07. Asset\Texture">
+      <UniqueIdentifier>{9d45c93c-c0b0-4cdb-b808-4bd0781381f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inho.h">
@@ -131,7 +140,21 @@
     <ClInclude Include="CTaskMgr.h">
       <Filter>Game\03. Manager</Filter>
     </ClInclude>
-    <ClInclude Include="CGCMgr.h" />
+    <ClInclude Include="CGCMgr.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CAsset.h">
+      <Filter>Game\07. Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="CAssetMgr.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CSound.h">
+      <Filter>Game\07. Asset\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="CTexture.h">
+      <Filter>Game\07. Asset\Texture</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="inho.rc">
@@ -211,6 +234,20 @@
     <ClCompile Include="CTaskMgr.cpp">
       <Filter>Game\03. Manager</Filter>
     </ClCompile>
-    <ClCompile Include="CGCMgr.cpp" />
+    <ClCompile Include="CGCMgr.cpp">
+      <Filter>Game\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CAsset.cpp">
+      <Filter>Game\07. Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="CAssetMgr.cpp">
+      <Filter>Game\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CSound.cpp">
+      <Filter>Game\07. Asset\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="CTexture.cpp">
+      <Filter>Game\07. Asset\Texture</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
