@@ -16,6 +16,7 @@
 #include "CProjectile.h"
 
 #include "CCollider.h"
+#include "CAnimator.h"
 
 
 
@@ -25,6 +26,8 @@ CPlayer::CPlayer() : m_Speed(500.f) {
     m_Collider = AddComponent<CCollider>(L"PlayerCollider");
     m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
     m_Collider->SetScale(Vec2(40.f, 80.f));
+
+    m_Animator = AddComponent<CAnimator>(L"Animator");
 
     m_pTexture = CAssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\fighter.bmp");
 }
