@@ -113,7 +113,10 @@
     <ClInclude Include="Component.h">
       <Filter>Game\06.Component</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionMgr.h" />
+    <ClInclude Include="CollisionMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GCMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -190,6 +193,9 @@
     <ClCompile Include="struct.cpp">
       <Filter>Game\01.Header</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionMgr.cpp" />
+    <ClCompile Include="CollisionMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GCMgr.cpp" />
   </ItemGroup>
 </Project>

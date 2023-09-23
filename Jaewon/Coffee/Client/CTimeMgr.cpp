@@ -18,6 +18,9 @@ void CTimeMgr::tick()
 	mDeltaT = float(mCurCnt.QuadPart - mPrevCnt.QuadPart) / float(mFrequency.QuadPart);
 	mPrevCnt = mCurCnt;
 
+	if ((1.f / 60.f) < mDeltaT)
+		mDeltaT = (1.f / 60.f);
+
 	mFTime += mDeltaT;
 	// 1초마다 frame 측정
 	if (1.f <= mFTime) {

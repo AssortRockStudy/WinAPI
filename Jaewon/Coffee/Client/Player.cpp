@@ -73,6 +73,11 @@ void Player::render(HDC _dc)
 	Super::render(_dc);
 }
 
+void Player::overLap(Collider* myCol, CObj* _othObj, Collider* _othCol)
+{
+	myCol->getName();
+}
+
 Player::Player():mSpeed(500.f), col(black), reverseMove(true), pImage(nullptr), pImageDc(nullptr)
 {
 	// 이미지 불러오기

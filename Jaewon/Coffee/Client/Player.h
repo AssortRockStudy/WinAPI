@@ -17,12 +17,14 @@ private:
 
 	Collider* mCollider;
 
+public:
+	void setColor(COLOR _col) { col = _col; }
+	void setReverseMove(bool _bool) { reverseMove = _bool; }
 
 public:
 	virtual void tick(float _dt) override;
 	virtual void render(HDC _dc) override;
-	void setColor(COLOR _col) { col = _col; }
-	void setReverseMove(bool _bool) { reverseMove = _bool; }
+	virtual void overLap(Collider* myCol, CObj* _othObj, Collider* _othCol) override;
 
 public:
 	Player();

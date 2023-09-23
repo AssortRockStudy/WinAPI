@@ -20,6 +20,10 @@ void TaskMgr::tick()
 		}
 			break;
 		case DELETE_OBJECT:
+		{
+			CObj* deadObj = (CObj*)mVecTask[i].Param1;
+			deadObj->setDead();
+		}
 			break;
 		case LEVEL_CHANGE:
 			break;

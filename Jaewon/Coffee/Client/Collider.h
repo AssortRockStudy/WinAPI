@@ -7,6 +7,7 @@ private:
     Vec2 offsetPos;
     Vec2 scale;
     Vec2 finalPos;
+    int collisionCnt;
 
 public:
     Vec2 getPos() { return finalPos; }
@@ -18,7 +19,10 @@ public:
 public:
     virtual void finalTick(float _dt) override;
     virtual void render(HDC _dc) override;
-    
+    void beginOverLap(Collider* _oth);
+    void overLap(Collider* _oth);
+    void endOverLap(Collider* _oth);
+
 public:
     Collider(CObj* _owner);
     ~Collider();

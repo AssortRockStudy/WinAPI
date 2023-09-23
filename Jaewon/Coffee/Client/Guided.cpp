@@ -12,16 +12,30 @@
 void Guided::tick(float _dt)
 {
 	Super::tick(_dt);
-	if (nullptr == mTarget)
+	if (!isValid(mTarget))
 	{
 		FindTarget();
+	}
+	if (!isValid(mTarget)) {
+		Vec2 vPos = getPos();
+
+		vPos.x += mDir.x * getSpeed() * _dt;
+		vPos.y += mDir.y * getSpeed() * _dt;
+
+		setPos(vPos);
 	}
 	else
 	{
 		// Update_1(_dt);
-		Update_2(_dt);
-		//Update_3(_dt);
+		//Update_2(_dt);
+		Update_3(_dt);
 	}
+}
+
+void Guided::beginOverLap(Collider* myCol, CObj* _othObj, Collider* _othCol)
+{
+	if (dynamic_cast<Monster*>(_othObj))
+		Destroy();
 }
 
 void Guided::begin() {

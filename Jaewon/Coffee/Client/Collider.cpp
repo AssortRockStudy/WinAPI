@@ -24,15 +24,43 @@ void Collider::render(HDC _dc)
 	if (!DEBUG_RENDER)
 		return;
 
-	SELECT_PEN(_dc, GREEN_PEN);
 	SELECT_BRUSH(_dc, (HBRUSH)GetStockObject(HOLLOW_BRUSH));
-
 	Vec2 renderPos = Camera::GetInst()->GetRenderPos(finalPos);
-	Rectangle(_dc, int(renderPos.x - scale.x / 2.f)
-		, int(renderPos.y - scale.y / 2.f)
-		, int(renderPos.x + scale.x / 2.f)
-		, int(renderPos.y + scale.y / 2.f));
+	
+	if (0 < collisionCnt) {
+		SELECT_PEN(_dc, RED_PEN);
+		Rectangle(_dc, int(renderPos.x - scale.x / 2.f)
+			, int(renderPos.y - scale.y / 2.f)
+			, int(renderPos.x + scale.x / 2.f)
+			, int(renderPos.y + scale.y / 2.f));
+	}
+	else {
+		SELECT_PEN(_dc, GREEN_PEN);
+		Rectangle(_dc, int(renderPos.x - scale.x / 2.f)
+			, int(renderPos.y - scale.y / 2.f)
+			, int(renderPos.x + scale.x / 2.f)
+			, int(renderPos.y + scale.y / 2.f));
+	}
+	
+	
 }
 
-Collider::Collider(CObj* _owner):Component(_owner){}
+void Collider::beginOverLap(Collider* _oth)
+{
+	++collisionCnt;
+	getOwner()->beginOverLap(this, _oth->getOwner(), _oth);
+}
+
+void Collider::overLap(Collider* _oth)
+{
+	getOwner()->overLap(this, _oth->getOwner(), _oth);
+}
+
+void Collider::endOverLap(Collider* _oth)
+{
+	--collisionCnt;
+	getOwner()->endOverLap(this, _oth->getOwner(), _oth);
+}
+
+Collider::Collider(CObj* _owner):Component(_owner), collisionCnt(0){}
 Collider::~Collider(){}

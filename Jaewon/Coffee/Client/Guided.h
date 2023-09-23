@@ -33,7 +33,7 @@ private:
 public:
     virtual void begin() override;
     virtual void tick(float _DT) override;
-
+    virtual void beginOverLap(Collider* myCol, CObj* _othObj, Collider* _othCol) override;
 
 private:
     void Update_1(float _dt);

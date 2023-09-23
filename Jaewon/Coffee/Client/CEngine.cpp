@@ -9,6 +9,7 @@
 #include "Camera.h"
 #include "TaskMgr.h"
 #include "CollisionMgr.h"
+#include "GCMgr.h"
 
 CEngine::CEngine():mHwnd(nullptr), mPtResolution(), mDc(nullptr), subBitMap(nullptr), subDc(nullptr), debugRender(true), arrPen{}
 {
@@ -76,4 +77,6 @@ void CEngine::tick()
 	LevelMgr::GetInst()->render(subDc);
 
 	TaskMgr::GetInst()->tick();
+
+	GCMgr::GetInst()->tick();
 }

@@ -10,11 +10,13 @@ private:
 private:
 	const UINT_PTR mID;
 	wstring strName;
+	bool mDead;
 
 public: 
 	UINT_PTR getID() { return mID; }
 	const wstring& getName() { return strName; }
 	void setName(const wstring& _strname) { strName = _strname; }
+	bool isDead() { return mDead; }
 
 
 public:
@@ -24,5 +26,8 @@ public:
 	CEntity();
 	CEntity(const CEntity& _oth);
 	virtual ~CEntity();
+
+	friend class TaskMgr;
+	friend class CObj;
 };
 

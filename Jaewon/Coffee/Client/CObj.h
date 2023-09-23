@@ -2,10 +2,12 @@
 #include "CEntity.h"
 #include "TaskMgr.h"
 #include "Camera.h"
+#include "Collider.h"
 
 class Component;
+class Collider;
 
-class CObj
+class CObj:public CEntity
 {
 private:
 	virtual void Abstract() = 0;
@@ -25,6 +27,9 @@ public:
 	void setPos(Vec2 _pos) { mPos = _pos; }
 	void setScale(Vec2 _scale) { mScale = _scale; }
 
+private:
+	void setDead();
+
 protected:
 	template<typename T>
 	T* addComponent(const wstring& _strname = L"") {
@@ -39,6 +44,10 @@ public:
 	virtual void tick(float _dt);
 	virtual void finalTick(float _dt) final;
 	virtual void render(HDC _dc);
+	void Destroy();
+	virtual void beginOverLap(Collider* mycol, CObj* _othObj, Collider* _othCol){}
+	virtual void overLap(Collider* mycol, CObj* _othObj, Collider* _othCol){}
+	virtual void endOverLap(Collider* mycol, CObj* _othObj, Collider* _othCol) {}
 
 
 public:

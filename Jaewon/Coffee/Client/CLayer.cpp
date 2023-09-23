@@ -2,6 +2,7 @@
 #include "CLayer.h"
 #include "CTimeMgr.h"
 #include "CObj.h"
+#include "GCMgr.h"
 
 void CLayer::begin()
 {
@@ -28,8 +29,18 @@ void CLayer::finalTick()
 
 void CLayer::render(HDC _dc)
 {
-	for (int i = 0; i < mVecObjects.size(); ++i) {
-		mVecObjects[i]->render(_dc);
+	vector<CObj*>::iterator it = mVecObjects.begin();
+
+	for (; it != mVecObjects.end();) {
+		if ((*it)->isDead()) {
+			GCMgr::GetInst()->addEntity(*it);
+			it = mVecObjects.erase(it);
+		}
+		else {
+			(*it)->render(_dc);
+			++it;
+		}
+
 	}
 }
 

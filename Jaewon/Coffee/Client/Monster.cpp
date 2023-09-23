@@ -1,6 +1,7 @@
 ﻿#include "pch.h"
 #include "Monster.h"
 #include "Collider.h"
+#include "CProjectile.h"
 
 
 void Monster::begin()
@@ -28,9 +29,19 @@ void Monster::render(HDC _dc)
 	Super::render(_dc);
 }
 
-Monster::Monster():collider(nullptr)
+void Monster::beginOverLap(Collider* myCol, CObj* _othObj, Collider* _othCol)
+{
+	if (dynamic_cast<CProjectile*>(_othObj)) {
+		info.HP -= 1.f;
+		if (info.HP <= 0.f)
+			Destroy();
+	}
+}
+
+Monster::Monster():collider(nullptr), info{}
 {
 	collider = addComponent<Collider>(L"MonsterCollider");
+	info.HP = 5.f;
 }
 
 Monster::~Monster()
