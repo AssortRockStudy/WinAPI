@@ -38,6 +38,9 @@
     <Filter Include="Game\06.Component">
       <UniqueIdentifier>{43aaf310-df0d-447a-8e65-280ee14dc80f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\07. Asset">
+      <UniqueIdentifier>{ae80a2b3-d152-47d4-8cf7-b1d2b769e70f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -116,7 +119,12 @@
     <ClInclude Include="CollisionMgr.h">
       <Filter>Game\03.Manager</Filter>
     </ClInclude>
-    <ClInclude Include="GCMgr.h" />
+    <ClInclude Include="GCMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CAsset.h">
+      <Filter>Game\07. Asset</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -196,6 +204,11 @@
     <ClCompile Include="CollisionMgr.cpp">
       <Filter>Game\03.Manager</Filter>
     </ClCompile>
-    <ClCompile Include="GCMgr.cpp" />
+    <ClCompile Include="GCMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CAsset.cpp">
+      <Filter>Game\07. Asset</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
