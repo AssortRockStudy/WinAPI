@@ -80,6 +80,7 @@ void CEngine::tick()
 	CTimeMgr::GetInst()->tick();
 	CKeyMgr::GetInst()->tick();
 	CCamera::GetInst()->tick();
+	CLogMgr::GetInst()->tick();
 
 	if (KEY_TAP(KEY::TAB))
 	{
@@ -98,6 +99,7 @@ void CEngine::tick()
 
 	// ------------ render ------------
 	CLevelMgr::GetInst()->render(m_hSubDC);
+	CLogMgr::GetInst()->render(m_hSubDC);
 
 
 	// -------- Task Execute --------

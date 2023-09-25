@@ -17,13 +17,25 @@ CAssetMgr::~CAssetMgr()
 
 }
 
+CTexture* CAssetMgr::FindTexture(const wstring& _strKey)
+{
+	map<wstring, CTexture*>::iterator iter = m_mapTex.find(_strKey);
+
+	if (m_mapTex.end() == iter)
+	{
+		return nullptr;
+	}
+
+	return iter->second;
+}
+
 CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelativePath)
 {
 	CTexture* pTexture = FindTexture(_strKey);
 
 	if (nullptr != pTexture)
 	{
-		return pTexture;
+		return pTexture;	
 	}
 
 	wstring strContentPath = CPathMgr::GetContentDirectory();
@@ -37,14 +49,4 @@ CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRela
 	return pTexture;
 }
 
-CTexture* CAssetMgr::FindTexture(const wstring& _strKey)
-{
-	map<wstring, CTexture*>::iterator iter = m_mapTex.find(_strKey);
 
-	if (m_mapTex.end() == iter)
-	{
-		return nullptr;
-	}
-
-	return iter->second;
-}

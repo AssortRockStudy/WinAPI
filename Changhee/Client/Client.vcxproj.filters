@@ -89,6 +89,9 @@
     <Filter Include="Game\06. Component\Animator\Animation">
       <UniqueIdentifier>{0bde55d3-c92a-43e8-a0be-8a388807e876}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03. Manager\LogManager">
+      <UniqueIdentifier>{d465edc0-d476-4737-a072-f2e92fcca6d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -197,6 +200,9 @@
     <ClInclude Include="CAnimator.h">
       <Filter>Game\06. Component\Animator</Filter>
     </ClInclude>
+    <ClInclude Include="CLogMgr.h">
+      <Filter>Game\03. Manager\LogManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -302,6 +308,9 @@
     </ClCompile>
     <ClCompile Include="CAnimator.cpp">
       <Filter>Game\06. Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="CLogMgr.cpp">
+      <Filter>Game\03. Manager\LogManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

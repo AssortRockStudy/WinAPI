@@ -83,3 +83,13 @@ enum class KEY
 
 	KEY_END,
 };
+
+
+// Log
+enum class LOG_LEVEL
+{
+	LOG,
+	WARNING,
+	ERR,
+	END,
+};

@@ -63,22 +63,22 @@ public:
 public:
 	// 오퍼레이터
 
-	Vec2 operator + (float _f)
+	Vec2 operator + (float _f) const
 	{
 		return Vec2(x + _f, y + _f);
 	}
 
-	Vec2 operator - (float _f)
+	Vec2 operator - (float _f) const
 	{
 		return Vec2(x - _f, y - _f);
 	}
 
-	Vec2 operator * (float _f)
+	Vec2 operator * (float _f) const
 	{
 		return Vec2(x * _f, y * _f);
 	}
 
-	Vec2 operator / (float _f)
+	Vec2 operator / (float _f) const
 	{
 		assert(_f != 0);
 		return Vec2(x / _f, y / _f);
@@ -118,22 +118,22 @@ public:
 		return *this;
 	}
 
-	Vec2 operator + (const Vec2& _Other)
+	Vec2 operator + (const Vec2& _Other) const
 	{
 		return Vec2(x + _Other.x, y + _Other.y);
 	}
 
-	Vec2 operator - (const Vec2& _Other)
+	Vec2 operator - (const Vec2& _Other) const
 	{
 		return Vec2(x - _Other.x, y - _Other.y);
 	}
 
-	Vec2 operator * (const Vec2& _Other)
+	Vec2 operator * (const Vec2& _Other) const
 	{
 		return Vec2(x * _Other.x, y * _Other.y);
 	}
 
-	Vec2 operator / (const Vec2& _Other)
+	Vec2 operator / (const Vec2& _Other) const
 	{
 		assert(_Other.x != 0 && _Other.y != 0);
 		return Vec2(x / _Other.x, y / _Other.y);
@@ -177,5 +177,11 @@ struct FSelectGDI
 	FSelectGDI(HDC _dc, PEN_TYPE _ePenType, BRUSH_TYPE _eBrushType = BRUSH_TYPE::END);
 	FSelectGDI(const FSelectGDI& _Other) = delete;
 	~FSelectGDI();
+};
 
+struct FLog
+{
+	LOG_LEVEL		Level;
+	wstring			Message;
+	float			AccTime;
 };
