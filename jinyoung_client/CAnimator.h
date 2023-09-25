@@ -26,7 +26,12 @@ public:
     CAnim* FindAnim(const wstring& _strName);
 
     // 局聪皋捞记 积己
-    void CreateAnimation(const wstring& _strName, CTexture* _Altas, Vec2 _vLeftTop, Vec2 _vCutSize, float _duration, int _MaxFrm);
+    void CreateAnimation(const wstring& _strName, CTexture* _Altas, Vec2 _vLeftTop, Vec2 _vCutSize
+        , Vec2 _vOffset, float _duration, int _MaxFrm);
+
+
+    void SaveAnimation(const wstring& _strRelativePath);
+    void LoadAnimation(const wstring& _strRelativePath);
 
 public:
     virtual void finaltick(float _DT) override;

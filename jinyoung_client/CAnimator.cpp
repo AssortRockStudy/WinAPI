@@ -62,8 +62,8 @@ CAnim* CAnimator::FindAnim(const wstring& _strName)
 	return iter->second;
 }
 
-void CAnimator::CreateAnimation(const wstring& _strName, CTexture* _Altas
-	, Vec2 _vLeftTop, Vec2 _vCutSize, float _Duration, int _MaxFrm)
+void CAnimator::CreateAnimation(const wstring& _strName, CTexture* _Altas,
+	Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm)
 {
 	CAnim* pAnim = FindAnim(_strName);
 	if (IsValid(pAnim))
@@ -73,7 +73,7 @@ void CAnimator::CreateAnimation(const wstring& _strName, CTexture* _Altas
 
 	pAnim = new CAnim;
 	pAnim->m_pAnimator = this;
-	pAnim->Create(_strName, _Altas, _vLeftTop, _vCutSize, _Duration, _MaxFrm);
+	pAnim->Create(_strName, _Altas, _vLeftTop, _vCutSize, _vOffset, _Duration, _MaxFrm);
 	m_mapAnim.insert(make_pair(_strName, pAnim));
 }
 

@@ -134,6 +134,7 @@
     </ClInclude>
     <ClInclude Include="CAnim.h" />
     <ClInclude Include="CAnimator.h" />
+    <ClInclude Include="CLogMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -234,5 +235,6 @@
     </ClCompile>
     <ClCompile Include="CAnim.cpp" />
     <ClCompile Include="CAnimator.cpp" />
+    <ClCompile Include="CLogMgr.cpp" />
   </ItemGroup>
 </Project>

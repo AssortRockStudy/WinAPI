@@ -166,6 +166,7 @@
     <ClInclude Include="CLayer.h" />
     <ClInclude Include="CLevel.h" />
     <ClInclude Include="CLevelMgr.h" />
+    <ClInclude Include="CLogMgr.h" />
     <ClInclude Include="CMonster.h" />
     <ClInclude Include="CMonsterm.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -207,6 +208,7 @@
     <ClCompile Include="CLayer.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CLevelMgr.cpp" />
+    <ClCompile Include="CLogMgr.cpp" />
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CMonsterm.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

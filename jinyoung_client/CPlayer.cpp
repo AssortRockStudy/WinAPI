@@ -19,6 +19,7 @@
 #include "CTexture.h"
 
 #include "CAnimator.h"
+#include "CLogMgr.h"
 
 class CCollider;
 
@@ -38,15 +39,15 @@ CPlayer::CPlayer()
 	CTexture* pAtlas = CAssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\link.bmp");
 
 	m_Animator = AddComponent<CAnimator>(L"Animator");
-	m_Animator->CreateAnimation(L"WalkDown", pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), 0.05f, 10);
-	m_Animator->CreateAnimation(L"WalkLeft", pAtlas, Vec2(0.f, 650.f), Vec2(120, 130), 0.05f, 10);
-	m_Animator->CreateAnimation(L"WalkUp", pAtlas, Vec2(0.f, 780.f), Vec2(120, 130), 0.05f, 10);
-	m_Animator->CreateAnimation(L"WalkRight", pAtlas, Vec2(0.f, 910.f), Vec2(120, 130), 0.05f, 10);
+	m_Animator->CreateAnimation(L"WalkDown", pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
+	m_Animator->CreateAnimation(L"WalkLeft", pAtlas, Vec2(0.f, 650.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
+	m_Animator->CreateAnimation(L"WalkUp", pAtlas, Vec2(0.f, 780.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
+	m_Animator->CreateAnimation(L"WalkRight", pAtlas, Vec2(0.f, 910.f), Vec2(120, 130), Vec2(0.f, -60.f), 2.f, 10);
 
-	m_Animator->CreateAnimation(L"IdleDown", pAtlas, Vec2(0.f, 0.f), Vec2(120, 130), 0.05f, 3);
-	m_Animator->CreateAnimation(L"IdleLeft", pAtlas, Vec2(0.f, 130.f), Vec2(120, 130), 0.05f, 3);
-	m_Animator->CreateAnimation(L"IdleUp", pAtlas, Vec2(0.f, 260.f), Vec2(120, 130), 0.05f, 1);
-	m_Animator->CreateAnimation(L"IdleRight", pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), 0.05f, 3);
+	m_Animator->CreateAnimation(L"IdleDown", pAtlas, Vec2(0.f, 0.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
+	m_Animator->CreateAnimation(L"IdleLeft", pAtlas, Vec2(0.f, 130.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
+	m_Animator->CreateAnimation(L"IdleUp", pAtlas, Vec2(0.f, 260.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 1);
+	m_Animator->CreateAnimation(L"IdleRight", pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
 
 	m_Animator->Play(L"WalkDown", true);
 
@@ -56,6 +57,7 @@ CPlayer::CPlayer()
 	m_Collider = AddComponent<CCollider>(L"PlayerCollider");
 	m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
 	m_Collider->SetScale(Vec2(40.f, 80.f));
+	m_Collider->SetOffsetPos(Vec2(0.f, -40.f));
 	//AddComponent<CAnimator>();
 	//AddComponent<CMovement>();
 	// 이미지가 존재하는 상대경로(constent 폴더로부터)
@@ -147,6 +149,15 @@ void CPlayer::tick(float _DT)
 		//pCurLevel->AddObject(PLAYER_PJ, pProjectile);
 		
 		CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)pProjectile });
+
+		wstring strLogMessage = L"Shoot ";
+		string funcname = __FUNCTION__;
+		strLogMessage += wstring(funcname.begin(), funcname.end());
+		strLogMessage += L"  Line : ";
+		wchar_t szBuffer[20] = {};
+		_itow_s(__LINE__, szBuffer, 20, 10);
+		strLogMessage += szBuffer;
+		CLogMgr::GetInst()->AddLog(FLog{ LOG_LEVEL::LOG, strLogMessage });
 	}
 	SetPos(vPos);
 }

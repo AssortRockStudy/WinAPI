@@ -2,6 +2,7 @@
 #include "CObj.h"
 #include "CComponent.h"
 
+#include "CEngine.h"
 
 
 
@@ -40,6 +41,17 @@ void CObj::render(HDC _dc)
 		m_vecComponent[i]->render(_dc);
 	}
 
+	if (!DEBUG_RENDER)
+		return;
+
+	SELECT_PEN(_dc, RED_PEN);
+
+	Vec2 vRenderPos = GetRenderPos();
+	MoveToEx(_dc, int(vRenderPos.x - 7.f), (int)vRenderPos.y, nullptr);
+	LineTo(_dc, int(vRenderPos.x + 7.f), (int)vRenderPos.y);
+
+	MoveToEx(_dc, int(vRenderPos.x), int(vRenderPos.y - 7.f), nullptr);
+	LineTo(_dc, int(vRenderPos.x), int(vRenderPos.y + 7.f));
 	//Vec2 vRenderPos = GetRenderPos();
 
 	//Rectangle(_dc

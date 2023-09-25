@@ -13,6 +13,8 @@
 #include "CCamera.h"
 #include "CCollisionMgr.h"
 #include "CGCMgr.h"
+#include "CLogMgr.h"
+#include "CCamera.h"
 
 
 //레벨을 알고있어야 delete소멸자호출가능

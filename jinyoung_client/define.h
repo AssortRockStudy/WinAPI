@@ -151,3 +151,11 @@ enum PEN_TYPE
 
 	PEN_END,
 };
+
+
+enum LOG_LEVEL
+{
+	LOG,
+	WARNING,
+	ERR,
+};

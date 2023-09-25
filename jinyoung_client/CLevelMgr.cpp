@@ -10,6 +10,7 @@
 #include "CCamera.h"
 
 #include "CCollisionMgr.h"
+#include "CLogMgr.h"
 
 
 CLevelMgr::CLevelMgr()
@@ -106,6 +107,9 @@ void CLevelMgr::render(HDC _dc)
 
 	// 레벨 render
 	m_pCurLevel->render(_dc);
+
+	// Log
+	CLogMgr::GetInst()->tick(_dc);
 
 	// m_SubDC -> m_DC 로 비트맵 복사
 	BitBlt(CEngine::GetInst()->GetMainDC(), 0, 0, ptResolution.x, ptResolution.y, _dc, 0, 0, SRCCOPY);
