@@ -30,7 +30,7 @@ public:
         , Vec2 _vOffset, float _duration, int _MaxFrm);
 
 
-    void SaveAnimation(const wstring& _strRelativePath);
+    void SaveAnimations(const wstring& _strRelativePath);
     void LoadAnimation(const wstring& _strRelativePath);
 
 public:

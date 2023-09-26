@@ -27,7 +27,6 @@ private:
 	HDC		m_subdc;
 	HBITMAP m_subbitmap;
 
-	CLevel* m_Level;
 
 	bool	m_bDebugRender;
 

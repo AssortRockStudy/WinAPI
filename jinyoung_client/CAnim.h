@@ -48,7 +48,7 @@ public:
         m_bFinish = false;
     }
 
-    void Save(const wstring& _FilePath);
+    bool Save(const wstring& _FilePath);
     void Load(const wstring& _FilePath);
 
 public:

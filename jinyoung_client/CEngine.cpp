@@ -23,7 +23,6 @@
 CEngine::CEngine()
 	: m_hWnd(nullptr)
 	, m_ptResolution{}
-	, m_Level(nullptr)
 	, m_dc(nullptr)
 	, m_bDebugRender(true)
 	, m_arrPen{}
@@ -43,8 +42,8 @@ CEngine::~CEngine()
 	DeleteDC(m_subdc);
 
 	// 레벨 해제
-	if (nullptr != m_Level)
-		delete m_Level;
+	//if (nullptr != m_Level)
+	//	delete m_Level;
 	for (UINT i = 0; i < PEN_END; ++i)
 	{
 		DeleteObject(m_arrPen[i]);

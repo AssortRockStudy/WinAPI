@@ -20,6 +20,7 @@
 
 #include "CAnimator.h"
 #include "CLogMgr.h"
+#include "CAnim.h"
 
 class CCollider;
 
@@ -48,6 +49,8 @@ CPlayer::CPlayer()
 	m_Animator->CreateAnimation(L"IdleLeft", pAtlas, Vec2(0.f, 130.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
 	m_Animator->CreateAnimation(L"IdleUp", pAtlas, Vec2(0.f, 260.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 1);
 	m_Animator->CreateAnimation(L"IdleRight", pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
+
+	//m_Animator->SaveAnimation(L"animdata");
 
 	m_Animator->Play(L"WalkDown", true);
 

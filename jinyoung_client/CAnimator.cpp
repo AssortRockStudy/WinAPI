@@ -2,6 +2,9 @@
 #include "CAnimator.h"
 
 #include "CAnim.h"
+#include "CPathMgr.h"
+
+#include "CLogMgr.h"
 
 CAnimator::CAnimator(CObj* _Owner)
 	: CComponent(_Owner)
@@ -78,3 +81,22 @@ void CAnimator::CreateAnimation(const wstring& _strName, CTexture* _Altas,
 }
 
 
+void CAnimator::SaveAnimations(const wstring& _strRelativePath)
+{
+	wstring strFolderPath = CPathMgr::GetContentPath();
+	strFolderPath += _strRelativePath;
+
+	for (const auto& pair : m_mapAnim)
+	{
+		wstring strFilePath = strFolderPath + L"\\" + pair.first + L".txt";
+		if (!pair.second->Save(strFilePath))
+		{
+			LOG(ERR, L"Animation Save ½ÇÆÐ");
+		}
+	}
+}
+
+void CAnimator::LoadAnimation(const wstring& _strRelativePath)
+{
+
+}
