@@ -1,7 +1,5 @@
 #pragma once
 
-class MyLevel;
-
 class MyEngine
 {
 	SINGLETON(MyEngine);
@@ -13,8 +11,6 @@ private:
 
 	HDC			m_SubDC;
 	HBITMAP		m_SubBitMap;
-
-	MyLevel*	m_Level;
 
 	bool		m_DebugRender;
 	HPEN		m_arrPen[(UINT)PEN_TYPE::END];

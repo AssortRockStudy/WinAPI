@@ -142,3 +142,10 @@ enum class PEN_TYPE
 	BLUE_PEN,
 	END,
 };
+
+enum class LOG_LEVEL
+{
+	LOG,
+	WARNING,
+	ERR,
+};

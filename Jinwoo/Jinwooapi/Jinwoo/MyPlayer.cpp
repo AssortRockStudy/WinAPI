@@ -8,6 +8,7 @@
 #include "MyLevelMgr.h"
 #include "MyPathMgr.h"
 #include "MyAssetMgr.h"
+#include "MyLogMgr.h"
 
 #include "MyLevel.h"
 #include "MyProjectile.h"
@@ -24,22 +25,21 @@ MyPlayer::MyPlayer() : m_Speed(300.f), m_Collider(nullptr)
 	// Player가 사용하는 텍스처 불러오기
 	m_Texture = MyAssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\link.bmp");
 
+	m_Animator = AddComponent<MyAnimator>(L"PlayerAnimator");
+	m_Animator->CreateAnimation(L"IdleDown", m_Texture, Vec2(0.f, 0.f), Vec2(120, 130), Vec2(0.f, -65.f), 0.5f, 3);
+	m_Animator->CreateAnimation(L"IdleLeft", m_Texture, Vec2(0.f, 130.f), Vec2(120, 130), Vec2(0.f, -65.f), 0.5f, 3);
+	m_Animator->CreateAnimation(L"IdleUp", m_Texture, Vec2(0.f, 260.f), Vec2(120, 130), Vec2(0.f, -65.f), 0.5f, 1);
+	m_Animator->CreateAnimation(L"IdleRight", m_Texture, Vec2(0.f, 390.f), Vec2(120, 130), Vec2(0.f, -65.f), 0.5f, 3);
+
+	m_Animator->CreateAnimation(L"WalkDown", m_Texture, Vec2(0.f, 520.f), Vec2(120, 130), Vec2(0.f, -65.f), 0.05f, 10);
+	m_Animator->CreateAnimation(L"WalkLeft", m_Texture, Vec2(0.f, 650.f), Vec2(120, 130), Vec2(0.f, -65.f), 0.05f, 10);
+	m_Animator->CreateAnimation(L"WalkUp", m_Texture, Vec2(0.f, 780.f), Vec2(120, 130), Vec2(0.f, -65.f), 0.05f, 10);
+	m_Animator->CreateAnimation(L"WalkRight", m_Texture, Vec2(0.f, 910.f), Vec2(120, 130), Vec2(0.f, -65.f), 0.05f, 10);
 
 	// Player가 사용하는 Component 추가
 	m_Collider = AddComponent<MyCollider>(L"PlayerCollider");
-	m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
-	m_Collider->SetOffsetScale(Vec2(40.f, 80.f));
-
-	m_Animator = AddComponent<MyAnimator>(L"PlayerAnimator");
-	m_Animator->CreateAnimation(L"IdleDown", m_Texture, Vec2(0.f, 0.f), Vec2(120, 130), 0.5f, 3);
-	m_Animator->CreateAnimation(L"IdleLeft", m_Texture, Vec2(0.f, 130.f), Vec2(120, 130), 0.5f, 3);
-	m_Animator->CreateAnimation(L"IdleUp", m_Texture, Vec2(0.f, 260.f), Vec2(120, 130), 0.5f, 1);
-	m_Animator->CreateAnimation(L"IdleRight", m_Texture, Vec2(0.f, 390.f), Vec2(120, 130), 0.5f, 3);
-
-	m_Animator->CreateAnimation(L"WalkDown", m_Texture, Vec2(0.f, 520.f), Vec2(120, 130), 0.05f, 10);
-	m_Animator->CreateAnimation(L"WalkLeft", m_Texture, Vec2(0.f, 650.f), Vec2(120, 130), 0.05f, 10);
-	m_Animator->CreateAnimation(L"WalkUp", m_Texture, Vec2(0.f, 780.f), Vec2(120, 130), 0.05f, 10);
-	m_Animator->CreateAnimation(L"WalkRight", m_Texture, Vec2(0.f, 910.f), Vec2(120, 130), 0.05f, 10);
+	m_Collider->SetOffsetPos(Vec2(0.f, -45.f));
+	m_Collider->SetOffsetScale(Vec2(80.f, 100.f));
 
 	m_Animator->Play(L"IdleDown", true);
 }
@@ -111,6 +111,8 @@ void MyPlayer::tick(float _DT)
 		HBullet->SetDir(Vec2(0.f, -1.f));
 		
 		MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::PLAYERBULLET, (UINT_PTR)HBullet });
+
+		LOG(LOG, L"Shoot");
 	}
 
 	SetPos(vPos);

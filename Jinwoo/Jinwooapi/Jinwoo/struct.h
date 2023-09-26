@@ -173,3 +173,12 @@ struct FMonInfo
 	float Int;
 	float Speed;
 };
+
+struct FLog
+{
+	LOG_LEVEL	Level;
+	wstring		Message;
+
+	// 화면에 출력되는 시간
+	float		Acctime;
+};

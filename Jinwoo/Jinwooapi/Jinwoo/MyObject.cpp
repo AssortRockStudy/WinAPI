@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "MyObject.h"
 
+#include "MyEngine.h"
+
 #include "MyComponent.h"
 
 MyObject::MyObject() : m_LayerIdx(-1)
@@ -42,6 +44,22 @@ void MyObject::render(HDC _dc)
 	{
 		m_vecComponent[i]->render(_dc);
 	}
+
+	if (!DEBUG_RENDER)
+	{
+		return;
+	}
+
+	SELECT_PEN(_dc, PEN_TYPE::RED_PEN);
+
+	Vec2 vRenderPos = GetRenderPos();
+	// 현재 위치를 지정된 점으로 이동시키는 함수
+	MoveToEx(_dc, int(vRenderPos.x - 7.f), int(vRenderPos.y), nullptr);
+	// 현재 위치부터 지정된 점까지 선을 그리는 함수
+	LineTo(_dc, int(vRenderPos.x + 7.f), int(vRenderPos.y));
+
+	MoveToEx(_dc, int(vRenderPos.x), int(vRenderPos.y - 7.f), nullptr);
+	LineTo(_dc, int(vRenderPos.x), int(vRenderPos.y + 7.f));
 }
 
 void MyObject::Destroy()

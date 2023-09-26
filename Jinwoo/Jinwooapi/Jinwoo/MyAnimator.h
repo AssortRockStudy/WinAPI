@@ -25,7 +25,10 @@ public:
     MyAnim* FindAnim(const wstring& _strName);
 
     // 애니메이션 생성
-    void CreateAnimation(const wstring& _strName, MyTexture* _Atlas, Vec2 _vLeftTop, Vec2 _vCutSize, float _Duration, int _MaxFrame);
+    void CreateAnimation(const wstring& _strName, MyTexture* _Atlas, Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrame);
+
+    void SaveAnimation(const wstring& _strRelativePath);
+    void LoadAnimation(const wstring& _strRelativePath);
 
 public:
     virtual void finaltick(float _DT) override;

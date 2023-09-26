@@ -167,6 +167,9 @@
     <ClInclude Include="MyAnim.h">
       <Filter>Game\06.Component\Animator\Anim</Filter>
     </ClInclude>
+    <ClInclude Include="MyLogMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jinwoo.rc">
@@ -266,6 +269,9 @@
     </ClCompile>
     <ClCompile Include="MyAnim.cpp">
       <Filter>Game\06.Component\Animator\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="MyLogMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

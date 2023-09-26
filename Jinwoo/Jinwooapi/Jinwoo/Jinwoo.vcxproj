@@ -159,6 +159,7 @@
     <ClInclude Include="MyLayer.h" />
     <ClInclude Include="MyLevel.h" />
     <ClInclude Include="MyLevelMgr.h" />
+    <ClInclude Include="MyLogMgr.h" />
     <ClInclude Include="MyMonster.h" />
     <ClInclude Include="MyObject.h" />
     <ClInclude Include="MyPathMgr.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="MyLayer.cpp" />
     <ClCompile Include="MyLevel.cpp" />
     <ClCompile Include="MyLevelMgr.cpp" />
+    <ClCompile Include="MyLogMgr.cpp" />
     <ClCompile Include="MyMonster.cpp" />
     <ClCompile Include="MyObject.cpp" />
     <ClCompile Include="MyPathMgr.cpp" />

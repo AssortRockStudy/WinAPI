@@ -9,8 +9,8 @@
 #include "MyCameraMgr.h"
 #include "MyColliderMgr.h"
 #include "MyGCMgr.h"
+#include "MyLogMgr.h"
 
-#include "MyLevel.h"
 
 MyEngine::MyEngine() : m_hWnd(nullptr), m_ptResolution{}, m_DC(nullptr), m_SubBitMap(nullptr), m_SubDC(nullptr), m_DebugRender(false), m_arrPen{}
 {
@@ -24,11 +24,6 @@ MyEngine::~MyEngine()
 
 	DeleteObject(m_SubBitMap);
 	DeleteDC(m_SubDC);
-
-	if (nullptr != m_Level)
-	{
-		delete m_Level;
-	}
 
 	for (UINT i = 0; i < (UINT)PEN_TYPE::END; ++i)
 	{

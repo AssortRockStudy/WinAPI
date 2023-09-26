@@ -5,6 +5,7 @@
 
 #include "MyCameraMgr.h"
 #include "MyColliderMgr.h"
+#include "MyLogMgr.h"
 
 #include "MyLevel.h"
 #include "MyPlayer.h"
@@ -67,6 +68,9 @@ void MyLevelMgr::render(HDC _dc)
 	Rectangle(_dc, -1, -1, pResolution.x + 1, pResolution.y + 1);
 
 	m_pCurLevel->render(_dc);
+
+	// 로그 렌더
+	MyLogMgr::GetInst()->tick(_dc);
 
 	// m_SubDC를 m_DC로 복사
 	//			복사시킬 목적지		 /			복사받을 영역				/ 복사해올 DC / 어디서부터 복사할 것인가			

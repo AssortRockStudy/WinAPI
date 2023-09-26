@@ -12,6 +12,9 @@ struct FFrame
     // 좌상단으로부터 얼마나 잘라낼 것인가
     Vec2 vCutSize;
 
+    // 오브젝트 중심에서 얼마나 떨어져있는가
+    Vec2 vOffset;
+
     // 해당 프레임 노출 시간
     float Duration;
 };
@@ -38,7 +41,7 @@ public:
     void render(HDC _dc);
 
 public:
-    void Create(const wstring& _strName, MyTexture* _Atlas, Vec2 _vLeftTop, Vec2 _vCutSize, float _Duration, int _MaxFrame);
+    void Create(const wstring& _strName, MyTexture* _Atlas, Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrame);
 
     bool IsFinish() { return m_Finish; }
 
@@ -49,6 +52,8 @@ public:
         m_Finish = false;
     }
 
+    bool Save(const wstring& _FilePath);
+    void Load(const wstring& _FilePath);
 
 public:
     MyAnim();
