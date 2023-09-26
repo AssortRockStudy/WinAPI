@@ -19,7 +19,7 @@ public:
     void CreateAnimation(const wstring& _strName, CTexture* _pAtlas, Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _fDuration, int _iMaxFrm);
     CAnim* FindAnimation(const wstring& _strName);
 
-    void SaveAnimation(const wstring& _strRelativePath);
+    void SaveAnimations(const wstring& _strRelativePath);
     void LoadAnimation(const wstring& _strRelativePath);
 
 public:

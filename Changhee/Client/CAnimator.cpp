@@ -81,7 +81,7 @@ CAnim* CAnimator::FindAnimation(const wstring& _strName)
 	return iter->second;
 }
 
-void CAnimator::SaveAnimation(const wstring& _strRelativePath)
+void CAnimator::SaveAnimations(const wstring& _strRelativePath)
 {
 	wstring strFolderPath = CPathMgr::GetContentDirectory();
 	strFolderPath += _strRelativePath;
@@ -98,4 +98,19 @@ void CAnimator::SaveAnimation(const wstring& _strRelativePath)
 
 void CAnimator::LoadAnimation(const wstring& _strRelativePath)
 {
+	wstring strFilePath = CPathMgr::GetContentDirectory();
+	strFilePath += _strRelativePath;
+
+	CAnim* pNewAnim = new CAnim;
+
+	if (!pNewAnim->Load(strFilePath))
+	{
+		LOG(LOG_LEVEL::ERR, L"Animation Load ½ÇÆÐ");
+		delete pNewAnim;
+		return;
+	}
+
+	pNewAnim->m_pAnimator = this;
+	m_mapAnim.insert(make_pair(pNewAnim->GetName(), pNewAnim));
+
 }

@@ -4,6 +4,7 @@
 #include "CObj.h"
 #include "CAnimator.h"
 #include "CTexture.h"
+#include "CAssetMgr.h"
 
 CAnim::CAnim()
 	: m_pAnimator(nullptr)
@@ -51,19 +52,95 @@ bool CAnim::Save(const wstring& _FilePath)
 		return false;
 	}
 
-	// 키, 경로
-	m_pAtlas;
+	// Animation 이름 저장
+	wstring strName = GetName();
+	int iLen = 0;
+	iLen = (int)strName.length();
+	fwrite(&iLen, sizeof(int), 1, pFile);
+	fwrite(strName.c_str(), sizeof(wchar_t), strName.length(), pFile);
 
-	// 프레임 데이터
-	m_vecFrm;
+	// 키, 경로
+	bool bExist = m_pAtlas;
+	fwrite(&bExist, sizeof(bool), 1, pFile);
+
+	if (bExist)
+	{
+		wstring strKey = m_pAtlas->GetKey();
+		wstring strRelativePath = m_pAtlas->GetRelativePath();
+
+		int iLen = 0;
+
+		iLen = (int)strKey.length();
+		fwrite(&iLen, sizeof(int), 1, pFile);
+		fwrite(strKey.c_str(), sizeof(wchar_t), strKey.length(), pFile);
+
+		iLen = (int)strRelativePath.length();
+		fwrite(&iLen, sizeof(int), 1, pFile);
+		fwrite(strRelativePath.c_str(), sizeof(wchar_t), strRelativePath.length(), pFile);
+	}
+
+	size_t FrmCount = m_vecFrm.size();
+	fwrite(&FrmCount, sizeof(size_t), 1, pFile);
+	fwrite(&m_vecFrm[0], sizeof(FFrame), m_vecFrm.size(), pFile);
 
 	fclose(pFile);
 
 	return true;
 }
 
-void CAnim::Load(const wstring& _FilePath)
+bool CAnim::Load(const wstring& _FilePath)
 {
+	FILE* pFile = nullptr;
+
+	_wfopen_s(&pFile, _FilePath.c_str(), L"rb");
+
+	if (nullptr == pFile)
+	{
+		LOG(LOG_LEVEL::ERR, L"파일 열기 실패");
+		return false;
+	}
+
+	// Animation 이름 로드
+	wchar_t szName[255] = {};
+	int iLen = 0;
+	fread(&iLen, sizeof(int), 1, pFile);
+	fread(szName, sizeof(wchar_t), iLen, pFile);
+
+	SetName(szName);
+
+
+	// Atlas
+	bool bExist = 0;
+	fread(&bExist, sizeof(bool), 1, pFile);
+
+	if (bExist)
+	{
+		wchar_t szBuff[255] = {};
+
+		int iLen = 0;
+
+		fread(&iLen, sizeof(int), 1, pFile);
+		fread(szBuff, sizeof(wchar_t), iLen, pFile);
+		wstring strKey = szBuff;
+
+		wmemset(szBuff, 0, 255);
+
+		fread(&iLen, sizeof(int), 1, pFile);
+		fread(szBuff, sizeof(wchar_t), iLen, pFile);
+		wstring strRelativePath = szBuff;
+
+		m_pAtlas = CAssetMgr::GetInst()->LoadTexture(strKey, strRelativePath);
+	}
+
+	// 프레임 데이터
+	size_t FrmCount = 0;
+	fread(&FrmCount, sizeof(size_t), 1, pFile);
+	m_vecFrm.resize(FrmCount);
+	fread(&m_vecFrm[0], sizeof(FFrame), m_vecFrm.size(), pFile);
+
+	fclose(pFile);
+	return true;
+
 }
 
 void CAnim::finaltick(float _DT)

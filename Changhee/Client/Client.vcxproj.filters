@@ -203,6 +203,12 @@
     <ClInclude Include="CLogMgr.h">
       <Filter>Game\03. Manager\LogManager</Filter>
     </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Game\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CMovement.h">
+      <Filter>Game\06. Component\Movement</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -311,6 +317,9 @@
     </ClCompile>
     <ClCompile Include="CLogMgr.cpp">
       <Filter>Game\03. Manager\LogManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CMovement.cpp">
+      <Filter>Game\06. Component\Movement</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

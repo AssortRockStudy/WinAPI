@@ -161,7 +161,9 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="CLogMgr.h" />
     <ClInclude Include="CMonster.h" />
+    <ClInclude Include="CMovement.h" />
     <ClInclude Include="CObj.h" />
+    <ClInclude Include="Component.h" />
     <ClInclude Include="CPathMgr.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CProjectile.h" />
@@ -199,6 +201,7 @@
     <ClCompile Include="CLevelMgr.cpp" />
     <ClCompile Include="CLogMgr.cpp" />
     <ClCompile Include="CMonster.cpp" />
+    <ClCompile Include="CMovement.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
     <ClCompile Include="CPlayer.cpp" />

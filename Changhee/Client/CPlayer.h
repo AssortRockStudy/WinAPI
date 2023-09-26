@@ -4,6 +4,7 @@
 class CTexture;
 class CCollider;
 class CAnimator;
+class CMovement;
 
 class CPlayer :
     public CObj
@@ -12,11 +13,10 @@ class CPlayer :
 
 private:
     float                           m_fSpeed;
-    CTexture*                       m_pAtlas;
-
 
     CCollider*                      m_pCollider;
     CAnimator*                      m_pAnimator;
+    CMovement*                      m_pMovement;
 
 public:
     virtual void tick(float _DT) override;

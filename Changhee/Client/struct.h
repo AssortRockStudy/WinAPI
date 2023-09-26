@@ -139,8 +139,40 @@ public:
 		return Vec2(x / _Other.x, y / _Other.y);
 	}
 
-	
 
+	Vec2& operator +=(const Vec2& _Other)
+	{
+		x += _Other.x;
+		y += _Other.y;
+
+		return *this;
+	}
+
+	Vec2& operator -=(const Vec2& _Other)
+	{
+		x -= _Other.x;
+		y -= _Other.y;
+
+		return *this;
+	}
+
+	Vec2& operator *=(const Vec2& _Other)
+	{
+		x *= _Other.x;
+		y *= _Other.y;
+
+		return *this;
+	}
+
+	Vec2& operator /=(const Vec2& _Other)
+	{
+		assert(_Other.x != 0 && _Other.y != 0);
+
+		x /= _Other.x;
+		y /= _Other.y;
+
+		return *this;
+	}
 };
 
 

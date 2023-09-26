@@ -3,12 +3,8 @@
 
 #include "CKeyMgr.h"
 #include "CTaskMgr.h"
-#include "CAssetMgr.h"
 
-#include "CTexture.h"
-
-#include "CCollider.h"
-#include "CAnimator.h"
+#include "Component.h"
 
 #include "CProjectile.h"
 
@@ -16,22 +12,35 @@
 
 CPlayer::CPlayer()
 	: m_fSpeed(200.f)
-	, m_pAtlas(nullptr)
 {
-	// Asset
-	m_pAtlas = CAssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\link.bmp");
 	
 	// animator
 	m_pAnimator = AddComponent<CAnimator>(L"Animator");
-	m_pAnimator->CreateAnimation(L"WalkDown", m_pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), Vec2(0.f,-60.f), 0.05f, 10);
-	m_pAnimator->CreateAnimation(L"WalkLeft", m_pAtlas, Vec2(0.f, 650.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
-	m_pAnimator->CreateAnimation(L"WalkUp", m_pAtlas, Vec2(0.f, 780.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
-	m_pAnimator->CreateAnimation(L"WalkRight", m_pAtlas, Vec2(0.f, 910.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
 
-	m_pAnimator->CreateAnimation(L"IdleDown", m_pAtlas, Vec2(0.f, 0.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
-	m_pAnimator->CreateAnimation(L"IdleLeft", m_pAtlas, Vec2(0.f, 130.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
-	m_pAnimator->CreateAnimation(L"IdleUp", m_pAtlas, Vec2(0.f, 260.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 1);
-	m_pAnimator->CreateAnimation(L"IdleRight", m_pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
+	// Create
+	//m_pAnimator->CreateAnimation(L"WalkDown", m_pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), Vec2(0.f,-60.f), 0.05f, 10);
+	//m_pAnimator->CreateAnimation(L"WalkLeft", m_pAtlas, Vec2(0.f, 650.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
+	//m_pAnimator->CreateAnimation(L"WalkUp", m_pAtlas, Vec2(0.f, 780.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
+	//m_pAnimator->CreateAnimation(L"WalkRight", m_pAtlas, Vec2(0.f, 910.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
+
+	//m_pAnimator->CreateAnimation(L"IdleDown", m_pAtlas, Vec2(0.f, 0.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
+	//m_pAnimator->CreateAnimation(L"IdleLeft", m_pAtlas, Vec2(0.f, 130.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
+	//m_pAnimator->CreateAnimation(L"IdleUp", m_pAtlas, Vec2(0.f, 260.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 1);
+	//m_pAnimator->CreateAnimation(L"IdleRight", m_pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
+	// Save
+	//m_pAnimator->SaveAnimations(L"animdata");
+
+
+	m_pAnimator->LoadAnimation(L"animdata\\IdleDown.txt");
+	m_pAnimator->LoadAnimation(L"animdata\\IdleLeft.txt");
+	m_pAnimator->LoadAnimation(L"animdata\\IdleRight.txt");
+	m_pAnimator->LoadAnimation(L"animdata\\IdleUp.txt");
+	m_pAnimator->LoadAnimation(L"animdata\\WalkDown.txt");
+	m_pAnimator->LoadAnimation(L"animdata\\WalkLeft.txt");
+	m_pAnimator->LoadAnimation(L"animdata\\WalkRight.txt");
+	m_pAnimator->LoadAnimation(L"animdata\\WalkUp.txt");
+
+
 
 	m_pAnimator->Play(L"WalkDown", true);
 
