@@ -35,6 +35,10 @@ CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRela
 	pTexture = new CTexture;
 	pTexture->Load(strFilePath);
 
+	// Asset 에 키값과 경로값을 알려준다.
+	pTexture->m_strKey = _strKey;
+	pTexture->m_strRelativePath = _strRelativePath;
+
 	m_mapTex.insert(make_pair(_strKey, pTexture));
 
 	return pTexture;

@@ -98,5 +98,18 @@ void CAnimator::SaveAnimations(const wstring& _strRelativePath)
 
 void CAnimator::LoadAnimation(const wstring& _strRelativePath)
 {
+	wstring strFilePath = CPathMgr::GetContentPath();
+	strFilePath += _strRelativePath;
 
+	CAnim* pNewAnim = new CAnim;
+
+	if (!pNewAnim->Load(strFilePath))
+	{
+		LOG(ERR, L"Animation Load ½ÇÆÐ");
+		delete pNewAnim;
+		return;
+	}
+
+	pNewAnim->m_pAnimator = this;
+	m_mapAnim.insert(make_pair(pNewAnim->GetName(), pNewAnim));
 }

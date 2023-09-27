@@ -49,7 +49,7 @@ public:
     }
 
     bool Save(const wstring& _FilePath);
-    void Load(const wstring& _FilePath);
+    bool Load(const wstring& _FilePath);
 
 public:
     CAnim();

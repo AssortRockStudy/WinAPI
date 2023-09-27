@@ -13,14 +13,17 @@
 #include "CEngine.h"
 
 #include "CGuided.h"
-#include "CCollider.h"
 
 #include "CAssetMgr.h"
 #include "CTexture.h"
 
-#include "CAnimator.h"
 #include "CLogMgr.h"
-#include "CAnim.h"
+
+#include "components.h"
+/*
+#include "CCollider.h"
+#include "CAnimator.h"
+#include "CAnim.h"*/
 
 class CCollider;
 
@@ -40,17 +43,25 @@ CPlayer::CPlayer()
 	CTexture* pAtlas = CAssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\link.bmp");
 
 	m_Animator = AddComponent<CAnimator>(L"Animator");
-	m_Animator->CreateAnimation(L"WalkDown", pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
-	m_Animator->CreateAnimation(L"WalkLeft", pAtlas, Vec2(0.f, 650.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
-	m_Animator->CreateAnimation(L"WalkUp", pAtlas, Vec2(0.f, 780.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
-	m_Animator->CreateAnimation(L"WalkRight", pAtlas, Vec2(0.f, 910.f), Vec2(120, 130), Vec2(0.f, -60.f), 2.f, 10);
+	//m_Animator->CreateAnimation(L"WalkDown", pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
+	//m_Animator->CreateAnimation(L"WalkLeft", pAtlas, Vec2(0.f, 650.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
+	//m_Animator->CreateAnimation(L"WalkUp", pAtlas, Vec2(0.f, 780.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
+	//m_Animator->CreateAnimation(L"WalkRight", pAtlas, Vec2(0.f, 910.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);	
+	//m_Animator->CreateAnimation(L"IdleDown", pAtlas, Vec2(0.f, 0.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
+	//m_Animator->CreateAnimation(L"IdleLeft", pAtlas, Vec2(0.f, 130.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
+	//m_Animator->CreateAnimation(L"IdleUp", pAtlas, Vec2(0.f, 260.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 1);
+	//m_Animator->CreateAnimation(L"IdleRight", pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
+	//m_Animator->SaveAnimations(L"animdata");
 
-	m_Animator->CreateAnimation(L"IdleDown", pAtlas, Vec2(0.f, 0.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
-	m_Animator->CreateAnimation(L"IdleLeft", pAtlas, Vec2(0.f, 130.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
-	m_Animator->CreateAnimation(L"IdleUp", pAtlas, Vec2(0.f, 260.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 1);
-	m_Animator->CreateAnimation(L"IdleRight", pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
+	m_Animator->LoadAnimation(L"animdata\\IdleDown.txt");
+	m_Animator->LoadAnimation(L"animdata\\IdleLeft.txt");
+	m_Animator->LoadAnimation(L"animdata\\IdleRight.txt");
+	m_Animator->LoadAnimation(L"animdata\\IdleUp.txt");
+	m_Animator->LoadAnimation(L"animdata\\WalkDown.txt");
+	m_Animator->LoadAnimation(L"animdata\\WalkLeft.txt");
+	m_Animator->LoadAnimation(L"animdata\\WalkRight.txt");
+	m_Animator->LoadAnimation(L"animdata\\WalkUp.txt");
 
-	//m_Animator->SaveAnimation(L"animdata");
 
 	m_Animator->Play(L"WalkDown", true);
 
@@ -64,7 +75,17 @@ CPlayer::CPlayer()
 	//AddComponent<CAnimator>();
 	//AddComponent<CMovement>();
 	// 이미지가 존재하는 상대경로(constent 폴더로부터)
-	m_pTexture = CAssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\fighter.bmp");
+	//m_pTexture = CAssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\fighter.bmp");
+
+
+	// Movement 컴포넌트 추가
+	m_Movement = AddComponent<CMovement>(L"PlayerMovement");
+	m_Movement->SetMass(1.f);
+	m_Movement->SetInitSpeed(50.f);
+	m_Movement->SetInitSpeed(400.f);
+	m_Movement->UseGravity(true);
+	m_Movement->SetGravityDir(Vec2(0.f, 1.f));
+	m_Movement->SetFrictionScale(0.f);
 
 	//m_Image= (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 	//m_ImageDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
