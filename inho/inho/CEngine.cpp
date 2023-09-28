@@ -19,7 +19,7 @@
 #include "CGCMgr.h"
 
 CEngine::CEngine()
-    : m_hWnd(nullptr), m_ptResolution{}, m_Level(nullptr), m_dc(nullptr),
+    : m_hWnd(nullptr), m_ptResolution{}, m_dc(nullptr),
       m_SubBitMap(nullptr), m_bDebugRender(true) {}
 
 CEngine::~CEngine() {
@@ -28,8 +28,6 @@ CEngine::~CEngine() {
     DeleteObject(m_SubBitMap);
     DeleteObject(m_SubDC);
 
-    if (nullptr != m_Level)
-        delete m_Level;
 }
 
 void CEngine::init(HWND _hWnd, POINT _ptResolution) {

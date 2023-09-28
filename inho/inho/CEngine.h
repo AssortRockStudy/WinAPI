@@ -13,8 +13,6 @@ class CEngine {
     HDC     m_SubDC;
     HBITMAP m_SubBitMap;
 
-    CLevel* m_Level;
-
     bool m_bDebugRender;
 
   public:
