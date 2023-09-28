@@ -43,6 +43,8 @@ CPlayer::CPlayer() : m_Speed(500.f) {
     m_Animator->CreateAnimation(L"IdleUp", pAtlas, Vec2(0.f, 260.f), Vec2(120, 130), offset, 0.05f, 1);
     m_Animator->CreateAnimation(L"IdleRight", pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), offset, 0.05f, 3);
 
+    m_Animator->SaveAnimation(L"animdata");
+
     m_Animator->Play(L"WalkDown", true);
 
     m_pTexture = CAssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\fighter.bmp");
