@@ -93,6 +93,7 @@ void CAnimator::LoadAnimation(const wstring& _strRelativePath)
 		return;
 	}
 
+	pNewAnim->m_pAnimator = this;
 	m_mapAnim.insert(make_pair(pNewAnim->GetName(), pNewAnim));
 }
 

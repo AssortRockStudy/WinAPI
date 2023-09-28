@@ -21,6 +21,7 @@
 
 #include "CLogMgr.h"
 
+#include "components.h"
 
 CPlayer::CPlayer() : m_Speed(500.f) {
     
@@ -33,7 +34,7 @@ CPlayer::CPlayer() : m_Speed(500.f) {
     CTexture* pAtlas = CAssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\link.bmp");
     m_Animator = AddComponent<CAnimator>(L"Animator");
     Vec2 offset(0.f, -60.f);
-    m_Animator->CreateAnimation(L"WalkDown", pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), offset, 0.05f, 10);
+    /*m_Animator->CreateAnimation(L"WalkDown", pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), offset, 0.05f, 10);
     m_Animator->CreateAnimation(L"WalkLeft", pAtlas, Vec2(0.f, 650.f), Vec2(120, 130), offset, 0.05f, 10);
     m_Animator->CreateAnimation(L"WalkUp", pAtlas, Vec2(0.f, 780.f), Vec2(120, 130), offset, 0.05f, 10);
     m_Animator->CreateAnimation(L"WalkRight", pAtlas, Vec2(0.f, 910.f), Vec2(120, 130), offset, 0.05f, 10);
@@ -41,13 +42,28 @@ CPlayer::CPlayer() : m_Speed(500.f) {
     m_Animator->CreateAnimation(L"IdleDown", pAtlas, Vec2(0.f, 0.f), Vec2(120, 130), offset, 0.05f, 3);
     m_Animator->CreateAnimation(L"IdleLeft", pAtlas, Vec2(0.f, 130.f), Vec2(120, 130), offset, 0.05f, 3);
     m_Animator->CreateAnimation(L"IdleUp", pAtlas, Vec2(0.f, 260.f), Vec2(120, 130), offset, 0.05f, 1);
-    m_Animator->CreateAnimation(L"IdleRight", pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), offset, 0.05f, 3);
+    m_Animator->CreateAnimation(L"IdleRight", pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), offset, 0.05f, 3);*/
 
-    m_Animator->SaveAnimation(L"animdata");
+    //m_Animator->SaveAnimation(L"animdata");
+
+    m_Animator->LoadAnimation(L"animdata\\IdleDown.txt");
+    m_Animator->LoadAnimation(L"animdata\\IdleLeft.txt");
+    m_Animator->LoadAnimation(L"animdata\\IdleRight.txt");
+    m_Animator->LoadAnimation(L"animdata\\IdleUp.txt");
+    m_Animator->LoadAnimation(L"animdata\\WalkDown.txt");
+    m_Animator->LoadAnimation(L"animdata\\WalkLeft.txt");
+    m_Animator->LoadAnimation(L"animdata\\WalkRight.txt");
+    m_Animator->LoadAnimation(L"animdata\\WalkUp.txt");
 
     m_Animator->Play(L"WalkDown", true);
 
-    m_pTexture = CAssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\fighter.bmp");
+    m_Movement = AddComponent<CMovement>(L"PlayerMovement");
+    m_Movement->SetMass(1.f);
+    m_Movement->SetInitSpeed(200.f);
+    m_Movement->SetMaxSpeed(400.f);
+    m_Movement->UseGravity(true);
+    m_Movement->SetGravityDir(Vec2(0.f, 400.f));
+    m_Movement->SetFrictionScale(200.f);
 }
 
 CPlayer::~CPlayer() {

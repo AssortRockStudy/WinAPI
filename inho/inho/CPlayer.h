@@ -1,19 +1,16 @@
 ﻿#pragma once
 #include "CObj.h"
 
-class CCollider;
-class CTexture;
-class CAnimator;
-
 class CPlayer : public CObj {
     GENERATED_OBJECT(CObj);
 
   private:
+
     float m_Speed;
 
-    CCollider* m_Collider;
-    CTexture* m_pTexture;
-    CAnimator* m_Animator;
+    class CCollider* m_Collider;
+    class CAnimator* m_Animator;
+    class CMovement* m_Movement;
 
   public:
     virtual void tick(float _DT) override;
