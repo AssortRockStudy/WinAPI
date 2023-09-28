@@ -19,7 +19,11 @@ public:
     void Stop();
 
     CAnim* FindAnim(const wstring& _strName);
-    void CreateAnimation(const wstring& _strName, CTexture* _Altas, Vec2 _vLeftTop, Vec2 _vCutSize, float _duration, int _MaxFrm);
+    void CreateAnimation(const wstring& _strName, CTexture* _Altas, Vec2 _vLeftTop, Vec2 _vCutSize,
+        Vec2 _vOffset, float _duration, int _MaxFrm);
+
+    void SaveAnimation(const wstring& _strRelativePath);
+    void LoadAnimation(const wstring& _strRelativePath);
 
 
 public:

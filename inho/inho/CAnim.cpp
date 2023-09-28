@@ -11,7 +11,8 @@ CAnim::CAnim():
 	m_pAnimator(nullptr),
 	m_Atlas(nullptr),
 	m_iCurFrm(0),
-	m_bFinish(false)
+	m_bFinish(false),
+	m_AccTime(0.f)
 {
 }
 
@@ -47,8 +48,9 @@ void CAnim::render(HDC _dc)
 	CObj* pOwnerObject = m_pAnimator->GetOwner();
 	Vec2 vRenderPos = pOwnerObject->GetRenderPos();
 
-	TransparentBlt(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f))
-		, int(vRenderPos.y - (frm.vCutSize.y / 2.f))
+	TransparentBlt(_dc
+		, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
+		, int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
 		, int(frm.vCutSize.x), int(frm.vCutSize.y)
 		, m_Atlas->GetDC()
 		, int(frm.vLeftTop.x), int(frm.vLeftTop.y)
@@ -56,7 +58,7 @@ void CAnim::render(HDC _dc)
 		, RGB(255, 0, 255));
 }
 
-void CAnim::Create(const wstring& _strName, CTexture* _Atlas, Vec2 _vLeftTop, Vec2 _vCutSize, float _Duration, int _MaxFrm)
+void CAnim::Create(const wstring& _strName, CTexture* _Atlas, Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm)
 {
 	SetName(_strName);
 
@@ -69,6 +71,7 @@ void CAnim::Create(const wstring& _strName, CTexture* _Atlas, Vec2 _vLeftTop, Ve
 
 		frm.vLeftTop = _vLeftTop + Vec2(_vCutSize.x * i, 0.f);
 		frm.vCutSize = _vCutSize;
+		frm.vOffset = _vOffset;
 		frm.Duration = _Duration;
 
 		m_vecFrm.push_back(frm);
