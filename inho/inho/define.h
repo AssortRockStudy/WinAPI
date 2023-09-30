@@ -112,6 +112,7 @@ enum KEY_STATE {
 enum LAYER {
     DEFAULT,
     TILE,
+    PLATFORM,
     PLAYER,
     MONSTER,
     PLAYER_PJ,

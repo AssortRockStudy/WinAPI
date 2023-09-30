@@ -10,10 +10,11 @@
 #include "CPaletteMgr.h"
 #include "CPlayer.h"
 #include "CLogMgr.h"
-
 #include "CCollisionMgr.h"
 
-CLevelMgr::CLevelMgr() {}
+#include "CPlatform.h"
+
+CLevelMgr::CLevelMgr():m_pCurLevel(nullptr) {}
 CLevelMgr::~CLevelMgr() {
     if (nullptr != m_pCurLevel) {
         delete m_pCurLevel;
@@ -26,23 +27,24 @@ void CLevelMgr::init() {
 
     CPlayer* pPlayer = new CPlayer;
 
-    pPlayer->SetPos(Vec2(500.f, 500.f));
+    pPlayer->SetPos(Vec2(500.f, 200.f));
     pPlayer->SetScale(Vec2(50.f, 50.f));
 
     m_pCurLevel->AddObject(PLAYER, pPlayer);
 
-    CMonster* pMonster = new CMonster;
-    pMonster->SetPos(Vec2(900.f, 500.f));
-    pMonster->SetScale(Vec2(100.f, 100.f));
-    m_pCurLevel->AddObject(MONSTER, pMonster);
-
+    CPlatform* pPlatform = new CPlatform;
+    pPlatform->SetPos(Vec2(800.f, 700.f));
+    m_pCurLevel->AddObject(PLATFORM, pPlatform);
+    
     // 카메라 설정
     Vec2 vLookAt = CEngine::GetInst()->GetResolution();
     vLookAt /= 2.f;
     CCamera::GetInst()->SetLookAt(vLookAt);
 
+
     CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
     CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER_PJ);
+    CCollisionMgr::GetInst()->CheckCollision(PLATFORM, PLAYER);
 
     m_pCurLevel->begin();
 }

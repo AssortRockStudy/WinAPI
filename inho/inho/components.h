@@ -1,7 +1,10 @@
 #pragma once
 
-#include "CMovement.h"
 #include "CAnimator.h"
 #include "CAnim.h"
+
+#include "CMovement.h"
+
 #include "CCollider.h"
-#include "CComponent.h"
+
+// #include "AI.h"

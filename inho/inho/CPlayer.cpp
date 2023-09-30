@@ -20,6 +20,7 @@
 #include "CAnim.h"
 
 #include "CLogMgr.h"
+#include "CPlatform.h"
 
 #include "components.h"
 
@@ -62,7 +63,7 @@ CPlayer::CPlayer() : m_Speed(500.f) {
     m_Movement->SetInitSpeed(200.f);
     m_Movement->SetMaxSpeed(400.f);
     m_Movement->UseGravity(true);
-    m_Movement->SetGravityDir(Vec2(0.f, 1.f));
+    m_Movement->SetGravity(Vec2(0.f, 980.f));
     m_Movement->SetFrictionScale(1000.f);
 }
 
@@ -116,25 +117,11 @@ void CPlayer::tick(float _DT) {
     }
 
     if (KEY_TAP(SPACE)) {
-        CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
+        m_Movement->SetGround(false);
+        m_Movement->SetVelocity(Vec2(m_Movement->GetVelocity().x, -500.f));
 
-        for (int i = 0; i < 1; i++) {
-            CGuidedProjectile* pProjectile = new CGuidedProjectile;
-
-            Vec2 ProjectilePos = GetPos();
-            ProjectilePos.y -= GetScale().y / 2.f;
-
-            pProjectile->SetSpeed(1000.f);
-            pProjectile->SetAngle((PI / 4.f) * (float)(i + 1));
-            pProjectile->SetPos(ProjectilePos);
-            pProjectile->SetScale(Vec2(25.f, 25.f));
-            pProjectile->SetDir(Vec2(0.f, -1.f));
-
-            CTaskMgr::GetInst()->AddTask(
-                FTask{CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)pProjectile});
-        }
         
-        LOG(WARNING, L"경고");
+        
     }
 
 
@@ -142,7 +129,16 @@ void CPlayer::tick(float _DT) {
 }
 
 
-void CPlayer::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+void CPlayer::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
-    _OwnCol->GetName();
+    if (dynamic_cast<CPlatform*>(_OtherObj)) {
+        m_Movement->SetGround(true);
+    }
+}
+
+void CPlayer::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+{
+    if (dynamic_cast<CPlatform*>(_OtherObj)) {
+        m_Movement->SetGround(false);
+    }
 }

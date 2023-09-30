@@ -13,9 +13,9 @@ private:
     float m_InitSpeed;
     float m_MaxSpeed;
     float m_FrictionScale;
-    bool m_UseGravity;
 
-    Vec2 m_GravityDir;
+    bool m_UseGravity;
+    Vec2 m_GravityForce;
     bool m_Ground;
 
 public:
@@ -29,6 +29,10 @@ public:
 
     void SetVelocity(Vec2 _vVelocity) {
         m_Velocity = _vVelocity;
+    }
+
+    void AddVelocity(Vec2 _vAdd) {
+        m_Velocity += _vAdd;
     }
 
     Vec2 GetVelocity() {
@@ -75,16 +79,23 @@ public:
         return m_UseGravity;
     }
 
-    void SetGravityDir(Vec2 _vGravityDir) {
-        m_GravityDir = _vGravityDir;
+    void SetGravity(Vec2 _vGravityForce) {
+        m_GravityForce = _vGravityForce;
     }
 
     Vec2 GetGravityDir() {
-        return m_GravityDir;
+        return Vec2(m_GravityForce).Normalize();
     }
 
     bool IsGround() {
         return m_Ground;
+    }
+
+    void SetGround(bool _Ground) {
+        if (_Ground) {
+            m_Velocity.y = 0.f;
+        }
+        m_Ground = _Ground;
     }
 
 public:

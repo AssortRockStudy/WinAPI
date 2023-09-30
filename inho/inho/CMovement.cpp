@@ -21,8 +21,14 @@ CMovement::~CMovement()
 
 void CMovement::finaltick(float _DT)
 {
+	// 가속도
 	m_Accel = m_Force / m_Mass;
 
+	if (m_UseGravity && !m_Ground) {
+		m_Accel += m_GravityForce;
+	}
+
+	// 멈춰있었을 경우 초기속도 제공
 	if (m_Velocity.Length() < 0.1f) {
 		if (!m_Accel.IsZero()) {
 			Vec2 vAccelDir = m_Accel;
@@ -30,25 +36,30 @@ void CMovement::finaltick(float _DT)
 			m_Velocity = vAccelDir * m_InitSpeed;
 		}
 	}
+	// 이동하고 있을 경우 속도 += 가속도
 	else {
 		m_Velocity += m_Accel * _DT;
 	}
 
-	if (m_Velocity.Length() > m_MaxSpeed) {
-		m_Velocity = m_Velocity.Normalize() * m_MaxSpeed;
+	// 최대속도 초과시 최대속도로 맞추기
+	if (fabs(m_Velocity.x) > m_MaxSpeed) {
+		m_Velocity.x = (m_Velocity.x / fabs(m_Velocity.x)) * m_MaxSpeed;
 	}
 
-	if (m_Force.IsZero() && !m_Velocity.IsZero()) {
-		Vec2 vFriction = -m_Velocity;
-		vFriction.Normalize();
-		vFriction *= m_FrictionScale;
+	// 이동에서 손을 뗐을 때 마찰력 적용(힘이 없으면서 속도는 존재할 때)
+	if (m_Force.IsZero() && m_Velocity.x != 0.f && m_Ground) {
+		float fFriction = -m_Velocity.x;
+		fFriction /= fabs(fFriction);
+		fFriction *= m_FrictionScale;
 
-		Vec2 vFrictionAccel = (vFriction / m_Mass) * _DT;
-		if (m_Velocity.Length() < vFriction.Length()) {
-			m_Velocity = Vec2(0.f, 0.f);
+		float fFrictionAccel = (fFriction / m_Mass) * _DT;
+
+		// 반대로 넘어가는 마찰력 예외처리
+		if (fabs(m_Velocity.x) < fabs(fFrictionAccel)) {
+			m_Velocity = Vec2(0.f, m_Velocity.y);
 		}
 		else {
-			m_Velocity += vFrictionAccel;
+			m_Velocity.x += fFrictionAccel;
 		}
 	}
 

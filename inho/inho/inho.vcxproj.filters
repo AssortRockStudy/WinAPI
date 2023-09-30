@@ -62,6 +62,9 @@
     <Filter Include="Game\06. Component\Animator\Anim">
       <UniqueIdentifier>{e42b1127-b2a3-41cd-acae-a93dd0ae247a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\Platform">
+      <UniqueIdentifier>{00b93198-c558-404b-be6f-ddf3e91ed408}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inho.h">
@@ -173,6 +176,9 @@
     <ClInclude Include="components.h">
       <Filter>Game\01. Header</Filter>
     </ClInclude>
+    <ClInclude Include="CPlatform.h">
+      <Filter>Game\05. Object\Platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="inho.rc">
@@ -278,6 +284,9 @@
     </ClCompile>
     <ClCompile Include="CLogMgr.cpp">
       <Filter>Game\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlatform.cpp">
+      <Filter>Game\05. Object\Platform</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
