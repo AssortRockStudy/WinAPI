@@ -158,12 +158,20 @@
     <ClInclude Include="CTexture.h">
       <Filter>Game\07. Asset\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="CLogMgr.h" />
     <ClInclude Include="CAnimator.h">
       <Filter>Game\06. Component\Animator</Filter>
     </ClInclude>
     <ClInclude Include="CAnim.h">
       <Filter>Game\06. Component\Animator\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="CMovement.h">
+      <Filter>Game\06. Component\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="CLogMgr.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="components.h">
+      <Filter>Game\01. Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -259,12 +267,17 @@
     <ClCompile Include="CTexture.cpp">
       <Filter>Game\07. Asset\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="CLogMgr.cpp" />
     <ClCompile Include="CAnimator.cpp">
       <Filter>Game\06. Component\Animator</Filter>
     </ClCompile>
     <ClCompile Include="CAnim.cpp">
       <Filter>Game\06. Component\Animator\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="CMovement.cpp">
+      <Filter>Game\06. Component\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="CLogMgr.cpp">
+      <Filter>Game\03. Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

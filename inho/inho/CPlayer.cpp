@@ -62,8 +62,8 @@ CPlayer::CPlayer() : m_Speed(500.f) {
     m_Movement->SetInitSpeed(200.f);
     m_Movement->SetMaxSpeed(400.f);
     m_Movement->UseGravity(true);
-    m_Movement->SetGravityDir(Vec2(0.f, 400.f));
-    m_Movement->SetFrictionScale(200.f);
+    m_Movement->SetGravityDir(Vec2(0.f, 1.f));
+    m_Movement->SetFrictionScale(1000.f);
 }
 
 CPlayer::~CPlayer() {
@@ -77,7 +77,7 @@ void CPlayer::tick(float _DT) {
 
     if (KEY_PRESSED(A))
     {
-        vPos.x -= m_Speed * _DT;
+        m_Movement->AddForce(Vec2(-300.f, 0.f));
         m_Animator->Play(L"WalkLeft", true);
     }
 
@@ -88,7 +88,7 @@ void CPlayer::tick(float _DT) {
 
     if (KEY_PRESSED(D))
     {
-        vPos.x += m_Speed * _DT;
+        m_Movement->AddForce(Vec2(300.f, 0.f));
         m_Animator->Play(L"WalkRight", true);
     }
     if (KEY_RELEASED(D))
@@ -99,7 +99,6 @@ void CPlayer::tick(float _DT) {
 
     if (KEY_PRESSED(W))
     {
-        vPos.y -= m_Speed * _DT;
         m_Animator->Play(L"WalkUp", true);
     }
     if (KEY_RELEASED(W))
@@ -109,7 +108,6 @@ void CPlayer::tick(float _DT) {
 
     if (KEY_PRESSED(S))
     {
-        vPos.y += m_Speed * _DT;
         m_Animator->Play(L"WalkDown", true);
     }
     if (KEY_RELEASED(S))
