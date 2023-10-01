@@ -20,6 +20,7 @@
 #include "CLogMgr.h"
 
 #include "components.h"
+#include "CPlatform.h"
 /*
 #include "CCollider.h"
 #include "CAnimator.h"
@@ -81,11 +82,12 @@ CPlayer::CPlayer()
 	// Movement 컴포넌트 추가
 	m_Movement = AddComponent<CMovement>(L"PlayerMovement");
 	m_Movement->SetMass(1.f);
-	m_Movement->SetInitSpeed(50.f);
-	m_Movement->SetInitSpeed(400.f);
+	m_Movement->SetInitSpeed(200.f);
+	m_Movement->SetMaxSpeed(400.f);
+	m_Movement->SetFrictionScale(1000.f);
+
 	m_Movement->UseGravity(true);
-	m_Movement->SetGravityDir(Vec2(0.f, 1.f));
-	m_Movement->SetFrictionScale(0.f);
+	m_Movement->SetGravity(Vec2(0.f, 980.f));
 
 	//m_Image= (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 	//m_ImageDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
@@ -108,7 +110,7 @@ void CPlayer::tick(float _DT)
 
 	if (KEY_PRESSED(A))
 	{
-		vPos.x -= m_Speed * _DT;
+		m_Movement->AddForce(Vec2(-300.f, 0.f));
 		m_Animator->Play(L"WalkLeft", true);
 	}
 
@@ -119,7 +121,7 @@ void CPlayer::tick(float _DT)
 
 	if (KEY_PRESSED(D))
 	{
-		vPos.x += m_Speed * _DT;
+		m_Movement->AddForce(Vec2(300.f, 0.f));
 		m_Animator->Play(L"WalkRight", true);
 	}
 	if (KEY_RELEASED(D))
@@ -130,7 +132,6 @@ void CPlayer::tick(float _DT)
 
 	if (KEY_PRESSED(W))
 	{
-		vPos.y -= m_Speed * _DT;
 		m_Animator->Play(L"WalkUp", true);
 	}
 	if (KEY_RELEASED(W))
@@ -140,7 +141,6 @@ void CPlayer::tick(float _DT)
 
 	if (KEY_PRESSED(S))
 	{
-		vPos.y += m_Speed * _DT;
 		m_Animator->Play(L"WalkDown", true);
 	}
 	if (KEY_RELEASED(S))
@@ -150,38 +150,27 @@ void CPlayer::tick(float _DT)
 
 	if (KEY_TAP(SPACE))
 	{
-		CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
+		m_Movement->SetGround(false);
 
-		//CProjectile* pProjectile = new CProjectile;
-		CGuided* pProjectile = new CGuided;
-		
-		Vec2 ProjectilePos = GetPos();
-		ProjectilePos.y -= GetScale().y / 2.f;
-		
-		pProjectile->SetSpeed(500.f);
-		pProjectile->SetAngle(PI / 2.f);
-		
-		
-		//pProjectile->SetSpeed(1000.f);
-		//pProjectile->SetDir(PI / 4.f + (PI / 4.f) * (float)i);
-		pProjectile->SetPos(ProjectilePos);
-		pProjectile->SetScale(Vec2(25.f, 25.f));
-		pProjectile->SetDir(Vec2(0.f, -1.f));
-		
-		//pCurLevel->AddObject(pProjectile);
-		
-		//pCurLevel->AddObject(PLAYER_PJ, pProjectile);
-		
-		CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)pProjectile });
+		m_Movement->SetVelocity(Vec2(m_Movement->GetVelocity().x, -500.f));
 
-		wstring strLogMessage = L"Shoot ";
-		string funcname = __FUNCTION__;
-		strLogMessage += wstring(funcname.begin(), funcname.end());
-		strLogMessage += L"  Line : ";
-		wchar_t szBuffer[20] = {};
-		_itow_s(__LINE__, szBuffer, 20, 10);
-		strLogMessage += szBuffer;
-		CLogMgr::GetInst()->AddLog(FLog{ LOG_LEVEL::LOG, strLogMessage });
+		//CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
+
+		//CGuided* pProjectile = new CGuided;
+
+		//Vec2 ProjectilePos = GetPos();
+		//ProjectilePos.y -= GetScale().y / 2.f;
+
+		//pProjectile->SetSpeed(500.f);
+		//pProjectile->SetAngle(PI / 2.f);
+		//pProjectile->SetPos(ProjectilePos);
+		//pProjectile->SetScale(Vec2(25.f, 25.f));
+		//pProjectile->SetDir(Vec2(0.f, -1.f));
+
+		//CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)pProjectile });
+
+		//		
+		//LOG(WARNING, L"경고");		
 	}
 	SetPos(vPos);
 }
@@ -233,7 +222,19 @@ void CPlayer::tick(float _DT)
 //
 //}
 
-void CPlayer::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+void CPlayer::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
-	_OwnCol->GetName();
+	if (dynamic_cast<CPlatform*>(_OtherObj))
+	{
+		m_Movement->SetGround(true);
+	}
+}
+
+
+void CPlayer::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+{
+	if (dynamic_cast<CPlatform*>(_OtherObj))
+	{
+		m_Movement->SetGround(false);
+	}
 }

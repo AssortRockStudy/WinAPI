@@ -8,12 +8,17 @@
 #include "CMonster.h"
 #include "CPal.h"
 #include "CCamera.h"
+#include "CLogMgr.h"
+#include "CCollisionMgr.h"
+
+#include "CPlatform.h"
 
 #include "CCollisionMgr.h"
 #include "CLogMgr.h"
 
 
 CLevelMgr::CLevelMgr()
+	: m_pCurLevel(nullptr)
 {
 
 }
@@ -35,9 +40,9 @@ void CLevelMgr::init()
 	// 플레이어 생성
 	CPlayer* pPlayer = new CPlayer;
 
-	pPlayer->SetPos(Vec2(500.f, 500.f));
+	pPlayer->SetPos(Vec2(500.f, 200.f));
 	pPlayer->SetScale(Vec2(50.f, 50.f));
-	m_pCurLevel->setPlayer(pPlayer);
+	//m_pCurLevel->setPlayer(pPlayer);
 
 	m_pCurLevel->AddObject(PLAYER, pPlayer);
 	//m_pCurLevel->AddObject(pPlayer);
@@ -47,14 +52,17 @@ void CLevelMgr::init()
 	// 몬스터 생성
 	CMonster* pMonster = new CMonster;
 
-	pMonster->SetPos(Vec2(600.f, 500.f));
-	pMonster->SetScale(Vec2(50.f, 50.f));
+	//pMonster->SetPos(Vec2(600.f, 500.f));
+	//pMonster->SetScale(Vec2(50.f, 50.f));
 
-	m_pCurLevel->setMonster(pMonster);
+	//m_pCurLevel->setMonster(pMonster);
 	//m_pCurLevel->AddObject(pMonster);
-	m_pCurLevel->AddObject(MONSTER, pMonster);
+	//m_pCurLevel->AddObject(MONSTER, pMonster);
 
-
+	// 플랫폼 설치
+	CPlatform* pPlatform = new CPlatform;
+	pPlatform->SetPos(Vec2(800.f, 700.f));
+	m_pCurLevel->AddObject(PLATFORM, pPlatform);
 
 
 
@@ -86,6 +94,7 @@ void CLevelMgr::init()
 	// 충돌 설정
 	CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
 	CCollisionMgr::GetInst()->CheckCollision(PLAYER_PJ, MONSTER);
+	CCollisionMgr::GetInst()->CheckCollision(PLAYER, PLATFORM);
 	// 레벨 시작
 	m_pCurLevel->begin();
 

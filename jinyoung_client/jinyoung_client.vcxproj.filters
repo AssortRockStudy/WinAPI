@@ -158,6 +158,9 @@
     <ClInclude Include="CMovement.h">
       <Filter>Game\06.Component\Movemnet</Filter>
     </ClInclude>
+    <ClInclude Include="CPlatform.h">
+      <Filter>Game\04.Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -269,6 +272,9 @@
     </ClCompile>
     <ClCompile Include="CMovement.cpp">
       <Filter>Game\06.Component\Movemnet</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlatform.cpp">
+      <Filter>Game\04.Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

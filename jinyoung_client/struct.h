@@ -24,6 +24,8 @@ public:
 		x /= f;
 		y /= f;
 
+		assert(f);
+
 		return *this;
 	}
 
@@ -49,6 +51,11 @@ public:
 		y += _f;
 	}
 
+
+	Vec2 operator -()
+	{
+		return Vec2(-x, -y);
+	}
 
 
 	Vec2 operator - (Vec2 _Other) const
@@ -81,22 +88,33 @@ public:
 
 	Vec2 operator / (Vec2 _Other) const
 	{
+		assert(_Other.x);
+		assert(_Other.y);
+
 		return Vec2(x / _Other.x, y / _Other.y);
 	}
 
 	Vec2 operator / (float _f) const
 	{
+		assert(_f);
 		return Vec2(x / _f, y / _f);
 	}
 
 	void operator /= (float _f)
 	{
+		assert(_f);
+
 		x /= _f;
 		y /= _f;
 	}
 
 
-
+	bool IsZero()
+	{
+		if (x == 0.f && y == 0.f)
+			return true;
+		return false;
+	}
 
 public:
 	Vec2()
@@ -174,3 +192,4 @@ struct FLog
 	wstring	  Message;
 	float	  AccTime;
 };
+
