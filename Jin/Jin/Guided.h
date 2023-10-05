@@ -6,6 +6,7 @@ class Monster;
 class Guided :
     public Projectile
 {
+    GENERATED_OBJECT(Projectile);
 private:
     Monster*  m_Target;
     float            m_fMass;

@@ -13,15 +13,15 @@ Projectile::~Projectile()
 }
 
 
-void Projectile::tick(float _DT)
-{
-	Vec2 vPos = GetPos();
-
-	vPos.x += m_Speed * cosf(m_Angle) * _DT;
-	vPos.y += m_Speed * sinf(m_Angle) * _DT;
-
-	SetPos(vPos);
-}
+//void Projectile::tick(float _DT)
+//{
+//	Vec2 vPos = GetPos();
+//
+//	vPos.x += m_Speed * cosf(m_Angle) * _DT;
+//	vPos.y += m_Speed * sinf(m_Angle) * _DT;
+//
+//	SetPos(vPos);
+//}
 
 void Projectile::render(HDC _dc)
 {

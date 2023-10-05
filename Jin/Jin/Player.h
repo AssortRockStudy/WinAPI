@@ -6,6 +6,7 @@ class Collider;
 class Player : 
     public Obj
 {
+    GENERATED_OBJECT(Obj);
     private:
         float                m_Speed;
         HBITMAP     m_Image;

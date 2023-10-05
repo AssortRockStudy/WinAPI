@@ -16,6 +16,22 @@ Obj::~Obj()
 	}
 }
 
+void Obj::tick(float _DT)
+{
+	for (size_t i = 0; i < m_vecComponent.size(); ++i)
+	{
+		m_vecComponent[i]->tick(_DT);
+	}
+}
+
+void Obj::finaltick(float _DT)
+{
+	for (size_t i = 0; i < m_vecComponent.size(); ++i)
+	{
+		m_vecComponent[i]->finaltick(_DT);
+	}
+}
+
 void Obj::render(HDC _dc)
 {
 	Vec2 vRenderPos = GetRenderPos();

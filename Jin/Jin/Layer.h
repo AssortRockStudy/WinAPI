@@ -12,6 +12,7 @@ private:
 public:
 	void tick(float _DT);
 	void render(HDC _dc);
+	void finaltick(float _DT);
 
 	void AddObject(Obj* _Object)
 	{

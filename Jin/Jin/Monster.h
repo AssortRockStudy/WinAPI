@@ -3,6 +3,8 @@
 
 class Monster : public Obj
 {
+    GENERATED_OBJECT(Obj);
+
 private:
     FMonInfo m_Info;
 

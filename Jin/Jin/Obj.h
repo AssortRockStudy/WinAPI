@@ -24,14 +24,18 @@ public:
 	void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
 
 public:
-	virtual void tick(float _DT) = 0;
+	virtual void tick(float _DT);
+	virtual void finaltick(float _DT) final; // 여기서 막아버리기
 	virtual void render(HDC _dc);
+
+private:
+	virtual void Abstract() = 0;
 
 protected:
 	template<typename T>
 	T* AddComponent()
 	{
-		T* pNewComponent = new T;
+		T* pNewComponent = new T(this);
 		m_vecComponent.push_back(pNewComponent);
 		return pNewComponent;
 	}

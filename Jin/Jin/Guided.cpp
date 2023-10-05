@@ -18,6 +18,8 @@ Guided::~Guided()
 
 void Guided::tick(float _DT)
 {
+	Super::tick(_DT);
+
  	if (nullptr == m_Target)
 	{
 		FindTarget();

@@ -18,5 +18,6 @@ Monster::~Monster()
 
 void Monster::tick(float _DT)
 {
+	Super::tick(_DT);
 }
 

@@ -39,6 +39,8 @@ Player::~Player()
 
 void Player::tick(float _DT)
 {
+	Super::tick(_DT);
+
 	Vec2 vPos = GetPos();
 
 	// 키입력이 발생하면 움직인다.
