@@ -137,6 +137,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Asset.cpp" />
+    <ClCompile Include="AssetMgr.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
@@ -163,8 +165,10 @@
     </ClCompile>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="struct.cpp" />
     <ClCompile Include="TaskMgr.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TimeMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +179,8 @@
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Asset.h" />
+    <ClInclude Include="AssetMgr.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Collider.h" />
@@ -203,9 +209,11 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="struct.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TaskMgr.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="TimeMgr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

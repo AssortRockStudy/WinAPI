@@ -1,10 +1,10 @@
 #include "pch.h"
 #include "define.h"
 #include "Monster.h"
-#include "Collider.h"
 #include "KeyMgr.h"
 #include "TimeMgr.h"
-#include "DrawMgr.h"
+//#include "DrawMgr.h"
+#include "Collider.h"
 #include "Projectile.h"
 
 

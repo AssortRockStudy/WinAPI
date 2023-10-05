@@ -32,10 +32,10 @@
 #define SELECT_BRUSH(DC, hBrush) FSelectBrush tempBrushSelect(DC, hBrush)
 
 
-enum Color
-{
-	BLACK, RED, GREEN, BLUE, WHITE,
-};
+//enum Color
+//{
+//	BLACK, RED, GREEN, BLUE, WHITE,
+//};
 
 enum KEY
 {

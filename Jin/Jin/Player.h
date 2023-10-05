@@ -1,6 +1,7 @@
 #pragma once
 #include "Obj.h"
 class Collider;
+class Texture;
 
 
 class Player : 
@@ -9,10 +10,8 @@ class Player :
     GENERATED_OBJECT(Obj);
     private:
         float                m_Speed;
-        HBITMAP     m_Image;
-        HDC                m_ImageDC;
-        BITMAP         m_BitmapInfo;
         Collider*        m_Collider;
+        Texture*         m_pTexture;
 
     public:
         virtual void tick(float _DT) override;
