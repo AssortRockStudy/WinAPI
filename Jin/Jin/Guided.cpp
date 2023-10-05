@@ -24,7 +24,7 @@ void Guided::tick(float _DT)
 	}
 	else
 	{
-		Update_3();
+		Update_2();
 	}
 }
 

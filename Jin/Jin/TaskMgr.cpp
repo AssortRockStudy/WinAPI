@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "TaskMgr.h"
-//#include "LevelMgr.h"
-//#include "Level.h"
+#include "LevelMgr.h"
+#include "Level.h"
 #include "Obj.h"
 
 TaskMgr::TaskMgr()
@@ -24,6 +24,9 @@ void TaskMgr::tick()
 		{
 			LAYER layertype = (LAYER)m_vecTask[i].Param_1;
 			Obj* Object = (Obj*)m_vecTask[i].Param_2;
+
+			Level* pCurLevel = LevelMgr::GetInst()->GetCurLevel();
+			pCurLevel->AddObject(layertype, Object);
 		}
 		break;
 		case DELETE_OBJECT:
