@@ -29,13 +29,6 @@ void LevelMgr::init()
 
 	m_pCurLevel->AddObject(PLAYER, pPlayer);
 
-	pPlayer = new Player;
-
-	pPlayer->SetPos(Vec2(800.f, 500.f));
-	pPlayer->SetScale(Vec2(50.f, 50.f));
-
-	m_pCurLevel->AddObject(PLAYER, pPlayer);
-
 	Monster* pMonster = nullptr;
 
 	pMonster = new Monster;

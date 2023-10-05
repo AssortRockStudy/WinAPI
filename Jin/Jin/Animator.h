@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 class Anim;
+class Texture;
 
 class Animator :
     public Component
@@ -13,10 +14,13 @@ private:
 public:
     void Play(const wstring& _strName, bool _bRepeat);
     void Stop();
-    void CreateAnimation();
+
+    Anim* FindAnim(const wstring& _strName);
+    void CreateAnimation(const wstring& _strName, Texture* _Atlas, Vec2 _vLeftTop, Vec2 _vCutSize, float _Duration, int _MaxFrm);
+
 
     virtual void finaltick(float _DT) override;
-    virtual void render(HDC _DC) override;
+    virtual void render(HDC _dc) override;
 
 
 public:

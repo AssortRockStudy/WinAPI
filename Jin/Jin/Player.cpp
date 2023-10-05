@@ -25,11 +25,27 @@ Player::Player()
 	: m_Speed(500.f)
 {
 
+	Texture* pAtlas = AssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\link.bmp");
+
+	m_Animator = AddComponent<Animator>(L"Animator");
+	m_Animator->CreateAnimation(L"WalkDown", pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), 0.05f, 10);
+	m_Animator->CreateAnimation(L"WalkLeft", pAtlas, Vec2(0.f, 650.f), Vec2(120, 130), 0.05f, 10);
+	m_Animator->CreateAnimation(L"WalkUp", pAtlas, Vec2(0.f, 780.f), Vec2(120, 130), 0.05f, 10);
+	m_Animator->CreateAnimation(L"WalkRight", pAtlas, Vec2(0.f, 910.f), Vec2(120, 130), 0.05f, 10);
+
+	m_Animator->CreateAnimation(L"IdleDown", pAtlas, Vec2(0.f, 0.f), Vec2(120, 130), 0.05f, 3);
+	m_Animator->CreateAnimation(L"IdleLeft", pAtlas, Vec2(0.f, 130.f), Vec2(120, 130), 0.05f, 3);
+	m_Animator->CreateAnimation(L"IdleUp", pAtlas, Vec2(0.f, 260.f), Vec2(120, 130), 0.05f, 1);
+	m_Animator->CreateAnimation(L"IdleRight", pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), 0.05f, 3);
+
+
+	m_Animator->Play(L"WalkDown", true);
+
+
+
 	m_Collider = AddComponent<Collider>(L"PlayerCollider");
 	m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
 	m_Collider->SetScale(Vec2(40.f, 80.f));
-	
-	m_Animator = AddComponent<Animator>(L"Animator");
 
 	m_pTexture = AssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\fighter.bmp");
 
@@ -49,21 +65,42 @@ void Player::tick(float _DT)
 	if (KEY_PRESSED(A))
 	{
 		vPos.x -= m_Speed * _DT;
+		m_Animator->Play(L"WalkLeft", true);
+	}
+
+	if (KEY_RELEASED(A))
+	{
+		m_Animator->Play(L"IdleLeft", true);
 	}
 
 	if (KeyMgr::GetInst()->GetKeyState(D) == PRESSED)
 	{
 		vPos.x += m_Speed * _DT;
+		m_Animator->Play(L"WalkRight", true);
+	}
+	if (KEY_RELEASED(D))
+	{
+		m_Animator->Play(L"IdleRight", true);
 	}
 
 	if (KEY_PRESSED(W))
 	{
 		vPos.y -= m_Speed * _DT;
+		m_Animator->Play(L"WalkUp", true);
 	}
 
+	if (KEY_RELEASED(W))
+	{
+		m_Animator->Play(L"IdleUp", true);
+	}
 	if (KEY_PRESSED(S))
 	{
 		vPos.y += m_Speed * _DT;
+		m_Animator->Play(L"WalkDown", true);
+	}
+	if (KEY_RELEASED(S))
+	{
+		m_Animator->Play(L"IdleDown", true);
 	}
 
  	if (KEY_TAP(SPACE))
@@ -84,33 +121,6 @@ void Player::tick(float _DT)
 	}
 
 	SetPos(vPos);
-}
-
-void Player::render(HDC _dc)
-{
-	Vec2 vPos = GetRenderPos();
-	Vec2 vScale = GetScale();
-
-	//HPEN oldPen = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->pens[BLACK]));
-	//HPEN oldBrush = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->brushes[BLACK]));
-
-	UINT width = m_pTexture->GetWidth();
-	UINT height = m_pTexture->GetHeight();
-
-
-	TransparentBlt(_dc
-		, (int)vPos.x - width / 2
-		, (int)vPos.y - height / 2
-		, width
-		, height
-		, m_pTexture->GetDC()
-		, 0, 0
-		, width
-		, height
-		, RGB(255, 0, 255));
-
-
-	Super::render(_dc);
 }
 
 void Player::Overlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol)

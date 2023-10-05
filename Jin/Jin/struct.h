@@ -25,12 +25,12 @@ public:
 		return *this;
 	}
 
-	Vec2 operator + (Vec2 _Other)
+	Vec2 operator + (Vec2 _Other) const
 	{
 		return Vec2(x + _Other.x, y + _Other.y);
 	}
 
-	Vec2 operator + (float _f)
+	Vec2 operator + (float _f) const
 	{
 		return Vec2(x + _f, y + _f);
 	}
@@ -47,22 +47,22 @@ public:
 		y += _f;
 	}
 
-	Vec2 operator - (Vec2 _Other)
+	Vec2 operator - (Vec2 _Other) const
 	{
 		return Vec2(x- _Other.x, y - _Other.y);
 	}
 
-	Vec2 operator - (float _f)
+	Vec2 operator - (float _f) const
 	{
 		return Vec2(x - _f, y - _f);
 	}
 
-	Vec2 operator * (Vec2 _Other)
+	Vec2 operator * (Vec2 _Other) const
 	{
 		return Vec2(x * _Other.x, y * _Other.y);
 	}
 
-	Vec2 operator * (float _f)
+	Vec2 operator * (float _f) const
 	{
 		return Vec2(x * _f, y * _f);
 	}
@@ -73,11 +73,11 @@ public:
 		y *= _f;
 	}
 
-	Vec2 operator / (Vec2 _Other)
+	Vec2 operator / (Vec2 _Other) const
 	{
 		return Vec2(x / _Other.x, y / _Other.y);
 	}
-	Vec2 operator / (float _f)
+	Vec2 operator / (float _f) const
 	{
 		return Vec2(x / _f, y / _f);
 	}

@@ -17,7 +17,6 @@ class Player :
 
     public:
         virtual void tick(float _DT) override;
-        virtual void render(HDC _dc) override;
         virtual void Overlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol);
 
 
