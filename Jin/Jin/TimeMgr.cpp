@@ -32,6 +32,9 @@ void TimeMgr::tick()
 
 	m_PrevCount = m_CurCount;
 
+	if ((1.f / 60.f) < m_DeltaTime)
+		m_DeltaTime = (1.f / 60.f);
+
 	m_fTime += m_DeltaTime;
 	if (1.f <= m_fTime)
 	{

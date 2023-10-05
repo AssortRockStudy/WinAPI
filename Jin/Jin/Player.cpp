@@ -70,21 +70,17 @@ void Player::tick(float _DT)
 	{
 		Level* pCurLevel = LevelMgr::GetInst()->GetCurLevel();
 
-		for (int i = 0; i < 3; ++i)
-		{
-			Guided* pProjectile = new Guided;
+		Guided* pProjectile = new Guided;
 
-			Vec2 ProjectilePos = GetPos();
-			ProjectilePos.y -= GetScale().y / 2.f;
+		Vec2 ProjectilePos = GetPos();
+		ProjectilePos.y -= GetScale().y / 2.f;
 
-			pProjectile->SetSpeed(500.f);
-			pProjectile->SetAngle(PI/2.f);
-			pProjectile->SetPos(ProjectilePos);
-			pProjectile->SetScale(Vec2(25.f, 25.f));
-			pProjectile->SetDir(Vec2(0.f, -1.f));
-			TaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT,PLAYER_PJ, (UINT_PTR)pProjectile });
-			//pCurLevel->AddObject(PLAYER_PJ, pProjectile);
-		}
+		pProjectile->SetSpeed(500.f);
+		pProjectile->SetAngle(PI/2.f);
+		pProjectile->SetPos(ProjectilePos);
+		pProjectile->SetScale(Vec2(25.f, 25.f));
+		pProjectile->SetDir(Vec2(0.f, -1.f));
+		TaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT,PLAYER_PJ, (UINT_PTR)pProjectile });
 	}
 
 	SetPos(vPos);

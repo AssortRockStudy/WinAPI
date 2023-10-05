@@ -4,6 +4,7 @@
 #include "Camera.h"
 
 class Component;
+class Collider;
 
 class Obj : public Entity
 {
@@ -12,6 +13,7 @@ private:
 	Vec2			m_Scale;
 	vector<Component*> m_vecComponent;
 	int			m_iLayerIdx;
+	bool		m_bDead;
 
 public:
 	Vec2 GetPos() { return m_Pos; }
@@ -29,13 +31,22 @@ public:
 		return m_iLayerIdx;
 	}
 
+	bool IsDead() 
+	{
+		return m_bDead;
+	}
+
 public:
 	virtual void begin() {};
 	virtual void tick(float _DT);
 	virtual void finaltick(float _DT) final; // 여기서 막아버리기
 	virtual void render(HDC _dc);
-	virtual void Overlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol) 
-	{}
+	void Destroy();
+
+	virtual void BeginOverlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol) {}
+	virtual void Overlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol) {}
+	virtual void EndOverlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol) {}
+
 
 private:
 	virtual void Abstract() = 0;
@@ -55,5 +66,6 @@ public:
 	virtual ~Obj();
 
 	friend class Level;
+	friend class TaskMgr;
 };
 

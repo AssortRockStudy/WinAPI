@@ -41,6 +41,7 @@ void LevelMgr::init()
 	Camera::GetInst()->SetLookAt(vLookAt);
 
 	CollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
+	CollisionMgr::GetInst()->CheckCollision(PLAYER_PJ, MONSTER);
 
 	m_pCurLevel->begin();
 

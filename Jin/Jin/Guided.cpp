@@ -31,6 +31,14 @@ void Guided::tick(float _DT)
 	}
 }
 
+void Guided::BeginOverlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol)
+{
+	if (dynamic_cast<Monster*>(_OtherObj))
+	{
+		Destroy();
+	}
+}
+
 void Guided::FindTarget()
 {
 	Level* pCurLevel = LevelMgr::GetInst()->GetCurLevel();

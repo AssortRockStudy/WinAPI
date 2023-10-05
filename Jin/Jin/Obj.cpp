@@ -1,10 +1,12 @@
 #include "pch.h"
 #include "Obj.h"
 #include "Component.h"
+#include "TaskMgr.h"
 
 
 Obj::Obj()
 	: m_iLayerIdx(-1)
+	, m_bDead(false)
 {
 }
 
@@ -39,4 +41,13 @@ void Obj::render(HDC _dc)
 	{
 		m_vecComponent[i]->render(_dc);
 	}
+}
+
+void Obj::Destroy()
+{
+	FTask task;
+	task.Type = TASK_TYPE::DELETE_OBJECT;
+	task.Param_1 = (INT_PTR)this;
+
+	TaskMgr::GetInst()->AddTask(task);
 }

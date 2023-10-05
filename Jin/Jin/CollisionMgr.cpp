@@ -75,17 +75,40 @@ void CollisionMgr::CollisionBtwLayer(LAYER _Left, LAYER _Right)
 		{
 			for (size_t j = 0; j < vecRight.size(); ++j)
 			{
+				COLLIDER_ID ID(vecLeft[i]->GetID(), vecRight[j]->GetID());
+
+				map<COLLIDER_ID, bool> ::iterator iter = m_mapID.find(ID);
+
+				if (iter == m_mapID.end())
+				{
+					m_mapID.insert(make_pair(ID, false));
+					iter = m_mapID.find(ID);
+				}
+
 				if (IsCollision(vecLeft[i], vecRight[j]))
 				{
-					vecLeft[i]->Overlap(vecRight[j]);
-					vecRight[j]->Overlap(vecLeft[i]);
+					if (false == iter->second)
+					{
+						vecLeft[i]->BeginOverlap(vecRight[j]);
+						vecRight[j]->BeginOverlap(vecLeft[i]);
+					}
+					else
+					{
+						vecLeft[i]->Overlap(vecRight[j]);
+						vecRight[j]->Overlap(vecLeft[i]);
+					}
+					iter->second = true;
 				}
 				else
 				{
-
+					if (false == iter->second)
+					{
+						vecLeft[i]->EndOverlap(vecRight[j]);
+						vecRight[j]->EndOverlap(vecLeft[i]);
+					}
+					iter->second = false;
 				}
 			}
-
 		}
 	}
 	else
