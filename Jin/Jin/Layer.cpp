@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Layer.h"
 #include "Obj.h"
+#include "GCMgr.h"
 
 Layer::Layer()
 {
@@ -32,9 +33,23 @@ void Layer::tick(float _DT)
 
 void Layer::render(HDC _dc)
 {
-	for (size_t i = 0; i < m_vecObjects.size(); ++i)
+	//for (size_t i = 0; i < m_vecObjects.size(); ++i)
+	//{
+	//	m_vecObjects[i]->render(_dc);
+	//}
+	vector<Obj*>::iterator iter = m_vecObjects.begin();
+	for (; iter != m_vecObjects.end();)
 	{
-		m_vecObjects[i]->render(_dc);
+		if ((*iter)->IsDead())
+		{
+			GCMgr::GetInst()->AddEntity((*iter));
+			iter = m_vecObjects.erase(iter);
+		}
+		else
+		{
+			(*iter)->render(_dc);
+			++iter;
+		}
 	}
 }
 

@@ -2,11 +2,12 @@
 #include "Engine.h"
 #include "KeyMgr.h"
 #include "TimeMgr.h"
-#include "DrawMgr.h"
+//#include "DrawMgr.h"
 #include "LevelMgr.h"
 #include "PathMgr.h"
 #include "TaskMgr.h"
 #include "Camera.h"
+#include "GCMgr.h"
 
 
 #include "Level.h"
@@ -64,7 +65,7 @@ void Engine::init(HWND _hWnd, POINT _ptResolution)
 
 	// Manager ÃÊ±âÈ­
 	TimeMgr::GetInst()->init();
-	DrawMgr::GetInst()->init();
+	//DrawMgr::GetInst()->init();
 	KeyMgr::GetInst()->init();
 	PathMgr::init();
 	LevelMgr::GetInst()->init();
@@ -78,7 +79,7 @@ void Engine::tick()
 	TimeMgr::GetInst()->tick();
 	KeyMgr::GetInst()->tick();
 	LevelMgr::GetInst()->tick();
-	DrawMgr::GetInst()->tick();
+	//DrawMgr::GetInst()->tick();
 	Camera::GetInst()->tick();
 
 	if (KEY_TAP(KEY::NUM8))
@@ -89,5 +90,7 @@ void Engine::tick()
 	LevelMgr::GetInst()->render(m_SubDC);
 
 	TaskMgr::GetInst()->tick();
+
+	GCMgr::GetInst()->tick();
 
 }

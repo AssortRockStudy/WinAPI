@@ -141,10 +141,14 @@
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="Component.cpp" />
-    <ClCompile Include="DrawMgr.cpp" />
+    <ClCompile Include="DrawMgr.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="func.cpp" />
+    <ClCompile Include="GCMgr.cpp" />
     <ClCompile Include="Guided.cpp" />
     <ClCompile Include="Jin.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
@@ -177,10 +181,14 @@
     <ClInclude Include="CollisionMgr.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="define.h" />
-    <ClInclude Include="DrawMgr.h" />
+    <ClInclude Include="DrawMgr.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="func.h" />
+    <ClInclude Include="GCMgr.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="Guided.h" />
     <ClInclude Include="Jin.h" />

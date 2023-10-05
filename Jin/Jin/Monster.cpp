@@ -5,6 +5,7 @@
 #include "KeyMgr.h"
 #include "TimeMgr.h"
 #include "DrawMgr.h"
+#include "Projectile.h"
 
 
 Monster::Monster()
@@ -12,6 +13,7 @@ Monster::Monster()
 	, m_Collider(nullptr)
 {
 	m_Collider = AddComponent<Collider>(L"MonsterCollider");
+	m_Info.HP = 5.f;
 }
 
 Monster::~Monster()
@@ -41,6 +43,18 @@ void Monster::render(HDC _dc)
 		, int(vRenderPos.y + vScale.y / 2));
 
 	Super::render(_dc);
+}
+
+void Monster::BeginOverlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol)
+{
+	if (dynamic_cast<Projectile*>(_OtherObj))
+	{
+		m_Info.HP -= 1.f;
+		if (m_Info.HP <= 0.f)
+		{
+			Destroy();
+		}
+	}
 }
 
 

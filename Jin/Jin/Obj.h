@@ -13,7 +13,6 @@ private:
 	Vec2			m_Scale;
 	vector<Component*> m_vecComponent;
 	int			m_iLayerIdx;
-	bool		m_bDead;
 
 public:
 	Vec2 GetPos() { return m_Pos; }
@@ -31,11 +30,6 @@ public:
 		return m_iLayerIdx;
 	}
 
-	bool IsDead() 
-	{
-		return m_bDead;
-	}
-
 public:
 	virtual void begin() {};
 	virtual void tick(float _DT);
@@ -50,6 +44,7 @@ public:
 
 private:
 	virtual void Abstract() = 0;
+	void SetDead();
 
 protected:
 	template<typename T>

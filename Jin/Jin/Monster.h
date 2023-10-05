@@ -17,7 +17,11 @@ public:
     }
     virtual void begin() override;
     virtual void tick(float _DT) override;
-    virtual void render(HDC _dc) override;
+    virtual void render(HDC _dc) override; 
+
+    virtual void BeginOverlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol) override;
+
+
 
 public:
     Monster();

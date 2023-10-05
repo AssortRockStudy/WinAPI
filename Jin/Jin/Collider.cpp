@@ -44,7 +44,6 @@ void Collider::render(HDC _dc)
 	if (0 < m_iCollisionCnt)
 	{
 		SELECT_PEN(_dc, RED_PEN);
-
 		Rectangle(_dc, int(vRenderPos.x - m_vScale.x / 2.f)
 			, int(vRenderPos.y - m_vScale.y / 2.f)
 			, int(vRenderPos.x + m_vScale.x / 2.f)
@@ -53,7 +52,6 @@ void Collider::render(HDC _dc)
 	else
 	{
 		SELECT_PEN(_dc, GREEN_PEN);
-
 		Rectangle(_dc, int(vRenderPos.x - m_vScale.x / 2.f)
 			, int(vRenderPos.y - m_vScale.y / 2.f)
 			, int(vRenderPos.x + m_vScale.x / 2.f)

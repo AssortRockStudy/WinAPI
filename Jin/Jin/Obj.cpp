@@ -6,7 +6,6 @@
 
 Obj::Obj()
 	: m_iLayerIdx(-1)
-	, m_bDead(false)
 {
 }
 
@@ -50,4 +49,13 @@ void Obj::Destroy()
 	task.Param_1 = (INT_PTR)this;
 
 	TaskMgr::GetInst()->AddTask(task);
+}
+
+void Obj::SetDead()
+{
+	m_bDead = true;
+	for (size_t i = 0; i < m_vecComponent.size(); ++i)
+	{
+		m_vecComponent[i]->m_bDead = true;
+	}
 }

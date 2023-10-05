@@ -23,7 +23,7 @@ public:
 
 	Layer* GetLayer(int LayerIdx)
 	{
-		assert(!(LayerIdx < 0 && LAYER::END <= LayerIdx));
+		assert(!(LayerIdx < 0 || LAYER::END <= LayerIdx));
 		return m_Layer[LayerIdx];
 	}
 

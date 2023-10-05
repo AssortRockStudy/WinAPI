@@ -33,7 +33,7 @@ void TaskMgr::tick()
 		case DELETE_OBJECT:
 		{
 			Obj* pDeadObj = (Obj*)m_vecTask[i].Param_1;
-			pDeadObj->m_bDead = true;
+			pDeadObj->SetDead();
 		}
 		break;
 		case LEVEL_CHANGE:

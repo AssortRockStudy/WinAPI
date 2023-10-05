@@ -4,7 +4,7 @@
 #include "Level.h"
 #include "Player.h"
 #include "Monster.h"
-#include "DrawMgr.h"
+//#include "DrawMgr.h"
 #include "Projectile.h"
 #include "Guided.h"
 #include "Monster.h"
@@ -55,8 +55,8 @@ void LevelMgr::tick()
 void LevelMgr::render(HDC _dc)
 {
 	POINT ptResolution = Engine::GetInst()->GetResolution();
-	HPEN oldPen = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->pens[WHITE]));
-	HPEN oldBrush = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->brushes[WHITE]));
+	//HPEN oldPen = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->pens[WHITE]));
+	//HPEN oldBrush = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->brushes[WHITE]));
 	Rectangle(_dc, -1, -1, ptResolution.x + 1, ptResolution.y + 1);
 
 	m_pCurLevel->render(_dc);

@@ -80,7 +80,7 @@ void Player::tick(float _DT)
 		pProjectile->SetPos(ProjectilePos);
 		pProjectile->SetScale(Vec2(25.f, 25.f));
 		pProjectile->SetDir(Vec2(0.f, -1.f));
-		TaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT,PLAYER_PJ, (UINT_PTR)pProjectile });
+		TaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)pProjectile });
 	}
 
 	SetPos(vPos);
@@ -91,8 +91,8 @@ void Player::render(HDC _dc)
 	Vec2 vPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 
-	HPEN oldPen = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->pens[BLACK]));
-	HPEN oldBrush = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->brushes[BLACK]));
+	//HPEN oldPen = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->pens[BLACK]));
+	//HPEN oldBrush = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->brushes[BLACK]));
 
 
 	TransparentBlt(_dc, (int)vPos.x - m_BitmapInfo.bmWidth / 2

@@ -17,25 +17,33 @@ Guided::~Guided()
 {
 }
 
+void Guided::begin()
+{
+	Super::begin();
+	GetCollider()->SetScale(GetScale());
+}
+
+
 void Guided::tick(float _DT)
 {
 	Super::tick(_DT);
 
- 	if (nullptr == m_Target)
+	if (!IsValid(m_Target))
 	{
 		FindTarget();
 	}
+
+	if (!IsValid(m_Target)) 
+	{
+		Vec2 vPos = GetPos();
+		vPos.x += m_vDir.x * GetSpeed() * DT;
+		vPos.y += m_vDir.y * GetSpeed() * DT;
+
+		SetPos(vPos);
+	}
 	else
 	{
-		Update_2();
-	}
-}
-
-void Guided::BeginOverlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol)
-{
-	if (dynamic_cast<Monster*>(_OtherObj))
-	{
-		Destroy();
+		Update_3();
 	}
 }
 
@@ -72,13 +80,6 @@ void Guided::FindTarget()
 	}
 }
 
-void Guided::begin()
-{
-	Super::begin();
-	GetCollider()->SetScale(GetScale());
-}
-
-
 void Guided::Update_1()
 {
 	Vec2 vPos = GetPos();
@@ -112,10 +113,36 @@ void Guided::Update_2()
 void Guided::Update_3()
 {
 	m_vDir.Normalize();
-	float fSpeed = GetSpeed();
+	Vec2 vDest = m_Target->GetPos() - GetPos();
+	vDest.Normalize();
 
+	float fDot = m_vDir.x * vDest.x + m_vDir.y * vDest.y;
+	float fAngle = acosf(fDot);
+
+	if (fAngle > PI / 90.f)
+	{
+		if (GetRotateClock(m_vDir, vDest))
+		{
+			m_vDir = Rotate(m_vDir, m_fRotateSpeed * DT);
+		}
+		else
+		{
+			m_vDir = Rotate(m_vDir, -m_fRotateSpeed * DT);
+		}
+	}
+
+	float fSpeed = GetSpeed();
 	m_vVelocity = m_vDir * fSpeed;
+
 	Vec2 vPos = GetPos();
 	vPos += m_vVelocity * DT;
 	SetPos(vPos);
+}
+
+void Guided::BeginOverlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol)
+{
+	if (dynamic_cast<Monster*>(_OtherObj))
+	{
+		Destroy();
+	}
 }

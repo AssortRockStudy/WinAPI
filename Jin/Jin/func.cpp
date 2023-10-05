@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "func.h"
+#include "Entity.h"
 
 Vec2 Rotate(Vec2 _vDir, float _angle)
 {

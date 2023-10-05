@@ -2,7 +2,7 @@
 #include "Obj.h"
 #include "Collider.h"
 
-class CCollider;
+class Collider;
 
 class Projectile : public Obj
 {
