@@ -20,7 +20,18 @@ void Guided::tick(float _DT)
 		FindTarget();
 	}
 	else
-	{ }
+	{
+		Vec2 vPos = GetPos();
+		// 1
+		Vec2 vDir = m_Target->GetPos() - GetPos();
+		vDir.Normalize();
+
+		vPos.x += vDir.x * GetSpeed() * _DT;
+		vPos.y += vDir.y * GetSpeed() * _DT;
+
+		SetPos(vPos);
+
+	}
 }
 
 void Guided::FindTarget()
