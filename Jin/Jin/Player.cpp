@@ -58,7 +58,7 @@ void Player::tick(float _DT)
 		vPos.y += m_Speed * _DT;
 	}
 
-	if (KEY_TAP(SPACE))
+ 	if (KEY_TAP(SPACE))
 	{
 		Level* pCurLevel = LevelMgr::GetInst()->GetCurLevel();
 
@@ -74,8 +74,8 @@ void Player::tick(float _DT)
 			pProjectile->SetPos(ProjectilePos);
 			pProjectile->SetScale(Vec2(25.f, 25.f));
 			pProjectile->SetDir(Vec2(0.f, -1.f));
-
-			pCurLevel->AddObject(PLAYER_PJ, pProjectile);
+			TaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT,PLAYER_PJ, (UINT_PTR)pProjectile });
+			//pCurLevel->AddObject(PLAYER_PJ, pProjectile);
 		}
 	}
 
@@ -90,11 +90,15 @@ void Player::render(HDC _dc)
 	HPEN oldPen = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->pens[BLACK]));
 	HPEN oldBrush = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->brushes[BLACK]));
 
-	BitBlt(_dc, (int)vPos.x - m_BitmapInfo.bmWidth / 2
+
+	TransparentBlt(_dc, (int)vPos.x - m_BitmapInfo.bmWidth / 2
 		, (int)vPos.y - m_BitmapInfo.bmHeight / 2
 		, m_BitmapInfo.bmWidth
 		, m_BitmapInfo.bmHeight
 		, m_ImageDC
-		, 0, 0, SRCCOPY);
+		, 0, 0
+		, m_BitmapInfo.bmWidth
+		, m_BitmapInfo.bmHeight
+		, RGB(255, 0, 255));
 
 }

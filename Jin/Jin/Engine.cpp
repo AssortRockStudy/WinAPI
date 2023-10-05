@@ -6,6 +6,9 @@
 #include "DrawMgr.h"
 #include "LevelMgr.h"
 #include "PathMgr.h"
+#include "TaskMgr.h"
+
+
 #include "Level.h"
 
 Engine::Engine()
@@ -62,5 +65,7 @@ void Engine::tick()
 	DrawMgr::GetInst()->tick();
 
 	LevelMgr::GetInst()->render(m_SubDC);
+
+	TaskMgr::GetInst()->tick();
 
 }

@@ -12,6 +12,8 @@
 #include <crtdbg.h>
 #include <assert.h>
 
+#pragma comment(lib, "Msimg32.lib")
+
 #include <vector>
 #include <list>
 #include <map>

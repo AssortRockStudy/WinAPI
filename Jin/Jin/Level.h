@@ -13,9 +13,6 @@ public:
 	void tick();
 	void render(HDC _dc);
 
-public:
-	void AddObject(LAYER _LayerType, Obj* _Object);
-
 	template<typename T>
 	void GetObjects(vector<T*>& _Out);
 	const vector<Obj*>& GetObjects(LAYER _LayerType)
@@ -23,9 +20,15 @@ public:
 		return m_Layer[_LayerType]->m_vecObjects;
 	}
 
+private:
+	void AddObject(LAYER _LayerType, Obj* _Object);
+
 public:
 	Level();
 	~Level();
+
+	friend class LevelMgr;
+	friend class TaskMgr;
 };
 
 template<typename T>

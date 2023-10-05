@@ -92,6 +92,7 @@
     </ClCompile>
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Layer.cpp" />
+    <ClCompile Include="TaskMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -157,5 +158,6 @@
     </ClInclude>
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Layer.h" />
+    <ClInclude Include="TaskMgr.h" />
   </ItemGroup>
 </Project>

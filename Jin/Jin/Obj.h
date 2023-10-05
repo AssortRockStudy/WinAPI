@@ -1,5 +1,6 @@
 #pragma once
 #include "Entity.h"
+#include "TaskMgr.h"
 
 class Obj : public Entity
 {
