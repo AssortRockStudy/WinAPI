@@ -34,6 +34,8 @@ public:
 	virtual void tick(float _DT);
 	virtual void finaltick(float _DT) final; // 여기서 막아버리기
 	virtual void render(HDC _dc);
+	virtual void Overlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol) 
+	{}
 
 private:
 	virtual void Abstract() = 0;

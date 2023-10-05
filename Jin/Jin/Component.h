@@ -20,7 +20,6 @@ public:
 	virtual void render(HDC _dc)
     {}
 
-
 public:
 	Component(Obj* _Owner);
 	~Component();

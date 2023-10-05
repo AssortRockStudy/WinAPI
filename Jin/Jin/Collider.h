@@ -36,6 +36,8 @@ public:
 		return m_vScale;
 	}
 
+	void Overlap(Collider* _OtherCol);
+
 
 public:
 	Collider(Obj* _Owner);

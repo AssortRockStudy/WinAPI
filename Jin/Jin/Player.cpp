@@ -111,3 +111,8 @@ void Player::render(HDC _dc)
 
 	Super::render(_dc);
 }
+
+void Player::Overlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol)
+{
+	_OwnCol->GetName();
+}

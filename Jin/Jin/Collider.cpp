@@ -47,3 +47,7 @@ void Collider::render(HDC _dc)
 		, int(vRenderPos.y + m_vScale.y / 2.f));
 }
 
+void Collider::Overlap(Collider* _OtherCol)
+{
+	GetOwner()->Overlap(this, _OtherCol->GetOwner(), _OtherCol);
+}
