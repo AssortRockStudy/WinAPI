@@ -11,7 +11,11 @@
 
 
 LevelMgr::LevelMgr() {}
-LevelMgr::~LevelMgr() {}
+LevelMgr::~LevelMgr()
+{
+	if (nullptr != m_pCurLevel)
+		delete m_pCurLevel;
+}
 
 void LevelMgr::init()
 {

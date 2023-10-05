@@ -6,6 +6,7 @@
 #include "DrawMgr.h"
 #include "LevelMgr.h"
 #include "PathMgr.h"
+#include "Level.h"
 
 Engine::Engine()
 	: m_hWnd(nullptr)

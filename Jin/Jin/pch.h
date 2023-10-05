@@ -9,6 +9,7 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <crtdbg.h>
 
 #include <vector>
 #include <list>

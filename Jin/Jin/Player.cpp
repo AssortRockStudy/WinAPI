@@ -73,6 +73,7 @@ void Player::tick(float _DT)
 			pProjectile->SetAngle(PI/2.f);
 			pProjectile->SetPos(ProjectilePos);
 			pProjectile->SetScale(Vec2(25.f, 25.f));
+			pProjectile->SetDir(Vec2(1.f, -1.f));
 
 			pCurLevel->AddObject(pProjectile);
 		}
@@ -89,8 +90,8 @@ void Player::render(HDC _dc)
 	HPEN oldPen = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->pens[BLACK]));
 	HPEN oldBrush = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->brushes[BLACK]));
 
-	BitBlt(_dc, vPos.x - m_BitmapInfo.bmWidth / 2.f
-		, vPos.y - m_BitmapInfo.bmHeight / 2.f
+	BitBlt(_dc, (int)vPos.x - m_BitmapInfo.bmWidth / 2
+		, (int)vPos.y - m_BitmapInfo.bmHeight / 2
 		, m_BitmapInfo.bmWidth
 		, m_BitmapInfo.bmHeight
 		, m_ImageDC

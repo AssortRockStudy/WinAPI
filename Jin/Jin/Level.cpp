@@ -19,7 +19,6 @@ Level::~Level()
 
 void Level::tick()
 {
-	float DT = TimeMgr::GetInst()->GetDeltaTime();
 
 	for (size_t i = 0; i < m_vecObjects.size(); ++i)
 	{

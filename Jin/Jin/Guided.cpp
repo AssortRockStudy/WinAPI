@@ -3,9 +3,11 @@
 #include "LevelMgr.h"
 #include "Level.h"
 #include "Monster.h"
+#include "TimeMgr.h"
 
 Guided::Guided()
 	: m_Target(nullptr)
+	, m_fMass(1.f)
 {
 }
 
@@ -21,16 +23,7 @@ void Guided::tick(float _DT)
 	}
 	else
 	{
-		Vec2 vPos = GetPos();
-		// 1
-		Vec2 vDir = m_Target->GetPos() - GetPos();
-		vDir.Normalize();
-
-		vPos.x += vDir.x * GetSpeed() * _DT;
-		vPos.y += vDir.y * GetSpeed() * _DT;
-
-		SetPos(vPos);
-
+		Update_3();
 	}
 }
 
@@ -67,3 +60,43 @@ void Guided::FindTarget()
 }
 
 
+void Guided::Update_1()
+{
+	Vec2 vPos = GetPos();
+	// 1
+	Vec2 vDir = m_Target->GetPos() - GetPos();
+	vDir.Normalize();
+
+	vPos.x += vDir.x * GetSpeed() * DT;
+	vPos.y += vDir.y * GetSpeed() * DT;
+
+	SetPos(vPos);
+
+}
+
+void Guided::Update_2()
+{
+	float Force = 1000.f;
+	Vec2 vForce = m_Target->GetPos() - GetPos();
+	vForce.Normalize() *= Force;
+
+	m_vAccel = vForce / m_fMass;
+	m_vVelocity += m_vAccel * DT;
+	
+	Vec2 vPos = GetPos();
+	vPos += m_vVelocity * DT;
+
+	SetPos(vPos);
+
+}
+
+void Guided::Update_3()
+{
+	m_vDir.Normalize();
+	float fSpeed = GetSpeed();
+
+	m_vVelocity = m_vDir * fSpeed;
+	Vec2 vPos = GetPos();
+	vPos += m_vVelocity * DT;
+	SetPos(vPos);
+}
