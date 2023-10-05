@@ -16,8 +16,11 @@ public:
     void Stop();
 
     Anim* FindAnim(const wstring& _strName);
-    void CreateAnimation(const wstring& _strName, Texture* _Atlas, Vec2 _vLeftTop, Vec2 _vCutSize, float _Duration, int _MaxFrm);
+    void CreateAnimation(const wstring& _strName, Texture* _Atlas, Vec2 _vLeftTop, Vec2 _vCutSize, 
+         Vec2 _vOffset, float _Duration, int _MaxFrm);
 
+    void SaveAnimation(const wstring& _strRelativePath);
+    void LoadAnimation(const wstring& _strRelativePath);
 
     virtual void finaltick(float _DT) override;
     virtual void render(HDC _dc) override;

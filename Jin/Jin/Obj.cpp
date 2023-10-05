@@ -2,7 +2,7 @@
 #include "Obj.h"
 #include "Component.h"
 #include "TaskMgr.h"
-
+#include "Engine.h"
 
 Obj::Obj()
 	: m_iLayerIdx(-1)
@@ -36,6 +36,17 @@ void Obj::finaltick(float _DT)
 
 void Obj::render(HDC _dc)
 {
+	if (!DEBUG_RENDER)
+		return;
+
+	SELECT_PEN(_dc, RED_PEN);
+
+	Vec2 vRenderPos = GetRenderPos();
+	MoveToEx(_dc, int(vRenderPos.x - 7.f), (int)vRenderPos.y, nullptr);
+	LineTo(_dc, int(vRenderPos.x + 7.f), (int)vRenderPos.y);
+	MoveToEx(_dc, int(vRenderPos.x), int(vRenderPos.y - 7.f), nullptr);
+	LineTo(_dc, int(vRenderPos.x), int(vRenderPos.y + 7.f));
+
 	for (size_t i = 0; i < m_vecComponent.size(); ++i)
 	{
 		m_vecComponent[i]->render(_dc);

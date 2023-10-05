@@ -7,6 +7,7 @@ struct FFrame
 {
     Vec2 vLeftTop;
     Vec2 vCutSize;
+    Vec2 vOffset;
     float Duration;
 };
 
@@ -26,8 +27,11 @@ public:
     void finaltick();
     void render(HDC _dc);
 
+    void Save(const wstring& _FilePath);
+    void Load(const wstring& _FilePath);
+
     void Create(const wstring& _strName, Texture* _Atlas
-        , Vec2 _vLeftTop, Vec2 _vCutSize, float _Duration, int _MaxFrm);
+        , Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset,float _Duration, int _MaxFrm);
 
     bool IsFinish()
     {

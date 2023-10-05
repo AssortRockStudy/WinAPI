@@ -12,6 +12,7 @@ Anim::Anim()
 	, m_Atlas(nullptr)
 	, m_iCurFrm(0)
 	, m_bFinish(false)
+	, m_Acctime(0.f)
 {
 }
 
@@ -48,8 +49,8 @@ void Anim::render(HDC _dc)
 	Obj* pOwnerObject = m_pAnimator->GetOwner();
 	Vec2 vRenderPos = pOwnerObject->GetRenderPos();
 
-	TransparentBlt(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f))
-		, int(vRenderPos.y - (frm.vCutSize.y / 2.f))
+	TransparentBlt(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
+		, int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
 		, int(frm.vCutSize.x), int(frm.vCutSize.y)
 		, m_Atlas->GetDC()
 		, int(frm.vLeftTop.x), int(frm.vLeftTop.y)
@@ -57,7 +58,7 @@ void Anim::render(HDC _dc)
 		, RGB(255, 0, 255));
 }
 
-void Anim::Create(const wstring& _strName, Texture* _Atlas, Vec2 _vLeftTop, Vec2 _vCutSize, float _Duration, int _MaxFrm)
+void Anim::Create(const wstring& _strName, Texture* _Atlas, Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm)
 {
 	SetName(_strName);
 	m_Atlas = _Atlas;
@@ -69,6 +70,7 @@ void Anim::Create(const wstring& _strName, Texture* _Atlas, Vec2 _vLeftTop, Vec2
 		frm.vLeftTop = _vLeftTop + Vec2(_vCutSize.x * i, 0.f);
 		frm.vCutSize = _vCutSize;
 		frm.Duration = _Duration;
+		frm.vOffset = _vOffset;
 
 		m_vecFrm.push_back(frm);
 
