@@ -4,6 +4,7 @@
 
 
 Obj::Obj()
+	: m_iLayerIdx(-1)
 {
 }
 

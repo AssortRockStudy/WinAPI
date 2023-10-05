@@ -11,6 +11,7 @@ private:
 	Vec2			m_Pos;
 	Vec2			m_Scale;
 	vector<Component*> m_vecComponent;
+	int			m_iLayerIdx;
 
 public:
 	Vec2 GetPos() { return m_Pos; }
@@ -23,7 +24,13 @@ public:
 	void SetPos(Vec2 _Pos) { m_Pos = _Pos; }
 	void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
 
+	int GetLayerIdx()
+	{
+		return m_iLayerIdx;
+	}
+
 public:
+	virtual void begin() {};
 	virtual void tick(float _DT);
 	virtual void finaltick(float _DT) final; // 여기서 막아버리기
 	virtual void render(HDC _dc);
@@ -33,15 +40,18 @@ private:
 
 protected:
 	template<typename T>
-	T* AddComponent()
+	T* AddComponent(const wstring& _strName = L"")
 	{
 		T* pNewComponent = new T(this);
 		m_vecComponent.push_back(pNewComponent);
+		pNewComponent->SetName(_strName);
 		return pNewComponent;
 	}
 
 public:
 	Obj();
 	virtual ~Obj();
+
+	friend class Level;
 };
 

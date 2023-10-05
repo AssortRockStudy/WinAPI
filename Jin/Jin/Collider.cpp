@@ -22,6 +22,12 @@ void Collider::finaltick(float _DT)
 {
 	Vec2 vOwnerPos = GetOwner()->GetPos();
 	m_vFinalPos = vOwnerPos + m_vOffsetPos;
+	int iLayerIdx = GetOwner()->GetLayerIdx();
+
+	assert(!(iLayerIdx < 0));
+	Layer* pCurLayer = LevelMgr::GetInst()->GetCurLevel()->GetLayer(iLayerIdx);
+	pCurLayer->RegisterCollider(this);
+
 }
 
 void Collider::render(HDC _dc)

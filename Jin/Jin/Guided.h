@@ -23,6 +23,7 @@ public:
         m_vDir = _vDir;
     }
     virtual void FindTarget();
+    virtual void begin() override;
     virtual void tick(float _DT) override;
 
     Guided();

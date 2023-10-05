@@ -4,6 +4,7 @@
 #include "Level.h"
 #include "Monster.h"
 #include "TimeMgr.h"
+#include "Collider.h"
 
 Guided::Guided()
 	: m_Target(nullptr)
@@ -61,6 +62,12 @@ void Guided::FindTarget()
 			}
 		}
 	}
+}
+
+void Guided::begin()
+{
+	Super::begin();
+	GetCollider()->SetScale(GetScale());
 }
 
 

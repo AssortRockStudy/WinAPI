@@ -22,7 +22,7 @@ Player::Player()
 	wstring strPath = PathMgr::GetContentPath();
 	strPath += L"texture\\fighter.bmp";
 
-	m_Collider = AddComponent<Collider>();
+	m_Collider = AddComponent<Collider>(L"PlayerCollider");
 	m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
 	m_Collider->SetScale(Vec2(40.f, 80.f));
 

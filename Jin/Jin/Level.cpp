@@ -22,8 +22,20 @@ Level::~Level()
 	}
 }
 
+void Level::begin()
+{
+	for (UINT i = 0; i < LAYER::END; ++i)
+	{
+		m_Layer[i]->begin();
+	}
+}
+
 void Level::tick()
 {
+	for (UINT i = 0; i < LAYER::END; ++i)
+	{
+		m_Layer[i]->clear();
+	}
 
 	for (UINT i = 0; i < LAYER::END; ++i)
 	{
@@ -47,4 +59,6 @@ void Level::render(HDC _dc)
 void Level :: AddObject(LAYER _LayerType, Obj* _Object)
 {
 	m_Layer[_LayerType]->AddObject(_Object);
+
+	_Object->m_iLayerIdx = _LayerType;
 }

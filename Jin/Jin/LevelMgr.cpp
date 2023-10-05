@@ -42,6 +42,8 @@ void LevelMgr::init()
 
 	CollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
 
+	m_pCurLevel->begin();
+
 }
 
 void LevelMgr::tick()

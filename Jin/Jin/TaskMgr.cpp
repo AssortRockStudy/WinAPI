@@ -27,6 +27,7 @@ void TaskMgr::tick()
 
 			Level* pCurLevel = LevelMgr::GetInst()->GetCurLevel();
 			pCurLevel->AddObject(layertype, Object);
+			Object->begin();
 		}
 		break;
 		case DELETE_OBJECT:

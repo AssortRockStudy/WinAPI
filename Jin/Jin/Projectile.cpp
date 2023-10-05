@@ -1,27 +1,20 @@
 #include "pch.h"
 #include "Projectile.h"
 
+#include "Collider.h"
+
 
 Projectile::Projectile()
 	: m_Speed(0.f)
 	, m_Angle(PI/2.f)
+	, m_Collider(nullptr)
 {
+	m_Collider = AddComponent<Collider>(L"Collider");
 }
 
 Projectile::~Projectile()
 {
 }
-
-
-//void Projectile::tick(float _DT)
-//{
-//	Vec2 vPos = GetPos();
-//
-//	vPos.x += m_Speed * cosf(m_Angle) * _DT;
-//	vPos.y += m_Speed * sinf(m_Angle) * _DT;
-//
-//	SetPos(vPos);
-//}
 
 void Projectile::render(HDC _dc)
 {

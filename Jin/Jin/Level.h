@@ -10,6 +10,7 @@ private:
 	Layer* m_Layer[LAYER::END];
 
 public:
+	void begin();
 	void tick();
 	void render(HDC _dc);
 
@@ -18,6 +19,12 @@ public:
 	const vector<Obj*>& GetObjects(LAYER _LayerType)
 	{
 		return m_Layer[_LayerType]->m_vecObjects;
+	}
+
+	Layer* GetLayer(int LayerIdx)
+	{
+		assert(!(LayerIdx < 0 && LAYER::END <= LayerIdx));
+		return m_Layer[LayerIdx];
 	}
 
 private:

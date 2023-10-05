@@ -23,8 +23,8 @@ void CollisionMgr::tick()
 			if (!(m_LayerCheck[iRow] & (1 << iCol)))
 				continue;
 
-			const vector<Obj*>& vecLeft = pCurLevel->GetObjects((LAYER)iRow);
-			const vector<Obj*>& vecRight = pCurLevel->GetObjects((LAYER)iCol);
+			const vector<Collider*>& vecLeft = pCurLevel->GetLayer((LAYER)iRow)->GetColliders();
+			const vector<Collider*>& vecRight = pCurLevel->GetLayer((LAYER)iCol)->GetColliders();
 		}
 	}
 }
