@@ -90,6 +90,8 @@
     <ClCompile Include="func.cpp">
       <Filter>Game\01. Header</Filter>
     </ClCompile>
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Layer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -153,5 +155,7 @@
     <ClInclude Include="func.h">
       <Filter>Game\01. Header</Filter>
     </ClInclude>
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="Layer.h" />
   </ItemGroup>
 </Project>

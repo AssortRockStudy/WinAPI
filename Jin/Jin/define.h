@@ -57,3 +57,15 @@ enum KEY_STATE
 
 };
 
+enum LAYER
+{
+	DEFAULT,
+	TILE,
+	PLAYER,
+	MONSTER,
+	PLAYER_PJ,
+	MONSTER_PJ,
+	WORLD_STATIC,
+
+	END,
+};

@@ -1,35 +1,45 @@
 #include "pch.h"
 #include "Level.h"
 #include "TimeMgr.h"
+#include "Layer.h"
 #include "Obj.h"
 
 
 Level::Level()
 {
-
+	for (UINT i = 0; i < LAYER::END; ++i)
+	{
+		m_Layer[i] = new Layer;
+	}
 }
 
 Level::~Level()
 {
-	for (size_t i = 0; i < m_vecObjects.size(); ++i)
+	for (UINT  i = 0; i < LAYER::END; ++i)
 	{
-		delete m_vecObjects[i];
+		if (nullptr != m_Layer[i])
+			delete m_Layer[i];
 	}
 }
 
 void Level::tick()
 {
 
-	for (size_t i = 0; i < m_vecObjects.size(); ++i)
+	for (UINT i = 0; i < LAYER::END; ++i)
 	{
-		m_vecObjects[i]->tick(DT);
+		m_Layer[i]->tick(DT);
 	}
 }
 
 void Level::render(HDC _dc)
 {
-	for (size_t i = 0; i < m_vecObjects.size(); ++i)
+	for (UINT i = 0; i < LAYER::END; ++i)
 	{
-		m_vecObjects[i]->render(_dc);
+		m_Layer[i]->render(_dc);
 	}
+}
+
+void Level :: AddObject(LAYER _LayerType, Obj* _Object)
+{
+	m_Layer[_LayerType]->AddObject(_Object);
 }

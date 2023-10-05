@@ -1,6 +1,7 @@
 #pragma once
+#include "Entity.h"
 
-class Obj
+class Obj : public Entity
 {
 private:
 	Vec2	m_Pos;

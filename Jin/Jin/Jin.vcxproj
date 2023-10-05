@@ -139,10 +139,12 @@
   <ItemGroup>
     <ClCompile Include="DrawMgr.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="Guided.cpp" />
     <ClCompile Include="Jin.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
+    <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelMgr.cpp" />
     <ClCompile Include="Monster.cpp" />
@@ -167,11 +169,13 @@
     <ClInclude Include="define.h" />
     <ClInclude Include="DrawMgr.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="func.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="Guided.h" />
     <ClInclude Include="Jin.h" />
     <ClInclude Include="KeyMgr.h" />
+    <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelMgr.h" />
     <ClInclude Include="Monster.h" />

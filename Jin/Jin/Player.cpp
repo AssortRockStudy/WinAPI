@@ -75,7 +75,7 @@ void Player::tick(float _DT)
 			pProjectile->SetScale(Vec2(25.f, 25.f));
 			pProjectile->SetDir(Vec2(0.f, -1.f));
 
-			pCurLevel->AddObject(pProjectile);
+			pCurLevel->AddObject(PLAYER_PJ, pProjectile);
 		}
 	}
 

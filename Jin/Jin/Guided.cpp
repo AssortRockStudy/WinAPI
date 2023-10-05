@@ -18,7 +18,7 @@ Guided::~Guided()
 
 void Guided::tick(float _DT)
 {
-	if (nullptr == m_Target)
+ 	if (nullptr == m_Target)
 	{
 		FindTarget();
 	}
@@ -30,13 +30,13 @@ void Guided::tick(float _DT)
 
 void Guided::FindTarget()
 {
-	vector<Monster*> vecMon;
 	Level* pCurLevel = LevelMgr::GetInst()->GetCurLevel();
-	pCurLevel->GetObjects<Monster>(vecMon);
+	const vector<Obj*>& vecMon = pCurLevel->GetObjects(LAYER::MONSTER);
 
 	if (vecMon.size() == 1)
 	{
-		m_Target = vecMon[0];
+		m_Target = dynamic_cast<Monster*>(vecMon[0]);
+		assert(m_Target);
 	}
 	else if (vecMon.empty())
 	{
@@ -54,7 +54,8 @@ void Guided::FindTarget()
 			{
 				fMax = fDistance;
 
-				m_Target = vecMon[i];
+				m_Target = dynamic_cast<Monster*>(vecMon[i]);
+				assert(m_Target);
 			}
 		}
 	}
