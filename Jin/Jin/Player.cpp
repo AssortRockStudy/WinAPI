@@ -73,7 +73,7 @@ void Player::tick(float _DT)
 			pProjectile->SetAngle(PI/2.f);
 			pProjectile->SetPos(ProjectilePos);
 			pProjectile->SetScale(Vec2(25.f, 25.f));
-			pProjectile->SetDir(Vec2(1.f, -1.f));
+			pProjectile->SetDir(Vec2(0.f, -1.f));
 
 			pCurLevel->AddObject(pProjectile);
 		}

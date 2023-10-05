@@ -12,7 +12,8 @@ private:
     Vec2          m_vAccel;
     Vec2          m_vVelocity;
     Vec2          m_vForce;
-    Vec2        m_vDir;
+    Vec2          m_vDir;
+    float           m_fRotateSpeed;
 
 
 public:

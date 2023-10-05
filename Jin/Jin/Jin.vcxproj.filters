@@ -87,6 +87,9 @@
       <Filter>Game\04. Object</Filter>
     </ClCompile>
     <ClCompile Include="Guided.cpp" />
+    <ClCompile Include="func.cpp">
+      <Filter>Game\01. Header</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -147,5 +150,8 @@
       <Filter>Game\04. Object</Filter>
     </ClInclude>
     <ClInclude Include="Guided.h" />
+    <ClInclude Include="func.h">
+      <Filter>Game\01. Header</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

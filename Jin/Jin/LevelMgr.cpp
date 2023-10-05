@@ -31,12 +31,7 @@ void LevelMgr::init()
 	Monster* pMonster = nullptr;
 
 	pMonster = new Monster;
-	pMonster->SetPos(Vec2(1200.f, 500.f));
-	pMonster->SetScale(Vec2(100.f, 100.f));
-	m_pCurLevel->AddObject(pMonster);
-
-	pMonster = new Monster;
-	pMonster->SetPos(Vec2(1200.f, 200.f));
+	pMonster->SetPos(Vec2(900.f, 500.f));
 	pMonster->SetScale(Vec2(100.f, 100.f));
 	m_pCurLevel->AddObject(pMonster);
 

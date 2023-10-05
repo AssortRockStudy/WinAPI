@@ -8,6 +8,7 @@
 Guided::Guided()
 	: m_Target(nullptr)
 	, m_fMass(1.f)
+	, m_fRotateSpeed(PI)
 {
 }
 
