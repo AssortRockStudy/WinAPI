@@ -19,6 +19,7 @@
 #include "Collider.h"
 #include "Animator.h"
 #include "LogMgr.h"
+#include "Anim.h"
 
 
 Player::Player()
@@ -38,7 +39,7 @@ Player::Player()
 	m_Animator->CreateAnimation(L"IdleUp", pAtlas, Vec2(0.f, 260.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 1);
 	m_Animator->CreateAnimation(L"IdleRight", pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
 
-
+	//m_Animator->SaveAnimations(L"animdata");
 	m_Animator->Play(L"WalkDown", true);
 
 
@@ -120,15 +121,7 @@ void Player::tick(float _DT)
 		pProjectile->SetDir(Vec2(0.f, -1.f));
 		TaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)pProjectile });
 	
-		wstring strLogMessage = L"Shoot ";
-		string funcname = __FUNCTION__;
-		strLogMessage += wstring(funcname.begin(), funcname.end());
-		strLogMessage += L"  Line : ";
-		wchar_t szBuffer[20] = {};
-		_itow_s(__LINE__, szBuffer, 20, 10);
-		strLogMessage += szBuffer;
-		LogMgr::GetInst()->AddLog(FLog{ LOG_LEVEL::LOG, strLogMessage });
-
+		LOG(WARNING, L"warning.......");
 	}
 
 	SetPos(vPos);

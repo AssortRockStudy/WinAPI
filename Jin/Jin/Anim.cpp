@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "Texture.h"
 #include "TimeMgr.h"
+#include "LogMgr.h"
 
 
 Anim::Anim()
@@ -77,3 +78,25 @@ void Anim::Create(const wstring& _strName, Texture* _Atlas, Vec2 _vLeftTop, Vec2
 	}
 }
 
+bool Anim::Save(const wstring& _FilePath)
+{
+	FILE* pFile = nullptr;
+	_wfopen_s(&pFile, _FilePath.c_str(), L"wb");
+
+	if (nullptr == pFile)
+	{
+		LOG(ERR, L"파일 열기 실패..");
+		return false;
+	}
+
+	m_Atlas;
+	m_vecFrm;
+
+
+	fclose(pFile);
+	return true;
+}
+
+void Anim::Load(const wstring& _FilePath)
+{
+}

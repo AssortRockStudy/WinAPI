@@ -14,7 +14,6 @@
 Engine::Engine()
 	: m_hWnd(nullptr)
 	, m_ptResolution{}
-	, m_Level(nullptr)
 	, m_DC(nullptr)
 	, m_SubBitMap(nullptr)
 	, m_bDebugRender(true)
@@ -27,9 +26,6 @@ Engine::~Engine()
 	ReleaseDC(m_hWnd, m_DC);
 	DeleteObject(m_SubBitMap);
 	DeleteDC(m_SubDC);
-
-	if (nullptr != m_Level)
-		delete m_Level;
 
 	for (UINT i = 0; i < PEN_END; ++i)
 	{

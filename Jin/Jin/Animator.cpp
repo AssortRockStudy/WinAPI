@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Animator.h"
 #include "Anim.h"
+#include "PathMgr.h"
+#include "LogMgr.h"
 
 
 Animator::Animator(Obj* _Owner)
@@ -76,3 +78,24 @@ void Animator::CreateAnimation(const wstring& _strName, Texture* _Atlas, Vec2 _v
 	m_mapAnim.insert(make_pair(_strName, pAnim));
 }
 
+
+
+void Animator::SaveAnimations(const wstring& _strRelativePath)
+{
+	wstring strFolderPath = PathMgr::GetContentPath();
+	strFolderPath += _strRelativePath;
+
+	for (const auto& pair : m_mapAnim)
+	{
+		wstring strFilePath = strFolderPath + L"\\" + pair.first + L".txt";
+		if (!pair.second->Save(strFilePath))
+		{
+			LOG(ERR, L"Animation Save ½ÇÆÐ");
+		}
+	}
+}
+
+void Animator::LoadAnimation(const wstring& _strRelativePath)
+{
+
+}

@@ -27,7 +27,7 @@ public:
     void finaltick();
     void render(HDC _dc);
 
-    void Save(const wstring& _FilePath);
+    bool Save(const wstring& _FilePath);
     void Load(const wstring& _FilePath);
 
     void Create(const wstring& _strName, Texture* _Atlas

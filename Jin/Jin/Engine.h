@@ -13,7 +13,6 @@ private:
 	HDC		m_SubDC;
 	HBITMAP m_SubBitMap;
 	
-	Level*	m_Level;
 
 	bool m_bDebugRender;
 	HPEN m_arrPen[PEN_END];
