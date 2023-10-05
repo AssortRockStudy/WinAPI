@@ -18,7 +18,7 @@
 
 #include "Collider.h"
 #include "Animator.h"
-
+#include "LogMgr.h"
 
 
 Player::Player()
@@ -118,6 +118,16 @@ void Player::tick(float _DT)
 		pProjectile->SetScale(Vec2(25.f, 25.f));
 		pProjectile->SetDir(Vec2(0.f, -1.f));
 		TaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)pProjectile });
+	
+		wstring strLogMessage = L"Shoot ";
+		string funcname = __FUNCTION__;
+		strLogMessage += wstring(funcname.begin(), funcname.end());
+		strLogMessage += L"  Line : ";
+		wchar_t szBuffer[20] = {};
+		_itow_s(__LINE__, szBuffer, 20, 10);
+		strLogMessage += szBuffer;
+		LogMgr::GetInst()->AddLog(FLog{ LOG_LEVEL::LOG, strLogMessage });
+
 	}
 
 	SetPos(vPos);

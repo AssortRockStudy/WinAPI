@@ -159,6 +159,7 @@
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelMgr.cpp" />
+    <ClCompile Include="LogMgr.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="PathMgr.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelMgr.h" />
+    <ClInclude Include="LogMgr.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="PathMgr.h" />

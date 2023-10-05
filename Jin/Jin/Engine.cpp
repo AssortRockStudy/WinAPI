@@ -6,11 +6,10 @@
 #include "LevelMgr.h"
 #include "PathMgr.h"
 #include "TaskMgr.h"
-#include "Camera.h"
+#include "LogMgr.h"
 #include "GCMgr.h"
+#include "Camera.h"
 
-
-#include "Level.h"
 
 Engine::Engine()
 	: m_hWnd(nullptr)

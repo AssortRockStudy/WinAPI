@@ -9,7 +9,9 @@
 #include "Guided.h"
 #include "Monster.h"
 #include "Camera.h"
+#include "LogMgr.h"
 #include "CollisionMgr.h"
+
 
 LevelMgr::LevelMgr() {}
 LevelMgr::~LevelMgr()
@@ -60,6 +62,8 @@ void LevelMgr::render(HDC _dc)
 	Rectangle(_dc, -1, -1, ptResolution.x + 1, ptResolution.y + 1);
 
 	m_pCurLevel->render(_dc);
+
+	LogMgr::GetInst()->tick(_dc);
 	BitBlt(Engine::GetInst()->GetMainDC(), 0, 0, ptResolution.x, ptResolution.y, _dc, 0, 0, SRCCOPY);
 
 }

@@ -154,3 +154,10 @@ public:
 	FSelectBrush(HDC _dc, HBRUSH _brush);
 	~FSelectBrush();
 };
+
+struct FLog
+{
+	LOG_LEVEL Level;
+	wstring	  Message;
+	float	  AccTime;
+};
