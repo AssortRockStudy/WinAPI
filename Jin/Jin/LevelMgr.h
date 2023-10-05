@@ -4,12 +4,13 @@ class LevelMgr
 	SINGLETON(LevelMgr);
 
 private:
-	class Level* m_CurLevel;
+	class Level* m_pCurLevel;
 
 public:
 	Level* GetCurLevel()
 	{
-		return m_CurLevel;
+		return m_pCurLevel;
+
 	}
 	void init();
 	void tick();

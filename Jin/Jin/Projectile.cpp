@@ -4,7 +4,7 @@
 
 Projectile::Projectile()
 	: m_Speed(0.f)
-	, m_theta(PI/2.f)
+	, m_Angle(PI/2.f)
 {
 }
 
@@ -17,8 +17,8 @@ void Projectile::tick(float _DT)
 {
 	Vec2 vPos = GetPos();
 
-	vPos.x += m_Speed * cosf(m_theta) * _DT;
-	vPos.y += m_Speed * sinf(m_theta) * _DT;
+	vPos.x += m_Speed * cosf(m_Angle) * _DT;
+	vPos.y += m_Speed * sinf(m_Angle) * _DT;
 
 	SetPos(vPos);
 }

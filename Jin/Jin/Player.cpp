@@ -10,6 +10,7 @@
 #include "PathMgr.h"
 #include "Level.h"
 #include "Projectile.h"
+#include "Guided.h"
 
 
 Player::Player()
@@ -63,13 +64,13 @@ void Player::tick(float _DT)
 
 		for (int i = 0; i < 3; ++i)
 		{
-			Projectile* pProjectile = new Projectile;
+			Guided* pProjectile = new Guided;
 
 			Vec2 ProjectilePos = GetPos();
 			ProjectilePos.y -= GetScale().y / 2.f;
 
-			pProjectile->SetSpeed(1000.f);
-			pProjectile->SetDir(PI / 4.f + (PI / 4.f) * (float)i);
+			pProjectile->SetSpeed(500.f);
+			pProjectile->SetAngle(PI/2.f);
 			pProjectile->SetPos(ProjectilePos);
 			pProjectile->SetScale(Vec2(25.f, 25.f));
 

@@ -86,6 +86,7 @@
     <ClCompile Include="Projectile.cpp">
       <Filter>Game\04. Object</Filter>
     </ClCompile>
+    <ClCompile Include="Guided.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -145,5 +146,6 @@
     <ClInclude Include="Projectile.h">
       <Filter>Game\04. Object</Filter>
     </ClInclude>
+    <ClInclude Include="Guided.h" />
   </ItemGroup>
 </Project>

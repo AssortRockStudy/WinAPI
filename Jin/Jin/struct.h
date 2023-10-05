@@ -6,6 +6,11 @@ public:
 	float x;
 	float y;
 
+	float Distance(Vec2 _Other)
+	{
+		return sqrt(pow(x - _Other.x, 2) + pow(y - _Other.y, 2));
+	}
+
 public:
 	Vec2()
 		: x(0.f)
@@ -26,4 +31,14 @@ struct FKeyData
 	KEY eKey;
 	KEY_STATE eState;
 	bool bPressed;
+};
+
+struct FMonInfo
+{
+	wchar_t szName[50];
+	float HP;
+	float MP;
+	float Att;
+	float Int;
+	float Speed;
 };

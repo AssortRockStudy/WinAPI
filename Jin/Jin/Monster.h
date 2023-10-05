@@ -4,11 +4,14 @@
 class Monster : public Obj
 {
 private:
-    float       m_Speed;
+    FMonInfo m_Info;
 
 public:
+    void SetMonsterInfo(const FMonInfo& _Info)
+    {
+        m_Info = _Info;
+    }
     virtual void tick(float _DT) override;
-    virtual void render(HDC _dc) override;
 
 public:
     Monster();
