@@ -6,6 +6,7 @@
 #include "LevelMgr.h"
 #include "PathMgr.h"
 #include "TaskMgr.h"
+#include "Camera.h"
 
 
 #include "Level.h"
@@ -62,6 +63,7 @@ void Engine::tick()
 	KeyMgr::GetInst()->tick();
 	LevelMgr::GetInst()->tick();
 	DrawMgr::GetInst()->tick();
+	Camera::GetInst()->tick();
 
 	LevelMgr::GetInst()->render(m_SubDC);
 

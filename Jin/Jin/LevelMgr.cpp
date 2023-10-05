@@ -8,6 +8,7 @@
 #include "Projectile.h"
 #include "Guided.h"
 #include "Monster.h"
+#include "Camera.h"
 
 
 LevelMgr::LevelMgr() {}
@@ -34,6 +35,10 @@ void LevelMgr::init()
 	pMonster->SetPos(Vec2(900.f, 500.f));
 	pMonster->SetScale(Vec2(100.f, 100.f));
 	m_pCurLevel->AddObject(MONSTER, pMonster);
+
+	Vec2 vLookAt = Engine::GetInst()->GetResolution();
+	vLookAt /= 2.f;
+	Camera::GetInst()->SetLookAt(vLookAt);
 
 }
 

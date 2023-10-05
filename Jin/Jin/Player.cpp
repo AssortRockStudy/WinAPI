@@ -11,6 +11,8 @@
 #include "Level.h"
 #include "Projectile.h"
 #include "Guided.h"
+#include "Collider.h"
+
 
 
 Player::Player()
@@ -19,6 +21,8 @@ Player::Player()
 {
 	wstring strPath = PathMgr::GetContentPath();
 	strPath += L"texture\\fighter.bmp";
+
+	m_Collider = AddComponent<Collider>();
 
 	// 플레이어가 사용할 이미지 비트맵 로딩
 	m_Image = (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
@@ -84,7 +88,7 @@ void Player::tick(float _DT)
 
 void Player::render(HDC _dc)
 {
-	Vec2 vPos = GetPos();
+	Vec2 vPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 
 	HPEN oldPen = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->pens[BLACK]));

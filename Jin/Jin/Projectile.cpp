@@ -25,7 +25,7 @@ void Projectile::tick(float _DT)
 
 void Projectile::render(HDC _dc)
 {
-	Vec2 vPos = GetPos();
+	Vec2 vPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 
 

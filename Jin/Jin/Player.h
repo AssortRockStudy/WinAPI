@@ -1,5 +1,8 @@
 #pragma once
 #include "Obj.h"
+class Collider;
+
+
 class Player : 
     public Obj
 {
@@ -8,6 +11,7 @@ class Player :
         HBITMAP     m_Image;
         HDC                m_ImageDC;
         BITMAP         m_BitmapInfo;
+        Collider*        m_Collider;
 
     public:
         virtual void tick(float _DT) override;

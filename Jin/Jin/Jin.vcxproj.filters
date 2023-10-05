@@ -93,6 +93,9 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="TaskMgr.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Collider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -159,5 +162,8 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="TaskMgr.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="Collider.h" />
   </ItemGroup>
 </Project>
