@@ -2,12 +2,14 @@
 #include "Entity.h"
 
 class Obj;
+class Collider;
 
 
 class Layer : public Entity
 {
 private:
-	vector<Obj*> m_vecObjects;
+	vector<Obj*>				m_vecObjects;
+	vector<Collider*>		m_vecCollider;
 
 public:
 	void tick(float _DT);

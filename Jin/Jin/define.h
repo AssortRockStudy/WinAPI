@@ -74,7 +74,7 @@ enum LAYER
 	MONSTER_PJ,
 	WORLD_STATIC,
 
-	END,
+	END = 32,
 };
 
 enum TASK_TYPE

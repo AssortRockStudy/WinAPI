@@ -4,6 +4,11 @@
 #include "Engine.h"
 #include "Camera.h"
 
+#include "LevelMgr.h"
+#include "Level.h"
+#include "Layer.h"
+
+
 Collider::Collider(Obj* _Owner)
 	: Component(_Owner)
 {

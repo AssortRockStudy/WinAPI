@@ -9,7 +9,7 @@
 #include "Guided.h"
 #include "Monster.h"
 #include "Camera.h"
-
+#include "CollisionMgr.h"
 
 LevelMgr::LevelMgr() {}
 LevelMgr::~LevelMgr()
@@ -39,6 +39,8 @@ void LevelMgr::init()
 	Vec2 vLookAt = Engine::GetInst()->GetResolution();
 	vLookAt /= 2.f;
 	Camera::GetInst()->SetLookAt(vLookAt);
+
+	CollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
 
 }
 

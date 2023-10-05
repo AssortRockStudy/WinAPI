@@ -97,6 +97,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="struct.cpp" />
+    <ClCompile Include="CollisionMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -166,5 +167,6 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="CollisionMgr.h" />
   </ItemGroup>
 </Project>
