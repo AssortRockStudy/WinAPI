@@ -34,4 +34,7 @@ void Projectile::render(HDC _dc)
 		, int(vPos.y - vScale.y / 2)
 		, int(vPos.x + vScale.x / 2)
 		, int(vPos.y + vScale.y / 2));
+
+	Obj::render(_dc);
+
 }

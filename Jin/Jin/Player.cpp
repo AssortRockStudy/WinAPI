@@ -23,6 +23,8 @@ Player::Player()
 	strPath += L"texture\\fighter.bmp";
 
 	m_Collider = AddComponent<Collider>();
+	m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
+	m_Collider->SetScale(Vec2(40.f, 80.f));
 
 	// 플레이어가 사용할 이미지 비트맵 로딩
 	m_Image = (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
@@ -107,4 +109,5 @@ void Player::render(HDC _dc)
 		, m_BitmapInfo.bmHeight
 		, RGB(255, 0, 255));
 
+	Super::render(_dc);
 }

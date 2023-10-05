@@ -5,15 +5,37 @@ class Collider : public Component
 {
 private:
 	Vec2 m_vOffsetPos;
-	Vec2 m_vOffserScale;
+	Vec2 m_vScale;
 	Vec2 m_vFinalPos;
 
 public:
 	virtual void finaltick(float _DT) override;
+	virtual void render(HDC _dc) override;
+
+	void SetOffsetPos(Vec2 _vOffsetPos) 
+	{ 
+		m_vOffsetPos = _vOffsetPos; 
+	}
+
+	void SetScale(Vec2 _vScale) 
+	{ 
+		m_vScale = _vScale;
+	}
+
 	Vec2 GetPos()
 	{
 		return m_vFinalPos;
 	}
+
+	Vec2 GetOffsetPos()
+	{
+		return m_vOffsetPos;
+	}
+	Vec2 GetScale()
+	{
+		return m_vScale;
+	}
+
 
 public:
 	Collider(Obj* _Owner);

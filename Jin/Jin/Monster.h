@@ -14,6 +14,7 @@ public:
         m_Info = _Info;
     }
     virtual void tick(float _DT) override;
+    virtual void render(HDC _dc) override;
 
 public:
     Monster();

@@ -27,6 +27,10 @@
 #define GENERATED_OBJECT(type) typedef type Super;\
 							   virtual void Abstract() override {}
 
+#define DEBUG_RENDER Engine::GetInst()->DebugRender()
+#define SELECT_PEN(DC, TYPE) FSelectPen tempPenSelect(DC, TYPE)
+#define SELECT_BRUSH(DC, hBrush) FSelectBrush tempBrushSelect(DC, hBrush)
+
 
 enum Color
 {
@@ -79,3 +83,15 @@ enum TASK_TYPE
 	DELETE_OBJECT, // Param1 : Object Adress
 	LEVEL_CHANGE,
 };
+
+enum PEN_TYPE
+{
+	GREEN_PEN,
+	BLUE_PEN,
+	RED_PEN,
+
+	PEN_END,
+};
+
+
+

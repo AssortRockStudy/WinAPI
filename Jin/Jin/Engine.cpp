@@ -17,6 +17,8 @@ Engine::Engine()
 	, m_Level(nullptr)
 	, m_DC(nullptr)
 	, m_SubBitMap(nullptr)
+	, m_bDebugRender(true)
+	, m_arrPen{}
 {
 }
 
@@ -28,6 +30,18 @@ Engine::~Engine()
 
 	if (nullptr != m_Level)
 		delete m_Level;
+
+	for (UINT i = 0; i < PEN_END; ++i)
+	{
+		DeleteObject(m_arrPen[i]);
+	}
+}
+
+void Engine::CreateDefaultGDI()
+{
+	m_arrPen[RED_PEN] = CreatePen(PS_SOLID, 1, RGB(255, 20, 20));
+	m_arrPen[GREEN_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 255, 20));
+	m_arrPen[BLUE_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 20, 255));
 }
 
 void Engine::init(HWND _hWnd, POINT _ptResolution)
@@ -54,6 +68,8 @@ void Engine::init(HWND _hWnd, POINT _ptResolution)
 	KeyMgr::GetInst()->init();
 	PathMgr::init();
 	LevelMgr::GetInst()->init();
+
+	CreateDefaultGDI();
 	
 }
 
@@ -64,6 +80,11 @@ void Engine::tick()
 	LevelMgr::GetInst()->tick();
 	DrawMgr::GetInst()->tick();
 	Camera::GetInst()->tick();
+
+	if (KEY_TAP(KEY::NUM8))
+	{
+		m_bDebugRender ? m_bDebugRender = false : m_bDebugRender = true;
+	}
 
 	LevelMgr::GetInst()->render(m_SubDC);
 
