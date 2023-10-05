@@ -16,6 +16,9 @@
 #include "AssetMgr.h"
 #include "Texture.h"
 
+#include "Collider.h"
+#include "Animator.h"
+
 
 
 Player::Player()
@@ -25,6 +28,8 @@ Player::Player()
 	m_Collider = AddComponent<Collider>(L"PlayerCollider");
 	m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
 	m_Collider->SetScale(Vec2(40.f, 80.f));
+	
+	m_Animator = AddComponent<Animator>(L"Animator");
 
 	m_pTexture = AssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\fighter.bmp");
 

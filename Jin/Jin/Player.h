@@ -2,6 +2,7 @@
 #include "Obj.h"
 class Collider;
 class Texture;
+class Animator;
 
 
 class Player : 
@@ -12,6 +13,7 @@ class Player :
         float                m_Speed;
         Collider*        m_Collider;
         Texture*         m_pTexture;
+        Animator* m_Animator;
 
     public:
         virtual void tick(float _DT) override;

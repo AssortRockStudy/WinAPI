@@ -103,6 +103,8 @@
     <ClCompile Include="AssetMgr.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="Animator.cpp" />
+    <ClCompile Include="Anim.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -178,5 +180,7 @@
     <ClInclude Include="AssetMgr.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Sound.h" />
+    <ClInclude Include="Animator.h" />
+    <ClInclude Include="Anim.h" />
   </ItemGroup>
 </Project>
