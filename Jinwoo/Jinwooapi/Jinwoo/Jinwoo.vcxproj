@@ -161,8 +161,10 @@
     <ClInclude Include="MyLevelMgr.h" />
     <ClInclude Include="MyLogMgr.h" />
     <ClInclude Include="MyMonster.h" />
+    <ClInclude Include="MyMovement.h" />
     <ClInclude Include="MyObject.h" />
     <ClInclude Include="MyPathMgr.h" />
+    <ClInclude Include="MyPlatform.h" />
     <ClInclude Include="MyPlayer.h" />
     <ClInclude Include="MyProjectile.h" />
     <ClInclude Include="MySound.h" />
@@ -173,6 +175,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="struct.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="components.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Func.cpp" />
@@ -195,8 +198,10 @@
     <ClCompile Include="MyLevelMgr.cpp" />
     <ClCompile Include="MyLogMgr.cpp" />
     <ClCompile Include="MyMonster.cpp" />
+    <ClCompile Include="MyMovement.cpp" />
     <ClCompile Include="MyObject.cpp" />
     <ClCompile Include="MyPathMgr.cpp" />
+    <ClCompile Include="MyPlatform.cpp" />
     <ClCompile Include="MyPlayer.cpp" />
     <ClCompile Include="MyProjectile.cpp" />
     <ClCompile Include="MySound.cpp" />

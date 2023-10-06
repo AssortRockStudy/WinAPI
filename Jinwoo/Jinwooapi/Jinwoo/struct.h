@@ -44,6 +44,8 @@ public:
 		x /= fLen;
 		y /= fLen;
 
+		assert(fLen);
+
 		return *this;
 	}
 
@@ -70,6 +72,11 @@ public:
 	{
 		x += _f;
 		y += _f;
+	}
+
+	Vec2 operator -()
+	{
+		return Vec2(-x, -y);
 	}
 
 	Vec2 operator - (Vec2 _Other)
@@ -125,6 +132,16 @@ public:
 	{
 		x /= _f;
 		y /= _f;
+	}
+
+	bool IsZero()
+	{
+		if (x == 0.f && y == 0.f)
+		{
+			return true;
+		}
+
+		return false;
 	}
 };
 

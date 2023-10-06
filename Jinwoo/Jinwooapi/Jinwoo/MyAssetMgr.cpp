@@ -35,6 +35,10 @@ MyTexture* MyAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRe
 	pTexture = new MyTexture;
 	pTexture->Load(strFilePath);
 
+	// Asset에 키값과 경로값을 알려준다
+	pTexture->m_strKey = _strKey;
+	pTexture->m_strRelativePath = _strRelativePath;
+
 	m_mapTex.insert(make_pair(_strKey, pTexture));
 
 	return pTexture;

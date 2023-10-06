@@ -10,8 +10,9 @@
 #include "MyLevel.h"
 #include "MyPlayer.h"
 #include "MyMonster.h"
+#include "MyPlatform.h"
 
-MyLevelMgr::MyLevelMgr()
+MyLevelMgr::MyLevelMgr() : m_pCurLevel(nullptr)
 {
 
 }
@@ -29,20 +30,25 @@ void MyLevelMgr::init()
 	m_pCurLevel = new MyLevel;
 
 	MyPlayer* pPlayer = new MyPlayer;
-	pPlayer->SetPos(Vec2(200.f, 500.f));
+	pPlayer->SetPos(Vec2(500.f, 200.f));
 	pPlayer->SetScale(Vec2(50.f, 50.f));
 
-	MyMonster* pMonster = new MyMonster;
-	pMonster->SetPos(Vec2(200.f, 200.f));
-	pMonster->SetScale(Vec2(80.f, 80.f));
-	
-	MyMonster* pMonster2 = new MyMonster;
-	pMonster2->SetPos(Vec2(800.f, 200.f));
-	pMonster2->SetScale(Vec2(80.f, 80.f));
+	//MyMonster* pMonster = new MyMonster;
+	//pMonster->SetPos(Vec2(200.f, 200.f));
+	//pMonster->SetScale(Vec2(80.f, 80.f));
+	//
+	//MyMonster* pMonster2 = new MyMonster;
+	//pMonster2->SetPos(Vec2(800.f, 200.f));
+	//pMonster2->SetScale(Vec2(80.f, 80.f));
 
 	m_pCurLevel->AddObject(LAYER::PLAYER, pPlayer);
-	m_pCurLevel->AddObject(LAYER::MONSTER, pMonster);
-	m_pCurLevel->AddObject(LAYER::MONSTER, pMonster2);
+	//m_pCurLevel->AddObject(LAYER::MONSTER, pMonster);
+	//m_pCurLevel->AddObject(LAYER::MONSTER, pMonster2);
+
+	// 플랫폼 설치
+	MyPlatform* pPlatform = new MyPlatform;
+	pPlatform->SetPos(Vec2(800.f, 700.f));
+	m_pCurLevel->AddObject(LAYER::PLATFORM, pPlatform);
 
 	Vec2 vLookAt = MyEngine::GetInst()->GetMainResolution();
 	vLookAt /= 2.f;
@@ -50,6 +56,7 @@ void MyLevelMgr::init()
 
 	MyColliderMgr::GetInst()->CheckCollision(LAYER::MONSTER, LAYER::PLAYER);
 	MyColliderMgr::GetInst()->CheckCollision(LAYER::MONSTER, LAYER::PLAYERBULLET);
+	MyColliderMgr::GetInst()->CheckCollision(LAYER::PLAYER, LAYER::PLATFORM);
 
 	m_pCurLevel->begin();
 }

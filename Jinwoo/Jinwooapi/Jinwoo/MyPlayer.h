@@ -5,6 +5,7 @@
 class MyCollider;
 class MyTexture;
 class MyAnimator;
+class MyMovement;
 
 class MyPlayer : public MyObject
 {
@@ -16,11 +17,13 @@ private:
 	MyCollider* m_Collider;
 	MyTexture*	m_Texture;
 	MyAnimator* m_Animator;
+	MyMovement* m_Movement;
 	
 public:
 	virtual void tick(float _DT) override;
 
-	virtual void Overlap(MyCollider* _OwnCol, MyObject* _OtherObject, MyCollider* _OtherCol) override;
+	virtual void BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObject, MyCollider* _OtherCol) override;
+	virtual void EndOverlap(MyCollider* _OwnCol, MyObject* _OtherObject, MyCollider* _OtherCol) override;
 
 public:
 	MyPlayer();

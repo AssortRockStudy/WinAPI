@@ -12,7 +12,7 @@
 #include "MyLogMgr.h"
 
 
-MyEngine::MyEngine() : m_hWnd(nullptr), m_ptResolution{}, m_DC(nullptr), m_SubBitMap(nullptr), m_SubDC(nullptr), m_DebugRender(false), m_arrPen{}
+MyEngine::MyEngine() : m_hWnd(nullptr), m_ptResolution{}, m_DC(nullptr), m_SubBitMap(nullptr), m_SubDC(nullptr), m_DebugRender(true), m_arrPen{}
 {
 
 }

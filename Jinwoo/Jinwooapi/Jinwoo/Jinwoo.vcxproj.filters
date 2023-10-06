@@ -65,6 +65,9 @@
     <Filter Include="Game\06.Component\Animator\Anim">
       <UniqueIdentifier>{b6be2b2c-c21a-4c0e-892f-a9c4e599a27f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04.Object\Platform">
+      <UniqueIdentifier>{881b233f-54e2-41e3-9722-0bb73282aa11}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -170,6 +173,15 @@
     <ClInclude Include="MyLogMgr.h">
       <Filter>Game\03.Manager</Filter>
     </ClInclude>
+    <ClInclude Include="MyMovement.h">
+      <Filter>Game\06.Component\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="components.h">
+      <Filter>Game\01.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="MyPlatform.h">
+      <Filter>Game\04.Object\Platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jinwoo.rc">
@@ -272,6 +284,12 @@
     </ClCompile>
     <ClCompile Include="MyLogMgr.cpp">
       <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMovement.cpp">
+      <Filter>Game\06.Component\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="MyPlatform.cpp">
+      <Filter>Game\04.Object\Platform</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

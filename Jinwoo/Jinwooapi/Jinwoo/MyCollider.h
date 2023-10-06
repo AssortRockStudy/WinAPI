@@ -13,7 +13,6 @@ private:
     int     m_CollisionCount;
 
 public:
-    Vec2 GetColliderPos() { return m_finalPos; }
     Vec2 GetOffsetPos() { return m_OffsetPos; }
     Vec2 GetOffsetScale() { return m_OffsetScale; }
     Vec2 GetFinalPos() { return m_finalPos; }
