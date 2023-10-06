@@ -41,6 +41,21 @@
     <Filter Include="Game\07. Asset">
       <UniqueIdentifier>{ae80a2b3-d152-47d4-8cf7-b1d2b769e70f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\07. Asset\Sound">
+      <UniqueIdentifier>{de25677a-a23d-4873-9cc5-794bf9218975}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\07. Asset\Texture">
+      <UniqueIdentifier>{077eb67b-e40b-45bb-9848-3a7235d48938}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06.Component\Animator">
+      <UniqueIdentifier>{d43e36ec-dad4-44e8-982f-4c027ad516e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06.Component\Animator\Anim">
+      <UniqueIdentifier>{6b535bcd-6168-4e61-b318-02d7567a7a79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06.Component\Collider">
+      <UniqueIdentifier>{93459b56-eafb-4851-bb01-26867d1344d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -110,9 +125,6 @@
     <ClInclude Include="TaskMgr.h">
       <Filter>Game\03.Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Collider.h">
-      <Filter>Game\06.Component</Filter>
-    </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>Game\06.Component</Filter>
     </ClInclude>
@@ -124,6 +136,27 @@
     </ClInclude>
     <ClInclude Include="CAsset.h">
       <Filter>Game\07. Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="CAssetMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CSound.h">
+      <Filter>Game\07. Asset\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="CTexture.h">
+      <Filter>Game\07. Asset\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Anim.h">
+      <Filter>Game\06.Component\Animator\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>Game\06.Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Game\06.Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="LogMgr.h">
+      <Filter>Game\03.Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -192,9 +225,6 @@
     <ClCompile Include="TaskMgr.cpp">
       <Filter>Game\03.Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Collider.cpp">
-      <Filter>Game\06.Component</Filter>
-    </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>Game\06.Component</Filter>
     </ClCompile>
@@ -209,6 +239,27 @@
     </ClCompile>
     <ClCompile Include="CAsset.cpp">
       <Filter>Game\07. Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="CAssetMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CSound.cpp">
+      <Filter>Game\07. Asset\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="CTexture.cpp">
+      <Filter>Game\07. Asset\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Anim.cpp">
+      <Filter>Game\06.Component\Animator\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>Game\06.Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Game\06.Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="LogMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

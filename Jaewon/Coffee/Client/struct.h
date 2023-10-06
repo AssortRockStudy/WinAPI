@@ -125,3 +125,10 @@ struct FMonInfo
 	float Int;
 	float Speed;
 };
+
+struct FLog
+{
+	LOG_LEVEL Level;
+	wstring	  Message;
+	float	  AccTime;
+};

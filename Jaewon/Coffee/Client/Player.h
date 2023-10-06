@@ -2,6 +2,8 @@
 #include "CObj.h"
 
 class Collider;
+class CTexture;
+class Animator;
 
 class Player : public CObj
 {
@@ -16,6 +18,8 @@ private:
 	BITMAP pBitMapInfo;
 
 	Collider* mCollider;
+	CTexture* mTexture;
+	Animator* mAnimator;
 
 public:
 	void setColor(COLOR _col) { col = _col; }
@@ -23,7 +27,6 @@ public:
 
 public:
 	virtual void tick(float _dt) override;
-	virtual void render(HDC _dc) override;
 	virtual void overLap(Collider* myCol, CObj* _othObj, Collider* _othCol) override;
 
 public:

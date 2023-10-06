@@ -2,6 +2,7 @@
 #include "CObj.h"
 #include "Component.h"
 #include "TaskMgr.h"
+#include "CEngine.h"
 
 void CObj::setDead()
 {
@@ -30,6 +31,16 @@ void CObj::render(HDC _dc)
 {
 	for (size_t i = 0; i < mVecComponent.size(); ++i)
 		mVecComponent[i]->render(_dc);
+	if (!DEBUG_RENDER)
+		return;
+
+	SELECT_PEN(_dc, RED_PEN);
+	Vec2 vRenderPos = getRenderPos();
+	MoveToEx(_dc, int(vRenderPos.x - 7.f), (int)vRenderPos.y, nullptr);
+	LineTo(_dc, int(vRenderPos.x + 7.f), (int)vRenderPos.y);
+
+	MoveToEx(_dc, int(vRenderPos.x), int(vRenderPos.y - 7.f), nullptr);
+	LineTo(_dc, int(vRenderPos.x), int(vRenderPos.y + 7.f));
 }
 
 void CObj::Destroy()
