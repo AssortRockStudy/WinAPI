@@ -6,6 +6,7 @@
 #include "CTexture.h"
 #include "CTimeMgr.h"
 #include "LogMgr.h"
+#include "CAssetMgr.h"
 
 void Anim::finalTick(){
 	if (finished)
@@ -63,11 +64,85 @@ bool Anim::save(const wstring& _path){
 		return false;
 	}
 
+	wstring strName = getName();
+	int iLen = 0;
+	iLen = strName.length();
+	fwrite(&iLen, sizeof(int), 1, pFile);
+	fwrite(strName.c_str(), sizeof(wchar_t), strName.length(), pFile);
+
+
+	bool bExist = mAtlas;
+	fwrite(&bExist, sizeof(bool), 1, pFile);
+
+	if (bExist){
+		wstring strKey = mAtlas->getKey();
+		wstring strRelativePath = mAtlas->getPath();
+
+		int iLen = 0;
+
+		iLen = strKey.length();
+		fwrite(&iLen, sizeof(int), 1, pFile);
+		fwrite(strKey.c_str(), sizeof(wchar_t), strKey.length(), pFile);
+
+		iLen = strRelativePath.length();
+		fwrite(&iLen, sizeof(int), 1, pFile);
+		fwrite(strRelativePath.c_str(), sizeof(wchar_t), strRelativePath.length(), pFile);
+	}
+
+	size_t frmCount = vecFrm.size();
+	fwrite(&frmCount, sizeof(size_t), 1, pFile);
+	fwrite(&vecFrm[0], sizeof(Frame), vecFrm.size(), pFile);
+
 	fclose(pFile);
 	return true;
 }
 
-void Anim::load(const wstring& _path){
+bool Anim::load(const wstring& _path){
+	FILE* pFile = nullptr;
+
+	_wfopen_s(&pFile, _path.c_str(), L"rb");
+
+	if (nullptr == pFile)
+	{
+		LOG(ERR, L"파일 열기 실패");
+		return false;
+	}
+
+	wchar_t szName[255] = {};
+	int iLen = 0;
+	fread(&iLen, sizeof(int), 1, pFile);
+	fread(szName, sizeof(wchar_t), iLen, pFile);
+
+	setName(szName);
+
+	bool bExist = 0;
+	fread(&bExist, sizeof(bool), 1, pFile);
+
+	if (bExist){
+		wchar_t szBuff[255] = {};
+
+		int iLen = 0;
+
+		fread(&iLen, sizeof(int), 1, pFile);
+		fread(szBuff, sizeof(wchar_t), iLen, pFile);
+		wstring strKey = szBuff;
+
+		wmemset(szBuff, 0, 255);
+
+		fread(&iLen, sizeof(int), 1, pFile);
+		fread(szBuff, sizeof(wchar_t), iLen, pFile);
+		wstring strRelativePath = szBuff;
+
+		mAtlas = CAssetMgr::GetInst()->LoadTexture(strKey, strRelativePath);
+	}
+
+	size_t FrmCount = 0;
+	fread(&FrmCount, sizeof(size_t), 1, pFile);
+	vecFrm.resize(FrmCount);
+	fread(&vecFrm[0], sizeof(Frame), vecFrm.size(), pFile);
+
+	fclose(pFile);
+	return true;
 }
 
 Anim::Anim():mAnimator(nullptr), mAtlas(nullptr), mCurFrame(0), finished(false), accTime(0.f){}

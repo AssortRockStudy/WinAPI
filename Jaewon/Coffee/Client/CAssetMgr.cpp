@@ -14,6 +14,9 @@ CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRela
 	pTexture = new CTexture;
 	pTexture->load(strFilePath);
 
+	pTexture->sKey = _strKey;
+	pTexture->sPath = _strRelativePath;
+
 	mTexture.insert(make_pair(_strKey, pTexture));
 
 	return pTexture;

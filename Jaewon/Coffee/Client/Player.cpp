@@ -88,7 +88,7 @@ Player::Player():mSpeed(500.f), col(black), reverseMove(true), pImage(nullptr), 
 	CTexture* pAtlas = CAssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\link.bmp");
 
 	mAnimator = addComponent<Animator>(L"Animator");
-	mAnimator->createAnimation(L"WalkDown", pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
+	/*mAnimator->createAnimation(L"WalkDown", pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
 	mAnimator->createAnimation(L"WalkLeft", pAtlas, Vec2(0.f, 650.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
 	mAnimator->createAnimation(L"WalkUp", pAtlas, Vec2(0.f, 780.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
 	mAnimator->createAnimation(L"WalkRight", pAtlas, Vec2(0.f, 910.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
@@ -97,6 +97,16 @@ Player::Player():mSpeed(500.f), col(black), reverseMove(true), pImage(nullptr), 
 	mAnimator->createAnimation(L"IdleLeft", pAtlas, Vec2(0.f, 130.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
 	mAnimator->createAnimation(L"IdleUp", pAtlas, Vec2(0.f, 260.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 1);
 	mAnimator->createAnimation(L"IdleRight", pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
+	mAnimator->saveAnimation(L"animdata");*/
+
+	mAnimator->loadAnimation(L"animdata\\WalkDown.txt");
+	mAnimator->loadAnimation(L"animdata\\WalkLeft.txt");
+	mAnimator->loadAnimation(L"animdata\\WalkUp.txt");
+	mAnimator->loadAnimation(L"animdata\\WalkRight.txt");
+	mAnimator->loadAnimation(L"animdata\\IdleDown.txt");
+	mAnimator->loadAnimation(L"animdata\\IdleLeft.txt");
+	mAnimator->loadAnimation(L"animdata\\IdleUp.txt");
+	mAnimator->loadAnimation(L"animdata\\IdleRight.txt");
 
 	mAnimator->play(L"WalkDown", true);
 

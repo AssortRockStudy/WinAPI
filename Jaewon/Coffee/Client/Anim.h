@@ -35,7 +35,7 @@ public:
         finished = false;
     }
     bool save(const wstring& _path);
-    void load(const wstring& _path);
+    bool load(const wstring& _path);
 
 public:
     Anim();

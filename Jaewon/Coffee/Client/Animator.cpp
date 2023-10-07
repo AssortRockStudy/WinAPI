@@ -33,23 +33,30 @@ void Animator::createAnimation(const wstring& _name, CTexture* _atlus, Vec2 _lTo
 	mapAnim.insert(make_pair(_name, pAnim));
 }
 
-void Animator::saveAnimation(const wstring& _path)
-{
+void Animator::saveAnimation(const wstring& _path){
 	wstring strFolderPath = CPathMgr::getContentPath();
 	strFolderPath += _path;
 
-	for (const auto& pair : mapAnim)
-	{
+	for (const auto& pair : mapAnim){
 		wstring strFilePath = strFolderPath + L"\\" + pair.first + L".txt";
 		if (!pair.second->save(strFilePath))
-		{
 			LOG(ERR, L"Animation Save 실패");
-		}
 	}
 }
 
-void Animator::loadAnimation(const wstring& _path)
-{
+void Animator::loadAnimation(const wstring& _path){
+	wstring filePath = CPathMgr::getContentPath();
+	filePath += _path;
+
+	Anim* newAnim = new Anim;
+
+	if (!newAnim->load(filePath)) {
+		LOG(ERR, L"로드 실패");
+		delete newAnim;
+		return;
+	}
+	newAnim->mAnimator = this;
+	mapAnim.insert(make_pair(newAnim->getName(), newAnim));
 }
 
 void Animator::finalTick(float _dt){
