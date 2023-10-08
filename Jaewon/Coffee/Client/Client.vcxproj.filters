@@ -56,6 +56,12 @@
     <Filter Include="Game\06.Component\Collider">
       <UniqueIdentifier>{93459b56-eafb-4851-bb01-26867d1344d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\06.Component\Movement">
+      <UniqueIdentifier>{01e628a7-9718-4701-ae4c-a89593ec02c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04.Object\Platform">
+      <UniqueIdentifier>{351708d1-020c-4a9a-8c7d-c3d28108289c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -157,6 +163,12 @@
     </ClInclude>
     <ClInclude Include="LogMgr.h">
       <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Movement.h">
+      <Filter>Game\06.Component\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Game\04.Object\Platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -260,6 +272,12 @@
     </ClCompile>
     <ClCompile Include="LogMgr.cpp">
       <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Movement.cpp">
+      <Filter>Game\06.Component\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Game\04.Object\Platform</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

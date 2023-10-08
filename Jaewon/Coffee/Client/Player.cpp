@@ -14,6 +14,8 @@
 #include "Animator.h"
 #include "LogMgr.h"
 #include "Anim.h"
+#include "Movement.h"
+#include "Platform.h"
 
 void Player::tick(float _dt)
 {
@@ -25,31 +27,33 @@ void Player::tick(float _dt)
 	// 좌표의 이동 거리 = 속도*dt
 	if (reverseMove == true) {
 		if (KeyMgr::GetInst()->getKeyState(A) == PRESSED) {
-			vPos.x -= mSpeed * _dt;
+			mMovement->addForce(Vec2(-300.f, 0.f));
 			mAnimator->play(L"WalkLeft", true);
 		}
 		if (KeyMgr::GetInst()->getKeyState(A) == RELEASED)
 			mAnimator->play(L"IdleLeft", true);
 		if (KeyMgr::GetInst()->getKeyState(D) == PRESSED) {
-			vPos.x += mSpeed * _dt;
+			mMovement->addForce(Vec2(300.f, 0.f));
 			mAnimator->play(L"WalkRight", true);
 		}
 		if (KeyMgr::GetInst()->getKeyState(D) == RELEASED)
 			mAnimator->play(L"IdleRight", true);
 		if (KeyMgr::GetInst()->getKeyState(W) == PRESSED) {
-			vPos.y -= mSpeed * _dt;
 			mAnimator->play(L"WalkUp", true);
 		}
 		if (KeyMgr::GetInst()->getKeyState(W) == RELEASED)
 			mAnimator->play(L"IdleUp", true);
 		if (KeyMgr::GetInst()->getKeyState(S) == PRESSED) {
-			vPos.y += mSpeed * _dt;
 			mAnimator->play(L"WalkDown", true);
 		}
 		if (KeyMgr::GetInst()->getKeyState(S) == RELEASED)
 			mAnimator->play(L"IdleDown", true);
 		if (KeyMgr::GetInst()->getKeyState(SPACE) == TAP) {
+			mMovement->setGround(false);
+
+			mMovement->setVelocity(Vec2(mMovement->getVelocity().x, -500.f));
 			
+			/*
 			CLevel* curLevel = LevelMgr::GetInst()->getCurLevel();
 			
 			Guided* mProjectile = new Guided;
@@ -62,7 +66,7 @@ void Player::tick(float _dt)
 			TaskMgr::GetInst()->addTask(FTask{ CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)mProjectile });
 
 			LOG(WARNING, L"Shoot");
-			
+			*/
 		}
 	}
 	else {
@@ -78,9 +82,19 @@ void Player::tick(float _dt)
 	setPos(vPos);
 }
 
-void Player::overLap(Collider* myCol, CObj* _othObj, Collider* _othCol)
+void Player::beginOverLap(Collider* myCol, CObj* _othObj, Collider* _othCol)
 {
-	myCol->getName();
+	if (dynamic_cast<Platform*>(_othObj))
+	{
+		mMovement->setGround(true);
+	}
+}
+
+void Player::endOverLap(Collider* myCol, CObj* _othObj, Collider* _othCol)
+{
+	if (dynamic_cast<Platform*>(_othObj)){
+		mMovement->setGround(false);
+	}
 }
 
 Player::Player():mSpeed(500.f), col(black), reverseMove(true), pImage(nullptr), pImageDc(nullptr)
@@ -115,7 +129,13 @@ Player::Player():mSpeed(500.f), col(black), reverseMove(true), pImage(nullptr), 
 	mCollider->setScale(Vec2(40.f, 80.f));
 	mCollider->setOffsetPos(Vec2(0.f, -40.f));
 
-	mTexture = CAssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\fighter.bmp");
+	mMovement = addComponent<Movement>(L"PlayerMovement");
+	mMovement->setMass(1.f);
+	mMovement->setInitSpeed(200.f);
+	mMovement->setMaxSpeed(400.f);
+	mMovement->useGravity(true);
+	mMovement->setGravity(Vec2(0.f, 980.f));
+	mMovement->setFriction(1000.f);
 	
 }
 

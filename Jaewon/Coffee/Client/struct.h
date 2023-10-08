@@ -19,8 +19,11 @@ public:
 
 	Vec2& Normalize(){
 		float f = Length();
+		
 		x /= f;
 		y /= f;
+
+		assert(f);
 
 		return *this;
 	}
@@ -30,6 +33,10 @@ public:
 	}
 	Vec2 operator +(float _f) {
 		return Vec2(x + _f, y + _f);
+	}
+
+	Vec2 operator -(){
+		return Vec2(-x, -y);
 	}
 
 	Vec2 operator -(Vec2 _oth) {
@@ -64,17 +71,27 @@ public:
 	}
 
 	Vec2 operator /(Vec2 _oth) {
+		assert(_oth.x);
+		assert(_oth.y);
 		return Vec2(x / _oth.x, y / _oth.y);
 	}
 
 	Vec2 operator /(float _f) {
+		assert(_f);
 		return Vec2(x / _f, y / _f);
 	}
 
 	void operator /= (float _f)
 	{
+		assert(_f);
 		x /= _f;
 		y /= _f;
+	}
+
+	bool isZero(){
+		if (x == 0.f && y == 0.f)
+			return true;
+		return false;
 	}
 
 public:

@@ -4,6 +4,7 @@
 class Collider;
 class CTexture;
 class Animator;
+class Movement;
 
 class Player : public CObj
 {
@@ -20,6 +21,7 @@ private:
 	Collider* mCollider;
 	CTexture* mTexture;
 	Animator* mAnimator;
+	Movement* mMovement;
 
 public:
 	void setColor(COLOR _col) { col = _col; }
@@ -27,7 +29,8 @@ public:
 
 public:
 	virtual void tick(float _dt) override;
-	virtual void overLap(Collider* myCol, CObj* _othObj, Collider* _othCol) override;
+	virtual void beginOverLap(Collider* myCol, CObj* _othObj, Collider* _othCol) override;
+	virtual void endOverLap(Collider* myCol, CObj* _othObj, Collider* _othCol) override;
 
 public:
 	Player();
