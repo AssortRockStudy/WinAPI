@@ -97,5 +97,19 @@ void Animator::SaveAnimations(const wstring& _strRelativePath)
 
 void Animator::LoadAnimation(const wstring& _strRelativePath)
 {
+	wstring strFilePath = PathMgr::GetContentPath();
+	strFilePath += _strRelativePath;
 
+	Anim* pNewAnim = new Anim;
+
+	if (!pNewAnim->Load(strFilePath))
+	{
+		LOG(ERR, L"Animation Load ½ÇÆÐ");
+		delete pNewAnim;
+		return;
+	}
+	wstring name = pNewAnim->GetName();
+	pNewAnim->m_pAnimator = this;
+
+	m_mapAnim.insert(make_pair(pNewAnim->GetName(), pNewAnim));
 }

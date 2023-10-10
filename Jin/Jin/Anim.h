@@ -28,7 +28,7 @@ public:
     void render(HDC _dc);
 
     bool Save(const wstring& _FilePath);
-    void Load(const wstring& _FilePath);
+    bool Load(const wstring& _FilePath);
 
     void Create(const wstring& _strName, Texture* _Atlas
         , Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset,float _Duration, int _MaxFrm);

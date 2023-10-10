@@ -30,6 +30,9 @@ Texture* AssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelati
 	pTexture = new Texture;
 	pTexture->Load(strFilePath);
 
+	pTexture->m_strKey = _strKey;
+	pTexture->m_strRelativePath = _strRelativePath;
+
 	m_mapTex.insert(make_pair(_strKey, pTexture));
 
 	return pTexture;

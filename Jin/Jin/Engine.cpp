@@ -9,6 +9,7 @@
 #include "LogMgr.h"
 #include "GCMgr.h"
 #include "Camera.h"
+#include "CollisionMgr.h"
 
 
 Engine::Engine()
@@ -82,7 +83,9 @@ void Engine::tick()
 		m_bDebugRender ? m_bDebugRender = false : m_bDebugRender = true;
 	}
 
+	CollisionMgr::GetInst()->tick();
 	LevelMgr::GetInst()->render(m_SubDC);
+	
 
 	TaskMgr::GetInst()->tick();
 

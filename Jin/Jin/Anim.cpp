@@ -6,7 +6,7 @@
 #include "Texture.h"
 #include "TimeMgr.h"
 #include "LogMgr.h"
-
+#include "AssetMgr.h"
 
 Anim::Anim()
 	: m_pAnimator(nullptr)
@@ -89,14 +89,84 @@ bool Anim::Save(const wstring& _FilePath)
 		return false;
 	}
 
-	m_Atlas;
-	m_vecFrm;
+	wstring strname = GetName();
+	int iLen = 0;
+	iLen = strname.length();
+	fwrite(&iLen, sizeof(int), 1, pFile);
+	fwrite(strname.c_str(),sizeof(wchar_t), strname.length(),pFile );
 
+	bool bExist = m_Atlas;
+	fwrite(&bExist, sizeof(bool), 1, pFile);
+
+	if (bExist)
+	{
+		wstring strkey = m_Atlas->GetKey();
+		wstring strRelativePath = m_Atlas->GetRelativePath();
+
+		int iLen = 0;
+		iLen = strkey.length();
+		fwrite(&iLen, sizeof(int), 1, pFile);
+		fwrite(strkey.c_str(), sizeof(wchar_t), strkey.length(), pFile);
+
+
+		iLen = strRelativePath.length();
+		fwrite(&iLen, sizeof(int), 1, pFile);
+		fwrite(strRelativePath.c_str(), sizeof(wchar_t), strRelativePath.length(), pFile);
+	}
+
+	size_t FrmCount = m_vecFrm.size();
+	fwrite(&FrmCount, sizeof(size_t), 1 , pFile);
+	fwrite(&m_vecFrm[0], sizeof(FFrame),m_vecFrm.size(), pFile);
 
 	fclose(pFile);
 	return true;
 }
 
-void Anim::Load(const wstring& _FilePath)
+bool Anim::Load(const wstring& _FilePath)
 {
+	FILE* pFile = nullptr;
+	_wfopen_s(&pFile, _FilePath.c_str(), L"rb");
+
+	if (nullptr == pFile)
+	{
+		LOG(ERR, L"파일 열기 실패");
+		return false;
+	}
+
+	wchar_t szName[255] = {};
+	int iLen = 0;
+	fread(&iLen, sizeof(int), 1, pFile);
+	fread(szName, sizeof(wchar_t), iLen, pFile);
+
+	SetName(szName);
+
+	bool bExist = 0;
+	fread(&bExist, sizeof(bool), 1, pFile);
+	
+	if (bExist)
+	{
+		wchar_t szBuff[255] = {};
+		int iLen = 0;
+
+		fread(&iLen, sizeof(int), 1, pFile);
+		fread(szBuff, sizeof(wchar_t), iLen, pFile);
+		wstring strKey = szBuff;
+
+		wmemset(szBuff, 0, 255); // 메모리 초기화 다 0으로
+
+		fread(&iLen, sizeof(int), 1, pFile);
+		fread(szBuff, sizeof(wchar_t), iLen, pFile);
+		wstring strRelativePath = szBuff;
+	
+		m_Atlas = AssetMgr::GetInst()->LoadTexture(strKey, strRelativePath);
+
+	}
+
+	size_t FrmCount = 0;
+	fread(&FrmCount, sizeof(size_t), 1,  pFile);
+	m_vecFrm.resize(FrmCount);
+	fread(&m_vecFrm[0], sizeof(FFrame), m_vecFrm.size(),pFile);
+
+	fclose(pFile);
+	return true;
 }
