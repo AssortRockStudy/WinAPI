@@ -161,6 +161,7 @@
     <ClCompile Include="LevelMgr.cpp" />
     <ClCompile Include="LogMgr.cpp" />
     <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="Movement.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="PathMgr.cpp" />
     <ClCompile Include="pch.cpp">
@@ -209,6 +210,7 @@
     <ClInclude Include="LevelMgr.h" />
     <ClInclude Include="LogMgr.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="Movement.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="PathMgr.h" />
     <ClInclude Include="pch.h" />

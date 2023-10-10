@@ -18,6 +18,7 @@
 
 #include "Collider.h"
 #include "Animator.h"
+#include "Movement.h"
 #include "LogMgr.h"
 #include "Anim.h"
 
@@ -50,19 +51,21 @@ Player::Player()
 	m_Animator->LoadAnimation(L"animdata\\WalkRight.txt");
 	m_Animator->LoadAnimation(L"animdata\\WalkUp.txt");
 
-
-
 	m_Animator->Play(L"WalkDown", true);
-
-
 
 	m_Collider = AddComponent<Collider>(L"PlayerCollider");
 	m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
 	m_Collider->SetScale(Vec2(40.f, 80.f));
 	m_Collider->SetOffsetPos(Vec2(0.f, -40.f));
 
-	m_pTexture = AssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\fighter.bmp");
-
+	//m_pTexture = AssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\fighter.bmp");
+	m_Movement = AddComponent<Movement>(L"PlayerMovement");
+	m_Movement->SetMass(1.f);
+	m_Movement->SetInitSpeed(50.f);
+	m_Movement->SetInitSpeed(400.f);
+	m_Movement->UseGravity(true);
+	m_Movement->SetGravityDir(Vec2(0.f, 1.f));
+	m_Movement->SetFrictionScale(0.f);
 }
 
 Player::~Player()

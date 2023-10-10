@@ -106,6 +106,7 @@
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="Anim.cpp" />
     <ClCompile Include="LogMgr.cpp" />
+    <ClCompile Include="Movement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -184,5 +185,6 @@
     <ClInclude Include="Animator.h" />
     <ClInclude Include="Anim.h" />
     <ClInclude Include="LogMgr.h" />
+    <ClInclude Include="Movement.h" />
   </ItemGroup>
 </Project>

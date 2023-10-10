@@ -1,9 +1,5 @@
 #pragma once
 #include "Obj.h"
-class Collider;
-class Texture;
-class Animator;
-
 
 class Player : 
     public Obj
@@ -11,9 +7,9 @@ class Player :
     GENERATED_OBJECT(Obj);
     private:
         float                m_Speed;
-        Collider*        m_Collider;
-        Texture*         m_pTexture;
-        Animator* m_Animator;
+        class Collider*        m_Collider;
+        class Animator* m_Animator;
+        class Movement* m_Movement;
 
     public:
         virtual void tick(float _DT) override;
