@@ -28,7 +28,11 @@ Texture* AssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelati
 	wstring strFilePath = strContentPath + _strRelativePath;
 
 	pTexture = new Texture;
-	pTexture->Load(strFilePath);
+	if (!pTexture->Load(strFilePath))
+	{
+		delete pTexture;
+		return nullptr;
+	}
 
 	pTexture->m_strKey = _strKey;
 	pTexture->m_strRelativePath = _strRelativePath;
