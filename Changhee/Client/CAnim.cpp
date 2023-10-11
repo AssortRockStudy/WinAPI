@@ -44,7 +44,7 @@ bool CAnim::Save(const wstring& _FilePath)
 {
 	FILE* pFile = nullptr;
 
-	_wfopen_s(&pFile, _FilePath.c_str(), L"wb");
+	_wfopen_s(&pFile, _FilePath.c_str(), L"w");
 
 	if (nullptr == pFile)
 	{
@@ -53,36 +53,52 @@ bool CAnim::Save(const wstring& _FilePath)
 	}
 
 	// Animation 이름 저장
+	fwprintf_s(pFile, L"[ANIM_NAME]\n");
+
 	wstring strName = GetName();
-	int iLen = 0;
-	iLen = (int)strName.length();
-	fwrite(&iLen, sizeof(int), 1, pFile);
-	fwrite(strName.c_str(), sizeof(wchar_t), strName.length(), pFile);
+	fwprintf_s(pFile, strName.c_str());
+	fwprintf_s(pFile, L"\n\n");
 
 	// 키, 경로
-	bool bExist = m_pAtlas;
-	fwrite(&bExist, sizeof(bool), 1, pFile);
+	fwprintf_s(pFile, L"[ATLAS_TEXTURE]\n");
 
-	if (bExist)
+	wstring strKey;
+	wstring strRelativePath;
+
+	if (IsValid(m_pAtlas))
 	{
-		wstring strKey = m_pAtlas->GetKey();
-		wstring strRelativePath = m_pAtlas->GetRelativePath();
-
-		int iLen = 0;
-
-		iLen = (int)strKey.length();
-		fwrite(&iLen, sizeof(int), 1, pFile);
-		fwrite(strKey.c_str(), sizeof(wchar_t), strKey.length(), pFile);
-
-		iLen = (int)strRelativePath.length();
-		fwrite(&iLen, sizeof(int), 1, pFile);
-		fwrite(strRelativePath.c_str(), sizeof(wchar_t), strRelativePath.length(), pFile);
+		strKey = m_pAtlas->GetKey();
+		strRelativePath = m_pAtlas->GetRelativePath();
 	}
 
-	size_t FrmCount = m_vecFrm.size();
-	fwrite(&FrmCount, sizeof(size_t), 1, pFile);
-	fwrite(&m_vecFrm[0], sizeof(FFrame), m_vecFrm.size(), pFile);
+	fwprintf_s(pFile, strKey.c_str());
+	fwprintf_s(pFile, L"\n");
+	fwprintf_s(pFile, strRelativePath.c_str());
+	fwprintf_s(pFile, L"\n\n");
 
+	// 프레임 데이터
+	// 프레임 숫자
+	fwprintf_s(pFile, L"[FRAME_COUNT]\n");
+	fwprintf_s(pFile, L"%zd\n\n", m_vecFrm.size());
+
+
+	for (size_t i = 0; i < m_vecFrm.size(); ++i)
+	{
+		fwprintf_s(pFile, L"[FRAME_NUM]\n");
+		fwprintf_s(pFile, L"%zd\n", i);
+
+		fwprintf_s(pFile, L"[LEFT_TOP]\n");
+		fwprintf_s(pFile, L"%f %f\n", m_vecFrm[i].vLeftTop.x, m_vecFrm[i].vLeftTop.y);
+
+		fwprintf_s(pFile, L"[CUT_SIZE]\n");
+		fwprintf_s(pFile, L"%f %f\n", m_vecFrm[i].vCutSize.x, m_vecFrm[i].vCutSize.y);
+
+		fwprintf_s(pFile, L"[OFFSET]\n");
+		fwprintf_s(pFile, L"%f %f\n", m_vecFrm[i].vOffset.x, m_vecFrm[i].vOffset.y);
+
+		fwprintf_s(pFile, L"[DURATION]\n");
+		fwprintf_s(pFile, L"%f\n\n", m_vecFrm[i].fDuration);
+	}
 	fclose(pFile);
 
 	return true;
@@ -92,7 +108,7 @@ bool CAnim::Load(const wstring& _FilePath)
 {
 	FILE* pFile = nullptr;
 
-	_wfopen_s(&pFile, _FilePath.c_str(), L"rb");
+	_wfopen_s(&pFile, _FilePath.c_str(), L"r");
 
 	if (nullptr == pFile)
 	{
@@ -101,42 +117,71 @@ bool CAnim::Load(const wstring& _FilePath)
 	}
 
 	// Animation 이름 로드
-	wchar_t szName[255] = {};
-	int iLen = 0;
-	fread(&iLen, sizeof(int), 1, pFile);
-	fread(szName, sizeof(wchar_t), iLen, pFile);
-
-	SetName(szName);
-
-
-	// Atlas
-	bool bExist = 0;
-	fread(&bExist, sizeof(bool), 1, pFile);
-
-	if (bExist)
+	while (true)
 	{
-		wchar_t szBuff[255] = {};
+		wchar_t szRead[256] = {};
+		if (EOF == fwscanf_s(pFile, L"%s", szRead, 256))
+		{
+			break;
+		}
 
-		int iLen = 0;
+		if (!wcscmp(szRead, L"[ANIM_NAME]"))
+		{
+			fwscanf_s(pFile, L"%s", szRead, 256);
+			SetName(szRead);
+		}
+		else if (!wcscmp(szRead, L"[ATLAS_TEXTURE]"))
+		{
+			wstring strKey, strRelativePath;
 
-		fread(&iLen, sizeof(int), 1, pFile);
-		fread(szBuff, sizeof(wchar_t), iLen, pFile);
-		wstring strKey = szBuff;
+			fwscanf_s(pFile, L"%s", szRead, 256);
+			strKey = szRead;
 
-		wmemset(szBuff, 0, 255);
+			fwscanf_s(pFile, L"%s", szRead, 256);
+			strRelativePath = szRead;
 
-		fread(&iLen, sizeof(int), 1, pFile);
-		fread(szBuff, sizeof(wchar_t), iLen, pFile);
-		wstring strRelativePath = szBuff;
+			m_pAtlas = CAssetMgr::GetInst()->LoadTexture(strKey, strRelativePath);
+		}
+		else if (!wcscmp(szRead, L"[FRAME_COUNT]"))
+		{
+			size_t iFrameCount = 0;
+			fwscanf_s(pFile, L"%zd", &iFrameCount);
+			m_vecFrm.resize(iFrameCount);
 
-		m_pAtlas = CAssetMgr::GetInst()->LoadTexture(strKey, strRelativePath);
+			size_t iCurFrame = 0;
+			while (true)
+			{
+				fwscanf_s(pFile, L"%s", szRead, 256);
+
+				if (!wcscmp(szRead, L"[FRAME_NUM]"))
+				{
+					fwscanf_s(pFile, L"%zd", &iCurFrame);
+				}
+				else if (!wcscmp(szRead, L"[LEFT_TOP]"))
+				{
+					fwscanf_s(pFile, L"%f", &m_vecFrm[iCurFrame].vLeftTop.x);
+					fwscanf_s(pFile, L"%f", &m_vecFrm[iCurFrame].vLeftTop.y);
+				}
+				else if (!wcscmp(szRead, L"[CUT_SIZE]"))
+				{
+					fwscanf_s(pFile, L"%f", &m_vecFrm[iCurFrame].vCutSize.x);
+					fwscanf_s(pFile, L"%f", &m_vecFrm[iCurFrame].vCutSize.y);
+				}
+				else if (!wcscmp(szRead, L"[OFFSET]"))
+				{
+					fwscanf_s(pFile, L"%f", &m_vecFrm[iCurFrame].vOffset.x);
+					fwscanf_s(pFile, L"%f", &m_vecFrm[iCurFrame].vOffset.y);
+				}
+				else if (!wcscmp(szRead, L"[DURATION]"))
+				{
+					fwscanf_s(pFile, L"%f", &m_vecFrm[iCurFrame].fDuration);
+
+					if (iFrameCount - 1 <= iCurFrame)
+						break;
+				}
+			}
+		}
 	}
-
-	// 프레임 데이터
-	size_t FrmCount = 0;
-	fread(&FrmCount, sizeof(size_t), 1, pFile);
-	m_vecFrm.resize(FrmCount);
-	fread(&m_vecFrm[0], sizeof(FFrame), m_vecFrm.size(), pFile);
 
 	fclose(pFile);
 	return true;

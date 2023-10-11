@@ -42,7 +42,11 @@ CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRela
 	strContentPath += _strRelativePath;
 
 	pTexture = new CTexture;
-	pTexture->Load(strContentPath);
+	if (!pTexture->Load(strContentPath))
+	{
+		delete pTexture;
+		return nullptr;
+	}
 
 	pTexture->m_strKey = _strKey;
 	pTexture->m_strRelativePath = _strRelativePath;

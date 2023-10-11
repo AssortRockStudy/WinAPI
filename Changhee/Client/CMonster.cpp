@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CMonster.h"
 
-#include "Component.h"
+#include "components.h"
 
 #include "CProjectile.h"
 

@@ -24,13 +24,14 @@ public:
 		return m_arrLayer[LayerIdx];
 	}
 
-public:
+protected:
 	void AddObject(LAYER _eLayer, CObj* _Object);
 
 public:
-	void begin();
-	void tick();
-	void render(HDC _dc);
+	virtual void init() = 0;
+	virtual void begin();
+	virtual void tick();
+	virtual void render(HDC _dc);
 
 public:
 	CLevel();

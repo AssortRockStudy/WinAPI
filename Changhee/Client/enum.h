@@ -1,5 +1,16 @@
 #pragma once
 
+// Level
+enum class LEVEL_TYPE
+{
+	START_LEVEL,
+	PLAY_LEVEL,
+	EDITOR_LEVEL,
+	END,
+};
+
+
+
 // Object layer
 enum class LAYER
 {
@@ -7,6 +18,7 @@ enum class LAYER
 	TILE,
 	MONSTER,
 	PLAYER,
+	PLATFORM,
 	PLAYER_PJ,
 	MONST_PJ,
 	WORLD_STATIC,

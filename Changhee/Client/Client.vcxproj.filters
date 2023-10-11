@@ -92,6 +92,18 @@
     <Filter Include="Game\03. Manager\LogManager">
       <UniqueIdentifier>{d465edc0-d476-4737-a072-f2e92fcca6d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04. Object\Platform">
+      <UniqueIdentifier>{68c5c613-b006-4b44-8f12-42e92bf40baa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Level\PlayLevel">
+      <UniqueIdentifier>{654c4876-18fc-4502-a072-6210bb271d65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Level\EditorLevel">
+      <UniqueIdentifier>{24ce7ff4-ee07-4e5e-8c77-de25cf9f32b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Level\StartLevel">
+      <UniqueIdentifier>{e14da4c8-cff9-443b-88ce-d51c44e282cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -203,11 +215,23 @@
     <ClInclude Include="CLogMgr.h">
       <Filter>Game\03. Manager\LogManager</Filter>
     </ClInclude>
-    <ClInclude Include="Component.h">
+    <ClInclude Include="components.h">
       <Filter>Game\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="CMovement.h">
       <Filter>Game\06. Component\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlatform.h">
+      <Filter>Game\04. Object\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="CEditorLevel.h">
+      <Filter>Game\05. Level\EditorLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayLevel.h">
+      <Filter>Game\05. Level\PlayLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="CStartLevel.h">
+      <Filter>Game\05. Level\StartLevel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -320,6 +344,18 @@
     </ClCompile>
     <ClCompile Include="CMovement.cpp">
       <Filter>Game\06. Component\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlatform.cpp">
+      <Filter>Game\04. Object\Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="CEditorLevel.cpp">
+      <Filter>Game\05. Level\EditorLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayLevel.cpp">
+      <Filter>Game\05. Level\PlayLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="CStartLevel.cpp">
+      <Filter>Game\05. Level\StartLevel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

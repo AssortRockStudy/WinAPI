@@ -23,7 +23,10 @@ bool CTexture::Load(const wstring& _strFilePath)
 	m_hBit = (HBITMAP)LoadImage(nullptr, _strFilePath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 	m_hDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
 
-	assert(m_hBit);
+	if (nullptr == m_hBit)
+	{
+		return false;
+	}
 
 	DeleteObject((HBITMAP)SelectObject(m_hDC, m_hBit));
 

@@ -30,7 +30,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
-    CEngine::GetInst()->init(g_hWnd, POINT{ 1280,768 });
+    CEngine::GetInst()->init(g_hWnd, POINT{ 1600,900 });
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
     MSG msg;

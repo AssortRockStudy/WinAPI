@@ -32,10 +32,21 @@ public:
 
 public:
 	// 함수
-	
 	float Length()
 	{
 		return sqrtf(x * x + y * y);
+	}
+
+	float Distance(Vec2 _Other)
+	{
+		return sqrtf(powf(x - _Other.x, 2) + powf(y - _Other.y, 2));
+	}
+
+	bool IsZero()
+	{
+		if (x == 0.f && y == 0.f)
+			return true;
+		return false;
 	}
 
 	Vec2& Normalize()
@@ -62,6 +73,11 @@ public:
 
 public:
 	// 오퍼레이터
+
+	Vec2 operator - ()
+	{
+		return Vec2(-x, -y);
+	}
 
 	Vec2 operator + (float _f) const
 	{

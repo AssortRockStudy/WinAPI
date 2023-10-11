@@ -139,8 +139,8 @@ void CCollisionMgr::CollisionBtwLayer(LAYER _eLeft, LAYER _eRight)
 
 bool CCollisionMgr::IsCollision(CCollider* _pLeft, CCollider* _pRight)
 {
-	if (_pLeft->GetScale().x / 2.f + _pRight->GetScale().x / 2.f >= fabs(_pLeft->GetPos().x - _pRight->GetPos().x)
-		&& _pLeft->GetScale().y / 2.f + _pRight->GetScale().y / 2.f >= fabs(_pLeft->GetPos().y - _pRight->GetPos().y))
+	if (_pLeft->GetScale().x / 2.f + _pRight->GetScale().x / 2.f >= abs(_pLeft->GetPos().x - _pRight->GetPos().x)
+		&& _pLeft->GetScale().y / 2.f + _pRight->GetScale().y / 2.f >= abs(_pLeft->GetPos().y - _pRight->GetPos().y))
 	{
 		return true;
 	}
