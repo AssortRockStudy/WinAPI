@@ -192,6 +192,7 @@
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CollisionMgr.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="components.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="DrawMgr.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

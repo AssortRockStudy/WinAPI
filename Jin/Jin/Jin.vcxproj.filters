@@ -186,5 +186,6 @@
     <ClInclude Include="Anim.h" />
     <ClInclude Include="LogMgr.h" />
     <ClInclude Include="Movement.h" />
+    <ClInclude Include="components.h" />
   </ItemGroup>
 </Project>

@@ -22,6 +22,8 @@
 #include "LogMgr.h"
 #include "Anim.h"
 
+#include "components.h"
+
 
 Player::Player()
 	: m_Speed(500.f)
@@ -61,11 +63,11 @@ Player::Player()
 	//m_pTexture = AssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\fighter.bmp");
 	m_Movement = AddComponent<Movement>(L"PlayerMovement");
 	m_Movement->SetMass(1.f);
-	m_Movement->SetInitSpeed(50.f);
-	m_Movement->SetInitSpeed(400.f);
+	m_Movement->SetInitSpeed(200.f);
+	m_Movement->SetMaxSpeed(400.f);
 	m_Movement->UseGravity(true);
 	m_Movement->SetGravityDir(Vec2(0.f, 1.f));
-	m_Movement->SetFrictionScale(0.f);
+	m_Movement->SetFrictionScale(1000.f);
 }
 
 Player::~Player()
@@ -81,7 +83,7 @@ void Player::tick(float _DT)
 	// 키입력이 발생하면 움직인다.
 	if (KEY_PRESSED(A))
 	{
-		vPos.x -= m_Speed * _DT;
+		m_Movement->AddForce(Vec2(-300.f, 0.f));
 		m_Animator->Play(L"WalkLeft", true);
 	}
 
@@ -90,9 +92,9 @@ void Player::tick(float _DT)
 		m_Animator->Play(L"IdleLeft", true);
 	}
 
-	if (KeyMgr::GetInst()->GetKeyState(D) == PRESSED)
+	if (KEY_PRESSED(D))
 	{
-		vPos.x += m_Speed * _DT;
+		m_Movement->AddForce(Vec2(300.f, 0.f));
 		m_Animator->Play(L"WalkRight", true);
 	}
 	if (KEY_RELEASED(D))
@@ -102,7 +104,6 @@ void Player::tick(float _DT)
 
 	if (KEY_PRESSED(W))
 	{
-		vPos.y -= m_Speed * _DT;
 		m_Animator->Play(L"WalkUp", true);
 	}
 
@@ -112,7 +113,6 @@ void Player::tick(float _DT)
 	}
 	if (KEY_PRESSED(S))
 	{
-		vPos.y += m_Speed * _DT;
 		m_Animator->Play(L"WalkDown", true);
 	}
 	if (KEY_RELEASED(S))

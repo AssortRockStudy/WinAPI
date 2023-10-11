@@ -47,6 +47,11 @@ public:
 		y += _f;
 	}
 
+	Vec2 operator -()
+	{
+		return Vec2(-x, -y);
+	}
+
 	Vec2 operator - (Vec2 _Other) const
 	{
 		return Vec2(x- _Other.x, y - _Other.y);
