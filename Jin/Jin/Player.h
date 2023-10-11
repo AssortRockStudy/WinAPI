@@ -13,7 +13,8 @@ class Player :
 
     public:
         virtual void tick(float _DT) override;
-        virtual void Overlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol);
+        virtual void BeginOverlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol);
+        virtual void EndOverlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol);
 
 
     public:

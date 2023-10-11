@@ -11,9 +11,11 @@
 #include "Camera.h"
 #include "LogMgr.h"
 #include "CollisionMgr.h"
+#include "Platform.h"
 
-
-LevelMgr::LevelMgr() {}
+LevelMgr::LevelMgr() 
+	: m_pCurLevel(nullptr)
+{}
 LevelMgr::~LevelMgr()
 {
 	if (nullptr != m_pCurLevel)
@@ -25,18 +27,19 @@ void LevelMgr::init()
 	m_pCurLevel = new Level;
 
 	Player* pPlayer = new Player;
-
-	pPlayer->SetPos(Vec2(500.f, 500.f));
+	pPlayer->SetPos(Vec2(500.f, 200.f));
 	pPlayer->SetScale(Vec2(50.f, 50.f));
-
 	m_pCurLevel->AddObject(PLAYER, pPlayer);
 
-	Monster* pMonster = nullptr;
+	//Monster* pMonster = nullptr;
+	//pMonster = new Monster;
+	//pMonster->SetPos(Vec2(900.f, 500.f));
+	//pMonster->SetScale(Vec2(100.f, 100.f));
+	//m_pCurLevel->AddObject(MONSTER, pMonster);
 
-	pMonster = new Monster;
-	pMonster->SetPos(Vec2(900.f, 500.f));
-	pMonster->SetScale(Vec2(100.f, 100.f));
-	m_pCurLevel->AddObject(MONSTER, pMonster);
+	Platform* pPlatform = new Platform;
+	pPlatform->SetPos(Vec2(800.f, 700.f));
+	m_pCurLevel->AddObject(PLATFORM, pPlatform);
 
 	Vec2 vLookAt = Engine::GetInst()->GetResolution();
 	vLookAt /= 2.f;
@@ -44,6 +47,7 @@ void LevelMgr::init()
 
 	CollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
 	CollisionMgr::GetInst()->CheckCollision(PLAYER_PJ, MONSTER);
+	CollisionMgr::GetInst()->CheckCollision(PLAYER, PLATFORM);
 
 	m_pCurLevel->begin();
 

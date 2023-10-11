@@ -16,11 +16,9 @@
 #include "AssetMgr.h"
 #include "Texture.h"
 
-#include "Collider.h"
-#include "Animator.h"
 #include "Movement.h"
 #include "LogMgr.h"
-#include "Anim.h"
+#include "Platform.h"
 
 #include "components.h"
 
@@ -65,9 +63,9 @@ Player::Player()
 	m_Movement->SetMass(1.f);
 	m_Movement->SetInitSpeed(200.f);
 	m_Movement->SetMaxSpeed(400.f);
-	m_Movement->UseGravity(true);
-	m_Movement->SetGravityDir(Vec2(0.f, 1.f));
 	m_Movement->SetFrictionScale(1000.f);
+	m_Movement->UseGravity(true);
+	m_Movement->SetGravity(Vec2(0.f, 980.f));
 }
 
 Player::~Player()
@@ -122,13 +120,14 @@ void Player::tick(float _DT)
 
  	if (KEY_TAP(SPACE))
 	{
-		Level* pCurLevel = LevelMgr::GetInst()->GetCurLevel();
+		m_Movement->SetGround(false);
+		m_Movement->SetVelocity(Vec2(m_Movement->GetVelocity().x, -500.f));
 
-		Guided* pProjectile = new Guided;
+		//Level* pCurLevel = LevelMgr::GetInst()->GetCurLevel();
+		//Guided* pProjectile = new Guided;
 
-		Vec2 ProjectilePos = GetPos();
+		/*Vec2 ProjectilePos = GetPos();
 		ProjectilePos.y -= GetScale().y / 2.f;
-
 		pProjectile->SetSpeed(500.f);
 		pProjectile->SetAngle(PI/2.f);
 		pProjectile->SetPos(ProjectilePos);
@@ -136,13 +135,24 @@ void Player::tick(float _DT)
 		pProjectile->SetDir(Vec2(0.f, -1.f));
 		TaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)pProjectile });
 	
-		LOG(WARNING, L"warning.......");
+		LOG(WARNING, L"warning.......");*/
 	}
 
 	SetPos(vPos);
 }
 
-void Player::Overlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol)
+void Player::BeginOverlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol)
+ {
+	if (dynamic_cast<Platform*>(_OtherObj))
+	{
+		m_Movement->SetGround(true);
+	}
+}
+
+void Player::EndOverlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol)
 {
-	_OwnCol->GetName();
+	if (dynamic_cast<Platform*>(_OtherObj))
+	{
+		m_Movement->SetGround(false);
+	}
 }

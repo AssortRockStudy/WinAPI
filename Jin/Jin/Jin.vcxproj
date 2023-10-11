@@ -167,6 +167,7 @@
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Sound.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="Obj.h" />
     <ClInclude Include="PathMgr.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Resource.h" />
