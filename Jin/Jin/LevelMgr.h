@@ -5,6 +5,7 @@ class LevelMgr
 
 private:
 	class Level* m_pCurLevel;
+	Level* m_arrLevels[(UINT)LEVEL_TYPE::END];
 
 public:
 	Level* GetCurLevel()

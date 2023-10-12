@@ -64,8 +64,10 @@ Player::Player()
 	m_Movement->SetInitSpeed(200.f);
 	m_Movement->SetMaxSpeed(400.f);
 	m_Movement->SetFrictionScale(1000.f);
-	m_Movement->UseGravity(true);
+
+	m_Movement->UseGravity(false);
 	m_Movement->SetGravity(Vec2(0.f, 980.f));
+	m_Movement->SetGround(true);
 }
 
 Player::~Player()
@@ -102,6 +104,7 @@ void Player::tick(float _DT)
 
 	if (KEY_PRESSED(W))
 	{
+		m_Movement->AddForce(Vec2(0.f, -300.f));
 		m_Animator->Play(L"WalkUp", true);
 	}
 
@@ -111,6 +114,7 @@ void Player::tick(float _DT)
 	}
 	if (KEY_PRESSED(S))
 	{
+		m_Movement->AddForce(Vec2(0.f, 300.f));
 		m_Animator->Play(L"WalkDown", true);
 	}
 	if (KEY_RELEASED(S))

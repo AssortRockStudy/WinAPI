@@ -108,6 +108,9 @@
     <ClCompile Include="LogMgr.cpp" />
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="Platform.cpp" />
+    <ClCompile Include="EditorLevel.cpp" />
+    <ClCompile Include="PlayLevel.cpp" />
+    <ClCompile Include="StartLevel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -189,5 +192,8 @@
     <ClInclude Include="Movement.h" />
     <ClInclude Include="components.h" />
     <ClInclude Include="Platform.h" />
+    <ClInclude Include="EditorLevel.h" />
+    <ClInclude Include="PlayLevel.h" />
+    <ClInclude Include="StartLevel.h" />
   </ItemGroup>
 </Project>

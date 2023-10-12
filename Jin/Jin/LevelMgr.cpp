@@ -2,6 +2,9 @@
 #include "Engine.h"
 #include "LevelMgr.h"
 #include "Level.h"
+#include "CPlayLevel.h"
+#include "CStartLevel.h"
+#include "CEditorLevel.h"
 #include "Player.h"
 #include "Monster.h"
 //#include "DrawMgr.h"
@@ -18,36 +21,26 @@ LevelMgr::LevelMgr()
 {}
 LevelMgr::~LevelMgr()
 {
-	if (nullptr != m_pCurLevel)
-		delete m_pCurLevel;
+	for (UINT i = 0; i < (UINT)LEVEL_TYPE::END; ++i)
+	{
+		if (nullptr != m_arrLevels[i])
+			delete m_arrLevels[i];
+	}
 }
 
 void LevelMgr::init()
 {
-	m_pCurLevel = new Level;
+	m_arrLevels[(UINT)LEVEL_TYPE::START_LEVEL] = new StartLevel;
+	m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL] = new PlayerLevel;
+	m_arrLevels[(UINT)LEVEL_TYPE::EDITOR_LEVEL] = new EditorLevel;
 
-	Player* pPlayer = new Player;
-	pPlayer->SetPos(Vec2(500.f, 200.f));
-	pPlayer->SetScale(Vec2(50.f, 50.f));
-	m_pCurLevel->AddObject(PLAYER, pPlayer);
+	for (UINT i = 0; i < (UINT)LEVEL_TYPE::END; ++i)
+	{
+		m_arrLevels[i]->init();
+	}
 
-	//Monster* pMonster = nullptr;
-	//pMonster = new Monster;
-	//pMonster->SetPos(Vec2(900.f, 500.f));
-	//pMonster->SetScale(Vec2(100.f, 100.f));
-	//m_pCurLevel->AddObject(MONSTER, pMonster);
+	m_pCurLevel = m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL];
 
-	Platform* pPlatform = new Platform;
-	pPlatform->SetPos(Vec2(800.f, 700.f));
-	m_pCurLevel->AddObject(PLATFORM, pPlatform);
-
-	Vec2 vLookAt = Engine::GetInst()->GetResolution();
-	vLookAt /= 2.f;
-	Camera::GetInst()->SetLookAt(vLookAt);
-
-	CollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
-	CollisionMgr::GetInst()->CheckCollision(PLAYER_PJ, MONSTER);
-	CollisionMgr::GetInst()->CheckCollision(PLAYER, PLATFORM);
 
 	m_pCurLevel->begin();
 
