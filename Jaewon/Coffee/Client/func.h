@@ -16,3 +16,5 @@ bool isValid(T*& _ent){
 
 	return true;
 }
+
+void changeLevel(LEVEL_TYPE _type);

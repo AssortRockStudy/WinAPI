@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "func.h"
 #include "CEntity.h"
+#include "TaskMgr.h"
 
 Vec2 Rotate(Vec2 _vDir, float _angle)
 {
@@ -18,4 +19,12 @@ bool GetRotateClock(Vec2 _vDir1, Vec2 _vDir2)
 		return true;
 	else
 		return false;
+}
+
+void changeLevel(LEVEL_TYPE _type)
+{
+	FTask task = {};
+	task.Type = LEVEL_CHANGE;
+	task.Param1 = (INT_PTR)_type;
+	TaskMgr::GetInst()->addTask(task);
 }

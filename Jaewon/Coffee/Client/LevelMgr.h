@@ -7,6 +7,7 @@ class LevelMgr
 
 private:
 	class CLevel* curLevel;
+	CLevel* arrLevels[(UINT)LEVEL_TYPE::END];
 
 public:
 	CLevel* getCurLevel() { return curLevel; }

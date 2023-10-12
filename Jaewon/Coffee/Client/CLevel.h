@@ -11,6 +11,7 @@ private:
 	CLayer* m_Layer[LAYER::END];
 
 public:
+	virtual void init() = 0;
 	void begin();
 	void tick();
 	void render(HDC _dc);
@@ -24,7 +25,7 @@ public:
 		return m_Layer[_idx];
 	}
 
-private:
+protected:
 	void addObject(LAYER _type, CObj* _obj);
 
 public:

@@ -62,6 +62,15 @@
     <Filter Include="Game\04.Object\Platform">
       <UniqueIdentifier>{351708d1-020c-4a9a-8c7d-c3d28108289c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05.Level\Editor">
+      <UniqueIdentifier>{ce8a8607-2a7b-44e2-be95-d4bfbc92e2eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05.Level\Start">
+      <UniqueIdentifier>{71c8ac4e-64c9-427e-b345-00d8287d2f98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05.Level\Play">
+      <UniqueIdentifier>{1120c6db-028e-4d6a-9194-21a76408f5fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -169,6 +178,15 @@
     </ClInclude>
     <ClInclude Include="Platform.h">
       <Filter>Game\04.Object\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="EditorLevel.h">
+      <Filter>Game\05.Level\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayLevel.h">
+      <Filter>Game\05.Level\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="StartLevel.h">
+      <Filter>Game\05.Level\Start</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -278,6 +296,15 @@
     </ClCompile>
     <ClCompile Include="Platform.cpp">
       <Filter>Game\04.Object\Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="EditorLevel.cpp">
+      <Filter>Game\05.Level\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayLevel.cpp">
+      <Filter>Game\05.Level\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="StartLevel.cpp">
+      <Filter>Game\05.Level\Start</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

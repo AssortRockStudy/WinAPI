@@ -157,6 +157,7 @@
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="EditorLevel.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="func.h" />
     <ClInclude Include="GCMgr.h" />
@@ -168,6 +169,8 @@
     <ClInclude Include="Movement.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayLevel.h" />
+    <ClInclude Include="StartLevel.h" />
     <ClInclude Include="struct.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
@@ -193,6 +196,7 @@
     <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
+    <ClCompile Include="EditorLevel.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="GCMgr.cpp" />
     <ClCompile Include="Guided.cpp" />
@@ -205,6 +209,8 @@
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayLevel.cpp" />
+    <ClCompile Include="StartLevel.cpp" />
     <ClCompile Include="struct.cpp" />
     <ClCompile Include="TaskMgr.cpp" />
   </ItemGroup>

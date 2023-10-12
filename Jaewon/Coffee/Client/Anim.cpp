@@ -57,41 +57,52 @@ void Anim::create(const wstring& _name, CTexture* _atlas, Vec2 _lTop, Vec2 _cutS
 bool Anim::save(const wstring& _path){
 	FILE* pFile = nullptr;
 
-	_wfopen_s(&pFile, _path.c_str(), L"wb");
+	_wfopen_s(&pFile, _path.c_str(), L"w");
 
 	if (nullptr == pFile){
 		LOG(ERR, L"파일 열기 실패");
 		return false;
 	}
 
+
+	fwprintf_s(pFile, L"[ANIM_NAME]\n");
 	wstring strName = getName();
-	int iLen = 0;
-	iLen = strName.length();
-	fwrite(&iLen, sizeof(int), 1, pFile);
-	fwrite(strName.c_str(), sizeof(wchar_t), strName.length(), pFile);
+	fwprintf_s(pFile, strName.c_str());
+	fwprintf_s(pFile, L"\n\n");
+	
+	fwprintf_s(pFile, L"[ATLAS_TEXTURE]\n");
+	wstring strKey;
+	wstring strRelativePath;
 
-
-	bool bExist = mAtlas;
-	fwrite(&bExist, sizeof(bool), 1, pFile);
-
-	if (bExist){
-		wstring strKey = mAtlas->getKey();
-		wstring strRelativePath = mAtlas->getPath();
-
-		int iLen = 0;
-
-		iLen = strKey.length();
-		fwrite(&iLen, sizeof(int), 1, pFile);
-		fwrite(strKey.c_str(), sizeof(wchar_t), strKey.length(), pFile);
-
-		iLen = strRelativePath.length();
-		fwrite(&iLen, sizeof(int), 1, pFile);
-		fwrite(strRelativePath.c_str(), sizeof(wchar_t), strRelativePath.length(), pFile);
+	if (isValid(mAtlas)){
+		strKey = mAtlas->getKey();
+		strRelativePath = mAtlas->getPath();
 	}
+	fwprintf_s(pFile, strKey.c_str());
+	fwprintf_s(pFile, L"\n");
+	fwprintf_s(pFile, strRelativePath.c_str());
+	fwprintf_s(pFile, L"\n\n");
 
-	size_t frmCount = vecFrm.size();
-	fwrite(&frmCount, sizeof(size_t), 1, pFile);
-	fwrite(&vecFrm[0], sizeof(Frame), vecFrm.size(), pFile);
+	fwprintf_s(pFile, L"[FRAME_COUNT]\n");
+	fwprintf_s(pFile, L"%d\n\n", vecFrm.size());
+
+	for (size_t i = 0; i < vecFrm.size(); ++i)
+	{
+		fwprintf_s(pFile, L"[FRAME_NUM]\n");
+		fwprintf_s(pFile, L"%d\n", i);
+
+		fwprintf_s(pFile, L"[LEFT_TOP]\n");
+		fwprintf_s(pFile, L"%f %f\n", vecFrm[i].leftTop.x, vecFrm[i].leftTop.y);
+
+		fwprintf_s(pFile, L"[CUT_SIZE]\n");
+		fwprintf_s(pFile, L"%f %f\n", vecFrm[i].cutSize.x, vecFrm[i].cutSize.y);
+
+		fwprintf_s(pFile, L"[OFFSET]\n");
+		fwprintf_s(pFile, L"%f %f\n", vecFrm[i].offset.x, vecFrm[i].offset.y);
+
+		fwprintf_s(pFile, L"[DURATION]\n");
+		fwprintf_s(pFile, L"%f\n\n", vecFrm[i].duration);
+	}
 
 	fclose(pFile);
 	return true;
@@ -100,50 +111,76 @@ bool Anim::save(const wstring& _path){
 bool Anim::load(const wstring& _path){
 	FILE* pFile = nullptr;
 
-	_wfopen_s(&pFile, _path.c_str(), L"rb");
+	_wfopen_s(&pFile, _path.c_str(), L"r");
 
 	if (nullptr == pFile)
 	{
 		LOG(ERR, L"파일 열기 실패");
 		return false;
 	}
+	while (true)
+	{
+		wchar_t szRead[256] = {};
+		if (EOF == fwscanf_s(pFile, L"%s", szRead, 256))
+			break;
 
-	wchar_t szName[255] = {};
-	int iLen = 0;
-	fread(&iLen, sizeof(int), 1, pFile);
-	fread(szName, sizeof(wchar_t), iLen, pFile);
+		if (!wcscmp(szRead, L"[ANIM_NAME]"))
+		{
+			fwscanf_s(pFile, L"%s", szRead, 256);
+			setName(szRead);
+		}
+		else if (!wcscmp(szRead, L"[ATLAS_TEXTURE]"))
+		{
+			wstring strKey, strRelativePath;
 
-	setName(szName);
+			fwscanf_s(pFile, L"%s", szRead, 256);
+			strKey = szRead;
 
-	bool bExist = 0;
-	fread(&bExist, sizeof(bool), 1, pFile);
+			fwscanf_s(pFile, L"%s", szRead, 256);
+			strRelativePath = szRead;
 
-	if (bExist){
-		wchar_t szBuff[255] = {};
+			mAtlas = CAssetMgr::GetInst()->LoadTexture(strKey, strRelativePath);
+		}
+		else if (!wcscmp(szRead, L"[FRAME_COUNT]"))
+		{
+			size_t iFrameCount = 0;
+			fwscanf_s(pFile, L"%d", &iFrameCount);
+			vecFrm.resize(iFrameCount);
 
-		int iLen = 0;
+			size_t iCurFrame = 0;
+			while (true){
+				fwscanf_s(pFile, L"%s", szRead, 256);
 
-		fread(&iLen, sizeof(int), 1, pFile);
-		fread(szBuff, sizeof(wchar_t), iLen, pFile);
-		wstring strKey = szBuff;
+				if (!wcscmp(szRead, L"[FRAME_NUM]"))
+					fwscanf_s(pFile, L"%d", &iCurFrame);
 
-		wmemset(szBuff, 0, 255);
+				else if (!wcscmp(szRead, L"[LEFT_TOP]")){
+					fwscanf_s(pFile, L"%f", &vecFrm[iCurFrame].leftTop.x);
+					fwscanf_s(pFile, L"%f", &vecFrm[iCurFrame].leftTop.y);
+				}
 
-		fread(&iLen, sizeof(int), 1, pFile);
-		fread(szBuff, sizeof(wchar_t), iLen, pFile);
-		wstring strRelativePath = szBuff;
+				else if (!wcscmp(szRead, L"[CUT_SIZE]")){
+					fwscanf_s(pFile, L"%f", &vecFrm[iCurFrame].cutSize.x);
+					fwscanf_s(pFile, L"%f", &vecFrm[iCurFrame].cutSize.y);
+				}
 
-		mAtlas = CAssetMgr::GetInst()->LoadTexture(strKey, strRelativePath);
+				else if (!wcscmp(szRead, L"[OFFSET]")){
+					fwscanf_s(pFile, L"%f", &vecFrm[iCurFrame].offset.x);
+					fwscanf_s(pFile, L"%f", &vecFrm[iCurFrame].offset.y);
+				}
+				else if (!wcscmp(szRead, L"[DURATION]")){
+					fwscanf_s(pFile, L"%f", &vecFrm[iCurFrame].duration);
+
+					if (iFrameCount - 1 <= iCurFrame)
+						break;
+				}
+			}
+		}
 	}
-
-	size_t FrmCount = 0;
-	fread(&FrmCount, sizeof(size_t), 1, pFile);
-	vecFrm.resize(FrmCount);
-	fread(&vecFrm[0], sizeof(Frame), vecFrm.size(), pFile);
 
 	fclose(pFile);
 	return true;
-}
+ }
 
 Anim::Anim():mAnimator(nullptr), mAtlas(nullptr), mCurFrame(0), finished(false), accTime(0.f){}
 
