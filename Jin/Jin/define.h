@@ -31,6 +31,7 @@
 #define SELECT_PEN(DC, TYPE) FSelectPen tempPenSelect(DC, TYPE)
 #define SELECT_BRUSH(DC, hBrush) FSelectBrush tempBrushSelect(DC, hBrush)
 
+#define TILE_SIZE 64
 
 //enum Color
 //{
