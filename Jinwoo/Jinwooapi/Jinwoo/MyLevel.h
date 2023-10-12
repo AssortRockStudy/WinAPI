@@ -13,12 +13,19 @@ private:
 	// 하위 클래스들을 모두 관리할 수 있다
 	// vector<MyObject*> m_vecObject;
 
-	MyLayer* m_Layer[(UINT_PTR)LAYER::END];
+	MyLayer*	m_Layer[(UINT_PTR)LAYER::END];
+
+	UINT		m_TileRow;
+	UINT		m_TileCol;
 	
 public:
-	void begin();
-	void tick();
-	void render(HDC _dc);
+	virtual void init() = 0;
+	virtual void enter() = 0;
+	virtual void exit() = 0;
+
+	virtual void begin();
+	virtual void tick();
+	virtual void render(HDC _dc);
 
 public:
 	template <typename T>
@@ -33,8 +40,10 @@ public:
 		return m_Layer[_LayerIdx];
 	}
 
-private:
+protected:
 	void AddObject(LAYER _LayerType, MyObject* _Object);
+	void DeleteAllObjects();
+	void CreateTile(UINT _Row, UINT _Col);
 
 public:
 	MyLevel();

@@ -31,6 +31,8 @@
 #define SELECT_PEN(DC,TYPE)	FSelectPen TempPenSelect(DC,TYPE)
 #define SELECT_BRUSH(DC, hBrush)	FSelectBrush TempBrushSelect(DC, hBrush)
 
+#define TILE_SIZE 64
+
 enum class KEY
 {
 	_0,
@@ -133,6 +135,7 @@ enum class TASK_TYPE
 	// 삭제는 오브젝트의 주소만 받아도 됨
 	DELETE_OBJECT,
 
+	// Param1 : LEVEL_TYPE
 	LEVEL_CHANGE,
 };
 
@@ -149,4 +152,12 @@ enum class LOG_LEVEL
 	LOG,
 	WARNING,
 	ERR,
+};
+
+enum class LEVEL_TYPE
+{
+	START_LEVEL,
+	PLAY_LEVEL,
+	EDITOR_LEVEL,
+	END,
 };

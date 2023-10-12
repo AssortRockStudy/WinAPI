@@ -11,10 +11,7 @@ MyLayer::MyLayer()
 
 MyLayer::~MyLayer()
 {
-	for (size_t i = 0; i < m_vecObject.size(); ++i)
-	{
-		delete m_vecObject[i];
-	}
+	DeleteAllObjects();
 }
 
 void MyLayer::begin()
@@ -59,4 +56,14 @@ void MyLayer::render(HDC _dc)
 			++iter;
 		}
 	}
+}
+
+void MyLayer::DeleteAllObjects()
+{
+	for (size_t i = 0; i < m_vecObject.size(); ++i)
+	{
+		delete m_vecObject[i];
+	}
+
+	m_vecObject.clear();
 }

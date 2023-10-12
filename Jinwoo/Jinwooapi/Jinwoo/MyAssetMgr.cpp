@@ -33,7 +33,13 @@ MyTexture* MyAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRe
 	wstring strFilePath = strContentPath + _strRelativePath;
 
 	pTexture = new MyTexture;
-	pTexture->Load(strFilePath);
+
+	if (!pTexture->Load(strFilePath))
+	{
+		// 텍스처 로드가 실패했을 경우(경로 문제 등)
+		delete pTexture;
+		return nullptr;
+	}
 
 	// Asset에 키값과 경로값을 알려준다
 	pTexture->m_strKey = _strKey;

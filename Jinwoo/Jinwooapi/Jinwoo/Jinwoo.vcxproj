@@ -152,6 +152,7 @@
     <ClInclude Include="MyCollider.h" />
     <ClInclude Include="MyColliderMgr.h" />
     <ClInclude Include="MyComponent.h" />
+    <ClInclude Include="MyEditLevel.h" />
     <ClInclude Include="MyEngine.h" />
     <ClInclude Include="MyEntity.h" />
     <ClInclude Include="MyGCMgr.h" />
@@ -166,10 +167,13 @@
     <ClInclude Include="MyPathMgr.h" />
     <ClInclude Include="MyPlatform.h" />
     <ClInclude Include="MyPlayer.h" />
+    <ClInclude Include="MyPlayLevel.h" />
     <ClInclude Include="MyProjectile.h" />
     <ClInclude Include="MySound.h" />
+    <ClInclude Include="MyStartLevel.h" />
     <ClInclude Include="MyTaskMgr.h" />
     <ClInclude Include="MyTexture.h" />
+    <ClInclude Include="MyTile.h" />
     <ClInclude Include="MyTimeMgr.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
@@ -189,6 +193,7 @@
     <ClCompile Include="MyCollider.cpp" />
     <ClCompile Include="MyColliderMgr.cpp" />
     <ClCompile Include="MyComponent.cpp" />
+    <ClCompile Include="MyEditLevel.cpp" />
     <ClCompile Include="MyEngine.cpp" />
     <ClCompile Include="MyEntity.cpp" />
     <ClCompile Include="MyGCMgr.cpp" />
@@ -203,10 +208,13 @@
     <ClCompile Include="MyPathMgr.cpp" />
     <ClCompile Include="MyPlatform.cpp" />
     <ClCompile Include="MyPlayer.cpp" />
+    <ClCompile Include="MyPlayLevel.cpp" />
     <ClCompile Include="MyProjectile.cpp" />
     <ClCompile Include="MySound.cpp" />
+    <ClCompile Include="MyStartLevel.cpp" />
     <ClCompile Include="MyTaskMgr.cpp" />
     <ClCompile Include="MyTexture.cpp" />
+    <ClCompile Include="MyTile.cpp" />
     <ClCompile Include="MyTimeMgr.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="struct.cpp" />

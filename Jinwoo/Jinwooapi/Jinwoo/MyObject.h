@@ -17,6 +17,10 @@ private:
 	Vec2					m_Pos;
 	Vec2					m_Scale;
 	vector<MyComponent*>	m_vecComponent;
+
+	// 오브젝트 자체로는 layer idx를 알 필요가 없었지만,
+	// 자신의 오너포인터를 들고있는 컴포넌트 중 컬라이더가 자신의 오너 레이어 정보를 토대로
+	// Layer의 컬라이더 벡터에 등록해야했기 때문에 cobj가 layeridx를 갖게 되었다.
 	int						m_LayerIdx;
 
 protected:

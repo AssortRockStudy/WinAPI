@@ -8,6 +8,10 @@
 #include "MyLogMgr.h"
 
 #include "MyLevel.h"
+#include "MyStartLevel.h"
+#include "MyPlayLevel.h"
+#include "MyEditLevel.h"
+
 #include "MyPlayer.h"
 #include "MyMonster.h"
 #include "MyPlatform.h"
@@ -19,55 +23,71 @@ MyLevelMgr::MyLevelMgr() : m_pCurLevel(nullptr)
 
 MyLevelMgr::~MyLevelMgr()
 {
-	if (nullptr != m_pCurLevel)
+	for (UINT i = 0; i < (UINT)LEVEL_TYPE::END; ++i)
 	{
-		delete m_pCurLevel;
+		if (nullptr != m_arrLevels[i])
+		{
+			delete m_arrLevels[i];
+		}
 	}
 }
 
-void MyLevelMgr::init()
+void MyLevelMgr::ChangeLevel(LEVEL_TYPE _Type)
 {
-	m_pCurLevel = new MyLevel;
+	// 같은 레벨로 변경하려 할 경우
+	if (m_pCurLevel == m_arrLevels[(UINT)_Type])
+	{
+		return;
+	}
 
-	MyPlayer* pPlayer = new MyPlayer;
-	pPlayer->SetPos(Vec2(500.f, 200.f));
-	pPlayer->SetScale(Vec2(50.f, 50.f));
+	// 기존에 다른 레벨을 실행중일 경우 기존 레벨 exit
+	if (nullptr != m_pCurLevel)
+	{
+		m_pCurLevel->exit();
+	}
 
-	//MyMonster* pMonster = new MyMonster;
-	//pMonster->SetPos(Vec2(200.f, 200.f));
-	//pMonster->SetScale(Vec2(80.f, 80.f));
-	//
-	//MyMonster* pMonster2 = new MyMonster;
-	//pMonster2->SetPos(Vec2(800.f, 200.f));
-	//pMonster2->SetScale(Vec2(80.f, 80.f));
+	m_pCurLevel = m_arrLevels[(UINT)_Type];
 
-	m_pCurLevel->AddObject(LAYER::PLAYER, pPlayer);
-	//m_pCurLevel->AddObject(LAYER::MONSTER, pMonster);
-	//m_pCurLevel->AddObject(LAYER::MONSTER, pMonster2);
-
-	// 플랫폼 설치
-	MyPlatform* pPlatform = new MyPlatform;
-	pPlatform->SetPos(Vec2(800.f, 700.f));
-	m_pCurLevel->AddObject(LAYER::PLATFORM, pPlatform);
-
-	Vec2 vLookAt = MyEngine::GetInst()->GetMainResolution();
-	vLookAt /= 2.f;
-	MyCameraMgr::GetInst()->SetLookAt(vLookAt);
-
-	MyColliderMgr::GetInst()->CheckCollision(LAYER::MONSTER, LAYER::PLAYER);
-	MyColliderMgr::GetInst()->CheckCollision(LAYER::MONSTER, LAYER::PLAYERBULLET);
-	MyColliderMgr::GetInst()->CheckCollision(LAYER::PLAYER, LAYER::PLATFORM);
+	m_pCurLevel->enter();
 
 	m_pCurLevel->begin();
 }
 
+void MyLevelMgr::init()
+{
+	// 모든 레벨 생성
+	m_arrLevels[(UINT)LEVEL_TYPE::START_LEVEL] = new MyStartLevel;
+	m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL] = new MyPlayLevel;
+	m_arrLevels[(UINT)LEVEL_TYPE::EDITOR_LEVEL] = new MyEditLevel;
+
+	// 레벨 초기화
+	for (UINT i = 0; i < (UINT)LEVEL_TYPE::END; ++i)
+	{
+		m_arrLevels[i]->init();
+	}
+
+	//// 초기 레벨을 PLAY_LEVEL로 설정
+	//m_pCurLevel = m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL];
+
+	// ::를 사용하여 전역함수를 사용하겠다고 명시
+	::ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
+}
+
 void MyLevelMgr::tick()
 {
-	m_pCurLevel->tick();
+	if (nullptr != m_pCurLevel)
+	{
+		m_pCurLevel->tick();
+	}
 }
 
 void MyLevelMgr::render(HDC _dc)
 {
+	if (nullptr == m_pCurLevel)
+	{
+		return;
+	}
+
 	POINT pResolution = MyEngine::GetInst()->GetMainResolution();
 
 	// 화면에 출력되지 않는 SubDC에 새로운 사각형을 그려서 화면을 지운 것처럼 활용

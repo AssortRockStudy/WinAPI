@@ -23,6 +23,8 @@ public:
 
 	const vector<MyCollider*>& GetCollider() { return m_vecCollider; }
 
+	void DeleteAllObjects();
+
 public:
 	MyLayer();
 	~MyLayer();

@@ -68,6 +68,18 @@
     <Filter Include="Game\04.Object\Platform">
       <UniqueIdentifier>{881b233f-54e2-41e3-9722-0bb73282aa11}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05.Level\EditLevel">
+      <UniqueIdentifier>{2b808d1c-dd93-4c0c-9f3d-838455d1d413}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05.Level\PlayLevel">
+      <UniqueIdentifier>{eb140b6b-e4ef-4681-a451-f7761aedc5b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05.Level\StartLevel">
+      <UniqueIdentifier>{e222e143-073d-41df-bfa1-d051fd45671f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04.Object\Tile">
+      <UniqueIdentifier>{644320b0-9062-4bda-b6c3-57571b9e8ad4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -182,6 +194,18 @@
     <ClInclude Include="MyPlatform.h">
       <Filter>Game\04.Object\Platform</Filter>
     </ClInclude>
+    <ClInclude Include="MyStartLevel.h">
+      <Filter>Game\05.Level\StartLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="MyPlayLevel.h">
+      <Filter>Game\05.Level\PlayLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="MyEditLevel.h">
+      <Filter>Game\05.Level\EditLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="MyTile.h">
+      <Filter>Game\04.Object\Tile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jinwoo.rc">
@@ -290,6 +314,18 @@
     </ClCompile>
     <ClCompile Include="MyPlatform.cpp">
       <Filter>Game\04.Object\Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="MyStartLevel.cpp">
+      <Filter>Game\05.Level\StartLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="MyPlayLevel.cpp">
+      <Filter>Game\05.Level\PlayLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="MyEditLevel.cpp">
+      <Filter>Game\05.Level\EditLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="MyTile.cpp">
+      <Filter>Game\04.Object\Tile</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

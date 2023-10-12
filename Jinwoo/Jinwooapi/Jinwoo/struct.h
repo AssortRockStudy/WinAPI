@@ -21,6 +21,11 @@ public:
 
 	}
 
+	Vec2(UINT _x, UINT _y) : x((float)_x), y((float)_y)
+	{
+
+	}
+
 	Vec2(POINT _point) : x((float)_point.x), y((float)_point.y)
 	{
 

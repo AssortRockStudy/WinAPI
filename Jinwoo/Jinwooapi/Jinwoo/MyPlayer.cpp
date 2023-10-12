@@ -33,8 +33,6 @@ MyPlayer::MyPlayer() : m_Speed(300.f), m_Collider(nullptr)
 	//m_Animator->CreateAnimation(L"IdleUp", m_Texture, Vec2(0.f, 260.f), Vec2(120, 130), Vec2(0.f, -65.f), 0.5f, 1);
 	//m_Animator->CreateAnimation(L"IdleRight", m_Texture, Vec2(0.f, 390.f), Vec2(120, 130), Vec2(0.f, -65.f), 0.5f, 3);
 
-
-
 	//m_Animator->CreateAnimation(L"WalkDown", m_Texture, Vec2(0.f, 520.f), Vec2(120, 130), Vec2(0.f, -65.f), 0.05f, 10);
 	//m_Animator->CreateAnimation(L"WalkLeft", m_Texture, Vec2(0.f, 650.f), Vec2(120, 130), Vec2(0.f, -65.f), 0.05f, 10);
 	//m_Animator->CreateAnimation(L"WalkUp", m_Texture, Vec2(0.f, 780.f), Vec2(120, 130), Vec2(0.f, -65.f), 0.05f, 10);
@@ -64,7 +62,7 @@ MyPlayer::MyPlayer() : m_Speed(300.f), m_Collider(nullptr)
 	m_Movement->SetInitSpeed(100.f);
 	m_Movement->SetMaxSpeed(400.f);
 	m_Movement->SetFrictionScale(1000.f);
-	m_Movement->UseGravity(true);
+	m_Movement->UseGravity(false);
 	m_Movement->SetGravity(Vec2(0.f, 980.f));
 }
 
