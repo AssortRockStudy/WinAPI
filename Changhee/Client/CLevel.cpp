@@ -5,9 +5,12 @@
 #include "CLayer.h"
 #include "CObj.h"
 
+#include "CTile.h"
 
 
 CLevel::CLevel()
+	: m_iTileCol(0)
+	, m_iTileRow(0)
 {
 	for (UINT i = 0; i < (UINT)LAYER::END; ++i)
 	{
@@ -66,5 +69,32 @@ void CLevel::AddObject(LAYER _eLayer, CObj* _Object)
 	m_arrLayer[(UINT)_eLayer]->AddObject(_Object);
 
 	_Object->m_iLayerIdx = (int)_eLayer;
+}
+
+void CLevel::DeleteAllObjects()
+{
+	for (UINT i = 0; i < (UINT)LAYER::END; ++i)
+	{
+		m_arrLayer[i]->DeleteAllObjects();
+	}
+
+}
+
+void CLevel::CreateTile(UINT _iRow, UINT _iCol)
+{
+	m_iTileRow = _iRow;
+	m_iTileCol = _iCol;
+
+
+	for (UINT i = 0; i < m_iTileRow; ++i)
+	{
+		for (UINT j = 0; j < m_iTileCol; ++j)
+		{
+			CTile* pTile = new CTile;
+			pTile->SetPos(Vec2(TILE_SIZE * j, TILE_SIZE * i));
+			AddObject(LAYER::TILE, pTile);
+		}
+	}
+
 }
 

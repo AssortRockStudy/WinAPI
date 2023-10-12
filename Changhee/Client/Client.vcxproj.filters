@@ -104,6 +104,9 @@
     <Filter Include="Game\05. Level\StartLevel">
       <UniqueIdentifier>{e14da4c8-cff9-443b-88ce-d51c44e282cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04. Object\Tile">
+      <UniqueIdentifier>{af43a641-2fd2-4046-a432-cf5049aa2019}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -233,6 +236,9 @@
     <ClInclude Include="CStartLevel.h">
       <Filter>Game\05. Level\StartLevel</Filter>
     </ClInclude>
+    <ClInclude Include="CTile.h">
+      <Filter>Game\04. Object\Tile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -356,6 +362,9 @@
     </ClCompile>
     <ClCompile Include="CStartLevel.cpp">
       <Filter>Game\05. Level\StartLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="CTile.cpp">
+      <Filter>Game\04. Object\Tile</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

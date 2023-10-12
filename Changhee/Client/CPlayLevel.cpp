@@ -4,6 +4,7 @@
 #include "CEngine.h"
 
 #include "CCollisionMgr.h"
+#include "CKeyMgr.h"
 
 #include "CPlatform.h"
 #include "CPlayer.h"
@@ -40,4 +41,24 @@ void CPlayLevel::init()
 	pPlatform->SetPos(Vec2(800.f, 700.f));
 	AddObject(LAYER::PLATFORM, pPlatform);
 
+}
+
+void CPlayLevel::enter()
+{
+	init();
+}
+
+void CPlayLevel::exit()
+{
+	DeleteAllObjects();
+}
+
+void CPlayLevel::tick()
+{
+	CLevel::tick();
+
+	if (KEY_TAP(KEY::ENTER))
+	{
+		ChangeLevel(LEVEL_TYPE::START_LEVEL);
+	}
 }

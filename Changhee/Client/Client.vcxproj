@@ -177,6 +177,7 @@
     <ClInclude Include="CStartLevel.h" />
     <ClInclude Include="CTaskMgr.h" />
     <ClInclude Include="CTexture.h" />
+    <ClInclude Include="CTile.h" />
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="enum.h" />
@@ -220,6 +221,7 @@
     <ClCompile Include="CStartLevel.cpp" />
     <ClCompile Include="CTaskMgr.cpp" />
     <ClCompile Include="CTexture.cpp" />
+    <ClCompile Include="CTile.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="main.cpp" />

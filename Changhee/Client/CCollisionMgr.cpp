@@ -73,6 +73,9 @@ void CCollisionMgr::CollisionBtwLayer(LAYER _eLeft, LAYER _eRight)
 {
 	CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
 
+	if (pCurLevel == nullptr)
+		return;
+
 	const vector<CCollider*>& vecLeft = pCurLevel->GetLayer((int)_eLeft)->GetColliders();
 	const vector<CCollider*>& vecRight = pCurLevel->GetLayer((int)_eRight)->GetColliders();
 

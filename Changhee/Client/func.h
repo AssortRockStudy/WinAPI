@@ -20,5 +20,7 @@ bool IsValid(T*& _pEntity)
 	return true;
 }
 
+void ChangeLevel(LEVEL_TYPE _eType);
+
 void SaveWString(const wstring& _str, FILE* _File);
 void LoadWString(wstring& _str, FILE* _File);

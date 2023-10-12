@@ -11,12 +11,18 @@ CLayer::CLayer()
 
 CLayer::~CLayer()
 {
+	DeleteAllObjects();
+}
+
+
+void CLayer::DeleteAllObjects()
+{
 	for (size_t i = 0; i < m_vecObjects.size(); ++i)
 	{
 		delete m_vecObjects[i];
 	}
+	m_vecObjects.clear();
 }
-
 
 void CLayer::begin()
 {

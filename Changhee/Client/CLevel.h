@@ -11,7 +11,10 @@ class CLevel :
 	public CEntity
 {
 private:
-	CLayer* m_arrLayer[(UINT)LAYER::END];
+	CLayer*			m_arrLayer[(UINT)LAYER::END];
+
+	UINT			m_iTileRow;
+	UINT			m_iTileCol;
 
 public:
 	template<typename T>
@@ -26,9 +29,14 @@ public:
 
 protected:
 	void AddObject(LAYER _eLayer, CObj* _Object);
+	void DeleteAllObjects();
+	void CreateTile(UINT _iRow, UINT _iCol);
 
 public:
 	virtual void init() = 0;
+	virtual void enter() = 0;
+	virtual void exit() = 0;
+
 	virtual void begin();
 	virtual void tick();
 	virtual void render(HDC _dc);

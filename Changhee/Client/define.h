@@ -30,7 +30,14 @@
 #define KEY_RELEASED(Key) KEY_CHECK(Key, KEY_STATE::RELEASED)
 #define KEY_NONE(Key) KEY_CHECK(Key, KEY_STATE::NONE)
 
+
+// math
 #define PI 3.14159265348979f
 
+
+// Object
 #define GENERATED_OBJECT(type) typedef type Super;\
 							   virtual void Abstract() override {}
+
+// Tile
+#define TILE_SIZE 64

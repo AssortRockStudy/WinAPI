@@ -7,6 +7,7 @@
 
 CLevelMgr::CLevelMgr()
 	: m_pCurLevel(nullptr)
+	, m_arrLevels{}
 {}
 
 
@@ -19,6 +20,21 @@ CLevelMgr::~CLevelMgr()
 			delete m_arrLevels[i];
 		}
 	}
+}
+
+void CLevelMgr::ChangeLevel(LEVEL_TYPE _eType)
+{
+	if (m_pCurLevel == m_arrLevels[(UINT)_eType])
+		return;
+
+	if (nullptr != m_pCurLevel)
+		m_pCurLevel->exit();
+
+	m_pCurLevel = m_arrLevels[(UINT)_eType];
+
+	m_pCurLevel->enter();
+	m_pCurLevel->begin();
+
 }
 
 void CLevelMgr::init()
@@ -35,20 +51,23 @@ void CLevelMgr::init()
 	}
 
 	// Level 
-	m_pCurLevel = m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL];
-
-
-	m_pCurLevel->begin();
+	ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
 
 }
 
 void CLevelMgr::tick()
 {
+	if (nullptr == m_pCurLevel)
+		return;
+
 	m_pCurLevel->tick();
 }
 
 void CLevelMgr::render(HDC _dc)
 {
+	if (nullptr == m_pCurLevel)
+		return;
+
 	// Level render
 	m_pCurLevel->render(_dc);
 }
