@@ -80,8 +80,15 @@ void CLevel::DeleteAllObjects()
 
 }
 
+void CLevel::DeleteObjectsByLayer(LAYER _eLayer)
+{
+	m_arrLayer[(UINT)_eLayer]->DeleteAllObjects();
+}
+
 void CLevel::CreateTile(UINT _iRow, UINT _iCol)
 {
+	DeleteObjectsByLayer(LAYER::TILE);
+
 	m_iTileRow = _iRow;
 	m_iTileCol = _iCol;
 

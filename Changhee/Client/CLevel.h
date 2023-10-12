@@ -30,6 +30,9 @@ public:
 protected:
 	void AddObject(LAYER _eLayer, CObj* _Object);
 	void DeleteAllObjects();
+	void DeleteObjectsByLayer(LAYER _eLayer);
+
+public:
 	void CreateTile(UINT _iRow, UINT _iCol);
 
 public:

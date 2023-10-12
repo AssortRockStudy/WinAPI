@@ -54,8 +54,9 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	m_ptResolution = _ptResolution;
 	m_hDC = GetDC(m_hWnd);
 
+
 	// 해상도 변경
-	SetWindowPos(m_hWnd, nullptr, 50, 50, m_ptResolution.x, m_ptResolution.y, 0);
+	ChangeWindowSize(_ptResolution,false);
 	ShowWindow(m_hWnd, true);
 
 	// 추가 비트맵 버퍼
@@ -138,4 +139,13 @@ void CEngine::CopyBackBuffer()
 {
 	// m_SubDC -> m_DC 로 복사
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_hSubDC, 0, 0, SRCCOPY);
+}
+
+void CEngine::ChangeWindowSize(POINT _ptResolution, bool _bMenu)
+{
+	m_ptResolution = _ptResolution;
+
+	RECT rt = { 0,0,m_ptResolution.x, m_ptResolution.y };
+	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, _bMenu);
+	SetWindowPos(m_hWnd, nullptr, 10, 10, rt.right - rt.left, rt.bottom - rt.top, 0);
 }
