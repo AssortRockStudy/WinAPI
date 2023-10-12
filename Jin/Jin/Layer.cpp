@@ -9,10 +9,7 @@ Layer::Layer()
 
 Layer::~Layer()
 {
-	for (size_t i = 0; i < m_vecObjects.size(); ++i)
-	{
-		delete m_vecObjects[i];
-	}
+	DeleteAllObjects();
 }
 
 void Layer::begin()
@@ -59,4 +56,13 @@ void Layer::finaltick(float _DT)
 	{
 		m_vecObjects[i]->finaltick(_DT);
 	}
+}
+
+void Layer::DeleteAllObjects()
+{
+	for (size_t i = 0; i < m_vecObjects.size(); ++i)
+	{
+		delete m_vecObjects[i];
+	}
+	m_vecObjects.clear();
 }

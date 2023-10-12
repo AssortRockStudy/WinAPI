@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "func.h"
+#include "struct.h"
 #include "Entity.h"
+#include "TaskMgr.h"
+#include "define.h"
 
 Vec2 Rotate(Vec2 _vDir, float _angle)
 {
@@ -22,6 +25,14 @@ bool GetRotateClock(Vec2 _vDir1, Vec2 _vDir2)
 	{
 		return false;
 	}
+}
+
+void ChangeLevel(LEVEL_TYPE _type)
+{
+	FTask task = {};
+	task.Type = LEVEL_CHANGE;
+	task.Param_1 = (INT_PTR)_type;
+	TaskMgr::GetInst()->AddTask(task);
 }
 
 void SaveWString(const wstring& _str, FILE* _File)

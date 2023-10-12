@@ -36,6 +36,8 @@ public:
 		return m_vecCollider;
 	}
 
+	void DeleteAllObjects();
+
 public:
 	Layer();
 	~Layer();

@@ -9,11 +9,17 @@ class Level : public Entity
 private:
 	Layer* m_Layer[LAYER::END];
 
+	UINT	m_TileRow;
+	UINT	m_TileCol;
+
 public:
 	virtual void init() = 0;
-	void begin();
-	void tick();
-	void render(HDC _dc);
+	virtual void enter() = 0;
+	virtual void exit() = 0;
+
+	virtual void begin();
+	virtual void tick();
+	virtual void render(HDC _dc);
 
 	template<typename T>
 	void GetObjects(vector<T*>& _Out);
@@ -30,6 +36,8 @@ public:
 
 protected:
 	void AddObject(LAYER _LayerType, Obj* _Object);
+	void DeleteAllObjects();
+	void CreateTile(UINT _Row, UINT _Col);
 
 public:
 	Level();

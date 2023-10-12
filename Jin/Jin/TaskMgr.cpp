@@ -38,7 +38,8 @@ void TaskMgr::tick()
 		break;
 		case LEVEL_CHANGE:
 		{
-
+			LEVEL_TYPE type = (LEVEL_TYPE)m_vecTask[i].Param_1;
+			LevelMgr::GetInst()->ChangeLevel(type);
 		}
 		break;
 		}

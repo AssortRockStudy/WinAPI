@@ -82,7 +82,7 @@ enum TASK_TYPE
 {
 	CREATE_OBJECT, // Param1 : Layer Type, Param2 : Object Adress
 	DELETE_OBJECT, // Param1 : Object Adress
-	LEVEL_CHANGE,
+	LEVEL_CHANGE, // Param1 : LEVEL_TYPE
 };
 
 enum PEN_TYPE

@@ -9,6 +9,9 @@
 #include "Camera.h"
 #include "CollisionMgr.h"
 
+#include "KeyMgr.h"
+#include "LevelMgr.h"
+
 void PlayLevel::init()
 {
 
@@ -37,4 +40,23 @@ void PlayLevel::init()
 	CollisionMgr::GetInst()->CheckCollision(PLAYER_PJ, MONSTER);
 	CollisionMgr::GetInst()->CheckCollision(PLAYER, PLATFORM);
 
+}
+
+void PlayLevel::enter()
+{
+	init();
+}
+
+void PlayLevel::exit()
+{
+	DeleteAllObjects();
+}
+
+void PlayLevel::tick()
+{
+	Level::tick();
+	if (KEY_TAP(KEY::ENTER))
+	{
+		ChangeLevel(LEVEL_TYPE::START_LEVEL);
+	}
 }

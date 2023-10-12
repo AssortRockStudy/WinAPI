@@ -67,6 +67,10 @@ void CollisionMgr::UncheckCollision(LAYER _Left, LAYER _Right)
 void CollisionMgr::CollisionBtwLayer(LAYER _Left, LAYER _Right)
 {
 	Level* pCurLevel = LevelMgr::GetInst()->GetCurLevel();
+
+	if (nullptr == pCurLevel)
+		return;
+
 	const vector<Collider*>& vecLeft = pCurLevel->GetLayer(_Left)->GetColliders();
 	const vector<Collider*>& vecRight = pCurLevel->GetLayer(_Right)->GetColliders();
 

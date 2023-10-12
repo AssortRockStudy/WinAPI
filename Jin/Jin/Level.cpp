@@ -3,9 +3,12 @@
 #include "TimeMgr.h"
 #include "Layer.h"
 #include "Obj.h"
+#include "Tile.h"
 
 
 Level::Level()
+	: m_TileRow(0)
+	, m_TileCol(0)
 {
 	for (UINT i = 0; i < LAYER::END; ++i)
 	{
@@ -61,4 +64,27 @@ void Level :: AddObject(LAYER _LayerType, Obj* _Object)
 	m_Layer[_LayerType]->AddObject(_Object);
 
 	_Object->m_iLayerIdx = _LayerType;
+}
+
+void Level::DeleteAllObjects()
+{
+	for (UINT i = 0; i < LAYER::END; ++i)
+	{
+		m_Layer[i]->DeleteAllObjects();
+	}
+}
+
+void Level::CreateTile(UINT _Row, UINT _Col)
+{
+	m_TileRow = _Row;
+	m_TileCol = _Col;
+
+	for (UINT i = 0; i < _Row; ++i)
+	{
+		for (UINT j = 0; j < _Col; ++j)
+		{
+			Tile* pTile = new Tile;
+			AddObject(LAYER::TILE, pTile);
+		}
+	}
 }
