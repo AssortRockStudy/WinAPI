@@ -33,11 +33,13 @@ public:
 		assert(!(LayerIdx < 0 || LAYER::END <= LayerIdx));
 		return m_Layer[LayerIdx];
 	}
+	void CreateTile(UINT _Row, UINT _Col);
 
 protected:
 	void AddObject(LAYER _LayerType, Obj* _Object);
 	void DeleteAllObjects();
-	void CreateTile(UINT _Row, UINT _Col);
+	void DeleteObjectsByLayer(LAYER _LayerType);
+
 
 public:
 	Level();
