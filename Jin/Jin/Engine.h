@@ -33,6 +33,8 @@ public:
 		return m_bDebugRender;
 	}
 
+	void ChangeWindowSize(POINT _ptResolution, bool _bMenu);
+
 private:
 	void CreateDefaultGDI();
 

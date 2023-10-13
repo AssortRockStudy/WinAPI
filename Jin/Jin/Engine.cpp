@@ -34,6 +34,15 @@ Engine::~Engine()
 	}
 }
 
+void Engine::ChangeWindowSize(POINT _ptResolution, bool _bMenu)
+{
+	m_ptResolution = _ptResolution;
+
+	RECT rt = { 0,0, _ptResolution.x, _ptResolution.y };
+	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, _bMenu);
+	SetWindowPos(m_hWnd, nullptr, 10, 10, rt.right - rt.left, rt.bottom - rt.top ,0);
+}
+
 void Engine::CreateDefaultGDI()
 {
 	m_arrPen[RED_PEN] = CreatePen(PS_SOLID, 1, RGB(255, 20, 20));
@@ -45,10 +54,7 @@ void Engine::init(HWND _hWnd, POINT _ptResolution)
 {
 
 	m_hWnd = _hWnd;
-	m_ptResolution = _ptResolution;
-
-
-	SetWindowPos(m_hWnd, nullptr, 10, 10, m_ptResolution.x, m_ptResolution.y, 0);
+	ChangeWindowSize(_ptResolution, false);
 	ShowWindow(m_hWnd, true);
 
 	m_DC = GetDC(m_hWnd);
@@ -92,3 +98,4 @@ void Engine::tick()
 	GCMgr::GetInst()->tick();
 
 }
+
