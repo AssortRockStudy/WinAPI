@@ -198,6 +198,9 @@
     <ClCompile Include="Sound.cpp">
       <Filter>Game\07. Asset\Sound</Filter>
     </ClCompile>
+    <ClCompile Include="UI.cpp" />
+    <ClCompile Include="PanelUI.cpp" />
+    <ClCompile Include="BtnUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -327,5 +330,8 @@
     <ClInclude Include="Sound.h">
       <Filter>Game\07. Asset\Sound</Filter>
     </ClInclude>
+    <ClInclude Include="UI.h" />
+    <ClInclude Include="PanelUI.h" />
+    <ClInclude Include="BtnUI.h" />
   </ItemGroup>
 </Project>

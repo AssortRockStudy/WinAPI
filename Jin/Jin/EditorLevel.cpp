@@ -10,6 +10,7 @@
 #include "Camera.h"
 
 #include "Tile.h"
+#include "BtnUI.h"
 
 void EditorLevel::init()
 {
@@ -21,7 +22,7 @@ void EditorLevel::enter()
 	vLookAt /= 2.f;
 	Camera::GetInst()->SetLookAt(vLookAt);
 
-	//CreateTile(10, 10);
+	CreateTile(10, 10);
 
 	HMENU hMenu = LoadMenu(nullptr, MAKEINTRESOURCE(IDR_EDITORMENU));
 
@@ -30,7 +31,10 @@ void EditorLevel::enter()
 	POINT ptResSol = Engine::GetInst()->GetResolution();
 	Engine::GetInst()->ChangeWindowSize(ptResSol, true);
 
-
+	BtnUI* pBtnUI = new BtnUI;
+	pBtnUI->SetScale(Vec2(200.f, 80.f));
+	pBtnUI->SetPos(Vec2(1390.f, 10.f));
+	AddObject(LAYER::UI, pBtnUI);
 }
 
 void EditorLevel::exit()
@@ -59,7 +63,7 @@ void EditorLevel::tick()
 		int row = vMousePos.y / TILE_SIZE;
 		int idx = GetTileCol() * row + col;
 
-		if (!(GetTileCol() <= col) && !(GetTileCol() <= col)
+		if (!(GetTileCol() <= col) && !(GetTileCol() <= row)
 			 && !(vMousePos.x < 0.f) && !(vMousePos.y < 0.f) )
 		{
 			const vector<Obj*>& vecTiles = GetLayer(LAYER::TILE)->GetObjects();

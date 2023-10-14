@@ -44,36 +44,59 @@ void KeyMgr::init()
 
 void KeyMgr::tick()
 { 
-	for (size_t i = 0; i < m_vecKeyData.size(); ++i)
-	{	// 매 틱마다 모든 키보드 키를 검사하는데 눌린 키가 있다? 
-		if (GetAsyncKeyState(g_KeySync[m_vecKeyData[i].eKey]) & 0X8001)
+	if (nullptr == GetFocus())
+	{
+		for (size_t i = 0; i < m_vecKeyData.size(); ++i)
 		{
-			if (m_vecKeyData[i].bPressed)
+			if (TAP == m_vecKeyData[i].eState)
 			{
 				m_vecKeyData[i].eState = PRESSED;
 			}
-			else
-			{
-				m_vecKeyData[i].eState = TAP;
-			}
-			m_vecKeyData[i].bPressed = true;
-		}
-		else
-		{
-			if (m_vecKeyData[i].bPressed)
+			else if (PRESSED == m_vecKeyData[i].eState)
 			{
 				m_vecKeyData[i].eState = RELEASED;
 			}
-			else
+			else if (RELEASED == m_vecKeyData[i].eState)
 			{
 				m_vecKeyData[i].eState = NONE;
 			}
-			m_vecKeyData[i].bPressed = false;
 		}
 	}
+	else
+	{
+		for (size_t i = 0; i < m_vecKeyData.size(); ++i)
+		{	// 매 틱마다 모든 키보드 키를 검사하는데 눌린 키가 있다? 
+			if (GetAsyncKeyState(g_KeySync[m_vecKeyData[i].eKey]) & 0X8001)
+			{
+				if (m_vecKeyData[i].bPressed)
+				{
+					m_vecKeyData[i].eState = PRESSED;
+				}
+				else
+				{
+					m_vecKeyData[i].eState = TAP;
+				}
+				m_vecKeyData[i].bPressed = true;
+			}
+			else
+			{
+				if (m_vecKeyData[i].bPressed)
+				{
+					m_vecKeyData[i].eState = RELEASED;
+				}
+				else
+				{
+					m_vecKeyData[i].eState = NONE;
+				}
+				m_vecKeyData[i].bPressed = false;
+			}
+		}
 
-	POINT pt = {};
-	GetCursorPos(&pt);
-	ScreenToClient(Engine::GetInst()->GetMainWind(), &pt);
-	m_vMousePos = pt;
+		POINT pt = {};
+		GetCursorPos(&pt);
+		ScreenToClient(Engine::GetInst()->GetMainWind(), &pt);
+		m_vMousePos = pt;
+	}
+
+	
 }
