@@ -54,3 +54,22 @@ void Tile::render(HDC _dc)
 	}
 }
 
+void Tile::AddImgIdx()
+{
+	if (nullptr == m_Atlas)
+		return;
+
+	++m_Idx;
+
+	UINT width = m_Atlas->GetWidth();
+	UINT height = m_Atlas->GetHeight();
+
+	UINT maxRow = height / TILE_SIZE;
+	UINT maxCol = width / TILE_SIZE;
+
+	UINT maxTileCnt = maxCol * maxRow;
+
+	if (maxTileCnt <= m_Idx)
+		m_Idx = 0;
+}
+

@@ -8,7 +8,6 @@ class Level : public Entity
 {
 private:
 	Layer* m_Layer[LAYER::END];
-
 	UINT	m_TileRow;
 	UINT	m_TileCol;
 
@@ -34,6 +33,14 @@ public:
 		return m_Layer[LayerIdx];
 	}
 	void CreateTile(UINT _Row, UINT _Col);
+	UINT GetTileCol()
+	{
+		return m_TileCol;
+	}
+	UINT GetTileRow()
+	{
+		return m_TileRow;
+	}
 
 protected:
 	void AddObject(LAYER _LayerType, Obj* _Object);

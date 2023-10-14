@@ -10,7 +10,7 @@ private:
     int m_Idx;
 
 public:
-    void SetAtlas(Texture* _Atlas) 
+    void SetAtlas(class Texture* _Atlas) 
     { 
         m_Atlas = _Atlas; 
     }
@@ -21,7 +21,7 @@ public:
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
 
-
+    void AddImgIdx();
 
 public:
     Tile();

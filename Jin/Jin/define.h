@@ -54,6 +54,8 @@ enum KEY
 
 	LEFT, RIGHT, UP, DOWN,
 
+	LBTN, RBTN,
+
 	KEY_END, 
 
 };

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "KeyMgr.h"
+#include "Engine.h"
 
 KeyMgr::KeyMgr() {}
 KeyMgr::~KeyMgr() {}
@@ -26,6 +27,8 @@ int g_KeySync[KEY::KEY_END] =
 	VK_ESCAPE, VK_RETURN, VK_BACK,
 
 	VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN,
+
+	VK_LBUTTON, VK_RBUTTON
 };
 
 
@@ -68,4 +71,9 @@ void KeyMgr::tick()
 			m_vecKeyData[i].bPressed = false;
 		}
 	}
+
+	POINT pt = {};
+	GetCursorPos(&pt);
+	ScreenToClient(Engine::GetInst()->GetMainWind(), &pt);
+	m_vMousePos = pt;
 }

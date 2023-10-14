@@ -9,6 +9,8 @@
 #include "Engine.h"
 #include "Camera.h"
 
+#include "Tile.h"
+
 void EditorLevel::init()
 {
 }
@@ -47,6 +49,25 @@ void EditorLevel::exit()
 void EditorLevel::tick()
 {
 	Level::tick();
+
+	if (KEY_TAP(KEY::LBTN))
+	{
+		Vec2 vMousePos = KeyMgr::GetInst()->GetMousPos();
+		vMousePos = Camera::GetInst()->GerRealPos(vMousePos);
+
+		int col = vMousePos.x / TILE_SIZE;
+		int row = vMousePos.y / TILE_SIZE;
+		int idx = GetTileCol() * row + col;
+
+		if (!(GetTileCol() <= col) && !(GetTileCol() <= col)
+			 && !(vMousePos.x < 0.f) && !(vMousePos.y < 0.f) )
+		{
+			const vector<Obj*>& vecTiles = GetLayer(LAYER::TILE)->GetObjects();
+			Tile* pTargetTile = dynamic_cast<Tile*>(vecTiles[idx]);
+			pTargetTile->AddImgIdx();
+		}
+
+	}
 
 	if (KEY_TAP(ENTER))
 	{

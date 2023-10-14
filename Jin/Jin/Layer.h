@@ -31,6 +31,12 @@ public:
 		m_vecCollider.push_back(_Collider);
 	}
 
+
+	const vector<Obj*>& GetObjects() 
+	{ 
+		return  m_vecObjects; 
+	}
+
 	const vector<Collider*>& GetColliders()
 	{
 		return m_vecCollider;

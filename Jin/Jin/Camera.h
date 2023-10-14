@@ -17,5 +17,9 @@ public:
 	{
 		return _vRealPos - m_vDiff;
 	}
+	Vec2 GerRealPos(Vec2 _vRenderPos)
+	{
+		return m_vDiff + _vRenderPos;
+	}
 };
 
