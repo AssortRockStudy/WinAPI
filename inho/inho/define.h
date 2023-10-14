@@ -137,3 +137,10 @@ enum LOG_LEVEL {
     WARNING,
     ERR,
 };
+
+enum class LEVEL_TYPE {
+    START_LEVEL,
+    PLAY_LEVEL,
+    EDITOR_LEVEL,
+    END,
+};

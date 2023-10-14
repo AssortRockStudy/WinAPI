@@ -43,9 +43,9 @@ CPlayer::CPlayer() : m_Speed(500.f) {
     m_Animator->CreateAnimation(L"IdleDown", pAtlas, Vec2(0.f, 0.f), Vec2(120, 130), offset, 0.05f, 3);
     m_Animator->CreateAnimation(L"IdleLeft", pAtlas, Vec2(0.f, 130.f), Vec2(120, 130), offset, 0.05f, 3);
     m_Animator->CreateAnimation(L"IdleUp", pAtlas, Vec2(0.f, 260.f), Vec2(120, 130), offset, 0.05f, 1);
-    m_Animator->CreateAnimation(L"IdleRight", pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), offset, 0.05f, 3);*/
+    m_Animator->CreateAnimation(L"IdleRight", pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), offset, 0.05f, 3);
 
-    //m_Animator->SaveAnimation(L"animdata");
+    m_Animator->SaveAnimation(L"animdata");*/
 
     m_Animator->LoadAnimation(L"animdata\\IdleDown.txt");
     m_Animator->LoadAnimation(L"animdata\\IdleLeft.txt");
@@ -62,9 +62,11 @@ CPlayer::CPlayer() : m_Speed(500.f) {
     m_Movement->SetMass(1.f);
     m_Movement->SetInitSpeed(200.f);
     m_Movement->SetMaxSpeed(400.f);
-    m_Movement->UseGravity(true);
+    m_Movement->UseGravity(false);
     m_Movement->SetGravity(Vec2(0.f, 980.f));
     m_Movement->SetFrictionScale(1000.f);
+    m_Movement->SetGround(true);
+
 }
 
 CPlayer::~CPlayer() {
@@ -100,6 +102,7 @@ void CPlayer::tick(float _DT) {
 
     if (KEY_PRESSED(W))
     {
+        m_Movement->AddForce(Vec2(0.f, -300.f));
         m_Animator->Play(L"WalkUp", true);
     }
     if (KEY_RELEASED(W))
@@ -109,6 +112,7 @@ void CPlayer::tick(float _DT) {
 
     if (KEY_PRESSED(S))
     {
+        m_Movement->AddForce(Vec2(0.f, 300.f));
         m_Animator->Play(L"WalkDown", true);
     }
     if (KEY_RELEASED(S))

@@ -16,3 +16,8 @@ bool IsValid(T*& _Entity) {
 
 	return true;
 }
+
+void ChangeLevel(LEVEL_TYPE _type);
+
+void SaveWString(const wstring& _str, FILE* _File);
+void LoadWString(wstring& _str, FILE* _File);

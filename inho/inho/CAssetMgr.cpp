@@ -25,7 +25,10 @@ CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRela
     wstring strFilePath = strContentPath + _strRelativePath;
 
     pTexture = new CTexture;
-    pTexture->Load(strFilePath);
+    if (!pTexture->Load(strFilePath)) {
+        delete pTexture;
+        return nullptr;
+    }
 
     pTexture->m_strKey = _strKey;
     pTexture->m_strRelativePath = _strRelativePath;

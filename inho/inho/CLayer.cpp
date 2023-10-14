@@ -3,12 +3,11 @@
 #include "CLayer.h"
 #include "CObj.h"
 #include "CGCMgr.h"
+
 CLayer::CLayer() {}
 
 CLayer::~CLayer() {
-    for (size_t i = 0; i < m_vecObjects.size(); ++i) {
-        delete m_vecObjects[i];
-    }
+    DeleteAllObjects();
 }
 
 void CLayer::begin() {
@@ -43,4 +42,13 @@ void CLayer::render(HDC _dc) {
         }
     }
     
+}
+
+void CLayer::DeleteAllObjects()
+{
+    for (size_t i = 0; i < m_vecObjects.size(); ++i) {
+        delete m_vecObjects[i];
+    }
+
+    m_vecObjects.clear();
 }

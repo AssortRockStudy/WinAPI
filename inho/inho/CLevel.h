@@ -10,10 +10,17 @@ class CLevel : public CEntity {
   private:
     CLayer* m_Layer[LAYER::END];
 
+    UINT m_TileRow;
+    UINT m_TileCol;
+
   public:
-      void begin();
-    void tick();
-    void render(HDC _dc);
+    virtual void init() = 0;
+    virtual void enter() = 0;
+    virtual void exit() = 0;
+
+    virtual void begin();
+    virtual void tick();
+    virtual void render(HDC _dc);
 
   public:
     template <typename T> void GetObjects(vector<T*>& _Out);
@@ -27,8 +34,10 @@ class CLevel : public CEntity {
         return m_Layer[LayerIdx];
     }
 
-  private:
+  protected:
     void AddObject(LAYER _LayerType, CObj* _Object);
+    void DeleteAllObjects();
+    void CreateTile(UINT _Row, UINT _Col);
 
   public:
     CLevel();
