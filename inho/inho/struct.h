@@ -14,6 +14,8 @@ struct Vec2 {
 
     Vec2(POINT _pt) : x((float)_pt.x), y((float)_pt.y) {}
 
+    Vec2(UINT _x, UINT _y) : x((float)_x), y((float)_y) {}
+
     float Distance(const Vec2 _oth) {
         return sqrtf((x - _oth.x) * (x - _oth.x) + (y - _oth.y) * (y - _oth.y));
     }

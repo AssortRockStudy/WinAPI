@@ -32,6 +32,8 @@
 
 #define DEBUG_RENDER CEngine::GetInst()->DebugRender()
 
+#define TILE_SIZE 64
+
 enum KEY {
     _0,
     _1,
