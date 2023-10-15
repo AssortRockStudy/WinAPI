@@ -41,8 +41,15 @@ void MyLevel::DeleteAllObjects()
 	}
 }
 
+void MyLevel::DeleteObjectsByLayer(LAYER _Layer)
+{
+	m_Layer[(UINT_PTR)_Layer]->DeleteAllObjects();
+}
+
 void MyLevel::CreateTile(UINT _Row, UINT _Col)
 {
+	DeleteObjectsByLayer(LAYER::TILE);
+
 	m_TileRow = _Row;
 	m_TileCol = _Col;
 

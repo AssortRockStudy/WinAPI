@@ -17,17 +17,17 @@ void MyPlayLevel::init()
 	MyPlayer* pPlayer = new MyPlayer;
 	pPlayer->SetPos(Vec2(500.f, 200.f));
 	pPlayer->SetScale(Vec2(50.f, 50.f));
+	AddObject(LAYER::PLAYER, pPlayer);
 
 	//MyMonster* pMonster = new MyMonster;
 	//pMonster->SetPos(Vec2(200.f, 200.f));
 	//pMonster->SetScale(Vec2(80.f, 80.f));
-	//
+	//AddObject(LAYER::MONSTER, pMonster);
+	
 	//MyMonster* pMonster2 = new MyMonster;
 	//pMonster2->SetPos(Vec2(800.f, 200.f));
 	//pMonster2->SetScale(Vec2(80.f, 80.f));
 
-	AddObject(LAYER::PLAYER, pPlayer);
-	//AddObject(LAYER::MONSTER, pMonster);
 	//AddObject(LAYER::MONSTER, pMonster2);
 
 	// 플랫폼 설치
@@ -61,6 +61,6 @@ void MyPlayLevel::tick()
 	// Enter키를 누르면 START_LEVEL로 바뀜
 	if (KEY_TAP(ENTER))
 	{
-		ChangeLevel(LEVEL_TYPE::START_LEVEL);
+		ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
 	}
 }

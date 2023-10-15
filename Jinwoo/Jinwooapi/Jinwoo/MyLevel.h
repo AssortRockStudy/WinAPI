@@ -43,6 +43,9 @@ public:
 protected:
 	void AddObject(LAYER _LayerType, MyObject* _Object);
 	void DeleteAllObjects();
+	void DeleteObjectsByLayer(LAYER _Layer);
+
+public:
 	void CreateTile(UINT _Row, UINT _Col);
 
 public:

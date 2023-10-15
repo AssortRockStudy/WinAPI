@@ -154,13 +154,12 @@ void MyColliderMgr::CollisionBtwLayer(LAYER _Left, LAYER _Right)
 
 bool MyColliderMgr::IsCollision(MyCollider* _Left, MyCollider* _Right)
 {
-	float LeftScaleX = (float)fabs(_Left->GetOffsetScale().x / 2.f);
-	float RightScaleX = (float)fabs(_Right->GetOffsetScale().x / 2.f);
 	float BtwFinalX = (float)fabs(_Left->GetFinalPos().x - _Right->GetFinalPos().x);
-
-	float LeftScaleY = (float)fabs(_Left->GetOffsetScale().y / 2.f);
-	float RightScaleY = (float)fabs(_Right->GetOffsetScale().y / 2.f);
 	float BtwFinalY = (float)fabs(_Left->GetFinalPos().y - _Right->GetFinalPos().y);
+	float LeftScaleX = (float)fabs(_Left->GetOffsetScale().x / 2.f);
+	float LeftScaleY = (float)fabs(_Left->GetOffsetScale().y / 2.f);
+	float RightScaleX = (float)fabs(_Right->GetOffsetScale().x / 2.f);
+	float RightScaleY = (float)fabs(_Right->GetOffsetScale().y / 2.f);
 
 	// 두 충돌체 간 x좌표, y좌표 거리(절대값)가 각 충돌체 스케일값의 절반을 더한 값보다 작거나 같을 때 충돌했다 볼 수 있다
 	if ((LeftScaleX + RightScaleX) >= BtwFinalX && (LeftScaleY + RightScaleY) >= BtwFinalY)

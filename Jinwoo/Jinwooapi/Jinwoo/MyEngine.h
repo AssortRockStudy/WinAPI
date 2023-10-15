@@ -20,7 +20,9 @@ public:
 	POINT GetMainResolution() { return m_ptResolution; }
 	HDC GetMainDC() { return m_DC; }
 	HPEN GetPen(PEN_TYPE _Type) { return m_arrPen[(UINT)_Type]; }
+	
 	bool DebugRender() { return m_DebugRender; }
+	void ChangeWindowSize(POINT _ptResolution, bool _bMenu);
 
 private:
 	void CreateDefaultGDI();

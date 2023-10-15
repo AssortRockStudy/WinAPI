@@ -25,6 +25,6 @@ void MyStartLevel::tick()
 	// Enter키를 누르면 PLAY_LEVEL로 바뀜
 	if (KEY_TAP(ENTER))
 	{
-		ChangeLevel(LEVEL_TYPE::PLAY_LEVEL);
+		ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
 	}
 }
