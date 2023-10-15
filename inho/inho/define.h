@@ -101,6 +101,9 @@ enum KEY {
     UP,
     DOWN,
 
+    LBTN,
+    RBTN,
+
     KEY_END,
 };
 

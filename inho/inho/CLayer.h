@@ -19,6 +19,8 @@ class CLayer : public CEntity {
     void AddObject(CObj* _Object) { m_vecObjects.push_back(_Object); }
     void RegisterCollider(CCollider* _Collider) { m_vecCollider.push_back(_Collider); }
 
+    const vector<CObj*>& GetObjects() { return m_vecObjects; }
+
     const vector<CCollider*>& GetColliders() { return m_vecCollider; }
 
     void DeleteAllObjects();

@@ -16,6 +16,26 @@ CTile::~CTile()
 }
 
 
+void CTile::AddImgIdx()
+{
+	if (nullptr == m_Atlas)
+		return;
+
+	++m_Idx;
+
+	UINT width = m_Atlas->GetWidth();
+	UINT height = m_Atlas->GetHeight();
+
+	UINT maxRow = height / TILE_SIZE;
+	UINT maxCol = width / TILE_SIZE;
+
+	UINT maxTileCount = maxRow * maxCol;
+
+	if (maxTileCount <= m_Idx) {
+		m_Idx = 0;
+	}
+}
+
 void CTile::tick(float _DT)
 {
 }

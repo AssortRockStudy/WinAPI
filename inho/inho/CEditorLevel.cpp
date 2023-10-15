@@ -8,6 +8,8 @@
 
 #include "resource.h"
 
+#include "CTile.h"
+
 void CEditorLevel::init()
 {
 }
@@ -49,6 +51,22 @@ void CEditorLevel::tick()
 
 	if (KEY_TAP(KEY::ENTER)) {
 		ChangeLevel(LEVEL_TYPE::PLAY_LEVEL);
+	}
+
+	if (KEY_TAP(KEY::LBTN)) {
+		Vec2 vMousePos = CKeyMgr::GetInst()->GetMousePos();
+		vMousePos = CCamera::GetInst()->GetRealPos(vMousePos);
+
+		int col = vMousePos.x / TILE_SIZE;
+		int row = vMousePos.y / TILE_SIZE;
+		int idx = GetTileCol() * row + col;
+
+		if (!(GetTileCol() <= col) && !(GetTileRow() <= row) && !(vMousePos.x < 0.f) && !(vMousePos.y < 0.f)) {
+
+			const vector<CObj*>& vecTiles = GetLayer(LAYER::TILE)->GetObjects();
+			CTile* pTargetTile = dynamic_cast<CTile*>(vecTiles[idx]);
+			pTargetTile->AddImgIdx();
+		}
 	}
 }
 

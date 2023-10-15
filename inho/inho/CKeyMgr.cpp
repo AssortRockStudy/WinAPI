@@ -1,6 +1,7 @@
 ﻿#include "pch.h"
 
 #include "CKeyMgr.h"
+#include "CEngine.h"
 
 int g_KeySync[KEY::KEY_END] = {
     '0',        '1',        '2',        '3',         '4',
@@ -23,6 +24,8 @@ int g_KeySync[KEY::KEY_END] = {
     VK_ESCAPE,  VK_RETURN,  VK_BACK,
 
     VK_LEFT,    VK_RIGHT,   VK_UP,      VK_DOWN,
+
+    VK_LBUTTON, VK_RBUTTON,
 };
 
 CKeyMgr::CKeyMgr() {}
@@ -56,4 +59,10 @@ void CKeyMgr::tick() {
             m_vecKeyData[i].bPressed = false;
         }
     }
+
+    POINT pt = {};
+    GetCursorPos(&pt);
+    ScreenToClient(CEngine::GetInst()->GetMainWind(), &pt);
+    m_vMousePos = pt;
+
 }
