@@ -21,6 +21,7 @@ class CEngine {
     POINT GetResolution() { return m_ptResolution; }
 
     bool DebugRender() { return m_bDebugRender; }
+    void ChangeWindowSize(POINT _ptResolution, bool _bMenu);
 
   public:
     void init(HWND _hWnd, POINT _ptResolution);

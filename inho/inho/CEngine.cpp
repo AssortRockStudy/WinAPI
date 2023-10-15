@@ -32,10 +32,7 @@ CEngine::~CEngine() {
 
 void CEngine::init(HWND _hWnd, POINT _ptResolution) {
     m_hWnd = _hWnd;
-    m_ptResolution = _ptResolution;
-
-    SetWindowPos(m_hWnd, nullptr, 10, 10, m_ptResolution.x, m_ptResolution.y,
-                 0);
+    ChangeWindowSize(_ptResolution, false);
     ShowWindow(m_hWnd, true);
 
     // DC : Device Context
@@ -79,4 +76,13 @@ void CEngine::tick() {
     CGCMgr::GetInst()->tick();
 
     
+}
+
+void CEngine::ChangeWindowSize(POINT _ptResolution, bool _bMenu)
+{
+    m_ptResolution = _ptResolution;
+
+    RECT rt = { 0, 0, _ptResolution.x, _ptResolution.y };
+    AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, _bMenu);
+    SetWindowPos(m_hWnd, nullptr, 10, 10, rt.right - rt.left, rt.bottom - rt.top, 0);
 }

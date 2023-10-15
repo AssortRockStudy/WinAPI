@@ -58,8 +58,15 @@ void CLevel::DeleteAllObjects()
     }
 }
 
+void CLevel::DeleteObjectsByLayer(LAYER _Layer)
+{
+    m_Layer[_Layer]->DeleteAllObjects();
+}
+
 void CLevel::CreateTile(UINT _Row, UINT _Col)
 {
+    DeleteObjectsByLayer(LAYER::TILE);
+
     m_TileRow = _Row;
     m_TileCol = _Col;
 

@@ -3,6 +3,10 @@
 
 #include "CEngine.h"
 #include "CCamera.h"
+#include "CKeyMgr.h"
+#include "CLevelMgr.h"
+
+#include "resource.h"
 
 void CEditorLevel::init()
 {
@@ -10,6 +14,14 @@ void CEditorLevel::init()
 
 void CEditorLevel::enter()
 {
+	HMENU hMenu = LoadMenu(nullptr, MAKEINTRESOURCE(IDR_EDITOR_MENU));
+
+	SetMenu(CEngine::GetInst()->GetMainWind(), hMenu);
+
+	POINT ptResSol = CEngine::GetInst()->GetResolution();
+	CEngine::GetInst()->ChangeWindowSize(ptResSol, true);
+
+
 	Vec2 vLookAt = CEngine::GetInst()->GetResolution();
 	vLookAt /= 2.f;
 	CCamera::GetInst()->SetLookAt(vLookAt);
@@ -20,9 +32,53 @@ void CEditorLevel::enter()
 void CEditorLevel::exit()
 {
 	DeleteAllObjects();
+
+	HMENU hMenu = GetMenu(CEngine::GetInst()->GetMainWind());
+
+	SetMenu(CEngine::GetInst()->GetMainWind(), nullptr);
+
+	DestroyMenu(hMenu);
+
+	POINT ptResSol = CEngine::GetInst()->GetResolution();
+	CEngine::GetInst()->ChangeWindowSize(ptResSol, false);
 }
 
 void CEditorLevel::tick()
 {
 	CLevel::tick();
+
+	if (KEY_TAP(KEY::ENTER)) {
+		ChangeLevel(LEVEL_TYPE::PLAY_LEVEL);
+	}
+}
+
+INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam) {
+	UNREFERENCED_PARAMETER(lParam);
+	switch (message) {
+	case WM_INITDIALOG:
+		return (INT_PTR)TRUE;
+
+	case WM_COMMAND:
+		if (LOWORD(wParam) == IDOK) {
+
+			int Col = GetDlgItemInt(hDlg, IDC_COL, nullptr, true);
+			int Row = GetDlgItemInt(hDlg, IDC_ROW, nullptr, true);
+
+			CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
+			CEditorLevel* pEditorLevel = dynamic_cast<CEditorLevel*>(pCurLevel);
+
+			if (nullptr != pEditorLevel) {
+				pEditorLevel->CreateTile(Row, Col);
+			}
+
+			EndDialog(hDlg, LOWORD(wParam));
+			return (INT_PTR)TRUE;
+		}
+		else if (LOWORD(wParam) == IDCANCEL) {
+			EndDialog(hDlg, LOWORD(wParam));
+			return (INT_PTR)TRUE;
+		}
+		break;
+	}
+	return (INT_PTR)FALSE;
 }

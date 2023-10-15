@@ -11,6 +11,7 @@ ATOM             MyRegisterClass(HINSTANCE hInstance);
 BOOL             InitInstance(HINSTANCE, int);
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK About(HWND, UINT, WPARAM, LPARAM);
+INT_PTR CALLBACK CreateTileProc(HWND, UINT, WPARAM, LPARAM);
 
 int APIENTRY wWinMain(_In_ HINSTANCE     hInstance,
                       _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine,
@@ -126,6 +127,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,
             break;
         case IDM_EXIT:
             DestroyWindow(hWnd);
+            break;
+        case ID_CREATE_TILE:
+            DialogBox(hInst, MAKEINTRESOURCE(IDD_CREATE_TILE), hWnd, CreateTileProc);
             break;
         default:
             return DefWindowProc(hWnd, message, wParam, lParam);

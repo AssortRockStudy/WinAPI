@@ -49,6 +49,6 @@ void CPlayLevel::tick()
     CLevel::tick();
 
     if (KEY_TAP(KEY::ENTER)) {
-        ChangeLevel(LEVEL_TYPE::START_LEVEL);
+        ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
     }
 }
