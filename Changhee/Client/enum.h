@@ -24,7 +24,7 @@ enum class LAYER
 	WORLD_STATIC,
 
 
-
+	UI = 31,
 	END = 32,
 };
 
@@ -94,6 +94,9 @@ enum class KEY
 	RIGHT,
 	UP,
 	DOWN,
+
+	LBTN,
+	RBTN,
 
 	KEY_END,
 };

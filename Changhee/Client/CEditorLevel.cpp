@@ -9,6 +9,10 @@
 #include "CKeyMgr.h"
 #include "CLevelMgr.h"
 
+#include "CBtnUI.h"
+
+#include "CTile.h"
+
 void CEditorLevel::init()
 {
 }
@@ -29,6 +33,12 @@ void CEditorLevel::enter()
 
 	// 鸥老 积己
 	CreateTile(10, 10);
+
+	// UI 积己
+	CBtnUI* pBtnUI = new CBtnUI;
+	pBtnUI->SetScale(Vec2(200.f, 80.f));
+	pBtnUI->SetPos(Vec2(1390.f, 10.f));
+	AddObject(LAYER::UI, pBtnUI);
 }
 
 void CEditorLevel::exit()
@@ -53,6 +63,27 @@ void CEditorLevel::tick()
 	if (KEY_TAP(KEY::ENTER))
 	{
 		ChangeLevel(LEVEL_TYPE::PLAY_LEVEL);
+	}
+
+	if (KEY_TAP(KEY::LBTN))
+	{
+		Vec2 vMousePos = CKeyMgr::GetInst()->GetMousePos();
+		vMousePos = CCamera::GetInst()->GetRealPos(vMousePos);
+
+		int iCol = int(vMousePos.x / TILE_SIZE);
+		int iRow = int(vMousePos.y / TILE_SIZE);
+		int iIdx = GetTileCol() * iRow + iCol;
+
+		if (!((int)GetTileCol() <= iCol) && !((int)GetTileRow() <= iRow) && !(vMousePos.x < 0.f) && !(vMousePos.y < 0.f))
+		{
+			const vector<CObj*>& vecTiles = GetObjects(LAYER::TILE);
+			CTile* pTile = dynamic_cast<CTile*>(vecTiles[iIdx]);
+			if (nullptr != pTile)
+			{
+				pTile->AddImgIdx();
+			}
+		}
+
 	}
 }
 

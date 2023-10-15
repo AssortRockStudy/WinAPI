@@ -107,6 +107,15 @@
     <Filter Include="Game\04. Object\Tile">
       <UniqueIdentifier>{af43a641-2fd2-4046-a432-cf5049aa2019}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04. Object\UI">
+      <UniqueIdentifier>{a117e0ff-d712-4396-b06c-0988a7d5d54e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Object\UI\BtnUI">
+      <UniqueIdentifier>{9ab5ee24-8a02-43c7-af53-39aa96d5d151}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Object\UI\PanelUI">
+      <UniqueIdentifier>{8411ebdc-2930-4360-b92c-dd3c1fc41000}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -239,6 +248,15 @@
     <ClInclude Include="CTile.h">
       <Filter>Game\04. Object\Tile</Filter>
     </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>Game\04. Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CBtnUI.h">
+      <Filter>Game\04. Object\UI\BtnUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CPanelUI.h">
+      <Filter>Game\04. Object\UI\PanelUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -365,6 +383,15 @@
     </ClCompile>
     <ClCompile Include="CTile.cpp">
       <Filter>Game\04. Object\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>Game\04. Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CBtnUI.cpp">
+      <Filter>Game\04. Object\UI\BtnUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CPanelUI.cpp">
+      <Filter>Game\04. Object\UI\PanelUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

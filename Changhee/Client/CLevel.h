@@ -20,12 +20,15 @@ public:
 	template<typename T>
 	void GetObjects(vector<T*>& _Out);
 
-	const vector<CObj*>& GetObjects(LAYER _eLayer) { return m_arrLayer[(UINT)_eLayer]->m_vecObjects; }
+	const vector<CObj*>& GetObjects(LAYER _eLayer) { return m_arrLayer[(UINT)_eLayer]->GetObjects(); }
 	CLayer* GetLayer(int LayerIdx)
 	{
 		assert(!(LayerIdx < 0 || (UINT)LAYER::END <= LayerIdx));
 		return m_arrLayer[LayerIdx];
 	}
+
+	UINT GetTileRow() { return m_iTileRow; }
+	UINT GetTileCol() { return m_iTileCol; }
 
 protected:
 	void AddObject(LAYER _eLayer, CObj* _Object);

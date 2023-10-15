@@ -17,6 +17,7 @@ public:
 	void DeleteAllObjects();
 	void RegisterCollider(CCollider* _pCollider) { m_vecCollider.push_back(_pCollider); }
 
+	const vector<CObj*>& GetObjects() { return m_vecObjects; }
 	const vector<CCollider*>& GetColliders() { return m_vecCollider; }
 
 
