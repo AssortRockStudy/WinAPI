@@ -124,6 +124,7 @@ enum LAYER {
     MONSTER_PJ,
     WORLD_STATIC,
 
+    UI = 31,
     END = 32,
 };
 

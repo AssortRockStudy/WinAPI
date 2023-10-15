@@ -77,6 +77,9 @@
     <Filter Include="Game\05. Object\Tile">
       <UniqueIdentifier>{6353599d-8b35-4b84-9259-64ba593f8f27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\UI">
+      <UniqueIdentifier>{041cdaac-27ba-4a1d-88be-0f8323c6fc9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inho.h">
@@ -203,6 +206,15 @@
     <ClInclude Include="CTile.h">
       <Filter>Game\05. Object\Tile</Filter>
     </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>Game\05. Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CBtnUI.h">
+      <Filter>Game\05. Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CPanelUI.h">
+      <Filter>Game\05. Object\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="inho.rc">
@@ -323,6 +335,15 @@
     </ClCompile>
     <ClCompile Include="CTile.cpp">
       <Filter>Game\05. Object\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>Game\05. Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CBtnUI.cpp">
+      <Filter>Game\05. Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CPanelUI.cpp">
+      <Filter>Game\05. Object\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

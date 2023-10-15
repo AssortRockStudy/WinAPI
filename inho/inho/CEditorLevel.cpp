@@ -9,6 +9,7 @@
 #include "resource.h"
 
 #include "CTile.h"
+#include "CBtnUI.h"
 
 void CEditorLevel::init()
 {
@@ -29,6 +30,12 @@ void CEditorLevel::enter()
 	CCamera::GetInst()->SetLookAt(vLookAt);
 
 	CreateTile(10, 10);
+
+	CBtnUI* pBtnUI = new CBtnUI;
+	pBtnUI->SetScale(Vec2(200.f, 80.f));
+	pBtnUI->SetPos(Vec2(1390.f, 10.f));
+	AddObject(LAYER::UI, pBtnUI);
+
 }
 
 void CEditorLevel::exit()

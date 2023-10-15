@@ -41,24 +41,43 @@ void CKeyMgr::init() {
 }
 
 void CKeyMgr::tick() {
-    for (size_t i = 0; i < m_vecKeyData.size(); ++i) {
-        if (GetAsyncKeyState(g_KeySync[m_vecKeyData[i].eKey]) & 0x8001) {
-            if (m_vecKeyData[i].bPressed) {
-                m_vecKeyData[i].eState = PRESSED;
-            } else {
-                m_vecKeyData[i].eState = TAP;
-            }
 
-            m_vecKeyData[i].bPressed = true;
-        } else {
-            if (m_vecKeyData[i].bPressed) {
+    if (nullptr == GetFocus()) {
+        for (size_t i = 0; i < m_vecKeyData.size(); i++) {
+            if (TAP == m_vecKeyData[i].eState) {
+                m_vecKeyData[i].eState = PRESSED;
+            }
+            else if (PRESSED == m_vecKeyData[i].eState) {
                 m_vecKeyData[i].eState = RELEASED;
-            } else {
+            }
+            else if (RELEASED == m_vecKeyData[i].eState) {
                 m_vecKeyData[i].eState = NONE;
             }
-            m_vecKeyData[i].bPressed = false;
         }
     }
+    else {
+        for (size_t i = 0; i < m_vecKeyData.size(); ++i) {
+            if (GetAsyncKeyState(g_KeySync[m_vecKeyData[i].eKey]) & 0x8001) {
+                if (m_vecKeyData[i].bPressed) {
+                    m_vecKeyData[i].eState = PRESSED;
+                }
+                else {
+                    m_vecKeyData[i].eState = TAP;
+                }
+
+                m_vecKeyData[i].bPressed = true;
+            }
+            else {
+                if (m_vecKeyData[i].bPressed) {
+                    m_vecKeyData[i].eState = RELEASED;
+                }
+                else {
+                    m_vecKeyData[i].eState = NONE;
+                }
+                m_vecKeyData[i].bPressed = false;
+            }
+        }
+    }    
 
     POINT pt = {};
     GetCursorPos(&pt);
