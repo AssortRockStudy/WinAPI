@@ -15,6 +15,7 @@ private:
 public:
     void SetAtlas(MyTexture* _Atlas) { m_Atlas = _Atlas; }
     void SetImageIdx(int _Idx) { m_Idx = _Idx; }
+    void AddImageIdx();
 
 public:
     virtual void tick(float _DT) override;

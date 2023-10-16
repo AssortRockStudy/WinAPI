@@ -112,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <DisableSpecificWarnings>4819</DisableSpecificWarnings>
     </ClCompile>
@@ -148,6 +148,7 @@
     <ClInclude Include="MyAnimator.h" />
     <ClInclude Include="MyAsset.h" />
     <ClInclude Include="MyAssetMgr.h" />
+    <ClInclude Include="MyBtnUI.h" />
     <ClInclude Include="MyCameraMgr.h" />
     <ClInclude Include="MyCollider.h" />
     <ClInclude Include="MyColliderMgr.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="MyMonster.h" />
     <ClInclude Include="MyMovement.h" />
     <ClInclude Include="MyObject.h" />
+    <ClInclude Include="MyPanelUI.h" />
     <ClInclude Include="MyPathMgr.h" />
     <ClInclude Include="MyPlatform.h" />
     <ClInclude Include="MyPlayer.h" />
@@ -175,6 +177,7 @@
     <ClInclude Include="MyTexture.h" />
     <ClInclude Include="MyTile.h" />
     <ClInclude Include="MyTimeMgr.h" />
+    <ClInclude Include="MyUI.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="struct.h" />
@@ -189,6 +192,7 @@
     <ClCompile Include="MyAnimator.cpp" />
     <ClCompile Include="MyAsset.cpp" />
     <ClCompile Include="MyAssetMgr.cpp" />
+    <ClCompile Include="MyBtnUI.cpp" />
     <ClCompile Include="MyCameraMgr.cpp" />
     <ClCompile Include="MyCollider.cpp" />
     <ClCompile Include="MyColliderMgr.cpp" />
@@ -205,6 +209,7 @@
     <ClCompile Include="MyMonster.cpp" />
     <ClCompile Include="MyMovement.cpp" />
     <ClCompile Include="MyObject.cpp" />
+    <ClCompile Include="MyPanelUI.cpp" />
     <ClCompile Include="MyPathMgr.cpp" />
     <ClCompile Include="MyPlatform.cpp" />
     <ClCompile Include="MyPlayer.cpp" />
@@ -216,7 +221,10 @@
     <ClCompile Include="MyTexture.cpp" />
     <ClCompile Include="MyTile.cpp" />
     <ClCompile Include="MyTimeMgr.cpp" />
-    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="MyUI.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="struct.cpp" />
   </ItemGroup>
   <ItemGroup>

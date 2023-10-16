@@ -47,6 +47,8 @@ protected:
 
 public:
 	void CreateTile(UINT _Row, UINT _Col);
+	UINT GetTileRow() { return m_TileRow; }
+	UINT GetTileCol() { return m_TileCol; }
 
 public:
 	MyLevel();

@@ -80,6 +80,15 @@
     <Filter Include="Game\04.Object\Tile">
       <UniqueIdentifier>{644320b0-9062-4bda-b6c3-57571b9e8ad4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04.Object\UI">
+      <UniqueIdentifier>{5449e115-efcc-498b-8f3b-794a010140d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04.Object\UI\MyBtnUI">
+      <UniqueIdentifier>{45b43215-651b-4144-b910-f7ce2abe30e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04.Object\UI\MyPanelUI">
+      <UniqueIdentifier>{bf809102-d969-46e0-b037-63599e6b83aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -206,6 +215,15 @@
     <ClInclude Include="MyTile.h">
       <Filter>Game\04.Object\Tile</Filter>
     </ClInclude>
+    <ClInclude Include="MyUI.h">
+      <Filter>Game\04.Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MyBtnUI.h">
+      <Filter>Game\04.Object\UI\MyBtnUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MyPanelUI.h">
+      <Filter>Game\04.Object\UI\MyPanelUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jinwoo.rc">
@@ -326,6 +344,15 @@
     </ClCompile>
     <ClCompile Include="MyTile.cpp">
       <Filter>Game\04.Object\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="MyUI.cpp">
+      <Filter>Game\04.Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MyBtnUI.cpp">
+      <Filter>Game\04.Object\UI\MyBtnUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MyPanelUI.cpp">
+      <Filter>Game\04.Object\UI\MyPanelUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

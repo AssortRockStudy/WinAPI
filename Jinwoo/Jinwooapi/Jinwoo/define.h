@@ -101,6 +101,9 @@ enum class KEY
 	UP,
 	DOWN,
 
+	LBTN,
+	RBTN,
+
 	KEY_END,
 };
 
@@ -123,6 +126,7 @@ enum class LAYER
 	MONSTERBULLET,
 	WORLD_STATIC,
 
+	UI = 31,
 	END = 32,
 };
 
