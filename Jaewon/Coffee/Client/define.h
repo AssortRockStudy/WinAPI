@@ -25,6 +25,7 @@
 #define DEBUG_RENDER CEngine::GetInst()->chkDebugRender()
 #define SELECT_PEN(DC, TYPE) SelectPen tempPenSelect(DC, TYPE)
 #define SELECT_BRUSH(DC, hBrush) SelectBrush tempBrushSelect(DC, hBrush)
+#define TILE_SIZE 64
 
 enum COLOR {
 	red,

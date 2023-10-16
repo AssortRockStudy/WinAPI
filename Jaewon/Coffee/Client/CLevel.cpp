@@ -3,6 +3,7 @@
 #include "CObj.h"
 #include "CTimeMgr.h"
 #include "Monster.h"
+#include "Tile.h"
 
 void CLevel::begin()
 {
@@ -41,7 +42,29 @@ void CLevel::addObject(LAYER _type, CObj* _obj)
 	_obj->mLayerIdx = _type;
 }
 
-CLevel::CLevel()
+void CLevel::deleteAllObjects()
+{
+	for (UINT i = 0; i < LAYER::END; ++i)
+		m_Layer[i]->deleteAllObjects();
+}
+
+void CLevel::createTile(UINT _Row, UINT _Col)
+{
+	tileRow = _Row;
+	tileCol = _Col;
+
+	for (UINT i = 0; i < _Row; ++i)
+	{
+		for (UINT j = 0; j < _Col; ++j)
+		{
+			Tile* pTile = new Tile;
+			pTile->setPos(Vec2(TILE_SIZE * j, TILE_SIZE * i));
+			addObject(LAYER::TILE, pTile);
+		}
+	}
+}
+
+CLevel::CLevel() : tileRow(0), tileCol(0)
 {
 	for (UINT i = 0; i < LAYER::END; ++i)
 	{

@@ -20,6 +20,21 @@ LevelMgr::~LevelMgr(){
 	}
 }
 
+void LevelMgr::changeLevel(LEVEL_TYPE _Type)
+{
+	if (curLevel == arrLevels[(UINT)_Type])
+		return;
+
+	if (nullptr != curLevel)
+		curLevel->exit();
+
+	curLevel = arrLevels[(UINT)_Type];
+
+	curLevel->enter();
+
+	curLevel->begin();
+}
+
 void LevelMgr::init()
 {
 	arrLevels[(UINT)LEVEL_TYPE::START_LEVEL] = new StartLevel;
@@ -30,20 +45,20 @@ void LevelMgr::init()
 		arrLevels[i]->init();
 	}
 
-	curLevel = arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL];
-
-	curLevel->begin();
+	::changeLevel(LEVEL_TYPE::EDITOR_LEVEL);
 
 }
 
 void LevelMgr::tick()
 {
-	curLevel->tick();
-	
+	if (nullptr != curLevel)
+		curLevel->tick();
 }
 
 void LevelMgr::render(HDC _dc)
 {
+	if (nullptr == curLevel)
+		return;
 	// 이중 버퍼 구현
 	POINT ptResolution = CEngine::GetInst()->getMainResol();
 	Rectangle(_dc, -1, -1, ptResolution.x + 1, ptResolution.y + 1);

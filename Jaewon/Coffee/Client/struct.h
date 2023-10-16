@@ -99,6 +99,7 @@ public:
 	Vec2(float _x, float _y) : x(_x), y(_y) {}
 	Vec2(int _x, int _y) : x(float(_x)), y(float(_y)) {}
 	Vec2(POINT _x) : x(float(_x.x)), y(float(_x.y)) {}
+	Vec2(UINT _x, UINT _y) : x((float)_x), y((float)_y)	{}
 };
 
 struct FKeyData {

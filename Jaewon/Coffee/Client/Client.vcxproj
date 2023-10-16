@@ -176,6 +176,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TaskMgr.h" />
+    <ClInclude Include="Tile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Anim.cpp" />
@@ -213,6 +214,7 @@
     <ClCompile Include="StartLevel.cpp" />
     <ClCompile Include="struct.cpp" />
     <ClCompile Include="TaskMgr.cpp" />
+    <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

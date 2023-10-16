@@ -44,12 +44,18 @@ void CLayer::render(HDC _dc)
 	}
 }
 
+void CLayer::deleteAllObjects()
+{
+	for (int i = 0; i < mVecObjects.size(); ++i)
+		delete mVecObjects[i];
+	mVecObjects.clear();
+}
+
 CLayer::CLayer()
 {
 }
 
 CLayer::~CLayer()
 {
-	for (int i = 0; i < mVecObjects.size(); ++i)
-		delete mVecObjects[i];
+	deleteAllObjects();
 }

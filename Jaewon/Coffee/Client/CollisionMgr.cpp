@@ -9,6 +9,8 @@
 void CollisionMgr::collisionBtwLayer(LAYER l, LAYER r)
 {
 	CLevel* curLevel = LevelMgr::GetInst()->getCurLevel();
+	if (nullptr == curLevel)
+		return;
 
 	const vector<Collider*>& vecLeft = curLevel->GetLayer(l)->getColliders();
 	const vector<Collider*>& vecRight = curLevel->GetLayer(r)->getColliders();

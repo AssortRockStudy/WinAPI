@@ -6,6 +6,8 @@
 #include "CEngine.h"
 #include "Camera.h"
 #include "CollisionMgr.h"
+#include "KeyMgr.h"
+#include "LevelMgr.h"
 
 void PlayLevel::init()
 {
@@ -39,4 +41,22 @@ void PlayLevel::init()
 	CollisionMgr::GetInst()->checkCollision(MONSTER, PLAYER);
 	CollisionMgr::GetInst()->checkCollision(PLAYER_PJ, MONSTER);
 	CollisionMgr::GetInst()->checkCollision(PLAYER, PLATFORM);
+}
+
+void PlayLevel::enter()
+{
+	init();
+}
+
+void PlayLevel::exit()
+{
+	deleteAllObjects();
+}
+
+void PlayLevel::tick()
+{
+	CLevel::tick();
+
+	if (KeyMgr::GetInst()->getKeyState(ENTER) == TAP)
+		changeLevel(LEVEL_TYPE::START_LEVEL);
 }

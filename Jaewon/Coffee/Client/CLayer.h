@@ -27,6 +27,7 @@ public:
 	}
 	void registerCollider(Collider* _col) {mVecCollider.push_back(_col); } 
 	const vector<Collider*>& getColliders() { return mVecCollider; }
+	void deleteAllObjects();
 
 public:
 	CLayer();

@@ -12,9 +12,14 @@ private:
 public:
 	CLevel* getCurLevel() { return curLevel; }
 
+private:
+	void changeLevel(LEVEL_TYPE _Type);
+
 public:
 	void init();
 	void tick();
 	void render(HDC _dc);
+
+	friend class TaskMgr;
 };
 

@@ -9,11 +9,15 @@ class CLevel
 {
 private:
 	CLayer* m_Layer[LAYER::END];
+	UINT	tileRow;
+	UINT	tileCol;
 
 public:
 	virtual void init() = 0;
+	virtual void enter() = 0;
+	virtual void exit() = 0;
 	void begin();
-	void tick();
+	virtual void tick();
 	void render(HDC _dc);
 	
 	template<typename T>
@@ -27,6 +31,8 @@ public:
 
 protected:
 	void addObject(LAYER _type, CObj* _obj);
+	void deleteAllObjects();
+	void createTile(UINT _Row, UINT _Col);
 
 public:
 	CLevel();
