@@ -39,6 +39,7 @@ void MyEditLevel::enter()
 	BtnUI->SetScale(Vec2(100.f, 30.f));
 	AddObject(LAYER::UI, BtnUI);
 
+	// 타일 생성
 	CreateTile(5, 5);
 }
 

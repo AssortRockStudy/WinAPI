@@ -10,6 +10,7 @@
 #include "MyColliderMgr.h"
 #include "MyGCMgr.h"
 #include "MyLogMgr.h"
+#include "MyUIMgr.h"
 
 
 MyEngine::MyEngine() : m_hWnd(nullptr), m_ptResolution{}, m_DC(nullptr), m_SubBitMap(nullptr), m_SubDC(nullptr), m_DebugRender(true), m_arrPen{}
@@ -86,6 +87,7 @@ void MyEngine::tick()
 	// 레벨 매니저 업데이트
 	MyLevelMgr::GetInst()->tick();
 	MyColliderMgr::GetInst()->tick();
+	MyUIMgr::GetInst()->tick();
 	MyLevelMgr::GetInst()->render(m_SubDC);
 
 	// Task 매니저 업데이트

@@ -178,6 +178,7 @@
     <ClInclude Include="MyTile.h" />
     <ClInclude Include="MyTimeMgr.h" />
     <ClInclude Include="MyUI.h" />
+    <ClInclude Include="MyUIMgr.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="struct.h" />
@@ -222,6 +223,7 @@
     <ClCompile Include="MyTile.cpp" />
     <ClCompile Include="MyTimeMgr.cpp" />
     <ClCompile Include="MyUI.cpp" />
+    <ClCompile Include="MyUIMgr.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>

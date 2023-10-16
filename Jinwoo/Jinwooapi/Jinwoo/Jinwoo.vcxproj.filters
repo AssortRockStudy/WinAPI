@@ -224,6 +224,9 @@
     <ClInclude Include="MyPanelUI.h">
       <Filter>Game\04.Object\UI\MyPanelUI</Filter>
     </ClInclude>
+    <ClInclude Include="MyUIMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jinwoo.rc">
@@ -353,6 +356,9 @@
     </ClCompile>
     <ClCompile Include="MyPanelUI.cpp">
       <Filter>Game\04.Object\UI\MyPanelUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MyUIMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
