@@ -58,5 +58,5 @@ void PlayLevel::tick()
 	CLevel::tick();
 
 	if (KeyMgr::GetInst()->getKeyState(ENTER) == TAP)
-		changeLevel(LEVEL_TYPE::START_LEVEL);
+		changeLevel(LEVEL_TYPE::EDITOR_LEVEL);
 }

@@ -23,6 +23,7 @@ public:
 	HDC getMainDc() { return mDc; }
 	HPEN getPen(PEN_TYPE _type) { return arrPen[_type]; }
 	bool chkDebugRender() { return debugRender; }
+	void changeWindowSize(POINT _resolm, bool _menu);
 
 private:
 	void createGDI();

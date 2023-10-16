@@ -25,6 +25,14 @@ CEngine::~CEngine()
 		DeleteObject(arrPen[i]);
 }
 
+void CEngine::changeWindowSize(POINT _resolm, bool _menu)
+{
+	mPtResolution = _resolm;
+	RECT rt = { 0, 0, _resolm.x, _resolm.y };
+	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, _menu);
+	SetWindowPos(mHwnd, nullptr, 10, 10, rt.right - rt.left, rt.bottom - rt.top, 0);
+}
+
 void CEngine::createGDI()
 {
 	arrPen[RED_PEN] = CreatePen(PS_SOLID, 1, RGB(255, 20, 20));
@@ -35,7 +43,7 @@ void CEngine::createGDI()
 void CEngine::init(HWND _hwnd, POINT _ptResolution)
 {
 	mHwnd = _hwnd;
-	mPtResolution = _ptResolution;
+	changeWindowSize(_ptResolution, false);
 
 	// 해상도 설정
 	SetWindowPos(mHwnd, nullptr, 10, 10, mPtResolution.x, mPtResolution.y, 0);
