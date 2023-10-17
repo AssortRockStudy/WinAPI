@@ -9,8 +9,6 @@
 HINSTANCE   hInst = 0;
 HWND        g_hWnd = 0;
 
-
-
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -32,7 +30,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
-    CEngine::GetInst()->init(g_hWnd, POINT{ 1280,768 });
+    CEngine::GetInst()->init(g_hWnd, POINT{ 1600,900 });
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
     MSG msg;
@@ -56,8 +54,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         {
             CEngine::GetInst()->tick();
         }
-
-        
     }
 
     return (int) msg.wParam;
@@ -80,7 +76,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_CLIENT));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
-    wcex.lpszMenuName   = nullptr;//MAKEINTRESOURCEW(IDC_CLIENT);
+    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_CLIENT);
     wcex.lpszClassName  = L"MyWindow";
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -105,6 +101,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    return TRUE;
 }
 
+INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
@@ -119,6 +117,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);
+                break;
+            case ID_CREATE_TILE:
+                DialogBox(hInst, MAKEINTRESOURCE(IDD_CREATE_TILE), hWnd, CreateTileProc);
                 break;
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);

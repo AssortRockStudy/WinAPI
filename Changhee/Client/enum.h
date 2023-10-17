@@ -1,7 +1,50 @@
 #pragma once
 
+// Level
+enum class LEVEL_TYPE
+{
+	START_LEVEL,
+	PLAY_LEVEL,
+	EDITOR_LEVEL,
+	END,
+};
 
-// Palette
+
+
+// Object layer
+enum class LAYER
+{
+	DEFAULT,
+	TILE,
+	MONSTER,
+	PLAYER,
+	PLATFORM,
+	PLAYER_PJ,
+	MONST_PJ,
+	WORLD_STATIC,
+
+
+	UI = 31,
+	END = 32,
+};
+
+// Task
+enum class TASK_TYPE
+{
+	// Param1 : Layer Type, Param2 : Object Adress
+	CREATE_OBJECT,
+
+	// Param1 : Object Adress
+	DELETE_OBJECT,
+
+	// Param1 : LEVEL_TYPE
+	LEVEL_CHANGE,
+
+
+	END,
+};
+
+// GDI
 enum class BRUSH_TYPE
 {
 	RED,
@@ -52,5 +95,18 @@ enum class KEY
 	UP,
 	DOWN,
 
+	LBTN,
+	RBTN,
+
 	KEY_END,
+};
+
+
+// Log
+enum class LOG_LEVEL
+{
+	LOG,
+	WARNING,
+	ERR,
+	END,
 };

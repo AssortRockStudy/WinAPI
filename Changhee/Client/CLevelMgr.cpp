@@ -1,60 +1,73 @@
 #include "pch.h"
 #include "CLevelMgr.h"
 
-
-#include "CEngine.h"
-#include "CLevel.h"
-
-
-// 임시
-#include "CPlayer.h"
-#include "CMonster.h"
+#include "CStartLevel.h"
+#include "CEditorLevel.h"
+#include "CPlayLevel.h"
 
 CLevelMgr::CLevelMgr()
 	: m_pCurLevel(nullptr)
+	, m_arrLevels{}
 {}
 
 
 CLevelMgr::~CLevelMgr()
 {
-	delete m_pCurLevel;
+	for (UINT i = 0; i < (UINT)LEVEL_TYPE::END; ++i)
+	{
+		if (nullptr != m_arrLevels[i])
+		{
+			delete m_arrLevels[i];
+		}
+	}
+}
+
+void CLevelMgr::ChangeLevel(LEVEL_TYPE _eType)
+{
+	if (m_pCurLevel == m_arrLevels[(UINT)_eType])
+		return;
+
+	if (nullptr != m_pCurLevel)
+		m_pCurLevel->exit();
+
+	m_pCurLevel = m_arrLevels[(UINT)_eType];
+
+	m_pCurLevel->enter();
+	m_pCurLevel->begin();
+
 }
 
 void CLevelMgr::init()
 {
-	// Level 생성
-	m_pCurLevel = new CLevel;
+	// 모든 레벨 생성
+	m_arrLevels[(UINT)LEVEL_TYPE::START_LEVEL] = new CStartLevel;
+	m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL] = new CPlayLevel;
+	m_arrLevels[(UINT)LEVEL_TYPE::EDITOR_LEVEL] = new CEditorLevel;
 
-	// Plyaer 생성
-	CPlayer* pPlayer = new CPlayer;
-	pPlayer->SetPos(Vec2(500.f, 500.f));
-	pPlayer->SetScale(Vec2(50.f, 50.f));
-	m_pCurLevel->AddObject(pPlayer);
+	// 레벨 초기화
+	for (UINT i = 0; i < (UINT)LEVEL_TYPE::END; ++i)
+	{
+		m_arrLevels[i]->init();
+	}
 
-	CMonster* pMonster = new CMonster;
-	pMonster->SetPos(Vec2(500.f, 200.f));
-	pMonster->SetScale(Vec2(50.f, 50.f));
-	m_pCurLevel->AddMonster(pMonster);
+	// Level 
+	ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
 
 }
 
 void CLevelMgr::tick()
 {
+	if (nullptr == m_pCurLevel)
+		return;
+
 	m_pCurLevel->tick();
 }
 
 void CLevelMgr::render(HDC _dc)
 {
-	POINT ptResolution = CEngine::GetInst()->GetResolution();
-
-
-	// 화면 clear
-	Rectangle(_dc, -1, -1, ptResolution.x + 1, ptResolution.y);
-
-
+	if (nullptr == m_pCurLevel)
+		return;
 
 	// Level render
 	m_pCurLevel->render(_dc);
-
-
 }

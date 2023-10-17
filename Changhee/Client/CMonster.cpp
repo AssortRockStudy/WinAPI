@@ -1,58 +1,57 @@
 #include "pch.h"
 #include "CMonster.h"
 
-#include "CKeyMgr.h"
+#include "components.h"
 
+#include "CProjectile.h"
 
 CMonster::CMonster()
-	: m_fSpeed(300.f)
+	: m_Info{}
+	, m_pCollider(nullptr)
 {
+	m_pCollider = AddComponent<CCollider>(L"MonsterCollider");
+	m_Info.HP = 5;
 }
 
 CMonster::~CMonster()
 {
 }
 
-
+void CMonster::begin()
+{
+	m_pCollider->SetScale(GetScale() - 10.f);
+}
 
 void CMonster::tick(float _DT)
 {
-	Vec2 vPos = GetPos();
-
-	if (KEY_PRESSED(KEY::UP))
-	{
-		vPos.y -= m_fSpeed * _DT;
-	}
-
-	if (KEY_PRESSED(KEY::DOWN))
-	{
-		vPos.y += m_fSpeed * _DT;
-	}
-
-	if (KEY_PRESSED(KEY::LEFT))
-	{
-		vPos.x -= m_fSpeed * _DT;
-	}
-
-	if (KEY_PRESSED(KEY::RIGHT))
-	{
-		vPos.x += m_fSpeed * _DT;
-	}
-
-	SetPos(vPos);
+	Super::tick(_DT);
 }
 
 void CMonster::render(HDC _dc)
 {
-	CPalette RedBrush(_dc, BRUSH_TYPE::RED);
-
-	Vec2 vPos = GetPos();
+	Vec2 vRenderPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 
-	Ellipse(_dc 
-		, int(vPos.x - vScale.x / 2)
-		, int(vPos.y - vScale.y / 2)
-		, int(vPos.x + vScale.x / 2)
-		, int(vPos.y + vScale.y / 2));
+	Rectangle(_dc
+		, int(vRenderPos.x - vScale.x / 2)
+		, int(vRenderPos.y - vScale.y / 2)
+		, int(vRenderPos.x + vScale.x / 2)
+		, int(vRenderPos.y + vScale.y / 2));
+
+	Super::render(_dc);
 }
 
+
+void CMonster::BeginOverlap(CCollider* _pOwnCol, CObj* _pOtherObj, CCollider* _pOtherCol)
+{
+	if (dynamic_cast<CProjectile*>(_pOtherObj))
+	{
+		m_Info.HP -= 1.f;
+
+		if (m_Info.HP <= 0.f)
+		{
+			Destroy();
+		}
+	}
+
+}

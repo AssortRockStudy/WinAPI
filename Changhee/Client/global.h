@@ -3,5 +3,5 @@
 #include "define.h"
 #include "enum.h"
 #include "struct.h"
-
-#include "CPalette.h"
+#include "func.h"
+#include "CLogMgr.h"

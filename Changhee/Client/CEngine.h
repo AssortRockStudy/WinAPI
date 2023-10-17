@@ -7,9 +7,10 @@ class CEngine
 
 private:
 	HWND		m_hWnd;				// 메인 윈도우 핸들
-	POINT		m_ptResloution;		// 윈도우 해상도 정보
+	POINT		m_ptResolution;		// 윈도우 해상도 정보
 	HDC			m_hDC;				// 메인 DC
-	
+	bool		m_bDebugRender;		// Debug render
+
 	HDC			m_hSubDC;			// BackBuffer DC
 	HBITMAP		m_hSubBitMap;		// BackBuffer BitMap
 
@@ -18,17 +19,23 @@ private:
 	HBRUSH	m_arrBrush[(UINT)BRUSH_TYPE::END];
 
 private:
-	void CreatePenBrush();
+	void CreateDefaultGDI();
+	void Clear();
 	void CopyBackBuffer();
-
 
 public:
 	HWND GetMainWind() { return m_hWnd; }
 	HDC GetMainDC() { return m_hDC; }
-	POINT GetResolution() { return m_ptResloution; }
+	POINT GetResolution() { return m_ptResolution; }
+
 
 	HPEN GetPEN(PEN_TYPE _ePenType) { return m_arrPen[(UINT)_ePenType]; }
 	HBRUSH GetBRUSH(BRUSH_TYPE _eBrushType) { return m_arrBrush[(UINT)_eBrushType]; }
+
+public:
+	void ChangeWindowSize(POINT _ptResolution, bool _bMenu);
+	bool DebugRender() { return m_bDebugRender; }
+
 
 public:
 	void init(HWND _hWnd, POINT _ptResolution);

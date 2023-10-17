@@ -5,17 +5,22 @@
 #include "CKeyMgr.h"
 #include "CLevelMgr.h"
 #include "CPathMgr.h"
+#include "CTaskMgr.h"
+#include "CCamera.h"
+#include "CCollisionMgr.h"
+#include "CGCMgr.h"
 
 
 CEngine::CEngine()
 	: m_hWnd(nullptr)
-	, m_ptResloution{}
+	, m_ptResolution{}
 	, m_hDC(nullptr)
 	, m_hSubBitMap(nullptr)
 	, m_hSubDC(nullptr)
+	, m_bDebugRender(true)
 {
 	// pen, brush 생성
-	CreatePenBrush();
+	CreateDefaultGDI();
 }
 
 CEngine::~CEngine()
@@ -46,15 +51,16 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 {
 	// 멤버 변수 초기화
 	m_hWnd = _hWnd;
-	m_ptResloution = _ptResolution;
+	m_ptResolution = _ptResolution;
 	m_hDC = GetDC(m_hWnd);
 
+
 	// 해상도 변경
-	SetWindowPos(m_hWnd, nullptr, 50, 50, m_ptResloution.x, m_ptResloution.y, 0);
+	ChangeWindowSize(_ptResolution,false);
 	ShowWindow(m_hWnd, true);
 
 	// 추가 비트맵 버퍼
-	m_hSubBitMap = CreateCompatibleBitmap(m_hDC, m_ptResloution.x, m_ptResloution.y);
+	m_hSubBitMap = CreateCompatibleBitmap(m_hDC, m_ptResolution.x, m_ptResolution.y);
 	m_hSubDC = CreateCompatibleDC(m_hDC);
 	
 	// m_SubDC가 디폴트로 들고있던 비트맵을 삭제
@@ -74,23 +80,41 @@ void CEngine::tick()
 	// ------------ Manager Update ------------
 	CTimeMgr::GetInst()->tick();
 	CKeyMgr::GetInst()->tick();
+	CCamera::GetInst()->tick();
+	CLogMgr::GetInst()->tick();
+
+	if (KEY_TAP(KEY::TAB))
+	{
+		m_bDebugRender ? m_bDebugRender = false : m_bDebugRender = true;
+	}
 
 
-	// ------------ update ------------
+	// ------------ tick ------------
 	CLevelMgr::GetInst()->tick();
+	CCollisionMgr::GetInst()->tick();
+
+
+	// ------------ clear -------------
+	Clear();
 
 
 	// ------------ render ------------
 	CLevelMgr::GetInst()->render(m_hSubDC);
+	CLogMgr::GetInst()->render(m_hSubDC);
 
 
+	// -------- Task Execute --------
+	CTaskMgr::GetInst()->tick();
 
 	// SubDC -> mainDC 복사
 	CopyBackBuffer();
-	
+
+	// Garbage Collector tick
+	CGCMgr::GetInst()->tick();
+
 }
 
-void CEngine::CreatePenBrush()
+void CEngine::CreateDefaultGDI()
 {
 	// red, green, blue blush 생성
 	m_arrBrush[(UINT)BRUSH_TYPE::RED] = CreateSolidBrush(RGB(255, 0, 0));
@@ -106,8 +130,22 @@ void CEngine::CreatePenBrush()
 
 }
 
+void CEngine::Clear()
+{
+	Rectangle(m_hSubDC, -1, -1, m_ptResolution.x + 1, m_ptResolution.y);
+}
+
 void CEngine::CopyBackBuffer()
 {
 	// m_SubDC -> m_DC 로 복사
-	BitBlt(m_hDC, 0, 0, m_ptResloution.x, m_ptResloution.y, m_hSubDC, 0, 0, SRCCOPY);
+	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_hSubDC, 0, 0, SRCCOPY);
+}
+
+void CEngine::ChangeWindowSize(POINT _ptResolution, bool _bMenu)
+{
+	m_ptResolution = _ptResolution;
+
+	RECT rt = { 0,0,m_ptResolution.x, m_ptResolution.y };
+	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, _bMenu);
+	SetWindowPos(m_hWnd, nullptr, 10, 10, rt.right - rt.left, rt.bottom - rt.top, 0);
 }

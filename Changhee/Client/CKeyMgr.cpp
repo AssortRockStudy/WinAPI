@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CKeyMgr.h"
 
+#include "CEngine.h"
 
 int g_KeySync[(UINT)KEY::KEY_END] =
 {
@@ -36,6 +37,8 @@ int g_KeySync[(UINT)KEY::KEY_END] =
 	VK_UP,
 	VK_DOWN,
 
+	VK_LBUTTON,
+	VK_RBUTTON,
 };
 
 
@@ -60,35 +63,62 @@ void CKeyMgr::init()
 
 void CKeyMgr::tick()
 {
-	for (size_t i = 0; i < m_vecKeyData.size(); ++i)
+	if (nullptr == GetFocus())
 	{
-		if (GetAsyncKeyState(g_KeySync[(UINT)m_vecKeyData[i].eKey]) & 0x8001)
+		for (size_t i = 0; i < m_vecKeyData.size(); ++i)
 		{
-			if (m_vecKeyData[i].bPressed)
+			if (KEY_STATE::TAP == m_vecKeyData[i].eState)
 			{
 				m_vecKeyData[i].eState = KEY_STATE::PRESSED;
 			}
-			else
-			{
-				m_vecKeyData[i].eState = KEY_STATE::TAP;
-			}
 
-			m_vecKeyData[i].bPressed = true;
-		}
-		else
-		{
-			if (m_vecKeyData[i].bPressed)
+			if (KEY_STATE::PRESSED == m_vecKeyData[i].eState)
 			{
 				m_vecKeyData[i].eState = KEY_STATE::RELEASED;
 			}
-			else
+
+			if (KEY_STATE::RELEASED == m_vecKeyData[i].eState)
 			{
 				m_vecKeyData[i].eState = KEY_STATE::NONE;
 			}
+		}
+	}
+	else
+	{
+		for (size_t i = 0; i < m_vecKeyData.size(); ++i)
+		{
+			if (GetAsyncKeyState(g_KeySync[(UINT)m_vecKeyData[i].eKey]) & 0x8001)
+			{
+				if (m_vecKeyData[i].bPressed)
+				{
+					m_vecKeyData[i].eState = KEY_STATE::PRESSED;
+				}
+				else
+				{
+					m_vecKeyData[i].eState = KEY_STATE::TAP;
+				}
 
-			m_vecKeyData[i].bPressed = false;
+				m_vecKeyData[i].bPressed = true;
+			}
+			else
+			{
+				if (m_vecKeyData[i].bPressed)
+				{
+					m_vecKeyData[i].eState = KEY_STATE::RELEASED;
+				}
+				else
+				{
+					m_vecKeyData[i].eState = KEY_STATE::NONE;
+				}
+
+				m_vecKeyData[i].bPressed = false;
+			}
 		}
 	}
 
-
+	// Mouse
+	POINT pt = {};
+	GetCursorPos(&pt);
+	ScreenToClient(CEngine::GetInst()->GetMainWind(), &pt);
+	m_vMousePos = pt;
 }

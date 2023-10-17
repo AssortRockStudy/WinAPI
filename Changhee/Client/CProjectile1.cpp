@@ -4,6 +4,7 @@
 #include "CLevelMgr.h"
 #include "CLevel.h"
 
+#include "CMonster.h"
 
 
 CProjectile1::CProjectile1()
@@ -42,7 +43,9 @@ void CProjectile1::Targeting()
 	Vec2 vPos = GetPos();
 
 	// 가장 가까운 몬스터 찾기
-	vector<CObj*> vecMonster = CLevelMgr::GetInst()->GetCurLevel()->GetMonster();
+	vector<CMonster*> vecMonster;
+
+	CLevelMgr::GetInst()->GetCurLevel()->GetObjects<CMonster>(vecMonster);
 
 	float min_dis = 9999999.f;
 
