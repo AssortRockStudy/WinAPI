@@ -1,11 +1,10 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 
 #include "CTimeMgr.h"
 
-
 #include "CEngine.h"
 
-// Á¦ÀÏ Å« ÀÚ·áÇü ±âÁØÀ¸·Î °°Àº °ø°£À» ÁöÄªÇÏ´Â DataType ¼±¾ğ ¹æ½Ä
+// ì œì¼ í° ìë£Œí˜• ê¸°ì¤€ìœ¼ë¡œ ê°™ì€ ê³µê°„ì„ ì§€ì¹­í•˜ëŠ” DataType ì„ ì–¸ ë°©ì‹
 union MousePos {
     struct {
         short High;
@@ -20,7 +19,7 @@ CTimeMgr::CTimeMgr() : m_Frequency{}, m_PrevCount{}, m_CurCount{} {}
 CTimeMgr::~CTimeMgr() {}
 
 void CTimeMgr::init() {
-    // ÃÊ´ç ºóµµ
+    // ì´ˆë‹¹ ë¹ˆë„
     QueryPerformanceFrequency(&m_Frequency);
 
     QueryPerformanceCounter(&m_PrevCount);
@@ -34,6 +33,9 @@ void CTimeMgr::tick() {
 
     m_PrevCount = m_CurCount;
 
+    if ((1.f / 60.f) < m_DeltaTime)
+        m_DeltaTime = (1.f / 60.f);
+
     m_fTime += m_DeltaTime;
     if (1.f <= m_fTime) {
         wchar_t szText[50] = {};
@@ -45,6 +47,4 @@ void CTimeMgr::tick() {
     }
 
     ++m_iCall;
-
- 
 }

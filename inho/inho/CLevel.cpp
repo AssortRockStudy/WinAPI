@@ -1,39 +1,82 @@
-#include "pch.h"
+﻿#include "pch.h"
 
 #include "CLevel.h"
 
-
+#include "CLayer.h"
+#include "CMonster.h"
 #include "CObj.h"
 #include "CTimeMgr.h"
-#include "CMonster.h"
+#include "CTile.h"
 
-CLevel::CLevel() {}
+CLevel::CLevel(): m_TileRow(0), m_TileCol(0) {
+    for (UINT i = 0; i < LAYER::END; ++i) {
+        m_Layer[i] = new CLayer;
+    }
+}
 
 CLevel::~CLevel() {
-    for (size_t i = 0; i < m_vecObjects.size(); ++i) {
-        delete m_vecObjects[i];
+    for (UINT i = 0; i < LAYER::END; ++i) {
+        delete m_Layer[i];
     }
-    for (size_t i = 0; i < m_vecMonsters.size(); ++i) {
-        delete m_vecMonsters[i];
+}
+
+VOID CLevel::begin() {
+    for (UINT i = 0; i < LAYER::END; ++i) {
+        m_Layer[i]->begin();
     }
 }
 
 void CLevel::tick() {
-    float DT = CTimeMgr::GetInst()->GetDeltaTime();
+    for (UINT i = 0; i < LAYER::END; ++i) {
+        m_Layer[i]->clear();
+    }
+    for (UINT i = 0; i < LAYER::END; ++i) {
+        m_Layer[i]->tick(DT);
+    }
+    for (UINT i = 0; i < LAYER::END; ++i) {
+        m_Layer[i]->finaltick(DT);
+    }
 
-    for (size_t i = 0; i < m_vecObjects.size(); ++i) {
-        m_vecObjects[i]->tick(DT);
-    }
-    for (size_t i = 0; i < m_vecMonsters.size(); ++i) {
-        m_vecMonsters[i]->tick(DT);
-    }
 }
 
 void CLevel::render(HDC _dc) {
-    for (size_t i = 0; i < m_vecObjects.size(); ++i) {
-        m_vecObjects[i]->render(_dc);
+    for (UINT i = 0; i < LAYER::END; ++i) {
+        m_Layer[i]->render(_dc);
     }
-    for (size_t i = 0; i < m_vecMonsters.size(); ++i) {
-        m_vecMonsters[i]->render(_dc);
+}
+
+void CLevel::AddObject(LAYER _LayerType, CObj* _Object) {
+    m_Layer[_LayerType]->AddObject(_Object);
+
+    _Object->m_iLayerIdx = _LayerType;
+}
+
+void CLevel::DeleteAllObjects()
+{
+    for (UINT i = 0; i < LAYER::END; i++) {
+        m_Layer[i]->DeleteAllObjects();
     }
+}
+
+void CLevel::DeleteObjectsByLayer(LAYER _Layer)
+{
+    m_Layer[_Layer]->DeleteAllObjects();
+}
+
+void CLevel::CreateTile(UINT _Row, UINT _Col)
+{
+    DeleteObjectsByLayer(LAYER::TILE);
+
+    m_TileRow = _Row;
+    m_TileCol = _Col;
+
+    for (UINT i = 0; i < _Row; i++) {
+        for (UINT j = 0; j < _Col; j++) {
+            CTile* pTile = new CTile;
+
+            pTile->SetPos(Vec2(TILE_SIZE * j, TILE_SIZE * i));
+            AddObject(TILE, pTile);
+        }
+    }
+
 }

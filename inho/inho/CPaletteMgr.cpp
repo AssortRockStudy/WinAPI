@@ -1,7 +1,7 @@
-#include "pch.h"
+﻿#include "pch.h"
 
-#include "CPaletteMgr.h"
 #include "CEngine.h"
+#include "CPaletteMgr.h"
 
 CPaletteMgr::CPaletteMgr() {}
 CPaletteMgr::~CPaletteMgr() {
@@ -19,18 +19,18 @@ void CPaletteMgr::init(HDC _dc) {
     AddPen(PenColor::PRED, CreatePen(BS_SOLID, 1, RGB(255, 10, 10)));
     AddPen(PenColor::PBLACK, blackPen);
     AddPen(PenColor::PBLUE, CreatePen(BS_SOLID, 1, RGB(10, 10, 255)));
-
+    AddPen(PenColor::PGREEN, CreatePen(BS_SOLID, 1, RGB(10, 255, 10)));
 
     HBRUSH blackBrush = CreateSolidBrush(RGB(10, 10, 10));
     AddBrush(BrushColor::BRED, CreateSolidBrush(RGB(255, 10, 10)));
     AddBrush(BrushColor::BBLACK, blackBrush);
     AddBrush(BrushColor::BBLUE, CreateSolidBrush(RGB(10, 10, 255)));
+    AddBrush(BrushColor::BGREEN, CreateSolidBrush(RGB(10, 255, 10)));
+
+    AddBrush(BrushColor::BHOLLOW, (HBRUSH)GetStockObject(HOLLOW_BRUSH));
 
     AddPen(PenColor::PWHITE, (HPEN)SelectObject(dc, blackPen));
     AddBrush(BrushColor::BWHITE, (HBRUSH)SelectObject(dc, blackBrush));
-
-
-    
 }
 
 void CPaletteMgr::AddPen(PenColor en, HPEN pen) { pens[en] = pen; }

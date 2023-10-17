@@ -1,49 +1,80 @@
-#include "pch.h"
+﻿#include "pch.h"
 
 #include "CLevelMgr.h"
 
+#include "CCamera.h"
 #include "CEngine.h"
-#include "CLevel.h"
 
-#include "CPlayer.h"
+#include "CLevel.h"
+#include "CPlayLevel.h"
+#include "CStartLevel.h"
+#include "CEditorLevel.h"
+
 #include "CMonster.h"
 #include "CPaletteMgr.h"
+#include "CPlayer.h"
+#include "CLogMgr.h"
+#include "CCollisionMgr.h"
 
-CLevelMgr::CLevelMgr(){}
-CLevelMgr::~CLevelMgr() {};
+#include "CPlatform.h"
+
+CLevelMgr::CLevelMgr():m_pCurLevel(nullptr) {}
+CLevelMgr::~CLevelMgr() {
+    for (UINT i = 0; i < (UINT)LEVEL_TYPE::END; i++) {
+        if (nullptr != m_arrLevels[i]) {
+            delete m_arrLevels[i];
+        }
+    }
+};
+
 
 void CLevelMgr::init() {
 
-	m_pCurLevel = new CLevel;
+    m_arrLevels[(UINT)LEVEL_TYPE::START_LEVEL] = new CStartLevel;
+    m_arrLevels[(UINT)LEVEL_TYPE::EDITOR_LEVEL] = new CEditorLevel;
+    m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL] = new CPlayLevel;
 
-	CPlayer* pPlayer = new CPlayer;
+    for (UINT i = 0; i < (UINT)LEVEL_TYPE::END; i++) {
+        m_arrLevels[i]->init();
+    }
 
-	pPlayer->SetPos(Vec2(500.f, 500.f));
-	pPlayer->SetScale(Vec2(50.f, 50.f));
+    ::ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
 
-	m_pCurLevel->AddObject(pPlayer);
-
-	for (int i = 0; i < 2; ++i) {
-		CMonster* pMonster = new CMonster;
-		pMonster->SetPos({ 300.f*(i+1) , 300.f});
-		pMonster->SetScale({ 25.f, 25.f });
-
-		m_pCurLevel->AddMonster(pMonster);
-	}
-
-	
 }
 
-void CLevelMgr::tick() {
-	m_pCurLevel->tick();
+void CLevelMgr::tick() { 
+
+    if (nullptr != m_pCurLevel) {
+        m_pCurLevel->tick();
+    }
 }
 
 void CLevelMgr::render(HDC _dc) {
 
-	POINT ptResolution = CEngine::GetInst()->GetResolution();
-	Rectangle(_dc, -1, -1, ptResolution.x, ptResolution.y);
+    if (nullptr == m_pCurLevel)
+        return;
 
-	m_pCurLevel->render(_dc);
-	CPaletteMgr::GetInst()->SelectBrush(CPaletteMgr::BrushColor::BWHITE);
-	BitBlt(CEngine::GetInst()->GetMainDC(), 0, 0, ptResolution.x, ptResolution.y, _dc, 0, 0, SRCCOPY);
+    POINT ptResolution = CEngine::GetInst()->GetResolution();
+    Rectangle(_dc, -1, -1, ptResolution.x, ptResolution.y);
+
+    m_pCurLevel->render(_dc);
+    CPaletteMgr::GetInst()->SelectBrush(CPaletteMgr::BrushColor::BWHITE);
+
+    CLogMgr::GetInst()->tick(_dc);
+    BitBlt(CEngine::GetInst()->GetMainDC(), 0, 0, ptResolution.x,
+           ptResolution.y, _dc, 0, 0, SRCCOPY);
+}
+void CLevelMgr::ChangeLevel(LEVEL_TYPE _Type)
+{
+    if (m_pCurLevel == m_arrLevels[(UINT)_Type])
+        return;
+
+    if (nullptr != m_pCurLevel)
+        m_pCurLevel->exit();
+
+    m_pCurLevel = m_arrLevels[(UINT)_Type];
+
+    m_pCurLevel->enter();
+
+    m_pCurLevel->begin();
 }

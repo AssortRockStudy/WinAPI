@@ -1,22 +1,27 @@
-#pragma once
+﻿#pragma once
 #include "CObj.h"
 
-class CProjectile :public CObj
-{
-protected:
-	float m_Speed;
-	float m_theta;
+class CCollider;
 
-public:
-	void SetDir(float _theta) { m_theta = _theta; }
-	void SetSpeed(float _Speed) { m_Speed = _Speed; }
+class CProjectile : public CObj {
+  private:
+      CCollider* m_Collider;
+    float m_Speed;
+    float m_Angle;
 
-public:
-	virtual void tick(float _dt) override;
-	virtual void render(HDC _dc) override;
+  public:
+    void SetAngle(float _theta) { m_Angle = _theta; }
+    void SetSpeed(float _Speed) { m_Speed = _Speed; }
 
-public:
-	CProjectile();
-	~CProjectile();
+    float GetSpeed() { return m_Speed; }
+    float GetAngle() { return m_Angle; }
+
+    CCollider* GetCollider() { return m_Collider; }
+
+  public:
+    virtual void render(HDC _dc) override;
+
+  public:
+    CProjectile();
+    ~CProjectile();
 };
-

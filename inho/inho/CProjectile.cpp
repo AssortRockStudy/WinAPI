@@ -1,31 +1,28 @@
-#include "pch.h"
+﻿#include "pch.h"
 
-#include "CProjectile.h"
 #include "CPaletteMgr.h"
+#include "CProjectile.h"
+#include "CCollider.h"
 
-CProjectile::CProjectile() :m_Speed(0.f), m_theta(PI / 2.f) {}
+CProjectile::CProjectile() :
+    m_Speed(0.f),
+    m_Angle(PI / 2.f),
+    m_Collider(nullptr)
+{
+    m_Collider = AddComponent<CCollider>(L"Collider");
+}
 
 CProjectile::~CProjectile() {}
 
-void CProjectile::tick(float _dt) {
-	Vec2 vPos = GetPos();
-
-	vPos.x += m_Speed * cosf(m_theta) * _dt;
-	vPos.y -= m_Speed * sinf(m_theta) * _dt;
-
-	SetPos(vPos);
-}
-
 void CProjectile::render(HDC _dc) {
-	Vec2 vPos = GetPos();
-	Vec2 vScale = GetScale();
+    Vec2 vPos = GetRenderPos();
+    Vec2 vScale = GetScale();
 
-	CPaletteMgr::GetInst()->SelectBrush(CPaletteMgr::BrushColor::BBLACK);
-	CPaletteMgr::GetInst()->SelectPen(CPaletteMgr::PenColor::PBLACK);
+    CPaletteMgr::GetInst()->SelectBrush(CPaletteMgr::BrushColor::BBLACK);
+    CPaletteMgr::GetInst()->SelectPen(CPaletteMgr::PenColor::PBLACK);
 
-	Ellipse(_dc
-		, int(vPos.x - vScale.x / 2)
-		, int(vPos.y - vScale.y / 2)
-		, int(vPos.x + vScale.x / 2)
-		, int(vPos.y + vScale.y / 2));
+    Ellipse(_dc, int(vPos.x - vScale.x / 2), int(vPos.y - vScale.y / 2),
+            int(vPos.x + vScale.x / 2), int(vPos.y + vScale.y / 2));
+
+    CObj::render(_dc);
 }
