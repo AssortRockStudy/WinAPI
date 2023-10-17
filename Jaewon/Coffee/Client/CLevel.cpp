@@ -2,47 +2,82 @@
 #include "CLevel.h"
 #include "CObj.h"
 #include "CTimeMgr.h"
+#include "Monster.h"
+#include "Tile.h"
+
+void CLevel::begin()
+{
+	for (UINT i = 0; i < LAYER::END; ++i) {
+		m_Layer[i]->begin();
+	}
+	
+}
 
 // 레벨에 들어있는 오브젝트들의 tick을 다 실행
 void CLevel::tick()
 {
-	float delta = CTimeMgr::GetInst()->getDeltaTime();
-
-	for (int i = 0; i < mVecObjects.size(); ++i) {
-		mVecObjects[i]->tick(delta);
+	for (UINT i = 0; i < LAYER::END; ++i) {
+		m_Layer[i]->clear();
+	}
+	for (UINT i = 0; i < LAYER::END; ++i){
+		m_Layer[i]->tick();
+	}
+	for (UINT i = 0; i < LAYER::END; ++i) {
+		m_Layer[i]->finalTick();
 	}
 }
 
 // 레벨에 들어있는 오브젝트들의 render을 다 실행
 void CLevel::render(HDC _dc)
 {
-	for (int i = 0; i < mVecObjects.size(); ++i) {
-		mVecObjects[i]->render(_dc);
+	for (UINT i = 0; i < LAYER::END; ++i){
+		m_Layer[i]->render(_dc);
 	}
 }
 
-Vec2 CLevel::findCloseMon(Vec2 mPos)
+void CLevel::addObject(LAYER _type, CObj* _obj)
 {
-	Vec2 closest = {mPos.x, mPos.y - 99999.f};
-	for (int i = 0; i < mVecObjects.size(); ++i) {
-		if (mVecObjects[i]->getType() == MONSTER) {
-			Vec2 monPos = mVecObjects[i]->getPos();
-			if (std::pow(closest.x - mPos.x, 2) + std::pow(closest.y - mPos.y, 2) >
-				std::pow(monPos.x - mPos.x, 2) + std::pow(monPos.y - mPos.y, 2)) {
-				closest = monPos;
-			}
+	m_Layer[_type]->AddObj(_obj);
+
+	_obj->mLayerIdx = _type;
+}
+
+void CLevel::deleteAllObjects()
+{
+	for (UINT i = 0; i < LAYER::END; ++i)
+		m_Layer[i]->deleteAllObjects();
+}
+
+void CLevel::createTile(UINT _Row, UINT _Col)
+{
+	tileRow = _Row;
+	tileCol = _Col;
+
+	for (UINT i = 0; i < _Row; ++i)
+	{
+		for (UINT j = 0; j < _Col; ++j)
+		{
+			Tile* pTile = new Tile;
+			pTile->setPos(Vec2(TILE_SIZE * j, TILE_SIZE * i));
+			addObject(LAYER::TILE, pTile);
 		}
 	}
-	return closest;
 }
 
-CLevel::CLevel()
+CLevel::CLevel() : tileRow(0), tileCol(0)
 {
+	for (UINT i = 0; i < LAYER::END; ++i)
+	{
+		m_Layer[i] = new CLayer;
+	}
 }
 
 // vector에 들어 있는 오브젝트들을 다 delete해주어야 됨
 CLevel::~CLevel()
 {
-	for (int i = 0; i < mVecObjects.size(); ++i)
-		delete mVecObjects[i];
+	for (UINT i = 0; i < LAYER::END; ++i)
+	{
+		if (nullptr != m_Layer[i])
+			delete m_Layer[i];
+	}
 }

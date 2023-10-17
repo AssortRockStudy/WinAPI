@@ -1,29 +1,60 @@
 #pragma once
-// 오브젝트를 담기 위한 Level 클래스
-// 멤버 변수
-// mVecObjects
-// 오브젝트 포인터로 만든 벡터이기 때문에
-// 오브젝트 클래스를 상속받은 모든 객체를 담을 수 있음
+#include "CEntity.h"
+#include "CLayer.h"
 
 class CObj;
 
 class CLevel
+	: public CEntity
 {
 private:
-	vector<CObj*> mVecObjects; 
+	CLayer* m_Layer[LAYER::END];
+	UINT	tileRow;
+	UINT	tileCol;
 
 public:
-	void tick();
+	virtual void init() = 0;
+	virtual void enter() = 0;
+	virtual void exit() = 0;
+	void begin();
+	virtual void tick();
 	void render(HDC _dc);
+	
+	template<typename T>
+	void getObjects(vector<T*>& _Out);
+	const vector<CObj*>& getObjects(LAYER _type) { return m_Layer[_type]->mVecObjects; }
 
-public:
-	void AddObj(CObj* _obj) {
-		mVecObjects.push_back(_obj);
+	CLayer* GetLayer(int _idx){
+		assert(!(_idx < 0 || LAYER::END <= _idx));
+		return m_Layer[_idx];
 	}
-	Vec2 findCloseMon(Vec2 mPos);
+
+protected:
+	void addObject(LAYER _type, CObj* _obj);
+	void deleteAllObjects();
+	void createTile(UINT _Row, UINT _Col);
 
 public:
 	CLevel();
 	~CLevel();
+
+	friend class LevelMgr;
+	friend class TaskMgr;
 };
 
+template<typename T>
+inline void CLevel::getObjects(vector<T*>& _Out)
+{
+	for (UINT j = 0; j < LAYER::END; ++j)
+	{
+		for (size_t i = 0; i < m_Layer[j]->mVecObjects.size(); ++i)
+		{
+			T* pObj = dynamic_cast<T*>(m_Layer[j]->mVecObjects[i]);
+
+			if (nullptr != pObj)
+			{
+				_Out.push_back(pObj);
+			}
+		}
+	}
+}

@@ -10,11 +10,13 @@
 
 #define _USE_MATH_DEFINES
 #include <cmath>
-
+#include <assert.h>
 #include <vector>
 #include <list>
 #include <map>
 #include <string>
+
+#pragma comment(lib, "Msimg32.lib")
 
 using std::vector;
 using std::list;
@@ -29,3 +31,5 @@ using std::wstring;
 
 // 좌표 float 구조체 구현
 #include "struct.h"
+
+#include "func.h"
