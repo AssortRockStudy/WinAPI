@@ -137,20 +137,51 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DrawMgr.cpp" />
+    <ClCompile Include="Anim.cpp" />
+    <ClCompile Include="Animator.cpp" />
+    <ClCompile Include="Asset.cpp" />
+    <ClCompile Include="AssetMgr.cpp" />
+    <ClCompile Include="BtnUI.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="CollisionMgr.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="DrawMgr.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="EditorLevel.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="func.cpp" />
+    <ClCompile Include="GCMgr.cpp" />
+    <ClCompile Include="Guided.cpp" />
     <ClCompile Include="Jin.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
+    <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelMgr.cpp" />
+    <ClCompile Include="LogMgr.cpp" />
     <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="Movement.cpp" />
     <ClCompile Include="Obj.cpp" />
+    <ClCompile Include="PanelUI.cpp" />
     <ClCompile Include="PathMgr.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayLevel.cpp" />
+    <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="StartLevel.cpp" />
+    <ClCompile Include="struct.cpp" />
+    <ClCompile Include="TaskMgr.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TimeMgr.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jin.rc" />
@@ -160,24 +191,55 @@
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Anim.h" />
+    <ClInclude Include="Animator.h" />
+    <ClInclude Include="Asset.h" />
+    <ClInclude Include="AssetMgr.h" />
+    <ClInclude Include="BtnUI.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="CollisionMgr.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="components.h" />
     <ClInclude Include="define.h" />
-    <ClInclude Include="DrawMgr.h" />
+    <ClInclude Include="DrawMgr.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="EditorLevel.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="func.h" />
+    <ClInclude Include="GCMgr.h" />
     <ClInclude Include="global.h" />
+    <ClInclude Include="Guided.h" />
     <ClInclude Include="Jin.h" />
     <ClInclude Include="KeyMgr.h" />
+    <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelMgr.h" />
+    <ClInclude Include="LogMgr.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="Movement.h" />
     <ClInclude Include="Obj.h" />
+    <ClInclude Include="PanelUI.h" />
     <ClInclude Include="PathMgr.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayLevel.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Sound.h" />
+    <ClInclude Include="StartLevel.h" />
     <ClInclude Include="struct.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TaskMgr.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Tile.h" />
     <ClInclude Include="TimeMgr.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

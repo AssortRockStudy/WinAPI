@@ -1,14 +1,19 @@
 #include "pch.h"
 #include "define.h"
 #include "Monster.h"
-
 #include "KeyMgr.h"
 #include "TimeMgr.h"
-#include "DrawMgr.h"
+//#include "DrawMgr.h"
+#include "Collider.h"
+#include "Projectile.h"
+
 
 Monster::Monster()
-	: m_Speed(500.f)
+	: m_Info{}
+	, m_Collider(nullptr)
 {
+	m_Collider = AddComponent<Collider>(L"MonsterCollider");
+	m_Info.HP = 5.f;
 }
 
 Monster::~Monster()
@@ -16,47 +21,40 @@ Monster::~Monster()
 }
 
 
+void Monster::begin()
+{
+	m_Collider->SetScale(GetScale() - 10.f);
+}
+
 void Monster::tick(float _DT)
 {
-	Vec2 vPos = GetPos();
-
-	// 키입력이 발생하면 움직인다.
-	if (KEY_PRESSED(A))
-	{
-		vPos.x += m_Speed * _DT;
-	}
-
-	if (KEY_PRESSED(D))
-	{
-		vPos.x -= m_Speed * _DT;
-	}
-
-	if (KEY_PRESSED(W))
-	{
-		vPos.y += m_Speed * _DT;
-	}
-
-	if (KEY_PRESSED(S))
-	{
-		vPos.y -= m_Speed * _DT;
-	}
-
-	SetPos(vPos);
+	Super::tick(_DT);
 }
 
 void Monster::render(HDC _dc)
 {
-	Vec2 vPos = GetPos();
+	Vec2 vRenderPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 
-	HPEN oldPen = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->pens[RED]));
-	HPEN oldBrush = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->brushes[RED]));
+	Rectangle(_dc
+		, int(vRenderPos.x - vScale.x / 2)
+		, int(vRenderPos.y - vScale.y / 2)
+		, int(vRenderPos.x + vScale.x / 2)
+		, int(vRenderPos.y + vScale.y / 2));
 
-	Ellipse(_dc
-		, int(vPos.x - vScale.x / 2)
-		, int(vPos.y - vScale.y / 2)
-		, int(vPos.x + vScale.x / 2)
-		, int(vPos.y + vScale.y / 2));
-
+	Super::render(_dc);
 }
+
+void Monster::BeginOverlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol)
+{
+	if (dynamic_cast<Projectile*>(_OtherObj))
+	{
+		m_Info.HP -= 1.f;
+		if (m_Info.HP <= 0.f)
+		{
+			Destroy();
+		}
+	}
+}
+
 

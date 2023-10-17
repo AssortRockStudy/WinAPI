@@ -9,93 +9,154 @@
 #include "LevelMgr.h"
 #include "PathMgr.h"
 #include "Level.h"
+#include "Projectile.h"
+#include "Guided.h"
+#include "Collider.h"
+
+#include "AssetMgr.h"
+#include "Texture.h"
+
+#include "Movement.h"
+#include "LogMgr.h"
+#include "Platform.h"
+
+#include "components.h"
 
 
 Player::Player()
 	: m_Speed(500.f)
-	, m_Image(nullptr)
 {
-	wstring strPath = PathMgr::GetContentPath();
-	strPath += L"texture\\fighter.bmp";
 
-	// 플레이어가 사용할 이미지 비트맵 로딩
-	m_Image = (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
-	m_ImageDC = CreateCompatibleDC(Engine::GetInst()->GetMainDC());
-	DeleteObject(SelectObject(m_ImageDC, m_Image));
-	GetObject(m_Image, sizeof(BITMAP), &m_BitmapInfo);
+	Texture* pAtlas = AssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\link.bmp");
+
+	m_Animator = AddComponent<Animator>(L"Animator");
+	m_Animator->CreateAnimation(L"WalkDown", pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
+	m_Animator->CreateAnimation(L"WalkLeft", pAtlas, Vec2(0.f, 650.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
+	m_Animator->CreateAnimation(L"WalkUp", pAtlas, Vec2(0.f, 780.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
+	m_Animator->CreateAnimation(L"WalkRight", pAtlas, Vec2(0.f, 910.f), Vec2(120, 130), Vec2(0.f, -60.f), 2.f, 10);
+
+	m_Animator->CreateAnimation(L"IdleDown", pAtlas, Vec2(0.f, 0.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
+	m_Animator->CreateAnimation(L"IdleLeft", pAtlas, Vec2(0.f, 130.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
+	m_Animator->CreateAnimation(L"IdleUp", pAtlas, Vec2(0.f, 260.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 1);
+	m_Animator->CreateAnimation(L"IdleRight", pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
+
+	m_Animator->SaveAnimations(L"animdata");
+
+	m_Animator->LoadAnimation(L"animdata\\WalkDown.txt");
+	m_Animator->LoadAnimation(L"animdata\\IdleDown.txt");
+	m_Animator->LoadAnimation(L"animdata\\IdleLeft.txt");
+	m_Animator->LoadAnimation(L"animdata\\IdleRight.txt");
+	m_Animator->LoadAnimation(L"animdata\\IdleUp.txt");
+	m_Animator->LoadAnimation(L"animdata\\WalkLeft.txt");
+	m_Animator->LoadAnimation(L"animdata\\WalkRight.txt");
+	m_Animator->LoadAnimation(L"animdata\\WalkUp.txt");
+
+	m_Animator->Play(L"WalkDown", true);
+
+	m_Collider = AddComponent<Collider>(L"PlayerCollider");
+	m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
+	m_Collider->SetScale(Vec2(40.f, 80.f));
+	m_Collider->SetOffsetPos(Vec2(0.f, -40.f));
+
+	//m_pTexture = AssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\fighter.bmp");
+	m_Movement = AddComponent<Movement>(L"PlayerMovement");
+	m_Movement->SetMass(1.f);
+	m_Movement->SetInitSpeed(200.f);
+	m_Movement->SetMaxSpeed(400.f);
+	m_Movement->SetFrictionScale(1000.f);
+
+	m_Movement->UseGravity(false);
+	m_Movement->SetGravity(Vec2(0.f, 980.f));
+	m_Movement->SetGround(true);
 }
 
 Player::~Player()
 {
-	DeleteObject(m_Image);
-	DeleteDC(m_ImageDC);
 }
 
 void Player::tick(float _DT)
 {
+	Super::tick(_DT);
+
 	Vec2 vPos = GetPos();
 
 	// 키입력이 발생하면 움직인다.
 	if (KEY_PRESSED(A))
 	{
-		vPos.x -= m_Speed * _DT;
+		m_Movement->AddForce(Vec2(-300.f, 0.f));
+		m_Animator->Play(L"WalkLeft", true);
 	}
 
-	if (KeyMgr::GetInst()->GetKeyState(D) == PRESSED)
+	if (KEY_RELEASED(A))
 	{
-		vPos.x += m_Speed * _DT;
+		m_Animator->Play(L"IdleLeft", true);
+	}
+
+	if (KEY_PRESSED(D))
+	{
+		m_Movement->AddForce(Vec2(300.f, 0.f));
+		m_Animator->Play(L"WalkRight", true);
+	}
+	if (KEY_RELEASED(D))
+	{
+		m_Animator->Play(L"IdleRight", true);
 	}
 
 	if (KEY_PRESSED(W))
 	{
-		vPos.y -= m_Speed * _DT;
+		m_Movement->AddForce(Vec2(0.f, -300.f));
+		m_Animator->Play(L"WalkUp", true);
 	}
 
+	if (KEY_RELEASED(W))
+	{
+		m_Animator->Play(L"IdleUp", true);
+	}
 	if (KEY_PRESSED(S))
 	{
-		vPos.y += m_Speed * _DT;
+		m_Movement->AddForce(Vec2(0.f, 300.f));
+		m_Animator->Play(L"WalkDown", true);
+	}
+	if (KEY_RELEASED(S))
+	{
+		m_Animator->Play(L"IdleDown", true);
 	}
 
-	if (KEY_TAP(SPACE))
+ 	if (KEY_TAP(SPACE))
 	{
-		Level* p_CurLevel = LevelMgr::GetInst()->GetCurLevel();
+		m_Movement->SetGround(false);
+		m_Movement->SetVelocity(Vec2(m_Movement->GetVelocity().x, -500.f));
 
-		//for (int i = 0; i < 3; ++i)
-		//{
-		//	CProjectile* pProjectile = new CProjectile;
+		//Level* pCurLevel = LevelMgr::GetInst()->GetCurLevel();
+		//Guided* pProjectile = new Guided;
 
-		//	Vec2 ProjectilePos = GetPos();
-		//	ProjectilePos.y -= GetScale().y / 2.f;
-
-		//	pProjectile->SetSpeed(1000.f);
-		//	pProjectile->SetDir(PI / 4.f + (PI / 4.f) * (float)i);
-		//	pProjectile->SetPos(ProjectilePos);
-		//	pProjectile->SetScale(Vec2(25.f, 25.f));
-
-		//	pCurLevel->AddObject(pProjectile);
-		//}
+		/*Vec2 ProjectilePos = GetPos();
+		ProjectilePos.y -= GetScale().y / 2.f;
+		pProjectile->SetSpeed(500.f);
+		pProjectile->SetAngle(PI/2.f);
+		pProjectile->SetPos(ProjectilePos);
+		pProjectile->SetScale(Vec2(25.f, 25.f));
+		pProjectile->SetDir(Vec2(0.f, -1.f));
+		TaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, PLAYER_PJ, (UINT_PTR)pProjectile });
+	
+		LOG(WARNING, L"warning.......");*/
 	}
 
 	SetPos(vPos);
 }
 
-void Player::render(HDC _dc)
+void Player::BeginOverlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol)
+ {
+	if (dynamic_cast<Platform*>(_OtherObj))
+	{
+		m_Movement->SetGround(true);
+	}
+}
+
+void Player::EndOverlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol)
 {
-	Vec2 vPos = GetPos();
-	Vec2 vScale = GetScale();
-
-	HPEN oldPen = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->pens[BLACK]));
-	HPEN oldBrush = (HPEN)SelectObject(_dc, (DrawMgr::GetInst()->brushes[BLACK]));
-
-
-	 Rectangle(_dc
-		 , int(vPos.x - vScale.x / 2)
-		 , int(vPos.y - vScale.y / 2)
-		 , int(vPos.x + vScale.x / 2)
-		 , int(vPos.y + vScale.y / 2));
-
-	 //DeleteObject(SelectObject(_dc, oldPen));
-	 //DeleteObject(SelectObject(_dc, oldBrush));
-
-
+	if (dynamic_cast<Platform*>(_OtherObj))
+	{
+		m_Movement->SetGround(false);
+	}
 }

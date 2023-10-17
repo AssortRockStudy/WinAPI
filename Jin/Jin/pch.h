@@ -9,6 +9,10 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <crtdbg.h>
+#include <assert.h>
+
+#pragma comment(lib, "Msimg32.lib")
 
 #include <vector>
 #include <list>
