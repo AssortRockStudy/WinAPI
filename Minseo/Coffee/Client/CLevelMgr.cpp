@@ -10,33 +10,24 @@
 
 void CLevelMgr::init()
 {
-	// 레벨 구현
+	// Level 
 	m_pCurLevel = new CLevel;
 
-	
-
-	CMonster* pMonster1 = new CMonster;
-	pMonster1->SetPos(Vec2{ 1000,1200 });
-	pMonster1->SetScale(Vec2{ 120,120 });
-
-	m_pCurLevel->SetMonster1(pMonster1);
-
-	CMonster* pMonster2 = new CMonster;
-	pMonster2->SetPos(Vec2{ 100,1200 });
-	pMonster2->SetScale(Vec2{ 120,120 });
-
-	m_pCurLevel->SetMonster2(pMonster2);
-
+	// 플레이어 생성
 	CPlayer* pPlayer = new CPlayer;
-	pPlayer->SetPos(Vec2{ 500, 500 });
-	pPlayer->SetScale(Vec2{ 50, 50 });
 
+	pPlayer->SetPos(Vec2(500.f, 500.f));
+	pPlayer->SetScale(Vec2(50.f, 50.f));
 
+	m_pCurLevel->AddObject(pPlayer); // 나중에 레이어도 넣어야겠지?
 
-	// 벡터에 추가
-	m_pCurLevel->AddObject(pPlayer);
-	m_pCurLevel->AddObject(pMonster1);
-	m_pCurLevel->AddObject(pMonster2);
+	// 몬스터 생성
+	CMonster* pMonster = nullptr;
+
+	pMonster = new CMonster;
+	pMonster->SetPos(Vec2(900.f, 500.f));
+	pMonster->SetScale(Vec2(100.f, 100.f));
+	m_pCurLevel->AddObject(pMonster);
 
 }
 

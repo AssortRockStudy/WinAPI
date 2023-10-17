@@ -1,45 +1,56 @@
+#include "pch.h"
 #include "CMonster.h"
 
-
-enum DIRECTION
-{
-	dRIGHT = 0,
-	dUP,
-	dLEFT,
-	dDOWN,
-	dEND,	
-};
-
-void CMonster::tick(float _DT) // 아잇
-{
-	Vec2 pos = GetPos();
-	static int dir = dRIGHT;
-
-	// PI/2 = 90도. 90도 * 0 = 오른 쪽을 가리키므로 cosf = 750, sinf = 0 이런 느낌으로 나오지 않을까...
-	pos.x += m_Speed * cosf(PI / 2 * dir) * _DT; 
-	pos.y -= m_Speed * sinf(PI / 2 * dir) * _DT;
-	
-	if (1.f < m_Time) // 만약 게임 시간 1초가 지난 경우
-	{
-		++dir; // 방향 전환	
-		if (dir == dEND) { dir = 0; } // 방향 0으로
-		m_Time = .0f;
-	}
-	
-	m_Time += _DT;
-	//POINT point;
-	//GetCursorPos(&point);
-	//pos.x = (float)point.x;
-	//pos.y = (float)point.y;
-	SetPos(pos); // 다시 넣어줌
-}
+//#include "CCollider.h"
+#include "CProjectile.h"
 
 CMonster::CMonster()
-	:m_Speed(300.f)
-	,m_Time(.0f)
+	: m_Info{}
+	//, m_Collider(nullptr)
 {
+	//m_Collider = AddComponent<CCollider>(L"MonsterCollider");
+	m_Info.HP = 5.f;
 }
 
 CMonster::~CMonster()
 {
 }
+
+//void CMonster::begin()
+//{
+//	m_Collider->SetScale(GetScale() - 10.f);
+//}
+
+void CMonster::tick(float _DT)
+{
+	//Super::tick(_DT);
+
+
+}
+
+void CMonster::render(HDC _dc)
+{
+	Vec2 vRenderPos = { 0.f,0.f };//GetRenderPos();
+	Vec2 vScale = GetScale();
+
+	Rectangle(_dc
+		, int(vRenderPos.x - vScale.x / 2)
+		, int(vRenderPos.y - vScale.y / 2)
+		, int(vRenderPos.x + vScale.x / 2)
+		, int(vRenderPos.y + vScale.y / 2));
+
+	//Super::render(_dc);
+}
+//
+//void CMonster::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+//{
+//	if (dynamic_cast<CProjectile*>(_OtherObj))
+//	{
+//		m_Info.HP -= 1.f;
+//
+//		if (m_Info.HP <= 0.f)
+//		{
+//			Destroy();
+//		}
+//	}
+//}

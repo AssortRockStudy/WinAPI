@@ -10,6 +10,8 @@ private:
 
     HBITMAP m_Image;
     HDC m_ImageDC;
+    BITMAP      m_BitmapInfo; // 비트맵을 GetObjectW함수를 통해서 저장할 멤버
+
 public:
     virtual void tick(float _DT) override; // 순수가상함수를 재정의 함으로써 추상화를 해제
     virtual void render(HDC _dc) override;

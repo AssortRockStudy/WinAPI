@@ -14,7 +14,7 @@ void CPathMgr::init()
 
 	size_t Len = wcslen(g_szContent); // 전체 문자열의 길이를 받아옴
 
-	for (int i = Len - 1; i >= 0; --i) // 문자열 끝부터 처음까지 반복
+	for (int i = (int)Len - 1; i >= 0; --i) // 문자열 끝부터 처음까지 반복
 	{
 		if ('\\' == g_szContent[i]) // 만약에 끝부터 문자를 하나하나 가리키는 도중, 배열의 i번째 인덱스가 \ 라면
 		{

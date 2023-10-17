@@ -1,5 +1,7 @@
 #pragma once
 
+#pragma comment(lib, "Msimg32.lib")
+
 
 #include "targetver.h"
 #define WIN32_LEAN_AND_MEAN             // ���� ������ �ʴ� ������ Windows ������� �����մϴ�.
@@ -9,6 +11,7 @@
 #include <stdlib.h>
 #include <malloc.h>
 #include <memory.h>
+#include <crtdbg.h>
 #include <tchar.h>
 
 		 
