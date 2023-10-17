@@ -21,10 +21,20 @@
 #define KEY_RELEASED(Key) KEY_CHECK(Key, RELEASED)
 #define KEY_NONE(Key) KEY_CHECK(Key, NONE)
 
+#define DT	CTimeManager::GetInst()->GetDeltaTime()
+
 #define PI	3.14159265348979f
 
 
 #define GAME_FOLDER MyGame
+
+
+#define GENERATED_OBJECT(type) typedef type Super;\
+							   virtual void Abstract() override {}
+
+#define DEBUG_RENDER CEngine::GetInst()->DebugRender()
+#define SELECT_PEN(DC, TYPE) FSelectPen tempPenSelect(DC, TYPE)
+#define SELECT_BRUSH(DC, hBrush) FSelectBrush tempBrushSelect(DC, hBrush)
 
 // Key Value
 enum KEY
@@ -104,4 +114,50 @@ enum KEY_STATE
 	TAP,
 	PRESSED,
 	RELEASED,
+};
+
+enum LAYER
+{
+	DEFAULT,
+	TILE,
+	PLATFORM,
+	PLAYER,
+	MONSTER,
+	PLAYER_PJ,
+	MONSTER_PJ,
+	WORLD_STATIC,
+
+	END = 32,
+};
+
+
+enum TASK_TYPE
+{
+	// Param1 : Layer Type, Param2 : Object Adress
+	CREATE_OBJECT,
+
+	// Param1 : Object Adress
+	DELETE_OBJECT,
+
+
+	LEVEL_CHANGE,
+};
+
+
+
+enum PEN_TYPE
+{
+	GREEN_PEN,
+	BLUE_PEN,
+	RED_PEN,
+
+	PEN_END,
+};
+
+
+enum LOG_LEVEL
+{
+	LOG,
+	WARNING,
+	ERR,
 };

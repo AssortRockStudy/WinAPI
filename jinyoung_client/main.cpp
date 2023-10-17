@@ -30,7 +30,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // 옛날 인터페이스에서는 부터 내려와 지금은 필요없게된인자이다.
     //UNREFERENCED_PARAMETER(hPrevInstance);
     //UNREFERENCED_PARAMETER(lpCmdLine);
-
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    //_CrtSetBreakAlloc(217);
 
     // 전역 문자열을 초기화합니다. //MAX_LOADSTRING= 100;
     //LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);

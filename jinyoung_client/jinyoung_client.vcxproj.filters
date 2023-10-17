@@ -26,6 +26,21 @@
     <Filter Include="Game\05.Level">
       <UniqueIdentifier>{2958640a-12be-40d0-b4ca-c6ac39152108}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\06.Component">
+      <UniqueIdentifier>{2a27e9ef-0729-447c-bfb3-9f45a885b415}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\07.Asset">
+      <UniqueIdentifier>{3a593f6f-35c2-4031-8b55-c3a00676fa33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06.Component\Animation">
+      <UniqueIdentifier>{192ec3fa-fc3d-4285-b69a-ffdb7c59e74b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06.Component\Collider">
+      <UniqueIdentifier>{b871ccfc-09a5-4233-934b-8833db48ccba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06.Component\Movemnet">
+      <UniqueIdentifier>{be11d616-eaa3-4a34-8855-73dc755ffc90}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -41,12 +56,6 @@
       <Filter>Default</Filter>
     </ClInclude>
     <ClInclude Include="CEngine.h">
-      <Filter>Game\02.Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="define.h">
-      <Filter>Game\02.Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="global.h">
       <Filter>Game\02.Engine</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
@@ -88,8 +97,69 @@
     <ClInclude Include="CMonster.h">
       <Filter>Game\04.Object</Filter>
     </ClInclude>
+    <ClInclude Include="CLayer.h">
+      <Filter>Game\05.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CEntity.h" />
+    <ClInclude Include="CTaskMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CComponent.h">
+      <Filter>Game\06.Component</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollisionMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CGCMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CAsset.h">
+      <Filter>Game\07.Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="CTexture.h">
+      <Filter>Game\07.Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="CSound.h">
+      <Filter>Game\07.Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="CAssetMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimator.h">
+      <Filter>Game\06.Component\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnim.h">
+      <Filter>Game\06.Component\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>Game\06.Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="CLogMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CCamera.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>Game\01.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>Game\01.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="global.h">
+      <Filter>Game\01.Header</Filter>
+    </ClInclude>
     <ClInclude Include="struct.h">
-      <Filter>Game\02.Engine</Filter>
+      <Filter>Game\01.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="components.h">
+      <Filter>Game\01.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CMovement.h">
+      <Filter>Game\06.Component\Movemnet</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlatform.h">
+      <Filter>Game\04.Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +219,61 @@
       <Filter>Game\04.Object</Filter>
     </ClCompile>
     <ClCompile Include="CMonster.cpp">
+      <Filter>Game\04.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CLayer.cpp">
+      <Filter>Game\05.Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CEntity.cpp" />
+    <ClCompile Include="CTaskMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CComponent.cpp">
+      <Filter>Game\06.Component</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollisionMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CGCMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CAsset.cpp">
+      <Filter>Game\07.Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="CTexture.cpp">
+      <Filter>Game\07.Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="CSound.cpp">
+      <Filter>Game\07.Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="CAssetMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnim.cpp">
+      <Filter>Game\06.Component\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimator.cpp">
+      <Filter>Game\06.Component\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>Game\06.Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="CLogMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CCamera.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>Game\01.Header</Filter>
+    </ClCompile>
+    <ClCompile Include="struct.cpp">
+      <Filter>Game\01.Header</Filter>
+    </ClCompile>
+    <ClCompile Include="CMovement.cpp">
+      <Filter>Game\06.Component\Movemnet</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlatform.cpp">
       <Filter>Game\04.Object</Filter>
     </ClCompile>
   </ItemGroup>

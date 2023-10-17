@@ -13,7 +13,7 @@ void CPathMgr::init()
 	
 	size_t Len = wcslen(g_szContent);
 
-	for (int i = Len - 1; i >= 0; --i)
+	for (size_t i = Len - 1; i >= 0; --i)
 	{
 		if ('\\'==g_szContent[i])
 		{

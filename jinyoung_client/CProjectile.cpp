@@ -5,30 +5,34 @@
 #include "CPlayer.h"
 #include "CMonster.h"
 
+#include "CCollider.h"
+
 CProjectile::CProjectile()
 	: m_Speed(0.f)
 	, m_Angle(PI / 2.f)
 	, m_mass(5.f)
+	, m_Collider(nullptr)
 {
-}
+	m_Collider = AddComponent<CCollider>(L"Collider");
+} 
 
 CProjectile::~CProjectile()
 {
 }
 
 
-void CProjectile::tick(float _DT)
-{
-	Vec2 vPos = GetPos();
-	
-	
-	//addforce(100000.f, _DT);
-
-	vPos.x += m_Speed * cosf(m_Angle) * _DT;
-	vPos.y -= m_Speed * sinf(m_Angle) * _DT;
-
-	SetPos(vPos);
-}
+//void CProjectile::tick(float _DT)
+//{
+//	Vec2 vPos = GetPos();
+//	
+//	
+//	//addforce(100000.f, _DT);
+//
+//	vPos.x += m_Speed * cosf(m_Angle) * _DT;
+//	vPos.y -= m_Speed * sinf(m_Angle) * _DT;
+//
+//	SetPos(vPos);
+//}
 
 
 void CProjectile::addforce(float _force , float _DT)
@@ -54,7 +58,7 @@ void CProjectile::addforce(float _force , float _DT)
 
 void CProjectile::render(HDC _dc)
 {
-	Vec2 vPos = GetPos();
+	Vec2 vPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 
 	Ellipse(_dc
@@ -62,4 +66,5 @@ void CProjectile::render(HDC _dc)
 		, int(vPos.y - vScale.y / 2)
 		, int(vPos.x + vScale.x / 2)
 		, int(vPos.y + vScale.y / 2));
+	CObj::render(_dc);
 }

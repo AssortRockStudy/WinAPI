@@ -7,17 +7,29 @@
 #include "CPlayer.h"
 #include "CMonster.h"
 #include "CPal.h"
+#include "CCamera.h"
+#include "CLogMgr.h"
+#include "CCollisionMgr.h"
 
+#include "CPlatform.h"
+
+#include "CCollisionMgr.h"
+#include "CLogMgr.h"
 
 
 CLevelMgr::CLevelMgr()
+	: m_pCurLevel(nullptr)
 {
 
 }
 
 CLevelMgr::~CLevelMgr()
 {
-
+	if (m_pCurLevel)
+	{
+		if (nullptr != m_pCurLevel)
+			delete m_pCurLevel;
+	}
 }
 
 void CLevelMgr::init()
@@ -25,36 +37,44 @@ void CLevelMgr::init()
 	// Level 
 	m_pCurLevel = new CLevel;
 
+	// 플레이어 생성
 	CPlayer* pPlayer = new CPlayer;
 
-	pPlayer->SetPos(Vec2(500.f, 500.f));
+	pPlayer->SetPos(Vec2(500.f, 200.f));
 	pPlayer->SetScale(Vec2(50.f, 50.f));
-	m_pCurLevel->setPlayer(pPlayer);
+	//m_pCurLevel->setPlayer(pPlayer);
 
-	m_pCurLevel->AddObject(pPlayer);
+	m_pCurLevel->AddObject(PLAYER, pPlayer);
+	//m_pCurLevel->AddObject(pPlayer);
 
+
+
+	// 몬스터 생성
 	CMonster* pMonster = new CMonster;
 
-	pMonster->SetPos(Vec2(600.f, 500.f));
-	pMonster->SetScale(Vec2(50.f, 50.f));
+	//pMonster->SetPos(Vec2(600.f, 500.f));
+	//pMonster->SetScale(Vec2(50.f, 50.f));
 
-	m_pCurLevel->setMonster(pMonster);
-	m_pCurLevel->AddObject(pMonster);
+	//m_pCurLevel->setMonster(pMonster);
+	//m_pCurLevel->AddObject(pMonster);
+	//m_pCurLevel->AddObject(MONSTER, pMonster);
+
+	// 플랫폼 설치
+	CPlatform* pPlatform = new CPlatform;
+	pPlatform->SetPos(Vec2(800.f, 700.f));
+	m_pCurLevel->AddObject(PLATFORM, pPlatform);
 
 
 
+	//pMonster = new CMonster;
+	//pMonster->SetPos(Vec2(900.f, 500.f));
+	//pMonster->SetScale(Vec2(100.f, 100.f));
+	//m_pCurLevel->AddObject(pMonster);
 
-
-
-	pMonster = new CMonster;
-	pMonster->SetPos(Vec2(1200.f, 500.f));
-	pMonster->SetScale(Vec2(100.f, 100.f));
-	m_pCurLevel->AddObject(pMonster);
-
-	pMonster = new CMonster;
-	pMonster->SetPos(Vec2(1200.f, 200.f));
-	pMonster->SetScale(Vec2(100.f, 100.f));
-	m_pCurLevel->AddObject(pMonster);
+	//pMonster = new CMonster;
+	//pMonster->SetPos(Vec2(1200.f, 200.f));
+	//pMonster->SetScale(Vec2(100.f, 100.f));
+	//m_pCurLevel->AddObject(pMonster);
 
 	// dynamic_cast
 	//{
@@ -66,7 +86,17 @@ void CLevelMgr::init()
 	//	CPlayer* pPlayer = dynamic_cast<CPlayer*>(pObj); // RTTI(Runtime Type Information)
 	//}
 
+	// 카메라 설정
+	Vec2 vLookAt = CEngine::GetInst()->GetResolution();
+	vLookAt /= 2.f;
+	CCamera::GetInst()->SetLookAt(vLookAt);
 
+	// 충돌 설정
+	CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
+	CCollisionMgr::GetInst()->CheckCollision(PLAYER_PJ, MONSTER);
+	CCollisionMgr::GetInst()->CheckCollision(PLAYER, PLATFORM);
+	// 레벨 시작
+	m_pCurLevel->begin();
 
 }
 
@@ -86,6 +116,9 @@ void CLevelMgr::render(HDC _dc)
 
 	// 레벨 render
 	m_pCurLevel->render(_dc);
+
+	// Log
+	CLogMgr::GetInst()->tick(_dc);
 
 	// m_SubDC -> m_DC 로 비트맵 복사
 	BitBlt(CEngine::GetInst()->GetMainDC(), 0, 0, ptResolution.x, ptResolution.y, _dc, 0, 0, SRCCOPY);

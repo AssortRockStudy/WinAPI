@@ -49,6 +49,11 @@ void CTimeManager::tick()
 
 	m_PrevCount = m_CurCount;
 
+	// DT 보정
+	if ((1.f / 60.f) < m_DeltaTime)
+		m_DeltaTime = (1.f / 60.f);
+
+
 	// 시간 누적 ==> 1초마다 if 구문 실행
 	m_fTime += m_DeltaTime;
 	if (1.f <= m_fTime)

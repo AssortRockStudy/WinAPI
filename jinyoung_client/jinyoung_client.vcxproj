@@ -78,6 +78,14 @@
     <OutDir>$(SolutionDir)MyGame\bin</OutDir>
     <TargetName>game</TargetName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)MyGame\bin</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)MyGame\bin</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -143,23 +151,42 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CAnim.h" />
+    <ClInclude Include="CAnimator.h" />
+    <ClInclude Include="CAsset.h" />
+    <ClInclude Include="CAssetMgr.h" />
+    <ClInclude Include="CCamera.h" />
+    <ClInclude Include="CCollider.h" />
+    <ClInclude Include="CCollisionMgr.h" />
+    <ClInclude Include="CComponent.h" />
     <ClInclude Include="CEngine.h" />
+    <ClInclude Include="CEntity.h" />
     <ClInclude Include="CGuided.h" />
     <ClInclude Include="CKeyman.h" />
+    <ClInclude Include="CLayer.h" />
     <ClInclude Include="CLevel.h" />
     <ClInclude Include="CLevelMgr.h" />
+    <ClInclude Include="CLogMgr.h" />
     <ClInclude Include="CMonster.h" />
     <ClInclude Include="CMonsterm.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="CMovement.h" />
     <ClInclude Include="CObj.h" />
+    <ClInclude Include="components.h" />
     <ClInclude Include="CPal.h" />
     <ClInclude Include="CPathMgr.h" />
+    <ClInclude Include="CPlatform.h" />
     <ClInclude Include="CProjectile.h" />
+    <ClInclude Include="CSound.h" />
+    <ClInclude Include="CTaskMgr.h" />
+    <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTimeManager.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="func.h" />
+    <ClInclude Include="CGCMgr.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="jinyoung_client.h" />
     <ClInclude Include="pch.h" />
@@ -169,20 +196,38 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CAnim.cpp" />
+    <ClCompile Include="CAnimator.cpp" />
+    <ClCompile Include="CAsset.cpp" />
+    <ClCompile Include="CAssetMgr.cpp" />
+    <ClCompile Include="CCamera.cpp" />
+    <ClCompile Include="CCollider.cpp" />
+    <ClCompile Include="CCollisionMgr.cpp" />
+    <ClCompile Include="CComponent.cpp" />
     <ClCompile Include="CEngine.cpp" />
+    <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CGuided.cpp" />
     <ClCompile Include="CKeyman.cpp" />
+    <ClCompile Include="CLayer.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CLevelMgr.cpp" />
+    <ClCompile Include="CLogMgr.cpp" />
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CMonsterm.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="CMovement.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPal.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
+    <ClCompile Include="CPlatform.cpp" />
+    <ClCompile Include="CSound.cpp" />
+    <ClCompile Include="CTaskMgr.cpp" />
+    <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTimeManager.cpp" />
+    <ClCompile Include="func.cpp" />
+    <ClCompile Include="CGCMgr.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
@@ -192,6 +237,7 @@
     </ClCompile>
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CProjectile.cpp" />
+    <ClCompile Include="struct.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc" />
