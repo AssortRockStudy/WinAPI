@@ -1,4 +1,6 @@
 #include "pch.h"
+
+#include "MyEngine.h"
 #include "MyKeyMgr.h"
 
 int g_KeySync[(int)KEY::KEY_END]
@@ -68,6 +70,9 @@ int g_KeySync[(int)KEY::KEY_END]
 	VK_RIGHT,
 	VK_UP,
 	VK_DOWN,
+
+	VK_LBUTTON,
+	VK_RBUTTON,
 };
 
 
@@ -96,39 +101,66 @@ void MyKeyMgr::init()
 
 void MyKeyMgr::tick()
 {
-	for (size_t i = 0; i < m_vecKeyData.size(); ++i)
+	if (nullptr == GetFocus())
 	{
-		if (GetAsyncKeyState(g_KeySync[(int)m_vecKeyData[i].eKey]) & 0x8001)
+		for (size_t i = 0; i < m_vecKeyData.size(); ++i)
 		{
-			// 이번 프레임에 키가 눌렸다
-			if (m_vecKeyData[i].bPressed)
+			if (KEY_STATE::TAP == m_vecKeyData[i].eState)
 			{
-				// bPressed가 true였을 때 -> 계속 눌린 상태
 				m_vecKeyData[i].eState = KEY_STATE::PRESSED;
 			}
-			else
+			else if (KEY_STATE::PRESSED == m_vecKeyData[i].eState)
 			{
-				// bPressed가 false였을 때 -> 이제 처음 눌린 상태
-				m_vecKeyData[i].eState = KEY_STATE::TAP;
-			}
-
-			m_vecKeyData[i].bPressed = true;
-		}
-		else
-		{
-			// 이번 프레임에 키가 눌리지 않았다
-			if (m_vecKeyData[i].bPressed)
-			{
-				// bPressed가 true였을 때 -> 눌렀다가 이제 뗀 상태
 				m_vecKeyData[i].eState = KEY_STATE::RELEASED;
 			}
-			else
+			else if (KEY_STATE::RELEASED == m_vecKeyData[i].eState)
 			{
-				// bPressed가 false였을 때 -> 이전에도 안눌렸고 아직도 안누른 상태
 				m_vecKeyData[i].eState = KEY_STATE::NONE;
 			}
-
-			m_vecKeyData[i].bPressed = false;
 		}
+	}
+	else
+	{
+		for (size_t i = 0; i < m_vecKeyData.size(); ++i)
+		{
+			if (GetAsyncKeyState(g_KeySync[(int)m_vecKeyData[i].eKey]) & 0x8001)
+			{
+				// 이번 프레임에 키가 눌렸다
+				if (m_vecKeyData[i].bPressed)
+				{
+					// bPressed가 true였을 때 -> 계속 눌린 상태
+					m_vecKeyData[i].eState = KEY_STATE::PRESSED;
+				}
+				else
+				{
+					// bPressed가 false였을 때 -> 이제 처음 눌린 상태
+					m_vecKeyData[i].eState = KEY_STATE::TAP;
+				}
+
+				m_vecKeyData[i].bPressed = true;
+			}
+			else
+			{
+				// 이번 프레임에 키가 눌리지 않았다
+				if (m_vecKeyData[i].bPressed)
+				{
+					// bPressed가 true였을 때 -> 눌렀다가 이제 뗀 상태
+					m_vecKeyData[i].eState = KEY_STATE::RELEASED;
+				}
+				else
+				{
+					// bPressed가 false였을 때 -> 이전에도 안눌렸고 아직도 안누른 상태
+					m_vecKeyData[i].eState = KEY_STATE::NONE;
+				}
+
+				m_vecKeyData[i].bPressed = false;
+			}
+		}
+
+		// 마우스 좌표 계산
+		POINT pt = {};
+		GetCursorPos(&pt);
+		ScreenToClient(MyEngine::GetInst()->GetMainhWnd(), &pt);
+		m_vMousePos = pt;
 	}
 }

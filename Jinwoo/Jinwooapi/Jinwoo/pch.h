@@ -1,19 +1,23 @@
 #pragma once
 
 #include "targetver.h"
-// °ÅÀÇ »ç¿ëÇÏÁö ¾Ê´Â ³»¿ëÀ» Windows Çì´õ¿¡¼­ Á¦°Å
+// ê±°ì˜ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” ë‚´ìš©ì„ Windows í—¤ë”ì—ì„œ ì œê±°
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
-
+#include <assert.h>
 #include <stdlib.h>
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <crtdbg.h>
+#include <assert.h>
 
 #include <vector>
 #include <list>
 #include <map>
 #include <string>
+
+#pragma comment(lib, "Msimg32.lib")
 
 using std::vector;
 using std::list;

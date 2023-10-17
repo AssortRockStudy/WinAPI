@@ -30,5 +30,5 @@ void MyPathMgr::init()
 		}
 	}
 
-	wcscat_s(m_szContent, 255, L"content\\");
+	wcscat_s(m_szContent, 255, L"JWGame\\content\\");
 }

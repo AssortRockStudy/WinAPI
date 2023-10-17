@@ -7,13 +7,12 @@ class MyKeyMgr
 {
 	SINGLETON(MyKeyMgr);
 private:
-	vector<FKeyData> m_vecKeyData;
+	vector<FKeyData>	m_vecKeyData;
+	Vec2				m_vMousePos;
 
 public:
-	KEY_STATE GetKeyState(KEY _key)
-	{
-		return m_vecKeyData[(int)_key].eState;
-	}
+	KEY_STATE GetKeyState(KEY _key) { return m_vecKeyData[(int)_key].eState; }
+	Vec2 GetMousePos() { return m_vMousePos; }
 
 public:
 	void init();
