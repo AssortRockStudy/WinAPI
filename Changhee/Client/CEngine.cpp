@@ -9,6 +9,7 @@
 #include "CCamera.h"
 #include "CCollisionMgr.h"
 #include "CGCMgr.h"
+#include "CUIMgr.h"
 
 
 CEngine::CEngine()
@@ -92,6 +93,7 @@ void CEngine::tick()
 	// ------------ tick ------------
 	CLevelMgr::GetInst()->tick();
 	CCollisionMgr::GetInst()->tick();
+	CUIMgr::GetInst()->tick();
 
 
 	// ------------ clear -------------

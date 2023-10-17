@@ -116,6 +116,9 @@
     <Filter Include="Game\04. Object\UI\PanelUI">
       <UniqueIdentifier>{8411ebdc-2930-4360-b92c-dd3c1fc41000}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03. Manager\UIManager">
+      <UniqueIdentifier>{2531fac4-0c6c-4432-92e4-1389903123d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -257,6 +260,9 @@
     <ClInclude Include="CPanelUI.h">
       <Filter>Game\04. Object\UI\PanelUI</Filter>
     </ClInclude>
+    <ClInclude Include="CUIMgr.h">
+      <Filter>Game\03. Manager\UIManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -392,6 +398,9 @@
     </ClCompile>
     <ClCompile Include="CPanelUI.cpp">
       <Filter>Game\04. Object\UI\PanelUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIMgr.cpp">
+      <Filter>Game\03. Manager\UIManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
