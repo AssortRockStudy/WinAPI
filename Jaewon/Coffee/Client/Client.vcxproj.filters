@@ -74,6 +74,9 @@
     <Filter Include="Game\04.Object\Tile">
       <UniqueIdentifier>{ed5f993b-ed05-4b4f-88bf-8a0a5771e99b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04.Object\UI">
+      <UniqueIdentifier>{c918369e-09e3-464b-9c44-6fa8afc3e929}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -193,6 +196,15 @@
     </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>Game\04.Object\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="BtnUI.h">
+      <Filter>Game\04.Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelUI.h">
+      <Filter>Game\04.Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>Game\04.Object\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -314,6 +326,15 @@
     </ClCompile>
     <ClCompile Include="Tile.cpp">
       <Filter>Game\04.Object\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="BtnUI.cpp">
+      <Filter>Game\04.Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PanelUI.cpp">
+      <Filter>Game\04.Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>Game\04.Object\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

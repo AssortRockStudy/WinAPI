@@ -9,9 +9,11 @@ class KeyMgr
 
 private:
 	vector<FKeyData> vecKeyData;
+	Vec2 mousePos;
 
 public:
 	KEYSTATE getKeyState(KEY _key) { return vecKeyData[_key].state; }
+	Vec2 getMousePos() { return mousePos; }
 
 public:
 	void init();

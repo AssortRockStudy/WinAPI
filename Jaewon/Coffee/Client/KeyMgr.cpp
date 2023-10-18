@@ -1,5 +1,6 @@
 ﻿#include "pch.h"
 #include "KeyMgr.h"
+#include "CEngine.h"
 
 int g_KeySync[KEY::KEY_END] =
 {
@@ -68,6 +69,9 @@ int g_KeySync[KEY::KEY_END] =
 	VK_RIGHT,
 	VK_UP,
 	VK_DOWN,
+
+	VK_LBUTTON,
+	VK_RBUTTON,
 };
 
 KeyMgr::KeyMgr() {}
@@ -88,20 +92,36 @@ void KeyMgr::init()
 // 4. 지금 tick에 안눌림 + 전 tick에 안눌림 > None
 void KeyMgr::tick()
 {
-	for (size_t i = 0; i < vecKeyData.size(); ++i) {
-		if (GetAsyncKeyState(g_KeySync[vecKeyData[i].key]) & 0x8001) {
-			if (vecKeyData[i].isPressed)
+	if (nullptr == GetFocus()) {
+		for (size_t i = 0; i < vecKeyData.size(); ++i) {
+			if(vecKeyData[i].state = TAP)
 				vecKeyData[i].state = PRESSED;
-			else
-				vecKeyData[i].state = TAP;
-			vecKeyData[i].isPressed = true;
-		}
-		else {
-			if (vecKeyData[i].isPressed)
+			else if(vecKeyData[i].state = PRESSED)
 				vecKeyData[i].state = RELEASED;
-			else
+			else if(vecKeyData[i].state = RELEASED)
 				vecKeyData[i].state = NONE;
-			vecKeyData[i].isPressed = false;
 		}
 	}
+	else {
+		for (size_t i = 0; i < vecKeyData.size(); ++i) {
+			if (GetAsyncKeyState(g_KeySync[vecKeyData[i].key]) & 0x8001) {
+				if (vecKeyData[i].isPressed)
+					vecKeyData[i].state = PRESSED;
+				else
+					vecKeyData[i].state = TAP;
+				vecKeyData[i].isPressed = true;
+			}
+			else {
+				if (vecKeyData[i].isPressed)
+					vecKeyData[i].state = RELEASED;
+				else
+					vecKeyData[i].state = NONE;
+				vecKeyData[i].isPressed = false;
+			}
+		}
+	}
+	POINT pt = {};
+	GetCursorPos(&pt);
+	ScreenToClient(CEngine::GetInst()->getMainWin(), &pt);
+	mousePos = pt;
 }

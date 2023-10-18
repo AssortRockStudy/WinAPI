@@ -36,6 +36,8 @@ protected:
 
 public:
 	void createTile(UINT _Row, UINT _Col);
+	UINT getTileCol() { return tileCol; }
+	UINT getTileRow() { return tileRow; }
 
 public:
 	CLevel();

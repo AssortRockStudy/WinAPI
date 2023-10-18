@@ -5,6 +5,8 @@
 #include "KeyMgr.h"
 #include "resource.h"
 #include "LevelMgr.h"
+#include "Tile.h"
+#include "BtnUI.h"
 
 void EditorLevel::init()
 {
@@ -21,6 +23,11 @@ void EditorLevel::enter()
 	vLookAt /= 2.f;
 	Camera::GetInst()->SetLookAt(vLookAt);
 	createTile(10, 10);
+
+	BtnUI* pBtnUI = new BtnUI;
+	pBtnUI->setScale(Vec2(200.f, 80.f));
+	pBtnUI->setPos(Vec2(1390.f, 10.f));
+	addObject(LAYER::UI, pBtnUI);
 }
 
 void EditorLevel::exit()
@@ -39,6 +46,24 @@ void EditorLevel::tick()
 
 	if (KeyMgr::GetInst()->getKeyState(ENTER) == TAP)
 		changeLevel(LEVEL_TYPE::PLAY_LEVEL);
+
+	if ((KeyMgr::GetInst()->getKeyState(KEY::LBTN) == TAP))
+	{
+		Vec2 vMousePos = KeyMgr::GetInst()->getMousePos();
+		vMousePos = Camera::GetInst()->getRealPos(vMousePos);
+
+		int col = vMousePos.x / TILE_SIZE;
+		int row = vMousePos.y / TILE_SIZE;
+		int idx = getTileCol() * row + col;
+
+		if (!(getTileCol() <= col) && !(getTileRow() <= row)
+			&& !(vMousePos.x < 0.f) && !(vMousePos.y < 0.f))
+		{
+			const vector<CObj*>& vecTiles = GetLayer(TILE)->getObjects();
+			Tile* targetTile = dynamic_cast<Tile*>(vecTiles[idx]);
+			targetTile->addImgIdx();
+		}
+	}
 }
 
 

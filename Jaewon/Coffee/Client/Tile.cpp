@@ -4,6 +4,23 @@
 #include "CTexture.h"
 
 
+void Tile::addImgIdx()
+{
+	if (nullptr == atlas)
+		return;
+
+	++idx;
+
+	UINT width = atlas->getWidth();
+	UINT height = atlas->getHeight();
+	UINT maxRow = height / TILE_SIZE;
+	UINT maxCol = width / TILE_SIZE;
+	UINT maxTileCount = maxRow * maxCol;
+
+	if (maxTileCount <= idx)
+		idx = 0;
+}
+
 void Tile::tick(float _DT)
 {
 }
