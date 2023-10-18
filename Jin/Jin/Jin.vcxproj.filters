@@ -201,6 +201,7 @@
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="PanelUI.cpp" />
     <ClCompile Include="BtnUI.cpp" />
+    <ClCompile Include="UIMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -333,5 +334,6 @@
     <ClInclude Include="UI.h" />
     <ClInclude Include="PanelUI.h" />
     <ClInclude Include="BtnUI.h" />
+    <ClInclude Include="UIMgr.h" />
   </ItemGroup>
 </Project>

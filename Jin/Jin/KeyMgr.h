@@ -13,7 +13,7 @@ public:
 		return m_vecKeyData[_key].eState;
 
 	}
-	Vec2 GetMousPos()
+	Vec2 GetMousePos()
 	{
 		return m_vMousePos;
 	}

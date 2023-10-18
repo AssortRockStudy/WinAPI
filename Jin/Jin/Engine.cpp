@@ -8,6 +8,7 @@
 #include "TaskMgr.h"
 #include "LogMgr.h"
 #include "GCMgr.h"
+#include "UIMgr.h"
 #include "Camera.h"
 #include "CollisionMgr.h"
 
@@ -80,7 +81,6 @@ void Engine::tick()
 {
 	TimeMgr::GetInst()->tick();
 	KeyMgr::GetInst()->tick();
-	LevelMgr::GetInst()->tick();
 	//DrawMgr::GetInst()->tick();
 	Camera::GetInst()->tick();
 
@@ -89,10 +89,13 @@ void Engine::tick()
 		m_bDebugRender ? m_bDebugRender = false : m_bDebugRender = true;
 	}
 
+	LevelMgr::GetInst()->tick();
 	CollisionMgr::GetInst()->tick();
+	UIMgr::GetInst()->tick();
+
+
 	LevelMgr::GetInst()->render(m_SubDC);
 	
-
 	TaskMgr::GetInst()->tick();
 
 	GCMgr::GetInst()->tick();

@@ -11,6 +11,7 @@
 
 #include "Tile.h"
 #include "BtnUI.h"
+#include "PanelUI.h"
 
 void EditorLevel::init()
 {
@@ -56,7 +57,7 @@ void EditorLevel::tick()
 
 	if (KEY_TAP(KEY::LBTN))
 	{
-		Vec2 vMousePos = KeyMgr::GetInst()->GetMousPos();
+		Vec2 vMousePos = KeyMgr::GetInst()->GetMousePos();
 		vMousePos = Camera::GetInst()->GerRealPos(vMousePos);
 
 		int col = vMousePos.x / TILE_SIZE;

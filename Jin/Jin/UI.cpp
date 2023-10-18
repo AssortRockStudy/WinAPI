@@ -1,8 +1,12 @@
 #include "pch.h"
 #include "UI.h"
 
+#include "KeyMgr.h"
+
 UI::UI()
 	: m_ParentUI(nullptr)
+	, m_bMouseOn(false)
+	, m_bMouseOn_Prev(false)
 {
 }
 
@@ -18,6 +22,27 @@ void UI::tick(float _DT)
 	{
 		m_vecChildUI[i]->tick(_DT);
 	}
+
+	m_vFinalPos = GetPos();
+
+	if (nullptr != m_ParentUI)
+	{
+		m_vFinalPos += m_ParentUI->GetFinalPos();
+	}
+
+	m_bMouseOn_Prev = m_bMouseOn;
+
+	Vec2 vMousePos = KeyMgr::GetInst()->GetMousePos();
+	if (m_vFinalPos.x <= vMousePos.x && vMousePos.x <= m_vFinalPos.x + GetScale().x
+		&& m_vFinalPos.y <= vMousePos.y && vMousePos.y <= m_vFinalPos.y + GetScale().y)
+	{
+		m_bMouseOn = true;
+	}
+	else
+	{
+		m_bMouseOn = false;
+	}
+
 }
 
 void UI::render(HDC _dc)
