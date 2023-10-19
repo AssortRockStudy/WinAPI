@@ -6,12 +6,16 @@
 CUI::CUI():
 	m_ParentUI(nullptr),
 	m_bMouseOn(false),
-	m_bMouseOn_Prev(false)
+	m_bMouseOn_Prev(false),
+	m_bMouseLBtnDown(false)
 {
 }
 
 CUI::~CUI()
 {
+	for (size_t i = 0; i < m_vecChildUI.size(); i++) {
+		delete m_vecChildUI[i];
+	}
 }
 
 void CUI::tick(float _DT)

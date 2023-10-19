@@ -31,4 +31,5 @@ class CLayer : public CEntity {
     ~CLayer();
 
     friend class CLevel;
+    friend class CUIMgr;
 };

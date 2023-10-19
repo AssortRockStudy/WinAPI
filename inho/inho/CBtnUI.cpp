@@ -23,14 +23,7 @@ CBtnUI::~CBtnUI()
 
 void CBtnUI::tick(float _DT)
 {
-	if( IsLBtnDown()){
-		Vec2 vDiff = m_vLbtnDownPos - CKeyMgr::GetInst()->GetMousePos();
-		Vec2 vPos = GetPos();
-		vPos -= vDiff;
-		SetPos(vPos);
 
-		m_vLbtnDownPos = CKeyMgr::GetInst()->GetMousePos();
-	}
 	Super::tick(_DT);
 }
 
@@ -65,8 +58,6 @@ void CBtnUI::MouseOn(Vec2 _vMousePos)
 void CBtnUI::LBtnDown(Vec2 _vMousePos)
 {
 	m_CurImg = m_PressedImg;
-
-	m_vLbtnDownPos = _vMousePos;
 }
 
 void CBtnUI::LBtnUp(Vec2 _vMousePos)

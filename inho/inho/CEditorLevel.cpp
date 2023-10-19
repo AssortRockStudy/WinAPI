@@ -35,13 +35,18 @@ void CEditorLevel::enter()
 
 	CreateTile(10, 10);
 
+	CPanelUI* pPanelUI = new CPanelUI;
+	pPanelUI->SetScale(Vec2(500.f, 400.f));
+	pPanelUI->SetPos(Vec2(800.f, 200.f));
+
 	CBtnUI* pBtnUI = new CBtnUI;
 	pBtnUI->SetScale(Vec2(200.f, 80.f));
-	pBtnUI->SetPos(Vec2(800.f, 10.f));
-	AddObject(LAYER::UI, pBtnUI);
+	pBtnUI->SetPos(Vec2(10.f, 10.f));
 
 	pBtnUI->SetDelegate(this, (DelegateFunc)&CEditorLevel::OpenTileCreateWindow);
 
+	pPanelUI->AddChildUI(pBtnUI);
+	AddObject(UI, pPanelUI);
 }
 
 void CEditorLevel::exit()

@@ -9,7 +9,9 @@
 
 #include "CLogMgr.h"
 
-CUIMgr::CUIMgr() {}
+CUIMgr::CUIMgr():
+	m_FocusedUI(nullptr)
+{}
 
 CUIMgr::~CUIMgr() {}
 
@@ -25,10 +27,11 @@ void CUIMgr::tick() {
 		return;
 
 	CLayer* pUILayer = pLevel->GetLayer(LAYER::UI);
-	const vector<CObj*>& vecUI = pUILayer->GetObjects();
+	vector<CObj*>& vecUI = pUILayer->m_vecObjects;
+	vector<CObj*>::reverse_iterator iter = vecUI.rbegin();
 	
-	for (size_t i = 0; i < vecUI.size(); i++) {
-		CUI* pUI = dynamic_cast<CUI*>(vecUI[i]);
+	for (iter; iter != vecUI.rend(); ++iter) {
+		CUI* pUI = dynamic_cast<CUI*>(*iter);
 		if (nullptr == pUI)
 		{
 			LOG(ERR, L"UI Layer에 UI가 아닌 오브젝트가 들어있음");
@@ -37,7 +40,8 @@ void CUIMgr::tick() {
 
 		if (pUI->m_bMouseOn) {
 
-			//pUI = GetPriorityCheck(pUI);
+			m_FocusedUI = pUI;
+			pUI = GetPriorityCheck(pUI);
 
 			if (pUI->m_bMouseOn_Prev != pUI->m_bMouseOn) {
 				pUI->OnHovered(vMousePos);
@@ -57,21 +61,53 @@ void CUIMgr::tick() {
 			if (bLBtnTap) {
 				pUI->LBtnDown(vMousePos);
 				pUI->m_bMouseLBtnDown = true;
+
+				std::advance(iter, 1);
+				vecUI.erase(iter.base());
+
+				vecUI.push_back(m_FocusedUI);
 			}
+
+			if (bLbtnReleased) {
+				pUI->m_bMouseLBtnDown = false;
+			}
+
+			break;
 		}
 		else {
 			if (pUI->m_bMouseOn_Prev != pUI->m_bMouseOn) {
 				pUI->OnUnHovered(vMousePos);
 			}
-		}
 
-		if (bLbtnReleased) {
-			pUI->m_bMouseLBtnDown = false;
+			if (bLbtnReleased) {
+				pUI->m_bMouseLBtnDown = false;
+			}
 		}
 	}
 }
 
 CUI* CUIMgr::GetPriorityCheck(CUI* _ParentUI)
 {
-	return _ParentUI;
+	CUI* pPriorityUI = nullptr;
+
+	static list<CUI*> queue;
+	queue.clear();
+
+	queue.push_back(_ParentUI);
+
+
+	while (!queue.empty()) {
+		CUI* pUI = queue.front();
+		queue.pop_front();
+
+		for (size_t i = 0; i < pUI->m_vecChildUI.size(); ++i) {
+			queue.push_back(pUI->m_vecChildUI[i]);
+		}
+
+		if (pUI->m_bMouseOn) {
+			pPriorityUI = pUI;
+		}
+	}
+
+	return pPriorityUI;
 }
