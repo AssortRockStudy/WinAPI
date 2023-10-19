@@ -26,7 +26,7 @@ void CUIMgr::tick() {
 
 	CLayer* pUILayer = pLevel->GetLayer(LAYER::UI);
 	const vector<CObj*>& vecUI = pUILayer->GetObjects();
-
+	
 	for (size_t i = 0; i < vecUI.size(); i++) {
 		CUI* pUI = dynamic_cast<CUI*>(vecUI[i]);
 		if (nullptr == pUI)
@@ -36,14 +36,19 @@ void CUIMgr::tick() {
 		}
 
 		if (pUI->m_bMouseOn) {
+
+			//pUI = GetPriorityCheck(pUI);
+
 			if (pUI->m_bMouseOn_Prev != pUI->m_bMouseOn) {
 				pUI->OnHovered(vMousePos);
 			}
 			else {
 				pUI->MouseOn(vMousePos);
 			}
+
 			if (bLbtnReleased) {
 				pUI->LBtnUp(vMousePos);
+
 				if (pUI->m_bMouseLBtnDown) {
 					pUI->LBtnClicked(vMousePos);
 				}
@@ -64,4 +69,9 @@ void CUIMgr::tick() {
 			pUI->m_bMouseLBtnDown = false;
 		}
 	}
+}
+
+CUI* CUIMgr::GetPriorityCheck(CUI* _ParentUI)
+{
+	return _ParentUI;
 }

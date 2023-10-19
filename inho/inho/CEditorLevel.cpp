@@ -12,6 +12,9 @@
 #include "CPanelUI.h"
 #include "CBtnUI.h"
 
+INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+
+
 void CEditorLevel::init()
 {
 }
@@ -36,6 +39,8 @@ void CEditorLevel::enter()
 	pBtnUI->SetScale(Vec2(200.f, 80.f));
 	pBtnUI->SetPos(Vec2(800.f, 10.f));
 	AddObject(LAYER::UI, pBtnUI);
+
+	pBtnUI->SetDelegate(this, (DelegateFunc)&CEditorLevel::OpenTileCreateWindow);
 
 }
 
@@ -76,6 +81,11 @@ void CEditorLevel::tick()
 			pTargetTile->AddImgIdx();
 		}
 	}
+}
+
+void CEditorLevel::OpenTileCreateWindow()
+{
+	DialogBox(nullptr, MAKEINTRESOURCE(IDD_CREATE_TILE), CEngine::GetInst()->GetMainWind(), CreateTileProc);
 }
 
 INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam) {

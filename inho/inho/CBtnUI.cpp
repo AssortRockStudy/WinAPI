@@ -4,11 +4,16 @@
 #include "CEngine.h"
 #include "Resource.h"
 
-CBtnUI::CBtnUI():
+#include "CKeyMgr.h"
+
+CBtnUI::CBtnUI() :
 	m_NormalImg(nullptr),
 	m_HoverImg(nullptr),
 	m_PressedImg(nullptr),
-	m_CurImg(nullptr)
+	m_CurImg(nullptr),
+	m_CallBackFunc(nullptr),
+	m_Inst(nullptr),
+	m_Delegate(nullptr)
 {
 }
 
@@ -18,7 +23,14 @@ CBtnUI::~CBtnUI()
 
 void CBtnUI::tick(float _DT)
 {
+	if( IsLBtnDown()){
+		Vec2 vDiff = m_vLbtnDownPos - CKeyMgr::GetInst()->GetMousePos();
+		Vec2 vPos = GetPos();
+		vPos -= vDiff;
+		SetPos(vPos);
 
+		m_vLbtnDownPos = CKeyMgr::GetInst()->GetMousePos();
+	}
 	Super::tick(_DT);
 }
 
@@ -53,6 +65,8 @@ void CBtnUI::MouseOn(Vec2 _vMousePos)
 void CBtnUI::LBtnDown(Vec2 _vMousePos)
 {
 	m_CurImg = m_PressedImg;
+
+	m_vLbtnDownPos = _vMousePos;
 }
 
 void CBtnUI::LBtnUp(Vec2 _vMousePos)
@@ -63,7 +77,12 @@ INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM l
 
 void CBtnUI::LBtnClicked(Vec2 _vMousePos)
 {
-	DialogBox(nullptr, MAKEINTRESOURCE(IDD_CREATE_TILE), CEngine::GetInst()->GetMainWind(), CreateTileProc);
+	if (nullptr != m_CallBackFunc) {
+		m_CallBackFunc();
+	}
+	if (nullptr != m_Inst && nullptr != m_Delegate) {
+		(m_Inst->*m_Delegate)();
+	}
 }
 
 
