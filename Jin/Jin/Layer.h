@@ -49,7 +49,7 @@ public:
 	~Layer();
 
 	friend class Level;
-
+	friend class UIMgr;
 
 
 };

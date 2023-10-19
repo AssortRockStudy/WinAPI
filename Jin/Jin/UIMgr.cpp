@@ -9,6 +9,7 @@
 #include "LogMgr.h"
 
 UIMgr::UIMgr()
+	: m_FocusedUI(nullptr)
 {
 
 }
@@ -29,11 +30,13 @@ void UIMgr::tick()
 		return;
 
 	Layer* pUILayer = pLevel->GetLayer(LAYER::UILAYER);
-	const vector<Obj*>& vecUI = pUILayer->GetObjects();
+	vector<Obj*>& vecUI = pUILayer->m_vecObjects;
+	vector<Obj*>::reverse_iterator iter = vecUI.rbegin();
 
-	for (size_t i = 0; i < vecUI.size(); ++i)
+
+	for (iter; iter!= vecUI.rend(); ++iter)
 	{
-		UI* pUI = dynamic_cast<UI*>(vecUI[i]);
+		UI* pUI = dynamic_cast<UI*>(*iter);
 		if (nullptr == pUI)
 		{
 			LOG(ERR, L"UI Layer에 UI가 아닌 오브젝트가 들어 있음.");
@@ -42,6 +45,8 @@ void UIMgr::tick()
 
 		if (pUI->m_bMouseOn)
 		{
+			m_FocusedUI = pUI;
+
 			pUI = GetPriorityCheck(pUI);
 
 			if (pUI->m_bMouseOn_Prev != pUI->m_bMouseOn)
@@ -67,7 +72,19 @@ void UIMgr::tick()
 			{
 				pUI->LBtnDown(vMousePos);
 				pUI->m_bMouseLBtnDown = true;
+
+				//std::advance(iter, 1);
+				++iter;
+				vecUI.erase(iter.base());
+
+				vecUI.push_back(m_FocusedUI);
 			}
+
+			if (bLBtnReleased)
+			{
+				pUI->m_bMouseLBtnDown = false;
+			}
+			break;
 		}
 		else
 		{
@@ -75,16 +92,41 @@ void UIMgr::tick()
 			{ // true != false
 				pUI->OnUnHovered(vMousePos);
 			}
+
+			if (bLBtnReleased)
+			{
+				pUI->m_bMouseLBtnDown = false;
+			}
 		}
-		if (bLBtnReleased)
-		{
-			pUI->m_bMouseLBtnDown = false;
-		}
+		
 	}
 
 }
 
 UI* UIMgr::GetPriorityCheck(UI* _ParentUI)
 {
-	return nullptr;
+	UI* pPriorityUI = nullptr;
+
+	static list<UI*> queue;
+	queue.clear();
+	queue.push_back(_ParentUI);
+
+	while (!queue.empty())
+	{ // BFS
+		UI* pUI = queue.front();
+		queue.pop_front();
+
+		for (size_t i = 0; i < pUI->m_vecChildUI.size(); ++i)
+		{
+			queue.push_back(pUI->m_vecChildUI[i]);
+		}
+
+		if (pUI->m_bMouseOn)
+		{
+			pPriorityUI = pUI;
+		}
+	}
+
+	return pPriorityUI;
+
 }

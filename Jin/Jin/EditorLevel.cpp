@@ -37,12 +37,19 @@ void EditorLevel::enter()
 	POINT ptResSol = Engine::GetInst()->GetResolution();
 	Engine::GetInst()->ChangeWindowSize(ptResSol, true);
 
+
+	PanelUI* pPanelUI = new PanelUI;
+	pPanelUI->SetScale(Vec2(500.f, 400.f));
+	pPanelUI->SetPos(Vec2(800.f, 200.f));
+
 	BtnUI* pBtnUI = new BtnUI;
 	pBtnUI->SetScale(Vec2(200.f, 80.f));
-	pBtnUI->SetPos(Vec2(1390.f, 10.f));
+	pBtnUI->SetPos(Vec2(10.f, 10.f));
 	pBtnUI->SetDelegate(this, (DelegateFunc)& EditorLevel::OpenTileCreateWindow);
 
-	AddObject(LAYER::UILAYER, pBtnUI);
+	pPanelUI->AddChildUI(pBtnUI);
+	AddObject(LAYER::UILAYER, pPanelUI);
+
 
 }
 
@@ -92,7 +99,7 @@ void EditorLevel::tick()
 
 void EditorLevel::OpenTileCreateWindow()
 {
-	DialogBox(nullptr, MAKEINTRESOURCE(ID_CREATE_TILE), Engine::GetInst()->GetMainWind(), CreateTileProc);
+	DialogBox(nullptr, MAKEINTRESOURCE(IDD_JIN_DIALOG), Engine::GetInst()->GetMainWind(), CreateTileProc);
 
 }
 

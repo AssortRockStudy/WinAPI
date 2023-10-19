@@ -21,14 +21,6 @@ BtnUI::~BtnUI()
 
 void BtnUI::tick(float _DT)
 {
-	if (IsLBtnDown())
-	{
-		Vec2 vDiff = m_vLbtnDownPos - KeyMgr::GetInst()->GetMousePos();
-		Vec2 vPos = GetPos();
-		vPos -= vDiff;
-		SetPos(vPos);
-		m_vLbtnDownPos = KeyMgr::GetInst()->GetMousePos();
-	}
 	Super::tick(_DT);
 }
 
@@ -66,7 +58,6 @@ void BtnUI::MouseOn(Vec2 _vMousePos)
 void BtnUI::LBtnDown(Vec2 _vMousePos)
 {
 	m_CurImg = m_PressedImg;
-	m_vLbtnDownPos =_vMousePos;
 }
 
 void BtnUI::LBtnUp(Vec2 _vMousePos)
@@ -74,11 +65,8 @@ void BtnUI::LBtnUp(Vec2 _vMousePos)
 	m_CurImg = m_NormalImg;
 }
 
-//INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
-
 void BtnUI::LBtnClicked(Vec2 _vMousePos)
 {
-	//DialogBox(nullptr, MAKEINTRESOURCE(ID_CREATE_TILE), Engine::GetInst()->GetMainWind(), CreateTileProc);
 	if (nullptr != m_CallBackFunc)
 	{
 		m_CallBackFunc();

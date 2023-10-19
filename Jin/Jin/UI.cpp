@@ -7,11 +7,16 @@ UI::UI()
 	: m_ParentUI(nullptr)
 	, m_bMouseOn(false)
 	, m_bMouseOn_Prev(false)
+	, m_bMouseLBtnDown(false)
 {
 }
 
 UI::~UI()
 {
+	for (size_t i = 0; i < m_vecChildUI.size(); ++i)
+	{
+		delete m_vecChildUI[i];
+	}
 }
 
 void UI::tick(float _DT)
