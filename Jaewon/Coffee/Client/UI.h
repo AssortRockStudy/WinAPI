@@ -8,6 +8,10 @@ class UI :
 private:
     UI* parentUI;
     vector<UI*> vecChildUI;
+    Vec2 finalPos;
+    bool mMouseOn;
+    bool mouseOnPrev;
+    bool mouseLBtnDown;
 
 public:
     void AddChildUI(UI* _ChildUI)
@@ -19,8 +23,21 @@ public:
 public:
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
+
+    virtual void onHovered(Vec2 _vMousePos) {}
+    virtual void mouseOn(Vec2 _vMousePos) {}
+    virtual void onUnHovered(Vec2 _vMousePos) {}
+
+    virtual void LBtnDown(Vec2 _vMousePos) {}
+    virtual void LBtnUp(Vec2 _vMousePos) {}
+    virtual void LBtnClicked(Vec2 _vMousePos) {}
+
+    Vec2 getFinalPos() { return finalPos; }
+
 public:
     UI();
     ~UI();
+
+    friend class UIMgr;
 };
 

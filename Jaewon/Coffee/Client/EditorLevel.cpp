@@ -7,6 +7,7 @@
 #include "LevelMgr.h"
 #include "Tile.h"
 #include "BtnUI.h"
+#include "PanelUI.h"
 
 void EditorLevel::init()
 {
@@ -23,6 +24,11 @@ void EditorLevel::enter()
 	vLookAt /= 2.f;
 	Camera::GetInst()->SetLookAt(vLookAt);
 	createTile(10, 10);
+
+	/*PanelUI* pPanelUI = new PanelUI;
+	pPanelUI->setScale(Vec2(500.f, 400.f));
+	pPanelUI->setPos(Vec2(800.f, 200.f));
+	addObject(LAYER::UI, pPanelUI);*/
 
 	BtnUI* pBtnUI = new BtnUI;
 	pBtnUI->setScale(Vec2(200.f, 80.f));

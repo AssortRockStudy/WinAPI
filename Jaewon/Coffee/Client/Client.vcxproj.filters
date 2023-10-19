@@ -206,6 +206,7 @@
     <ClInclude Include="UI.h">
       <Filter>Game\04.Object\UI</Filter>
     </ClInclude>
+    <ClInclude Include="UIMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -336,5 +337,6 @@
     <ClCompile Include="UI.cpp">
       <Filter>Game\04.Object\UI</Filter>
     </ClCompile>
+    <ClCompile Include="UIMgr.cpp" />
   </ItemGroup>
 </Project>

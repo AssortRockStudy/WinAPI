@@ -180,6 +180,7 @@
     <ClInclude Include="TaskMgr.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="UIMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Anim.cpp" />
@@ -209,12 +210,14 @@
     <ClCompile Include="LevelMgr.cpp" />
     <ClCompile Include="LogMgr.cpp" />
     <ClCompile Include="main.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="PanelUI.cpp" />
-    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayLevel.cpp" />
@@ -223,6 +226,7 @@
     <ClCompile Include="TaskMgr.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="UIMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />
