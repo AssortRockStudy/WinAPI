@@ -13,6 +13,11 @@
 #include "BtnUI.h"
 #include "PanelUI.h"
 
+//void TestFunc();
+INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+
+
+
 void EditorLevel::init()
 {
 }
@@ -35,7 +40,10 @@ void EditorLevel::enter()
 	BtnUI* pBtnUI = new BtnUI;
 	pBtnUI->SetScale(Vec2(200.f, 80.f));
 	pBtnUI->SetPos(Vec2(1390.f, 10.f));
-	AddObject(LAYER::UI, pBtnUI);
+	pBtnUI->SetDelegate(this, (DelegateFunc)& EditorLevel::OpenTileCreateWindow);
+
+	AddObject(LAYER::UILAYER, pBtnUI);
+
 }
 
 void EditorLevel::exit()
@@ -82,6 +90,12 @@ void EditorLevel::tick()
 
 }
 
+void EditorLevel::OpenTileCreateWindow()
+{
+	DialogBox(nullptr, MAKEINTRESOURCE(ID_CREATE_TILE), Engine::GetInst()->GetMainWind(), CreateTileProc);
+
+}
+
 INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	UNREFERENCED_PARAMETER(lParam);
@@ -116,3 +130,8 @@ INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM l
 	}
 	return (INT_PTR)FALSE;
 }
+
+//void TestFunc()
+//{
+//	DialogBox(nullptr, MAKEINTRESOURCE(ID_CREATE_TILE), Engine::GetInst()->GetMainWind(), CreateTileProc);
+//}
