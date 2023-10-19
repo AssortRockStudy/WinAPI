@@ -34,7 +34,7 @@ void CEditorLevel::enter()
 
 	CBtnUI* pBtnUI = new CBtnUI;
 	pBtnUI->SetScale(Vec2(200.f, 80.f));
-	pBtnUI->SetPos(Vec2(1390.f, 10.f));
+	pBtnUI->SetPos(Vec2(800.f, 10.f));
 	AddObject(LAYER::UI, pBtnUI);
 
 }

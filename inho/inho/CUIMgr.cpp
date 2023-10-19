@@ -16,6 +16,9 @@ CUIMgr::~CUIMgr() {}
 void CUIMgr::tick() {
 
 	Vec2 vMousePos = CKeyMgr::GetInst()->GetMousePos();
+	bool bLBtnTap = KEY_TAP(KEY::LBTN);
+	bool bLbtnReleased = KEY_RELEASED(KEY::LBTN);
+
 
 	CLevel* pLevel = CLevelMgr::GetInst()->GetCurLevel();
 	if (nullptr == pLevel)
@@ -39,6 +42,17 @@ void CUIMgr::tick() {
 			else {
 				pUI->MouseOn(vMousePos);
 			}
+			if (bLbtnReleased) {
+				pUI->LBtnUp(vMousePos);
+				if (pUI->m_bMouseLBtnDown) {
+					pUI->LBtnClicked(vMousePos);
+				}
+			}
+
+			if (bLBtnTap) {
+				pUI->LBtnDown(vMousePos);
+				pUI->m_bMouseLBtnDown = true;
+			}
 		}
 		else {
 			if (pUI->m_bMouseOn_Prev != pUI->m_bMouseOn) {
@@ -46,7 +60,8 @@ void CUIMgr::tick() {
 			}
 		}
 
+		if (bLbtnReleased) {
+			pUI->m_bMouseLBtnDown = false;
+		}
 	}
-
-
 }
