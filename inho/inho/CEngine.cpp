@@ -17,6 +17,7 @@
 #include "CTaskMgr.h"
 
 #include "CGCMgr.h"
+#include "CUIMgr.h"
 
 CEngine::CEngine()
     : m_hWnd(nullptr), m_ptResolution{}, m_dc(nullptr),
@@ -68,7 +69,7 @@ void CEngine::tick() {
 
     CLevelMgr::GetInst()->tick();
     CCollisionMgr::GetInst()->tick();
-
+    CUIMgr::GetInst()->tick();
     CLevelMgr::GetInst()->render(m_SubDC);
 
     CTaskMgr::GetInst()->tick();
@@ -86,3 +87,4 @@ void CEngine::ChangeWindowSize(POINT _ptResolution, bool _bMenu)
     AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, _bMenu);
     SetWindowPos(m_hWnd, nullptr, 10, 10, rt.right - rt.left, rt.bottom - rt.top, 0);
 }
+

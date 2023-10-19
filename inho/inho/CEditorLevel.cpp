@@ -9,6 +9,7 @@
 #include "resource.h"
 
 #include "CTile.h"
+#include "CPanelUI.h"
 #include "CBtnUI.h"
 
 void CEditorLevel::init()
