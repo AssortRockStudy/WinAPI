@@ -9,6 +9,9 @@
 #include "BtnUI.h"
 #include "PanelUI.h"
 
+void testFunc();
+INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+
 void EditorLevel::init()
 {
 }
@@ -25,15 +28,18 @@ void EditorLevel::enter()
 	Camera::GetInst()->SetLookAt(vLookAt);
 	createTile(10, 10);
 
-	/*PanelUI* pPanelUI = new PanelUI;
+	PanelUI* pPanelUI = new PanelUI;
 	pPanelUI->setScale(Vec2(500.f, 400.f));
 	pPanelUI->setPos(Vec2(800.f, 200.f));
-	addObject(LAYER::UI, pPanelUI);*/
 
 	BtnUI* pBtnUI = new BtnUI;
 	pBtnUI->setScale(Vec2(200.f, 80.f));
-	pBtnUI->setPos(Vec2(1390.f, 10.f));
-	addObject(LAYER::UI, pBtnUI);
+	pBtnUI->setPos(Vec2(10.f, 10.f));
+	//pBtnUI->SetCallBack(TestFunc);
+	pBtnUI->setDeletage(this, (DelegateFunc)&EditorLevel::openCreateTileWindow);
+	
+	pPanelUI->AddChildUI(pBtnUI);
+	addObject(LAYER::UI, pPanelUI);
 }
 
 void EditorLevel::exit()
@@ -72,6 +78,10 @@ void EditorLevel::tick()
 	}
 }
 
+void EditorLevel::openCreateTileWindow(){
+	DialogBox(nullptr, MAKEINTRESOURCE(IDD_CREATE_TILE), CEngine::GetInst()->getMainWin(), CreateTileProc);
+}
+
 
 INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam) {
 	UNREFERENCED_PARAMETER(lParam);
@@ -106,4 +116,8 @@ INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM l
 		break;
 	}
 	return (INT_PTR)FALSE;
+}
+
+void testFunc(){
+	DialogBox(nullptr, MAKEINTRESOURCE(IDD_CREATE_TILE), CEngine::GetInst()->getMainWin(), CreateTileProc);
 }

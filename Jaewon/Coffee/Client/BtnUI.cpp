@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "BtnUI.h"
-
 #include "CEngine.h"
 #include "resource.h"
+#include "KeyMgr.h"
 
 void BtnUI::tick(float _DT){
 	Super::tick(_DT);
@@ -49,10 +49,13 @@ INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM l
 
 void BtnUI::LBtnClicked(Vec2 _vMousePos)
 {
-	DialogBox(nullptr, MAKEINTRESOURCE(IDD_CREATE_TILE), CEngine::GetInst()->getMainWin(), CreateTileProc);
+	if (nullptr != callBackFunc)
+		callBackFunc();
+	if (nullptr != mInst && nullptr != mDelegate)
+		(mInst->*mDelegate)();
 }
 
-BtnUI::BtnUI():mNormal(nullptr), mHover(nullptr), mPressed(nullptr), mCur(nullptr)
+BtnUI::BtnUI():mNormal(nullptr), mHover(nullptr), mPressed(nullptr), mCur(nullptr), callBackFunc(nullptr), mInst(nullptr), mDelegate(nullptr)
 {
 }
 

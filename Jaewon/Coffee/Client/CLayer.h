@@ -36,6 +36,7 @@ public:
 
 	// 앞으로 레벨에서 레이어에 접근할 일이 많기 때문에 friend 키워드 사용
 	friend class CLevel;
+	friend class UIMgr;
 
 };
 

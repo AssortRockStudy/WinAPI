@@ -29,6 +29,9 @@ void UI::render(HDC _dc)
 		vecChildUI[i]->render(_dc);
 }
 
-UI::UI():parentUI(nullptr), mMouseOn(false), mouseOnPrev(false){}
+UI::UI():parentUI(nullptr), mMouseOn(false), mouseOnPrev(false), mouseLBtnDown(false){}
 
-UI::~UI(){}
+UI::~UI(){
+	for (size_t i = 0; i < vecChildUI.size(); ++i)
+		delete vecChildUI[i];
+}

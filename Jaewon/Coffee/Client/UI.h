@@ -33,6 +33,7 @@ public:
     virtual void LBtnClicked(Vec2 _vMousePos) {}
 
     Vec2 getFinalPos() { return finalPos; }
+    bool isLBtnDown() { return mouseLBtnDown; }
 
 public:
     UI();
