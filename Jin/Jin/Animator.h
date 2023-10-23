@@ -27,7 +27,9 @@ public:
 
 
 public:
+    CLONE(Animator);
     Animator(Obj* _Owner);
+    Animator(const Animator& _Origin);
     ~Animator();
 };
 

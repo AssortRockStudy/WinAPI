@@ -9,6 +9,19 @@ Obj::Obj()
 {
 }
 
+Obj::Obj(const Obj& _Origin)
+	: Entity(_Origin)
+	, m_Pos(_Origin.m_Pos)
+	, m_Scale(_Origin.m_Scale)
+	, m_iLayerIdx(-1)
+{
+	for (size_t i = 0; i < _Origin.m_vecComponent.size(); ++i)
+	{
+		Component* pCom = _Origin.m_vecComponent[i]->Clone();
+		pCom->m_pOwner = this;
+	}
+}
+
 Obj::~Obj()
 {
 	for (size_t i = 0; i < m_vecComponent.size(); ++i)

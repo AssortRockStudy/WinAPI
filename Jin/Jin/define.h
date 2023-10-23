@@ -24,14 +24,15 @@
 
 #define GAME_FOLDER MyGame
 
-#define GENERATED_OBJECT(type) typedef type Super;\
-							   virtual void Abstract() override {}
+#define GENERATED_OBJECT(type) typedef type Super;
 
 #define DEBUG_RENDER Engine::GetInst()->DebugRender()
 #define SELECT_PEN(DC, TYPE) FSelectPen tempPenSelect(DC, TYPE)
 #define SELECT_BRUSH(DC, hBrush) FSelectBrush tempBrushSelect(DC, hBrush)
 
 #define TILE_SIZE 64
+
+#define CLONE(type) virtual type* Clone() { return new type(*this);}
 
 //enum Color
 //{

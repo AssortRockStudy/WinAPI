@@ -15,6 +15,15 @@ Collider::Collider(Obj* _Owner)
 {
 }
 
+Collider::Collider(const Collider& _Origin)
+	: Component(_Origin)
+	, m_vOffsetPos(_Origin.m_vOffsetPos)
+	, m_vScale(_Origin.m_vScale)
+	, m_vFinalPos(_Origin.m_vFinalPos)
+	, m_iCollisionCnt(0)
+{
+}
+
 Collider::~Collider()
 {
 }

@@ -43,7 +43,6 @@ public:
 
 
 private:
-	virtual void Abstract() = 0;
 	void SetDead();
 
 protected:
@@ -58,6 +57,7 @@ protected:
 
 public:
 	Obj();
+	Obj(const Obj& _Origin);
 	virtual ~Obj();
 
 	friend class Level;
