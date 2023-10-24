@@ -12,7 +12,8 @@ UI::UI()
 }
 
 UI::UI(const UI& _Origin)
-	: m_ParentUI(nullptr)
+	: Obj(_Origin)
+	, m_ParentUI(nullptr)
 	, m_bMouseOn(false)
 	, m_bMouseOn_Prev(false)
 	, m_bMouseLBtnDown(false)

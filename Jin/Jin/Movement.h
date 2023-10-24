@@ -121,6 +121,7 @@ public:
     virtual void finaltick(float _DT) override;
 
 public:
+    CLONE(Movement);
     Movement(Obj* _Owner);
     ~Movement();
 };

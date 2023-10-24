@@ -60,7 +60,7 @@ protected:
 	{
 		for (size_t i = 0; i < m_vecComponent.size(); ++i)
 		{
-			if (dynamic_cas<T*>(m_vecComponent[i]))
+			if (dynamic_cast<T*>(m_vecComponent[i]))
 			{
 				return (T*)m_vecComponent[i];
 			}

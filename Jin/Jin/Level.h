@@ -49,7 +49,9 @@ protected:
 
 
 public:
+	CLONE_DISABLE(Level);
 	Level();
+	Level(const Level& _Origin) = delete;
 	~Level();
 
 	friend class LevelMgr;

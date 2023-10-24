@@ -24,6 +24,7 @@ public:
     void AddImgIdx();
 
 public:
+    CLONE(Tile);
     Tile();
     ~Tile();
 };
