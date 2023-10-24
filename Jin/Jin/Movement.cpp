@@ -42,7 +42,7 @@ void Movement::finaltick(float _DT)
 
 	if (fabs(m_Velocity.x) > m_MaxSpeed)
 	{
-		m_Velocity.x = (m_Velocity.x / fabs(m_Velocity.x)) * m_MaxSpeed;
+		m_Velocity.x = (m_Velocity.x / abs(m_Velocity.x)) * m_MaxSpeed;
 	}
 
 	if (m_Force.IsZero() && m_Velocity.x != 0.f && m_Ground)
@@ -61,12 +61,12 @@ void Movement::finaltick(float _DT)
 		//	m_Velocity += vFrictionAccel;
 		//}
 		float fFriction = -m_Velocity.x;
-		fFriction /= fabs(fFriction);
+		fFriction /= abs(fFriction);
 
 		fFriction *= m_FrictionScale;
 
 		float fFrictionAccel = (fFriction / m_Mass) * _DT;
-		if (fabs(m_Velocity.x) < fabs(fFrictionAccel))
+		if (abs(m_Velocity.x) < abs(fFrictionAccel))
 		{
 			m_Velocity = Vec2(0.f, m_Velocity.y);
 		}

@@ -11,7 +11,9 @@ public:
     virtual void render(HDC _dc) override;
 
     virtual void LBtnDown(Vec2 _MousePos) override;
+
 public:
+    CLONE(PanelUI);
     PanelUI();
     ~PanelUI();
 };

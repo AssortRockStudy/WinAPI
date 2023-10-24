@@ -16,6 +16,14 @@ Monster::Monster()
 	m_Info.HP = 5.f;
 }
 
+Monster::Monster(const Monster& _Origin)
+	: Obj(_Origin)
+	, m_Info(_Origin.m_Info)
+	, m_Collider(nullptr)
+{
+	m_Collider = GetComponent<Collider>();
+}
+
 Monster::~Monster()
 {
 }

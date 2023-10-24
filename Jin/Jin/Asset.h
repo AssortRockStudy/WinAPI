@@ -14,7 +14,9 @@ public:
     const wstring& GetRelativePath() { return m_strRelativePath; }
 
 public:
+    CLONE_DISABLE(Asset);
     Asset();
+    Asset(const Asset& _Origin) = delete;
     ~Asset();
 
     friend class AssetMgr;

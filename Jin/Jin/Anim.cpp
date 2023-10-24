@@ -109,9 +109,9 @@ bool Anim::Save(const wstring& _FilePath)
 	fwprintf_s(pFile, L"\n\n");
 
 	fwprintf_s(pFile, L"[FRAME_COUNT]\n");
-	fwprintf_s(pFile, L"%d\n\n", m_vecFrm.size());
+	fwprintf_s(pFile, L"%d\n\n", (int)m_vecFrm.size());
 
-	for (size_t i = 0; i < m_vecFrm.size(); ++i)
+	for (int i = 0; i < (int)m_vecFrm.size(); ++i)
 	{
 		fwprintf_s(pFile, L"[FRAME_NUM]\n");
 		fwprintf_s(pFile, L"%d\n", i);
@@ -170,11 +170,11 @@ bool Anim::Load(const wstring& _FilePath)
 		}
 		else if (!wcscmp(szRead, L"[FRAME_COUNT]"))
 		{
-			size_t iFrameCount = 0;
+			int iFrameCount = 0;
 			fwscanf_s(pFile, L"%d", &iFrameCount);
 			m_vecFrm.resize(iFrameCount);
 
-			size_t iCurFrame = 0;
+			int iCurFrame = 0;
 			while (true)
 			{
 				fwscanf_s(pFile, L"%s", szRead, 256);

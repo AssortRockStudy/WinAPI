@@ -45,7 +45,9 @@ public:
     }
 
 public:
+    virtual UI* Clone() = 0;
     UI();
+    UI(const UI& _Origin);
     ~UI();
 
     friend class UIMgr;

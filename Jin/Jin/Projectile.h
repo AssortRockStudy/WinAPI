@@ -33,7 +33,9 @@ public:
 	virtual void render(HDC _dc) override;
 
 public:
+	CLONE(Projectile);
 	Projectile();
+	Projectile(const Projectile& _Origin);
 	~Projectile();
 
 };

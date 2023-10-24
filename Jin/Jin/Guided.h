@@ -28,7 +28,9 @@ public:
     virtual void BeginOverlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol) override;
 
 
+    CLONE(Guided);
     Guided();
+    Guided(const Guided& _Origin);
     ~Guided();
 
 private :

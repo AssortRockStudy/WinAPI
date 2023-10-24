@@ -6,7 +6,6 @@ class Player :
 {
     GENERATED_OBJECT(Obj);
     private:
-        float                m_Speed;
         class Collider*        m_Collider;
         class Animator* m_Animator;
         class Movement* m_Movement;
@@ -18,7 +17,9 @@ class Player :
 
 
     public:
+        CLONE(Player);
         Player();
+        Player(const Player& _Origin);
         ~Player();
 };
 

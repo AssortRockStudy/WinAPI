@@ -24,7 +24,9 @@ public:
 
 
 public:
+    CLONE(Monster);
     Monster();
+    Monster(const Monster& _Origin);
     ~Monster();
 
 

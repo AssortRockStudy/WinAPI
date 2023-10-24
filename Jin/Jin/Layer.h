@@ -45,6 +45,7 @@ public:
 	void DeleteAllObjects();
 
 public:
+	CLONE_DISABLE(Layer);
 	Layer();
 	~Layer();
 

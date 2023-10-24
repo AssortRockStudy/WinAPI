@@ -55,7 +55,34 @@ protected:
 		return pNewComponent;
 	}
 
+	template<typename T>
+	T* GetComponent()
+	{
+		for (size_t i = 0; i < m_vecComponent.size(); ++i)
+		{
+			if (dynamic_cas<T*>(m_vecComponent[i]))
+			{
+				return (T*)m_vecComponent[i];
+			}
+		}
+		return nullptr;
+	}
+
+
+	template<typename T>
+	void GetComponents(vector<T*>& _Out)
+	{
+		for (size_t i = 0; i < m_vecComponent.size(); ++i)
+		{
+			if (dynamic_cast<T>(m_vecComponent[i]))
+			{
+				_Out.push_back((T*)m_vecComponent[i]);
+			}
+		}
+	}
+
 public:
+	virtual Obj* Clone() = 0;
 	Obj();
 	Obj(const Obj& _Origin);
 	virtual ~Obj();

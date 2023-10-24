@@ -11,6 +11,18 @@ UI::UI()
 {
 }
 
+UI::UI(const UI& _Origin)
+	: m_ParentUI(nullptr)
+	, m_bMouseOn(false)
+	, m_bMouseOn_Prev(false)
+	, m_bMouseLBtnDown(false)
+{
+	for (size_t i = 0; i < _Origin.m_vecChildUI.size(); ++i)
+	{
+		AddChildUI(_Origin.m_vecChildUI[i]->Clone());
+	}
+}
+
 UI::~UI()
 {
 	for (size_t i = 0; i < m_vecChildUI.size(); ++i)

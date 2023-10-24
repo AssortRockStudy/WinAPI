@@ -19,7 +19,6 @@ private:
     Entity* m_Inst;
     DelegateFunc m_Delegate;
 
-    Vec2 m_vLbtnDownPos;
 
 
 public:
@@ -52,6 +51,7 @@ public:
 
 
 public:
+    CLONE(BtnUI);
     BtnUI();
     ~BtnUI();
 };
