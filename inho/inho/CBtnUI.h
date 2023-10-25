@@ -22,8 +22,6 @@ private:
     CEntity* m_Inst;
     DelegateFunc m_Delegate;
 
-    Vec2 m_vLbtnDownPos;
-
 public:
     void SetNormalImg(CTexture* _NormalImg) { m_NormalImg = _NormalImg; }
     void SetPressedImg(CTexture* _PressedImg) { m_PressedImg = _PressedImg; }
@@ -46,6 +44,7 @@ public:
     virtual void LBtnClicked(Vec2 _vMousePos) override;
 
 public:
+    CLONE(CBtnUI);
     CBtnUI();
     ~CBtnUI();
 

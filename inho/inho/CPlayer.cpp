@@ -24,7 +24,11 @@
 
 #include "components.h"
 
-CPlayer::CPlayer() : m_Speed(500.f) {
+CPlayer::CPlayer() :
+    m_Collider(nullptr),
+    m_Animator(nullptr),
+    m_Movement(nullptr)
+{
     
     // 컴포넌트 추가
     m_Collider = AddComponent<CCollider>(L"PlayerCollider");
@@ -67,6 +71,17 @@ CPlayer::CPlayer() : m_Speed(500.f) {
     m_Movement->SetFrictionScale(1000.f);
     m_Movement->SetGround(true);
 
+}
+
+CPlayer::CPlayer(const CPlayer& _Origin):
+    CObj(_Origin),
+    m_Collider(nullptr),
+    m_Animator(nullptr),
+    m_Movement(nullptr)
+{
+    m_Collider = GetComponent<CCollider>();
+    m_Animator = GetComponent<CAnimator>();
+    m_Movement = GetComponent<CMovement>();
 }
 
 CPlayer::~CPlayer() {

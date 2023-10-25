@@ -4,13 +4,13 @@
 #include "CEntity.h"
 #include "CTaskMgr.h"
 
-class CCollider;
+#include "components.h"
 
 class CObj : public CEntity {
   private:
     Vec2                      m_Pos;
     Vec2                      m_Scale;
-    vector<class CComponent*> m_vecComponent;
+    vector<CComponent*> m_vecComponent;
     int m_iLayerIdx;
 
   public:
@@ -29,6 +29,26 @@ class CObj : public CEntity {
         m_vecComponent.push_back(pNewCom);
         pNewCom->SetName(_strName);
         return pNewCom;
+    }
+
+    template<typename T>
+    T* GetComponent() {
+        for (size_t i = 0; i < m_vecComponent.size(); ++i) {
+            if (dynamic_cast<T*>(m_vecComponent[i])) {
+                return (T*)m_vecComponent[i];
+            }
+        }
+
+        return nullptr;
+    }
+
+    template<typename T>
+    void GetComponents(vector<T*>& _out) {
+        for (size_t i = 0; i < m_vecComponent.size(); ++i) {
+            if (dynamic_cast<T>(m_vecComponent[i])) {
+                _out.push_back((T*)m_vecComponent[i]);
+            }
+        }
     }
 
   public:

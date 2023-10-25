@@ -16,6 +16,7 @@ public:
     virtual void LBtnDown(Vec2 _MousePos) override;
 
 public:
+    CLONE(CPanelUI);
     CPanelUI();
     ~CPanelUI();
 };

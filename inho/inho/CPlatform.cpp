@@ -9,6 +9,13 @@ CPlatform::CPlatform() {
 	m_Collider->SetScale(Vec2(800.f, 100.f));
 }
 
+CPlatform::CPlatform(const CPlatform& _Origin):
+	CObj(_Origin),
+	m_Collider(nullptr)
+{
+	m_Collider = GetComponent<CCollider>();
+}
+
 CPlatform::~CPlatform() {
 
 }

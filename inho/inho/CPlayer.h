@@ -6,8 +6,6 @@ class CPlayer : public CObj {
 
   private:
 
-    float m_Speed;
-
     class CCollider* m_Collider;
     class CAnimator* m_Animator;
     class CMovement* m_Movement;
@@ -19,6 +17,8 @@ class CPlayer : public CObj {
     virtual void EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
 
   public:
+      CLONE(CPlayer);
     CPlayer();
+    CPlayer(const CPlayer& _Origin);
     ~CPlayer();
 };

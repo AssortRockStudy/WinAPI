@@ -22,6 +22,8 @@ class CProjectile : public CObj {
     virtual void render(HDC _dc) override;
 
   public:
+      CLONE(CProjectile);
     CProjectile();
+    CProjectile(const CProjectile& _Origin);
     ~CProjectile();
 };

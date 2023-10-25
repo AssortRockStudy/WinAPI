@@ -15,6 +15,14 @@ CMonster::CMonster() : m_Info{}, m_Collider(nullptr)
     m_Info.HP = 5.f;
 }
 
+CMonster::CMonster(const CMonster& _Origin):
+    CObj(_Origin),
+    m_Info(_Origin.m_Info),
+    m_Collider(nullptr)
+{
+    m_Collider = GetComponent<CCollider>();
+}
+
 CMonster::~CMonster() {}
 
 void CMonster::begin()

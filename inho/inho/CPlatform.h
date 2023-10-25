@@ -13,7 +13,9 @@ public:
     virtual void Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
 
 public:
+    CLONE(CPlatform);
     CPlatform();
+    CPlatform(const CPlatform& _Origin);
     ~CPlatform();
 
 };

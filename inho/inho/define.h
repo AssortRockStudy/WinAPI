@@ -34,6 +34,7 @@
 #define TILE_SIZE 64
 
 #define CLONE(type) virtual type* Clone() {return new type(*this);}
+#define CLONE_DISABLE(type) virtual type* Clone() {return nullptr;}
 
 enum KEY {
     _0,

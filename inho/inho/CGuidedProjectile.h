@@ -36,7 +36,9 @@ class CGuidedProjectile : public CProjectile {
     virtual void BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
 
   public:
+      CLONE(CGuidedProjectile);
     CGuidedProjectile();
+    CGuidedProjectile(const CGuidedProjectile& _Origin);
     ;
     ~CGuidedProjectile();
 };

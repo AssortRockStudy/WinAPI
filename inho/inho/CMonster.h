@@ -24,6 +24,8 @@ public:
     virtual void BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
 
   public:
+    CLONE(CMonster);
     CMonster();
+    CMonster(const CMonster& _Origin);
     ~CMonster();
 };
