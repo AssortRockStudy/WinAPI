@@ -46,11 +46,9 @@ class CObj : public CEntity {
 private:
     void SetDead();
 
-  private:
-    virtual void Abstract() = 0;
-
   public:
     CObj();
+    CObj(const CObj& _Origin);
     virtual ~CObj();
 
     friend class CLevel;

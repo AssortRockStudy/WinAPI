@@ -15,7 +15,7 @@ class CEntity {
     bool IsDead() { return m_bDead; }
 
   public:
-    virtual CEntity* Clone() { return nullptr; }
+      virtual CEntity* Clone() = 0;
 
   public:
     CEntity();

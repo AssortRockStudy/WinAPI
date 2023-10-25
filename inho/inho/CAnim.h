@@ -45,6 +45,8 @@ public:
     bool Load(const wstring& _FilePath);
 
 public:
+    CLONE(CAnim);
+
     CAnim();
     ~CAnim();
 

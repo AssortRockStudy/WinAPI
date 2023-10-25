@@ -27,12 +27,13 @@
 #define GAME_FOLDER MyGame
 
 #define GENERATED_OBJECT(type)                                                 \
-    typedef type Super;                                                        \
-    virtual void Abstract() override {}
+    typedef type Super;
 
 #define DEBUG_RENDER CEngine::GetInst()->DebugRender()
 
 #define TILE_SIZE 64
+
+#define CLONE(type) virtual type* Clone() {return new type(*this);}
 
 enum KEY {
     _0,

@@ -26,7 +26,11 @@ public:
     void Overlap(CCollider* _OtherCol);
     void EndOverlap(CCollider* _OtherCol);
 
+public:
+    CLONE(CCollider);
+
   public:
     CCollider(class CObj* _Owner);
+    CCollider(const CCollider& _Origin);
     ~CCollider();
 };

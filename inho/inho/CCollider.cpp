@@ -17,6 +17,16 @@ CCollider::CCollider(CObj* _Owner) :
     m_iCollisionCount(0)
 {}
 
+CCollider::CCollider(const CCollider & _Origin):
+    CComponent(_Origin),
+    m_vOffsetPos(_Origin.m_vOffsetPos),
+    m_vScale(_Origin.m_vScale),
+    m_vFinalPos(_Origin.m_vFinalPos),
+    m_iCollisionCount(0)
+{
+
+}
+
 
 CCollider::~CCollider() {}
 

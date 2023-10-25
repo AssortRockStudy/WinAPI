@@ -31,7 +31,9 @@ public:
     virtual void render(HDC _dc) override;
 
 public:
+    CLONE(CAnimator);
     CAnimator(CObj* _Owner);
+    CAnimator(const CAnimator& _Origin);
     ~CAnimator();
 };
 

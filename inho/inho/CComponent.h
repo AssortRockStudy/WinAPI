@@ -4,7 +4,7 @@
 class CObj;
 class CComponent : public CEntity {
   private:
-    CObj* const m_pOwner;
+    CObj* m_pOwner;
 
   public:
     CObj* GetOwner() { return m_pOwner; }
@@ -14,7 +14,12 @@ class CComponent : public CEntity {
     virtual void finaltick(float _DT) = 0;
     virtual void render(HDC _dc) {}
 
+public:
+    virtual CComponent* Clone() = 0;
+
   public:
     CComponent(CObj* _Owner);
     ~CComponent();
+
+    friend class CObj;
 };

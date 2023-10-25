@@ -102,6 +102,8 @@ public:
     virtual void finaltick(float _DT) override;
 
 public:
+    CLONE(CMovement);
+
     CMovement(CObj* _Owner);
     ~CMovement();
 };
