@@ -69,7 +69,7 @@ void CAnim::Create(const wstring& _strName, CTexture* _Atlas, Vec2 _vLeftTop, Ve
 
 	m_vecFrm.reserve(_MaxFrm);
 
-	for (size_t i = 0; i < _MaxFrm; ++i) {
+	for (int i = 0; i < (int)_MaxFrm; ++i) {
 		FFrame frm = {};
 
 		frm.vLeftTop = _vLeftTop + Vec2(_vCutSize.x * i, 0.f);
@@ -113,9 +113,9 @@ bool CAnim::Save(const wstring& _FilePath)
 	fwprintf_s(pFile, L"\n\n");
 
 	fwprintf_s(pFile, L"[FRAME_COUNT]\n");
-	fwprintf_s(pFile, L"%d\n\n", m_vecFrm.size());
+	fwprintf_s(pFile, L"%d\n\n", (int)m_vecFrm.size());
 
-	for (size_t i = 0; i < m_vecFrm.size(); i++) {
+	for (int i = 0; i < (int)m_vecFrm.size(); i++) {
 
 		fwprintf_s(pFile, L"[FRAME_NUM]\n");
 		fwprintf_s(pFile, L"%d\n", i);

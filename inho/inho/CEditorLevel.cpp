@@ -47,6 +47,9 @@ void CEditorLevel::enter()
 
 	pPanelUI->AddChildUI(pBtnUI);
 	AddObject(UI, pPanelUI);
+
+	pPanelUI = pPanelUI->Clone();
+	AddObject(UI, pPanelUI);
 }
 
 void CEditorLevel::exit()

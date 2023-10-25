@@ -27,7 +27,9 @@ class CLayer : public CEntity {
 
 
   public:
+      CLONE_DISABLE(CLayer);
     CLayer();
+    CLayer(const CLayer& _Origin) = delete;
     ~CLayer();
 
     friend class CLevel;

@@ -12,6 +12,7 @@ CUI::CUI():
 }
 
 CUI::CUI(const CUI& _Origin):
+	CObj(_Origin),
 	m_ParentUI(nullptr),
 	m_bMouseOn(false),
 	m_bMouseOn_Prev(false),

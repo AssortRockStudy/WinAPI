@@ -43,19 +43,19 @@ void CMovement::finaltick(float _DT)
 
 	// 최대속도 초과시 최대속도로 맞추기
 	if (fabs(m_Velocity.x) > m_MaxSpeed) {
-		m_Velocity.x = (m_Velocity.x / fabs(m_Velocity.x)) * m_MaxSpeed;
+		m_Velocity.x = (m_Velocity.x / abs(m_Velocity.x)) * m_MaxSpeed;
 	}
 
 	// 이동에서 손을 뗐을 때 마찰력 적용(힘이 없으면서 속도는 존재할 때)
 	if (m_Force.IsZero() && m_Velocity.x != 0.f && m_Ground) {
 		float fFriction = -m_Velocity.x;
-		fFriction /= fabs(fFriction);
+		fFriction /= abs(fFriction);
 		fFriction *= m_FrictionScale;
 
 		float fFrictionAccel = (fFriction / m_Mass) * _DT;
 
 		// 반대로 넘어가는 마찰력 예외처리
-		if (fabs(m_Velocity.x) < fabs(fFrictionAccel)) {
+		if (abs(m_Velocity.x) < abs(fFrictionAccel)) {
 			m_Velocity = Vec2(0.f, m_Velocity.y);
 		}
 		else {
