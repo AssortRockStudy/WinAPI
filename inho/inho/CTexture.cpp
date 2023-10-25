@@ -29,3 +29,12 @@ bool CTexture::Load(const wstring& _strFilePath) {
 	return true;
 
 }
+
+void CTexture::Create(UINT _Width, UINT _Height)
+{
+	m_hBit = CreateCompatibleBitmap(CEngine::GetInst()->GetMainDC(), _Width, _Height);
+	m_hDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
+
+	DeleteObject(SelectObject(m_hDC, m_hBit));
+	GetObject(m_hBit, sizeof(BITMAP), &m_Info);
+}

@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 class CLevel;
+class CTexture;
 
 class CEngine {
     SINGLETON(CEngine);
@@ -10,9 +11,7 @@ class CEngine {
     POINT m_ptResolution;
 
     HDC     m_dc;
-    HDC     m_SubDC;
-    HBITMAP m_SubBitMap;
-
+    CTexture* m_SubTex;
     bool m_bDebugRender;
 
   public:

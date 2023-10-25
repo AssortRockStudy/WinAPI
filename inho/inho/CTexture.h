@@ -18,6 +18,8 @@ public:
 private:
     virtual bool Load(const wstring& _strFilePath) override;
 
+    void Create(UINT _Width, UINT _Height);
+
 private:
     CTexture();
     ~CTexture();

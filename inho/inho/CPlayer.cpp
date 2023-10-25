@@ -138,9 +138,13 @@ void CPlayer::tick(float _DT) {
     if (KEY_TAP(SPACE)) {
         m_Movement->SetGround(false);
         m_Movement->SetVelocity(Vec2(m_Movement->GetVelocity().x, -500.f));
+    }
 
-        
-        
+    if (KEY_TAP(F)) {
+        CCamera::GetInst()->FadeIn(2.5f);
+    }
+    if (KEY_TAP(G)) {
+        CCamera::GetInst()->FadeOut(2.5f);
     }
 
 

@@ -38,7 +38,7 @@ void CLevelMgr::init() {
         m_arrLevels[i]->init();
     }
 
-    ::ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
+    ::ChangeLevel(LEVEL_TYPE::PLAY_LEVEL);
 
 }
 
@@ -61,8 +61,6 @@ void CLevelMgr::render(HDC _dc) {
     CPaletteMgr::GetInst()->SelectBrush(CPaletteMgr::BrushColor::BWHITE);
 
     CLogMgr::GetInst()->tick(_dc);
-    BitBlt(CEngine::GetInst()->GetMainDC(), 0, 0, ptResolution.x,
-           ptResolution.y, _dc, 0, 0, SRCCOPY);
 }
 void CLevelMgr::ChangeLevel(LEVEL_TYPE _Type)
 {

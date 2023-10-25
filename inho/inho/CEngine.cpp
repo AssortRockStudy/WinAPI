@@ -5,7 +5,7 @@
 // Manager
 #include "CPaletteMgr.h"
 #include "CTimeMgr.h"
-
+#include "CAssetMgr.h"
 #include "CCamera.h"
 #include "CCollisionMgr.h"
 #include "CKeyMgr.h"
@@ -19,16 +19,18 @@
 #include "CGCMgr.h"
 #include "CUIMgr.h"
 
-CEngine::CEngine()
-    : m_hWnd(nullptr), m_ptResolution{}, m_dc(nullptr),
-      m_SubBitMap(nullptr), m_bDebugRender(true) {}
+#include "CTexture.h"
+
+CEngine::CEngine(): 
+    m_hWnd(nullptr), 
+    m_ptResolution{}, 
+    m_dc(nullptr),
+    m_bDebugRender(true) 
+
+{}
 
 CEngine::~CEngine() {
     ReleaseDC(m_hWnd, m_dc);
-
-    DeleteObject(m_SubBitMap);
-    DeleteObject(m_SubDC);
-
 }
 
 void CEngine::init(HWND _hWnd, POINT _ptResolution) {
@@ -43,15 +45,11 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution) {
     // ������ ��Ʈ��
     m_dc = GetDC(m_hWnd);
 
-    m_SubBitMap =
-        CreateCompatibleBitmap(m_dc, m_ptResolution.x, m_ptResolution.y);
-    m_SubDC = CreateCompatibleDC(m_dc);
-
-    DeleteObject((HBITMAP)SelectObject(m_SubDC, m_SubBitMap));
+    m_SubTex = CAssetMgr::GetInst()->CreateTexture(L"SubTex", m_ptResolution.x, m_ptResolution.y);
 
     // Manager �ʱ�ȭ
     CTimeMgr::GetInst()->init();
-    CPaletteMgr::GetInst()->init(m_SubDC);
+    CPaletteMgr::GetInst()->init(m_SubTex->GetDC());
     CKeyMgr::GetInst()->init();
     CPathMgr::init();
     CLevelMgr::GetInst()->init();
@@ -70,7 +68,14 @@ void CEngine::tick() {
     CLevelMgr::GetInst()->tick();
     CCollisionMgr::GetInst()->tick();
     CUIMgr::GetInst()->tick();
-    CLevelMgr::GetInst()->render(m_SubDC);
+    CLevelMgr::GetInst()->render(m_SubTex->GetDC());
+    CCamera::GetInst()->render(m_SubTex->GetDC());
+
+    BitBlt(CEngine::GetInst()->GetMainDC(),
+        0, 0,
+        m_ptResolution.x, m_ptResolution.y,
+        m_SubTex->GetDC(),
+        0, 0, SRCCOPY);
 
     CTaskMgr::GetInst()->tick();
 
