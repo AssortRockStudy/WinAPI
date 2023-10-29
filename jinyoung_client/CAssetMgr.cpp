@@ -33,7 +33,15 @@ CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRela
 	wstring strFilePath = strContentPath + _strRelativePath;
 
 	pTexture = new CTexture;
-	pTexture->Load(strFilePath);
+	//pTexture->Load(strFilePath);
+	if (!pTexture->Load(strFilePath))
+	{
+		// 텍스쳐 로드가 실패한 경우(경로 문제 등등..)
+		delete pTexture;
+		return nullptr;
+	}
+
+
 
 	// Asset 에 키값과 경로값을 알려준다.
 	pTexture->m_strKey = _strKey;

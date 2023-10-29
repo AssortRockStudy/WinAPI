@@ -159,6 +159,7 @@
     <ClInclude Include="CCollider.h" />
     <ClInclude Include="CCollisionMgr.h" />
     <ClInclude Include="CComponent.h" />
+    <ClInclude Include="CEditorLevel.h" />
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CEntity.h" />
     <ClInclude Include="CGuided.h" />
@@ -178,8 +179,10 @@
     <ClInclude Include="CPal.h" />
     <ClInclude Include="CPathMgr.h" />
     <ClInclude Include="CPlatform.h" />
+    <ClInclude Include="CPlayLevel.h" />
     <ClInclude Include="CProjectile.h" />
     <ClInclude Include="CSound.h" />
+    <ClInclude Include="CStartLevel.h" />
     <ClInclude Include="CTaskMgr.h" />
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTimeManager.h" />
@@ -204,6 +207,7 @@
     <ClCompile Include="CCollider.cpp" />
     <ClCompile Include="CCollisionMgr.cpp" />
     <ClCompile Include="CComponent.cpp" />
+    <ClCompile Include="CEditorLevel.cpp" />
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CGuided.cpp" />
@@ -222,7 +226,9 @@
     <ClCompile Include="CPal.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
     <ClCompile Include="CPlatform.cpp" />
+    <ClCompile Include="CPlayLevel.cpp" />
     <ClCompile Include="CSound.cpp" />
+    <ClCompile Include="CStartLevel.cpp" />
     <ClCompile Include="CTaskMgr.cpp" />
     <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTimeManager.cpp" />
