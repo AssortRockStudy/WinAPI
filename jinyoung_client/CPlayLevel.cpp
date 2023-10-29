@@ -9,6 +9,10 @@
 #include "CCamera.h"
 #include "CCollisionMgr.h"
 
+#include "CKeyman.h"
+#include "CLevelMgr.h"
+
+
 void CPlayLevel::init()
 {
 	// 플레이어 생성
@@ -42,4 +46,25 @@ void CPlayLevel::init()
 	CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
 	CCollisionMgr::GetInst()->CheckCollision(PLAYER_PJ, MONSTER);
 	CCollisionMgr::GetInst()->CheckCollision(PLAYER, PLATFORM);
+}
+
+void CPlayLevel::enter()
+{
+	init();
+}
+
+void CPlayLevel::exit()
+{
+	DeleteAllObjects();
+}
+
+void CPlayLevel::tick()
+{
+	CLevel::tick();
+
+	// Enter 키가 눌리면 StartLevel 로 변환
+	if (KEY_TAP(KEY::ENTER))
+	{
+		ChangeLevel(LEVEL_TYPE::START_LEVEL);
+	}
 }

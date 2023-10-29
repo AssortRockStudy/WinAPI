@@ -54,8 +54,14 @@ void CLevelMgr::init()
 		m_arrLevels[i]->init();
 	}
 
+	// Level
+	::ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
+
 	// Level 
-	m_pCurLevel = m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL];
+	//m_pCurLevel = m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL];
+
+	//// 레벨 시작
+	//m_pCurLevel->begin();
 
 	// Level 
 	//m_pCurLevel = new CLevel;
@@ -118,18 +124,21 @@ void CLevelMgr::init()
 	//CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
 	//CCollisionMgr::GetInst()->CheckCollision(PLAYER_PJ, MONSTER);
 	//CCollisionMgr::GetInst()->CheckCollision(PLAYER, PLATFORM);
-	// 레벨 시작
-	m_pCurLevel->begin();
+
 
 }
 
 void CLevelMgr::tick()
 {
-	m_pCurLevel->tick();
+	//m_pCurLevel->tick();
+	if (nullptr != m_pCurLevel)
+		m_pCurLevel->tick();
 }
 
 void CLevelMgr::render(HDC _dc)
 {
+	if (nullptr == m_pCurLevel)
+		return;
 	// Level Render
 	// 화면 Clear
 	POINT ptResolution = CEngine::GetInst()->GetResolution();
@@ -145,4 +154,21 @@ void CLevelMgr::render(HDC _dc)
 
 	// m_SubDC -> m_DC 로 비트맵 복사
 	BitBlt(CEngine::GetInst()->GetMainDC(), 0, 0, ptResolution.x, ptResolution.y, _dc, 0, 0, SRCCOPY);
+
+}
+
+
+void CLevelMgr::ChangeLevel(LEVEL_TYPE _Type)
+{
+	if (m_pCurLevel == m_arrLevels[(UINT)_Type])
+		return;
+
+	if (nullptr != m_pCurLevel)
+		m_pCurLevel->exit();
+
+	m_pCurLevel = m_arrLevels[(UINT)_Type];
+
+	m_pCurLevel->enter();
+
+	m_pCurLevel->begin();
 }

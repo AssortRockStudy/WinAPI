@@ -12,8 +12,13 @@ class CLevel
 private:
 	CLayer* m_Layer[LAYER::END];
 
+	UINT	m_TileRow;
+	UINT	m_TileCol;
+
 public:
 	virtual void init() = 0;
+	virtual void enter() = 0;
+	virtual void exit() = 0;
 
 	virtual void begin();
 	virtual void tick();
@@ -34,6 +39,8 @@ public:
 
 protected:
 	void AddObject(LAYER _LayerType, CObj* _Object);
+	void DeleteAllObjects();
+	void CreateTile(UINT _Row, UINT _Col);
 
 public:
 	CLevel();

@@ -26,5 +26,5 @@ void CPlatform::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCo
 	float up = (_OwnCol->GetScale().y / 2.f + _OtherCol->GetScale().y / 2.f - fabs(_OwnCol->GetPos().y - _OtherCol->GetPos().y)) / 2.f;
 	_OtherObj->SetPos(Vec2(_OtherObj->GetPos().x, _OtherObj->GetPos().y - up));
 
-
+	//ChangeLevel(LEVEL_TYPE::START_LEVEL);
 }

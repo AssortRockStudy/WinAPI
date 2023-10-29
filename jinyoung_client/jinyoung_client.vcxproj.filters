@@ -41,6 +41,9 @@
     <Filter Include="Game\06.Component\Movemnet">
       <UniqueIdentifier>{be11d616-eaa3-4a34-8855-73dc755ffc90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04.Object\proj">
+      <UniqueIdentifier>{26bd8e5c-6508-47ae-96f2-33a540126cf1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -85,14 +88,8 @@
     <ClInclude Include="CLevelMgr.h">
       <Filter>Game\03.Manager</Filter>
     </ClInclude>
-    <ClInclude Include="CProjectile.h">
-      <Filter>Game\04.Object</Filter>
-    </ClInclude>
     <ClInclude Include="CPathMgr.h">
       <Filter>Game\03.Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="CGuided.h">
-      <Filter>Game\04.Object</Filter>
     </ClInclude>
     <ClInclude Include="CMonster.h">
       <Filter>Game\04.Object</Filter>
@@ -100,7 +97,6 @@
     <ClInclude Include="CLayer.h">
       <Filter>Game\05.Level</Filter>
     </ClInclude>
-    <ClInclude Include="CEntity.h" />
     <ClInclude Include="CTaskMgr.h">
       <Filter>Game\03.Manager</Filter>
     </ClInclude>
@@ -161,9 +157,25 @@
     <ClInclude Include="CPlatform.h">
       <Filter>Game\04.Object</Filter>
     </ClInclude>
-    <ClInclude Include="CEditorLevel.h" />
-    <ClInclude Include="CPlayLevel.h" />
-    <ClInclude Include="CStartLevel.h" />
+    <ClInclude Include="CEditorLevel.h">
+      <Filter>Game\05.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayLevel.h">
+      <Filter>Game\05.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CStartLevel.h">
+      <Filter>Game\05.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CEntity.h">
+      <Filter>Game\04.Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CProjectile.h">
+      <Filter>Game\04.Object\proj</Filter>
+    </ClInclude>
+    <ClInclude Include="CGuided.h">
+      <Filter>Game\04.Object\proj</Filter>
+    </ClInclude>
+    <ClInclude Include="CTile.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -212,14 +224,8 @@
     <ClCompile Include="CLevelMgr.cpp">
       <Filter>Game\03.Manager</Filter>
     </ClCompile>
-    <ClCompile Include="CProjectile.cpp">
-      <Filter>Game\04.Object</Filter>
-    </ClCompile>
     <ClCompile Include="CPathMgr.cpp">
       <Filter>Game\03.Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="CGuided.cpp">
-      <Filter>Game\04.Object</Filter>
     </ClCompile>
     <ClCompile Include="CMonster.cpp">
       <Filter>Game\04.Object</Filter>
@@ -227,7 +233,6 @@
     <ClCompile Include="CLayer.cpp">
       <Filter>Game\05.Level</Filter>
     </ClCompile>
-    <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CTaskMgr.cpp">
       <Filter>Game\03.Manager</Filter>
     </ClCompile>
@@ -279,8 +284,24 @@
     <ClCompile Include="CPlatform.cpp">
       <Filter>Game\04.Object</Filter>
     </ClCompile>
-    <ClCompile Include="CEditorLevel.cpp" />
-    <ClCompile Include="CPlayLevel.cpp" />
-    <ClCompile Include="CStartLevel.cpp" />
+    <ClCompile Include="CEditorLevel.cpp">
+      <Filter>Game\05.Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayLevel.cpp">
+      <Filter>Game\05.Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CStartLevel.cpp">
+      <Filter>Game\05.Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CEntity.cpp">
+      <Filter>Game\04.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CProjectile.cpp">
+      <Filter>Game\04.Object\proj</Filter>
+    </ClCompile>
+    <ClCompile Include="CGuided.cpp">
+      <Filter>Game\04.Object\proj</Filter>
+    </ClCompile>
+    <ClCompile Include="CTile.cpp" />
   </ItemGroup>
 </Project>

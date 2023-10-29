@@ -12,10 +12,11 @@ CLayer::CLayer()
 
 CLayer::~CLayer()
 {
-	for (size_t i = 0; i < m_vecObjects.size(); ++i)
-	{
-		delete m_vecObjects[i];
-	}
+	DeleteAllObjects();
+	//for (size_t i = 0; i < m_vecObjects.size(); ++i)
+	//{
+	//	delete m_vecObjects[i];
+	//}
 }
 
 void CLayer::begin()
@@ -57,4 +58,14 @@ void CLayer::render(HDC _dc)
 			++iter;
 		}
 	}
+}
+
+void CLayer::DeleteAllObjects()
+{
+	for (size_t i = 0; i < m_vecObjects.size(); ++i)
+	{
+		delete m_vecObjects[i];
+	}
+
+	m_vecObjects.clear();
 }

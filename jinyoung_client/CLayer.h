@@ -24,6 +24,9 @@ public:
 
 	const vector<CCollider*>& GetColliders() { return m_vecCollider; }
 
+	void DeleteAllObjects();
+
+
 public:
 	CLayer();
 	~CLayer();
