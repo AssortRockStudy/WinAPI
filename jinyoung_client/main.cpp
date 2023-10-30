@@ -177,6 +177,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //POINT g_playerpos = {500,500};
 //POINT g_monstpos = { 100,500 };
 
+
+INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
@@ -184,6 +187,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
+            int ReturnValue = 0;
             // 메뉴 선택을 구문 분석합니다:
             switch (wmId)
             {
@@ -192,7 +196,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 break;
 
             case ID_MENU_COUNT:
-                DialogBox(hInst, MAKEINTRESOURCE(IDD_TILECOUNT), hWnd, About);
+                DialogBox(hInst, MAKEINTRESOURCE(IDD_TILECOUNT), hWnd, CreateTileProc);
                 break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);
