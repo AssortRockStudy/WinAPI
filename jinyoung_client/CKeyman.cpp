@@ -1,6 +1,8 @@
 ﻿#include "pch.h"
 #include "CKeyman.h"
 
+#include "CEngine.h"
+
 int g_KeySync[KEY::KEY_END] =
 {
 	'0',
@@ -68,6 +70,9 @@ int g_KeySync[KEY::KEY_END] =
 	VK_RIGHT,
 	VK_UP,
 	VK_DOWN,
+
+	VK_LBUTTON,
+	VK_RBUTTON,
 };
 
 
@@ -109,9 +114,6 @@ void CKeyman::init()
 void CKeyman::tick()
 {
 
-
-
-
 	for (size_t i = 0; i < m_vecKeyData.size(); ++i)
 	{
 		if (GetAsyncKeyState(g_KeySync[m_vecKeyData[i].eKey]) & 0x8001)
@@ -146,4 +148,10 @@ void CKeyman::tick()
 			m_vecKeyData[i].bPressed = false;
 		}
 	}
+
+	// 마우스 좌표 계산
+	POINT pt = {};
+	GetCursorPos(&pt);
+	ScreenToClient(CEngine::GetInst()->GetMainWind(), &pt);
+	m_vMousePos = pt;
 }

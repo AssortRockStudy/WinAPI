@@ -44,6 +44,8 @@ protected:
 
 public:
 	void CreateTile(UINT _Row, UINT _Col);
+	UINT GetTileCol() { return m_TileCol; }
+	UINT GetTileRow() { return m_TileRow; }
 
 public:
 	CLevel();

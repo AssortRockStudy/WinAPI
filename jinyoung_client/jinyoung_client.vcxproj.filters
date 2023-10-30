@@ -175,7 +175,9 @@
     <ClInclude Include="CGuided.h">
       <Filter>Game\04.Object\proj</Filter>
     </ClInclude>
-    <ClInclude Include="CTile.h" />
+    <ClInclude Include="CTile.h">
+      <Filter>Game\04.Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -302,6 +304,8 @@
     <ClCompile Include="CGuided.cpp">
       <Filter>Game\04.Object\proj</Filter>
     </ClCompile>
-    <ClCompile Include="CTile.cpp" />
+    <ClCompile Include="CTile.cpp">
+      <Filter>Game\04.Object</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
