@@ -130,6 +130,10 @@ public:
 		: x((float)_x), y((float)_y)
 	{}
 
+	Vec2(UINT _x, UINT _y)
+		: x((float)_x), y((float)_y)
+	{}
+
 	Vec2(POINT _pt)
 		: x((float)_pt.x)
 		, y((float)_pt.y)

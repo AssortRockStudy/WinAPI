@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#define TILE_SIZE 64
 
 #define SINGLETON(ClassType) public:\
 								static ClassType* GetInst()\

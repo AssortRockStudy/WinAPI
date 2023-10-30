@@ -93,6 +93,9 @@ void CLevel::CreateTile(UINT _Row, UINT _Col)
 		for (UINT j = 0; j < _Col; ++j)
 		{
 			CTile* pTile = new CTile;
+
+			pTile->SetPos(Vec2(TILE_SIZE * j, TILE_SIZE * i));
+
 			AddObject(LAYER::TILE, pTile);
 		}
 	}
