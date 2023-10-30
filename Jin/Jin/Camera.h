@@ -6,24 +6,26 @@ enum class CAM_EFFECT
 {
 	FADE_IN,
 	FADE_OUT,
-	NONE,
 };
 
+struct FCamEvent
+{
+	CAM_EFFECT	Type;
+	float		AccTime;
+	float		Duration;
+};
 
 class Camera
 {
 	SINGLETON(Camera);
 
 private:
-	Vec2 m_vLookAt;
-	Vec2 m_vDiff;
-	Texture* m_Veil;
+	Vec2				m_vLookAt;
+	Vec2				m_vDiff;
+	Texture*		m_Veil;
 
-	float		m_AccTime;
-	float		m_DestTime;
-	CAM_EFFECT	m_CamEffectType;
-
-	UINT		m_Alpha;
+	list<FCamEvent>		m_EventList;
+	UINT								m_Alpha;
 
 public:
 	void tick();
@@ -43,16 +45,20 @@ public:
 
 	void FadeIn(float _time)
 	{
-		m_DestTime = _time;
-		m_AccTime = 0.f;
-		m_CamEffectType = CAM_EFFECT::FADE_IN;
+		FCamEvent evnt = {};
+		evnt.Type = CAM_EFFECT::FADE_IN;
+		evnt.AccTime = 0.f;
+		evnt.Duration = _time;
+		m_EventList.push_back(evnt);
 	}
 
 	void FadeOut(float _time)
 	{
-		m_DestTime = _time;
-		m_AccTime = 0.f;
-		m_CamEffectType = CAM_EFFECT::FADE_OUT;
+		FCamEvent evnt = {};
+		evnt.Type = CAM_EFFECT::FADE_OUT;
+		evnt.AccTime = 0.f;
+		evnt.Duration = _time;
+		m_EventList.push_back(evnt);
 	}
 };
 
