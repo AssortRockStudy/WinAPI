@@ -202,6 +202,7 @@
     <ClCompile Include="PanelUI.cpp" />
     <ClCompile Include="BtnUI.cpp" />
     <ClCompile Include="UIMgr.cpp" />
+    <ClCompile Include="SoundMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -335,5 +336,6 @@
     <ClInclude Include="PanelUI.h" />
     <ClInclude Include="BtnUI.h" />
     <ClInclude Include="UIMgr.h" />
+    <ClInclude Include="SoundMgr.h" />
   </ItemGroup>
 </Project>

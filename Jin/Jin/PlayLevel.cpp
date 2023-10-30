@@ -12,6 +12,9 @@
 #include "KeyMgr.h"
 #include "LevelMgr.h"
 
+#include "AssetMgr.h"
+#include "Sound.h"
+
 void PlayLevel::init()
 {
 
@@ -47,17 +50,10 @@ void PlayLevel::enter()
 	Camera::GetInst()->FadeOut(0.3f);
 	Camera::GetInst()->FadeIn(0.3f);
 
-	Camera::GetInst()->FadeOut(0.3f);
-	Camera::GetInst()->FadeIn(0.3f);
-
-	Camera::GetInst()->FadeOut(0.3f);
-	Camera::GetInst()->FadeIn(0.3f);
-
-	Camera::GetInst()->FadeOut(0.3f);
-	Camera::GetInst()->FadeIn(0.3f);
-
-	Camera::GetInst()->FadeOut(0.3f);
-	Camera::GetInst()->FadeIn(0.3f);
+	Sound* pSound = AssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\DM.wav");
+	pSound->SetVolume(100);
+	pSound->SetPosition(45.f);
+	pSound->Play(true);
 }
 
 void PlayLevel::exit()
@@ -72,4 +68,13 @@ void PlayLevel::tick()
 	{
 		ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
 	}
+
+	if (KEY_TAP(KEY::M))
+	{
+		Sound* pSound = AssetMgr::GetInst()->LoadSound(L"BGM_02", L"sound\\BGM_Stage1.wav");
+		pSound->SetVolume(100);
+		pSound->SetPosition(45.f);
+		pSound->Play(true);
+	}
 }
+

@@ -11,6 +11,7 @@
 #include "LogMgr.h"
 #include "GCMgr.h"
 #include "UIMgr.h"
+#include "SoundMgr.h"
 #include "Camera.h"
 #include "CollisionMgr.h"
 
@@ -67,6 +68,7 @@ void Engine::init(HWND _hWnd, POINT _ptResolution)
 	//DrawMgr::GetInst()->init();
 	KeyMgr::GetInst()->init();
 	PathMgr::init();
+	SoundMgr::GetInst()->init();
 	LevelMgr::GetInst()->init();
 
 	CreateDefaultGDI();

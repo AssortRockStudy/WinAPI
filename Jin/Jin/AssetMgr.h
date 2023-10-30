@@ -16,5 +16,8 @@ public:
 	Texture* LoadTexture(const wstring& _strKey, const wstring& _strRelativePath);
 	Texture* CreateTexture(const wstring& _strKey, UINT _width, UINT _height);
 	Texture* FindTexture(const wstring& _strKey);
+
+	Sound* LoadSound(const wstring& _strKey, const wstring& _strRelativePath);
+	Sound* FindSound(const wstring& _strKey);
 };
 
