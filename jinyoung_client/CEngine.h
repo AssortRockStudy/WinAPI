@@ -40,6 +40,7 @@ public:
 
 	HPEN GetPen(PEN_TYPE _type) { return m_arrPen[_type]; }
 	bool DebugRender() { return m_bDebugRender; }
+	void ChangeWindowSize(POINT _ptResolution, bool _bMenu);
 
 private:
 	void CreateDefaultGDI();

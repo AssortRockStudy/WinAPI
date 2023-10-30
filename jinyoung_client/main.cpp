@@ -126,7 +126,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
     //메뉴바
-    wcex.lpszMenuName =   nullptr; // MAKEINTRESOURCEW(IDC_JINYOUNGCLIENT);
+    wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_JINYOUNGCLIENT); // nullptr;
     wcex.lpszClassName = L"MyWindow";
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -189,6 +189,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
             case IDM_ABOUT:
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+                break;
+
+            case ID_MENU_COUNT:
+                DialogBox(hInst, MAKEINTRESOURCE(IDD_TILECOUNT), hWnd, About);
                 break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);
