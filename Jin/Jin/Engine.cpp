@@ -1,7 +1,9 @@
 #include "pch.h"
 #include "Engine.h"
+
 #include "KeyMgr.h"
 #include "TimeMgr.h"
+#include "AssetMgr.h"
 //#include "DrawMgr.h"
 #include "LevelMgr.h"
 #include "PathMgr.h"
@@ -12,12 +14,12 @@
 #include "Camera.h"
 #include "CollisionMgr.h"
 
+#include "Texture.h"
 
 Engine::Engine()
 	: m_hWnd(nullptr)
 	, m_ptResolution{}
 	, m_DC(nullptr)
-	, m_SubBitMap(nullptr)
 	, m_bDebugRender(true)
 	, m_arrPen{}
 {
@@ -26,8 +28,6 @@ Engine::Engine()
 Engine::~Engine()
 {
 	ReleaseDC(m_hWnd, m_DC);
-	DeleteObject(m_SubBitMap);
-	DeleteDC(m_SubDC);
 
 	for (UINT i = 0; i < PEN_END; ++i)
 	{
@@ -60,11 +60,7 @@ void Engine::init(HWND _hWnd, POINT _ptResolution)
 
 	m_DC = GetDC(m_hWnd);
 
-	m_SubBitMap = CreateCompatibleBitmap(m_DC, m_ptResolution.x, m_ptResolution.y);
-	m_SubDC = CreateCompatibleDC(m_DC);
-
-	DeleteObject((HBITMAP)SelectObject(m_SubDC, m_SubBitMap));
-
+	m_SubTex = AssetMgr::GetInst()->CreateTexture(L"SubTex", m_ptResolution.x, m_ptResolution.y);
 
 	// Manager ÃÊ±âÈ­
 	TimeMgr::GetInst()->init();
@@ -93,8 +89,14 @@ void Engine::tick()
 	CollisionMgr::GetInst()->tick();
 	UIMgr::GetInst()->tick();
 
+	LevelMgr::GetInst()->render(m_SubTex->GetDC());
+	Camera::GetInst()->render(m_SubTex->GetDC());
 
-	LevelMgr::GetInst()->render(m_SubDC);
+	BitBlt(Engine::GetInst()->GetMainDC()
+		, 0, 0
+		, m_ptResolution.x, m_ptResolution.y
+		, m_SubTex->GetDC()
+		, 0, 0, SRCCOPY);
 	
 	TaskMgr::GetInst()->tick();
 

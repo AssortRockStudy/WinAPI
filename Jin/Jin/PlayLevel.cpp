@@ -59,4 +59,13 @@ void PlayLevel::tick()
 	{
 		ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
 	}
+	if (KEY_TAP(KEY::F))
+	{
+		Camera::GetInst()->FadeIn(2.5f);
+	}
+
+	if (KEY_TAP(KEY::G))
+	{
+		Camera::GetInst()->FadeOut(2.5f);
+	}
 }

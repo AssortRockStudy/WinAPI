@@ -1,6 +1,7 @@
 #pragma once
 
 class Level;
+class Texture;
 
 class Engine
 {
@@ -10,8 +11,7 @@ private:
 	POINT	m_ptResolution;
 
 	HDC		m_DC;
-	HDC		m_SubDC;
-	HBITMAP m_SubBitMap;
+	Texture* m_SubTex;
 	
 
 	bool m_bDebugRender;

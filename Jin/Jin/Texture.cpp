@@ -29,3 +29,11 @@ bool Texture::Load(const wstring& _strFilePath)
 
     return true;
 }
+
+void Texture::Create(UINT _Width, UINT Height)
+{
+    m_hBit = CreateCompatibleBitmap(Engine::GetInst()->GetMainDC(), _Width, Height);
+    m_hDC = CreateCompatibleDC(Engine::GetInst()->GetMainDC());
+    DeleteObject(SelectObject(m_hDC, m_hBit));
+    GetObject(m_hBit, sizeof(BITMAP), &m_Info);
+}

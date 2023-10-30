@@ -42,6 +42,20 @@ Texture* AssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelati
 	return pTexture;
 }
 
+Texture* AssetMgr::CreateTexture(const wstring& _strKey, UINT _width, UINT _height)
+{
+	Texture* pTexture = FindTexture(_strKey);
+	if (nullptr != pTexture)
+		return pTexture;
+
+	pTexture = new Texture;
+	pTexture->Create(_width, _height);
+
+	pTexture->m_strKey = _strKey;
+	m_mapTex.insert(make_pair(_strKey, pTexture));
+	return pTexture;
+}
+
 Texture* AssetMgr::FindTexture(const wstring& _strKey)
 {
 	map<wstring, Texture*>::iterator iter = m_mapTex.find(_strKey);

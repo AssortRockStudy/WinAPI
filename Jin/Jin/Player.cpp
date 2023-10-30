@@ -29,7 +29,7 @@ Player::Player()
 	, m_Movement(nullptr)
 {
 
-	Texture* pAtlas = AssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\link.bmp");
+	Texture* pAtlas = AssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\link_alpha.bmp");
 
 	m_Animator = AddComponent<Animator>(L"Animator");
 	m_Animator->CreateAnimation(L"WalkDown", pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
