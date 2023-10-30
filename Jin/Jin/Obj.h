@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "TaskMgr.h"
 #include "Camera.h"
+#include "components.h"
 
 class Component;
 class Collider;
@@ -54,7 +55,7 @@ protected:
 		pNewComponent->SetName(_strName);
 		return pNewComponent;
 	}
-
+public:
 	template<typename T>
 	T* GetComponent()
 	{

@@ -203,6 +203,10 @@
     <ClCompile Include="BtnUI.cpp" />
     <ClCompile Include="UIMgr.cpp" />
     <ClCompile Include="SoundMgr.cpp" />
+    <ClCompile Include="State.cpp" />
+    <ClCompile Include="StateMachine.cpp" />
+    <ClCompile Include="NormalMonTrace.cpp" />
+    <ClCompile Include="NormalMonIdle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -337,5 +341,9 @@
     <ClInclude Include="BtnUI.h" />
     <ClInclude Include="UIMgr.h" />
     <ClInclude Include="SoundMgr.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateMachine.h" />
+    <ClInclude Include="NormalMonTrace.h" />
+    <ClInclude Include="NormalMonIdle.h" />
   </ItemGroup>
 </Project>

@@ -42,6 +42,8 @@ public:
 		return m_TileRow;
 	}
 
+	Obj* FindObjectByName(const wstring& _Name);
+
 protected:
 	void AddObject(LAYER _LayerType, Obj* _Object);
 	void DeleteAllObjects();

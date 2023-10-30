@@ -11,6 +11,8 @@ private:
     FMonInfo m_Info;
     Collider* m_Collider;
     Texture* m_Texture;
+    StateMachine* m_AI;
+
 public:
     void SetMonsterInfo(const FMonInfo& _Info)
     {

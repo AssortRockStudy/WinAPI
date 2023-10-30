@@ -114,3 +114,10 @@ enum class LEVEL_TYPE
 	END,
 };
 
+
+enum class ENORMAL_MON_STATE
+{
+	NORMAL_MON_IDLE,
+	NORMAL_MON_TRACE,
+};
+
