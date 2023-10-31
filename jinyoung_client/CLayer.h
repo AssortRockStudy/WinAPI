@@ -24,6 +24,7 @@ public:
 
 	const vector<CObj*>& GetObjects() { return  m_vecObjects; }
 
+
 	const vector<CCollider*>& GetColliders() { return m_vecCollider; }
 
 	void DeleteAllObjects();
@@ -34,5 +35,6 @@ public:
 	~CLayer();
 
 	friend class CLevel;
+	friend class CUIMgr;
 };
 

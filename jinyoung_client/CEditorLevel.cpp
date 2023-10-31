@@ -45,18 +45,33 @@ void CEditorLevel::enter()
 	CreateTile(10, 10);
 
 	// UI »ý¼º
-	/*CPanelUI* pPanelUI = new CPanelUI;
+	CPanelUI* pPanelUI = new CPanelUI;
 	pPanelUI->SetScale(Vec2(500.f, 400.f));
 	pPanelUI->SetPos(Vec2(800.f, 200.f));
-	AddObject(LAYER::UI, pPanelUI);*/
 
 	CBtnUI* pBtnUI = new CBtnUI;
 	pBtnUI->SetScale(Vec2(200.f, 80.f));
-	pBtnUI->SetPos(Vec2(1390.f, 10.f));
+	pBtnUI->SetPos(Vec2(10.f, 10.f));
 	//pBtnUI->SetCallBack(TestFunc);
 	pBtnUI->SetDeletage(this, (DelegateFunc)&CEditorLevel::OpenTileCreateWindow);
 
-	AddObject(LAYER::UI, pBtnUI);
+	pPanelUI->AddChildUI(pBtnUI);
+	AddObject(LAYER::UI, pPanelUI);
+
+	//pPanelUI = pPanelUI->Clone();
+
+	//pPanelUI = new CPanelUI;
+	//pPanelUI->SetScale(Vec2(500.f, 400.f));
+	//pPanelUI->SetPos(Vec2(400.f, 200.f));
+
+	//pBtnUI = new CBtnUI;
+	//pBtnUI->SetScale(Vec2(200.f, 80.f));
+	//pBtnUI->SetPos(Vec2(10.f, 10.f));
+	////pBtnUI->SetCallBack(TestFunc);
+	//pBtnUI->SetDeletage(this, (DelegateFunc)&CEditorLevel::OpenTileCreateWindow);
+
+	//pPanelUI->AddChildUI(pBtnUI);
+	//AddObject(LAYER::UI, pPanelUI);
 }
 
 void CEditorLevel::exit()

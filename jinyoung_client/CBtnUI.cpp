@@ -23,15 +23,15 @@ CBtnUI::~CBtnUI()
 
 void CBtnUI::tick(float _DT)
 {
-	if (IsLBtnDown())
-	{
-		Vec2 vDiff = m_vLbtnDownPos - CKeyman::GetInst()->GetMousePos();
-		Vec2 vPos = GetPos();
-		vPos -= vDiff;
-		SetPos(vPos);
+	//if (IsLBtnDown())
+	//{
+	//	Vec2 vDiff = m_vLbtnDownPos - CKeyman::GetInst()->GetMousePos();
+	//	Vec2 vPos = GetPos();
+	//	vPos -= vDiff;
+	//	SetPos(vPos);
 
-		m_vLbtnDownPos = CKeyman::GetInst()->GetMousePos();
-	}
+	//	m_vLbtnDownPos = CKeyman::GetInst()->GetMousePos();
+	//}
 	Super::tick(_DT);
 }
 
@@ -77,8 +77,6 @@ void CBtnUI::LBtnDown(Vec2 _vMousePos)
 {
 	m_CurImg = m_PressedImg;
 
-	// 마우스 왼쪽 버튼이 눌렸을 때 마우스의 위치를 기록
-	m_vLbtnDownPos = _vMousePos;
 }
 
 void CBtnUI::LBtnUp(Vec2 _vMousePos)
