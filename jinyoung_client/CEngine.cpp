@@ -15,6 +15,7 @@
 #include "CGCMgr.h"
 #include "CLogMgr.h"
 #include "CCamera.h"
+#include "CUIMgr.h"
 
 
 //레벨을 알고있어야 delete소멸자호출가능
@@ -137,6 +138,7 @@ void CEngine::tick()
 	CLevelMgr::GetInst()->tick();
 
 	CCollisionMgr::GetInst()->tick();
+	CUIMgr::GetInst()->tick();
 
 	CLevelMgr::GetInst()->render(m_subdc);
 

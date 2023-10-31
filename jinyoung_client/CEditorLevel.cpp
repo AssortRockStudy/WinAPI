@@ -11,6 +11,7 @@
 #include "Resource.h"
 
 #include "CTile.h"
+#include "CPanelUI.h"
 #include "CBtnUI.h"
 
 void CEditorLevel::init()
@@ -41,9 +42,14 @@ void CEditorLevel::enter()
 	CreateTile(10, 10);
 
 	// UI »ý¼º
+	/*CPanelUI* pPanelUI = new CPanelUI;
+	pPanelUI->SetScale(Vec2(500.f, 400.f));
+	pPanelUI->SetPos(Vec2(800.f, 200.f));
+	AddObject(LAYER::UI, pPanelUI);*/
+
 	CBtnUI* pBtnUI = new CBtnUI;
 	pBtnUI->SetScale(Vec2(200.f, 80.f));
-	pBtnUI->SetPos(Vec2(700.f, 10.f));
+	pBtnUI->SetPos(Vec2(1390.f, 10.f));
 	AddObject(LAYER::UI, pBtnUI);
 }
 
