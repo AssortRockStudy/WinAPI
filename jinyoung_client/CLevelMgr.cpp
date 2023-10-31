@@ -153,7 +153,7 @@ void CLevelMgr::render(HDC _dc)
 	CLogMgr::GetInst()->tick(_dc);
 
 	// m_SubDC -> m_DC 로 비트맵 복사
-	BitBlt(CEngine::GetInst()->GetMainDC(), 0, 0, ptResolution.x, ptResolution.y, _dc, 0, 0, SRCCOPY);
+	//BitBlt(CEngine::GetInst()->GetMainDC(), 0, 0, ptResolution.x, ptResolution.y, _dc, 0, 0, SRCCOPY);
 
 }
 

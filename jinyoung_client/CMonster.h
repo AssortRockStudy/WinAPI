@@ -1,5 +1,6 @@
 #pragma once
 #include "CObj.h"
+class CTexture;
 
 
 class CCollider;
@@ -12,6 +13,7 @@ private:
     FMonInfo    m_Info;
 
     CCollider* m_Collider;
+    CTexture* m_Texture;
 
 public:
     virtual void begin() override;

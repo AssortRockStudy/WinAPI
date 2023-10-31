@@ -24,12 +24,12 @@ void CPlayLevel::init()
 	AddObject(PLAYER, pPlayer);
 
 	// ¸ó½ºÅÍ »ý¼º
-	//CMonster* pMonster = nullptr;
+	CMonster* pMonster = nullptr;
 
-	//pMonster = new CMonster;
-	//pMonster->SetPos(Vec2(900.f, 500.f));
-	//pMonster->SetScale(Vec2(100.f, 100.f));
-	//m_pCurLevel->AddObject(MONSTER, pMonster);
+	pMonster = new CMonster;
+	pMonster->SetPos(Vec2(900.f, 500.f));
+	pMonster->SetScale(Vec2(100.f, 100.f));
+	AddObject(MONSTER, pMonster);
 
 	// ÇÃ·§Æû ¼³Ä¡
 	CPlatform* pPlatform = new CPlatform;
@@ -50,7 +50,20 @@ void CPlayLevel::init()
 
 void CPlayLevel::enter()
 {
-	init();
+	CCamera::GetInst()->FadeOut(3.f);
+	//CCamera::GetInst()->FadeIn(0.3f);
+
+	//CCamera::GetInst()->FadeOut(0.3f);
+	//CCamera::GetInst()->FadeIn(0.3f);
+
+	//CCamera::GetInst()->FadeOut(0.3f);
+	//CCamera::GetInst()->FadeIn(0.3f);
+
+	//CCamera::GetInst()->FadeOut(0.3f);
+	//CCamera::GetInst()->FadeIn(0.3f);
+
+	//CCamera::GetInst()->FadeOut(0.3f);
+	//CCamera::GetInst()->FadeIn(0.3f);
 }
 
 void CPlayLevel::exit()
@@ -68,13 +81,13 @@ void CPlayLevel::tick()
 		ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
 	}
 
-	if (KEY_TAP(KEY::F))
-	{
-		CCamera::GetInst()->FadeIn(2.5f);
-	}
+	//if (KEY_TAP(KEY::F))
+	//{
+	//	CCamera::GetInst()->FadeIn(2.5f);
+	//}
 
-	if (KEY_TAP(KEY::G))
-	{
-		CCamera::GetInst()->FadeOut(2.5f);
-	}
+	//if (KEY_TAP(KEY::G))
+	//{
+	//	CCamera::GetInst()->FadeOut(2.5f);
+	//}
 }

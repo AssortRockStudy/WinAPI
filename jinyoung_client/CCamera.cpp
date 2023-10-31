@@ -11,8 +11,6 @@
 CCamera::CCamera()
 	: m_Veil(nullptr)
 	, m_Alpha(0.f)
-	, m_AccTime(0.f)
-	, m_CamEffectType(CAM_EFFECT::NONE)
 {
 	Vec2 vResol = CEngine::GetInst()->GetResolution();
 	m_Veil = CAssetMgr::GetInst()->CreateTexture(L"VeilTex", vResol.x, vResol.y);
@@ -55,39 +53,42 @@ void CCamera::tick()
 	m_vDiff = m_vLookAt - vCenter;
 
 
-	// 카메라 효과가 켜져있다면
-	if (m_CamEffectType == CAM_EFFECT::NONE)
+	// 카메라 이벤트가 없으면 리턴
+	if (m_EventList.empty())
 		return;
 
-	if (m_CamEffectType == CAM_EFFECT::FADE_IN)
-	{
-		m_AccTime += DT;
+	// 카메라 이벤트가 존재한다면
+	FCamEvent& evnt = m_EventList.front();
 
-		if (m_DestTime <= m_AccTime)
+	if (evnt.Type == CAM_EFFECT::FADE_IN)
+	{
+		evnt.AccTime += DT;
+
+		if (evnt.Duration <= evnt.AccTime)
 		{
-			m_CamEffectType = CAM_EFFECT::NONE;
 			m_Alpha = 0;
+			m_EventList.pop_front();
 		}
 		else
 		{
-			float fRatio = m_AccTime / m_DestTime;
+			float fRatio = evnt.AccTime / evnt.Duration;
 			float alpha = 1.f - fRatio;
 			m_Alpha = (UINT)(alpha * 255);
 		}
 	}
 
-	if (m_CamEffectType == CAM_EFFECT::FADE_OUT)
+	else if (evnt.Type == CAM_EFFECT::FADE_OUT)
 	{
-		m_AccTime += DT;
+		evnt.AccTime += DT;
 
-		if (m_DestTime <= m_AccTime)
+		if (evnt.Duration <= evnt.AccTime)
 		{
-			m_CamEffectType = CAM_EFFECT::NONE;
+			m_EventList.pop_front();
 			m_Alpha = 255;
 		}
 		else
 		{
-			float fRatio = m_AccTime / m_DestTime;
+			float fRatio = evnt.AccTime / evnt.Duration;
 			float alpha = fRatio;
 			m_Alpha = (UINT)(alpha * 255);
 		}
