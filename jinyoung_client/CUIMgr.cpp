@@ -44,6 +44,8 @@ void CUIMgr::tick()
 
 		if (pUI->m_bMouseOn)
 		{
+			pUI = GetPriorityCheck(pUI);
+
 			if (pUI->m_bMouseOn_Prev != pUI->m_bMouseOn)
 			{
 				pUI->OnHovered(vMousePos);
@@ -82,4 +84,11 @@ void CUIMgr::tick()
 		}
 
 	}
+}
+
+CUI* CUIMgr::GetPriorityCheck(CUI* _ParentUI)
+{
+	_ParentUI;
+
+	return nullptr;
 }

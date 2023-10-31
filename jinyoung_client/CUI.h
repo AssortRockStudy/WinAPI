@@ -36,6 +36,7 @@ public:
 
 public:
     Vec2 GetFinalPos() { return m_vFinalPos; }
+    bool IsLBtnDown() { return m_bMouseLBtnDown; }
 
 public:
     CUI();

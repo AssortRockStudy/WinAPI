@@ -3,6 +3,9 @@
 
 class CTexture;
 
+typedef  void(*BtnCallBack)(void);
+typedef  void(CEntity::* DelegateFunc)(void);
+
 class CBtnUI :
     public CUI
 {
@@ -14,12 +17,23 @@ private:
     CTexture* m_CurImg;
 
     // 콜백 (전역함수 포인터)    
+    BtnCallBack m_CallBackFunc;
+
     // 델리게이트(맴버함수 포인터, 객체)
+    // 객체의 주소
+    CEntity* m_Inst;
+    // 맴버함수의 주소
+    DelegateFunc    m_Delegate;
+
+    Vec2            m_vLbtnDownPos;
 
 public:
     void SetNormalImg(CTexture* _NormalImg) { m_NormalImg = _NormalImg; }
     void SetPressedImg(CTexture* _PressedImg) { m_PressedImg = _PressedImg; }
     void SetHoverImg(CTexture* _HoverImg) { m_HoverImg = _HoverImg; }
+    void SetCallBack(BtnCallBack _CallBack) { m_CallBackFunc = _CallBack; }
+    void SetDeletage(CEntity* _Inst, DelegateFunc _Func) { m_Inst = _Inst; m_Delegate = _Func; }
+
 
 public:
     virtual void tick(float _DT) override;

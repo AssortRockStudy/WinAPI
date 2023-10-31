@@ -14,6 +14,9 @@
 #include "CPanelUI.h"
 #include "CBtnUI.h"
 
+void TestFunc();
+INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+
 void CEditorLevel::init()
 {
 }
@@ -50,6 +53,9 @@ void CEditorLevel::enter()
 	CBtnUI* pBtnUI = new CBtnUI;
 	pBtnUI->SetScale(Vec2(200.f, 80.f));
 	pBtnUI->SetPos(Vec2(1390.f, 10.f));
+	//pBtnUI->SetCallBack(TestFunc);
+	pBtnUI->SetDeletage(this, (DelegateFunc)&CEditorLevel::OpenTileCreateWindow);
+
 	AddObject(LAYER::UI, pBtnUI);
 }
 
@@ -101,6 +107,10 @@ void CEditorLevel::tick()
 	}
 }
 
+void CEditorLevel::OpenTileCreateWindow()
+{
+	DialogBox(nullptr, MAKEINTRESOURCE(IDD_TILECOUNT), CEngine::GetInst()->GetMainWind(), CreateTileProc);
+}
 
 
 // ==============================
@@ -143,3 +153,4 @@ INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM l
 	}
 	return (INT_PTR)FALSE;
 }
+
