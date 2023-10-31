@@ -19,6 +19,19 @@
 
 #pragma comment(lib, "Msimg32.lib")
 
+#include <objidl.h>
+#include <gdiplus.h>
+#pragma comment(lib, "Gdiplus.lib")
+
+using namespace::Gdiplus;
+
+#include <mmsystem.h>
+#include <dsound.h>
+#include <dinput.h>
+
+#pragma comment(lib, "winmm.lib")
+#pragma comment(lib, "dsound.lib")
+
 using std::list;
 using std::make_pair;
 using std::map;

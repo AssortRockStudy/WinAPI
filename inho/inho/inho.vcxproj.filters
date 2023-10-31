@@ -23,9 +23,6 @@
     <Filter Include="Game\06. Component">
       <UniqueIdentifier>{dd98df2a-d112-4a27-bd67-4f43a80d05da}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\06. Component\AI">
-      <UniqueIdentifier>{8fe77e28-0a19-44e0-8100-48558c2d7daa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\06. Component\Animator">
       <UniqueIdentifier>{2c15ce47-688d-4eae-b6bf-2e1ef127d02f}</UniqueIdentifier>
     </Filter>
@@ -79,6 +76,12 @@
     </Filter>
     <Filter Include="Game\05. Object\UI">
       <UniqueIdentifier>{041cdaac-27ba-4a1d-88be-0f8323c6fc9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\StateMachine">
+      <UniqueIdentifier>{8fe77e28-0a19-44e0-8100-48558c2d7daa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\StateMachine\State">
+      <UniqueIdentifier>{2a4562cf-1160-460a-b3f2-4c7fec525d50}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +218,24 @@
     <ClInclude Include="CPanelUI.h">
       <Filter>Game\05. Object\UI</Filter>
     </ClInclude>
+    <ClInclude Include="CUIMgr.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CSoundMgr.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CStateMachine.h">
+      <Filter>Game\06. Component\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="CState.h">
+      <Filter>Game\06. Component\StateMachine\State</Filter>
+    </ClInclude>
+    <ClInclude Include="CNormalMonIdle.h">
+      <Filter>Game\06. Component\StateMachine\State</Filter>
+    </ClInclude>
+    <ClInclude Include="CNormalMonTrace.h">
+      <Filter>Game\06. Component\StateMachine\State</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="inho.rc">
@@ -344,6 +365,24 @@
     </ClCompile>
     <ClCompile Include="CPanelUI.cpp">
       <Filter>Game\05. Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIMgr.cpp">
+      <Filter>Game\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CSoundMgr.cpp">
+      <Filter>Game\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CStateMachine.cpp">
+      <Filter>Game\06. Component\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="CState.cpp">
+      <Filter>Game\06. Component\StateMachine\State</Filter>
+    </ClCompile>
+    <ClCompile Include="CNormalMonIdle.cpp">
+      <Filter>Game\06. Component\StateMachine\State</Filter>
+    </ClCompile>
+    <ClCompile Include="CNormalMonTrace.cpp">
+      <Filter>Game\06. Component\StateMachine\State</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

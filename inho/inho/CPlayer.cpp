@@ -29,7 +29,7 @@ CPlayer::CPlayer() :
     m_Animator(nullptr),
     m_Movement(nullptr)
 {
-    
+    SetName(L"Player");
     // 컴포넌트 추가
     m_Collider = AddComponent<CCollider>(L"PlayerCollider");
     m_Collider->SetOffsetPos(Vec2(0.f, 10.f));

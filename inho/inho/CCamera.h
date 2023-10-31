@@ -5,7 +5,12 @@ class CTexture;
 enum class CAM_EFFECT {
     FADE_IN,
     FADE_OUT,
-    NONE,
+};
+
+struct FCamEvent {
+    CAM_EFFECT type;
+    float AccTime;
+    float Duration;
 };
 
 class CCamera {
@@ -16,10 +21,7 @@ class CCamera {
     Vec2 m_vDiff;
     CTexture* m_Veil;
 
-    float m_AccTime;
-    float m_DestTime;
-    CAM_EFFECT m_CamEffectType;
-
+    list<FCamEvent> m_EventList;
     UINT m_Alpha;
 
   public:
@@ -28,15 +30,19 @@ class CCamera {
     void SetLookAt(Vec2 _vLookAt) { m_vLookAt = _vLookAt; }
 
     void FadeIn(float _time) {
-        m_DestTime = _time;
-        m_AccTime = 0.f;
-        m_CamEffectType = CAM_EFFECT::FADE_IN;
+        FCamEvent evnt = {};
+        evnt.type = CAM_EFFECT::FADE_IN;
+        evnt.AccTime = 0.f;
+        evnt.Duration = _time;
+        m_EventList.push_back(evnt);
     }
 
     void FadeOut(float _time) {
-        m_DestTime = _time;
-        m_AccTime = 0.f;
-        m_CamEffectType = CAM_EFFECT::FADE_OUT;
+        FCamEvent evnt = {};
+        evnt.type = CAM_EFFECT::FADE_OUT;
+        evnt.AccTime = 0.f;
+        evnt.Duration = _time;
+        m_EventList.push_back(evnt);
     }
 
     Vec2 GetRenderPos(Vec2 _vRealPos) { return _vRealPos - m_vDiff; }

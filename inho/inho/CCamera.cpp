@@ -11,9 +11,7 @@
 
 CCamera::CCamera():
     m_Veil(nullptr),
-    m_Alpha(0.f),
-    m_AccTime(0.f),
-    m_CamEffectType(CAM_EFFECT::NONE)
+    m_Alpha(0.f)
 {
     Vec2 vResol = CEngine::GetInst()->GetResolution();
     m_Veil = CAssetMgr::GetInst()->CreateTexture(L"VeilTex", vResol.x, vResol.y);
@@ -46,34 +44,36 @@ void CCamera::tick() {
 
     m_vDiff = m_vLookAt - vCenter;
 
-    if (m_CamEffectType == CAM_EFFECT::NONE)
+    if (m_EventList.empty())
         return;
 
-    if (m_CamEffectType == CAM_EFFECT::FADE_IN) {
+    FCamEvent& evnt = m_EventList.front();
 
-        m_AccTime += DT;
+    if (evnt.type == CAM_EFFECT::FADE_IN) {
 
-        if (m_DestTime <= m_AccTime) {
-            m_CamEffectType = CAM_EFFECT::NONE;
+        evnt.AccTime += DT;
+
+        if (evnt.Duration <= evnt.AccTime) {
             m_Alpha = 0;
+            m_EventList.pop_front();
         }
         else {
-            float fRatio = m_AccTime / m_DestTime;
+            float fRatio = evnt.AccTime / evnt.Duration;
             float alpha = 1.f - fRatio;
             m_Alpha = (UINT)(alpha * 255);
         }
     }
 
-    if (m_CamEffectType == CAM_EFFECT::FADE_OUT) {
+    else if (evnt.type == CAM_EFFECT::FADE_OUT) {
 
-        m_AccTime += DT;
+        evnt.AccTime += DT;
 
-        if (m_DestTime <= m_AccTime) {
-            m_CamEffectType = CAM_EFFECT::NONE;
+        if (evnt.Duration <= evnt.AccTime) {
+            m_EventList.pop_front();
             m_Alpha = 255;
         }
         else {
-            float fRatio = m_AccTime / m_DestTime;
+            float fRatio = evnt.AccTime / evnt.Duration;
             float alpha = fRatio;
             m_Alpha = (UINT)(alpha * 255);
         }

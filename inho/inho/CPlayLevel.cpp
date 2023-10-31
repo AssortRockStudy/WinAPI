@@ -3,11 +3,15 @@
 
 #include "CPlayer.h"
 #include "CPlatform.h"
+#include "CMonster.h"
 
 #include "CEngine.h"
 #include "CCollisionMgr.h"
 #include "CKeyMgr.h"
 #include "CLevelMgr.h"
+
+#include "CAssetMgr.h"
+#include "CSound.h"
 
 void CPlayLevel::init()
 {
@@ -18,6 +22,14 @@ void CPlayLevel::init()
     pPlayer->SetScale(Vec2(50.f, 50.f));
 
     AddObject(PLAYER, pPlayer);
+
+    CMonster* pMonster = nullptr;
+
+    pMonster = new CMonster;
+    pMonster->SetPos(Vec2(900.f, 500.f));
+    pMonster->SetScale(Vec2(100.f, 100.f));
+    AddObject(MONSTER, pMonster);
+
 
     CPlatform* pPlatform = new CPlatform;
     pPlatform->SetPos(Vec2(800.f, 700.f));
@@ -36,7 +48,13 @@ void CPlayLevel::init()
 
 void CPlayLevel::enter()
 {
-    init();
+    CCamera::GetInst()->FadeOut(0.3f);
+    CCamera::GetInst()->FadeIn(0.3f);
+
+    CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\DM.wav");
+    pSound->SetVolume(100);
+    pSound->SetPosition(45.f);
+    pSound->Play(true);
 }
 
 void CPlayLevel::exit()
@@ -50,5 +68,13 @@ void CPlayLevel::tick()
 
     if (KEY_TAP(KEY::ENTER)) {
         ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
+    }
+
+    if (KEY_TAP(KEY::M))
+    {
+        CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_02", L"sound\\BGM_Stage1.wav");
+        pSound->SetVolume(100);
+        pSound->SetPosition(45.f);
+        pSound->Play(true);
     }
 }

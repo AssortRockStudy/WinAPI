@@ -44,7 +44,7 @@ public:
     UINT GetTileCol() { return m_TileCol; }
     UINT GetTileRow() { return m_TileRow; }
 
-
+    CObj* FindObjectByName(const wstring& _Name);
   public:
       CLONE_DISABLE(CLevel);
     CLevel();

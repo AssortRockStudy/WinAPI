@@ -53,6 +53,7 @@ void CAnimator::render(HDC _dc) {
 void CAnimator::Play(const wstring& _strName, bool _bRepeat) {
 	m_bRepeat = _bRepeat;
 	m_CurAnim = FindAnim(_strName);
+	m_CurAnim->Reset();
 }
 
 void CAnimator::Stop() {}

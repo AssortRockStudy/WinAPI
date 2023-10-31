@@ -31,6 +31,7 @@ class CObj : public CEntity {
         return pNewCom;
     }
 
+public:
     template<typename T>
     T* GetComponent() {
         for (size_t i = 0; i < m_vecComponent.size(); ++i) {

@@ -152,3 +152,8 @@ enum class LEVEL_TYPE {
     EDITOR_LEVEL,
     END,
 };
+
+enum class ENORMAL_MON_STATE {
+    IDLE,
+    TRACE
+};

@@ -2,6 +2,7 @@
 #include "CObj.h"
 
 class CCollider;
+class CTexture;
 
 class CMonster : public CObj {
 
@@ -9,8 +10,10 @@ class CMonster : public CObj {
 
   private:
     FMonInfo m_Info;
-
     CCollider* m_Collider;
+    CStateMachine* m_AI;
+
+    CTexture* m_Texture;
 
   public:
     void SetMonsterInfo(const FMonInfo& _Info) { m_Info = _Info; }

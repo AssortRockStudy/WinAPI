@@ -18,6 +18,7 @@
 
 #include "CGCMgr.h"
 #include "CUIMgr.h"
+#include "CSoundMgr.h"
 
 #include "CTexture.h"
 
@@ -52,6 +53,8 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution) {
     CPaletteMgr::GetInst()->init(m_SubTex->GetDC());
     CKeyMgr::GetInst()->init();
     CPathMgr::init();
+    CSoundMgr::GetInst()->init();
+
     CLevelMgr::GetInst()->init();
 }
 
