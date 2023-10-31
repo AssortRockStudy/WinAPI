@@ -31,8 +31,10 @@ public:
 
 
 public:
+	CLONE_DISABLE(CLayer);
 	CLayer();
 	~CLayer();
+	CLayer(const CLayer& _Origin) = delete;
 
 	friend class CLevel;
 	friend class CUIMgr;

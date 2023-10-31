@@ -31,7 +31,7 @@ void CTile::AddImgIdx()
 
 	UINT maxTileCount = maxRow * maxCol;
 
-	if (maxTileCount <= m_Idx)
+	if ((int)maxTileCount <= m_Idx)
 	{
 		m_Idx = 0;
 	}
@@ -48,9 +48,11 @@ void CTile::render(HDC _dc)
 
 	if (nullptr == m_Atlas)
 	{
-		Rectangle(_dc, vRenderPos.x, vRenderPos.y
-			, vRenderPos.x + TILE_SIZE
-			, vRenderPos.y + TILE_SIZE);
+		Rectangle(_dc
+			, (int)(vRenderPos.x)
+			, (int)(vRenderPos.y)
+			, (int)(vRenderPos.x + TILE_SIZE)
+			, (int)(vRenderPos.y + TILE_SIZE));
 	}
 	else
 	{
@@ -62,7 +64,7 @@ void CTile::render(HDC _dc)
 
 		UINT maxTileCount = maxRow * maxCol;
 
-		if (maxTileCount <= m_Idx)
+		if ((int)maxTileCount <= m_Idx)
 		{
 			return;
 		}
@@ -72,9 +74,12 @@ void CTile::render(HDC _dc)
 
 		Vec2 vLeftTop = Vec2(TILE_SIZE * iCol, TILE_SIZE * iRow);
 
-		BitBlt(_dc, vRenderPos.x, vRenderPos.y
+		BitBlt(_dc
+			, (int)vRenderPos.x
+			, (int)vRenderPos.y
 			, TILE_SIZE, TILE_SIZE
 			, m_Atlas->GetDC()
-			, vLeftTop.x, vLeftTop.y, SRCCOPY);
+			, (int)vLeftTop.x
+			, (int)vLeftTop.y, SRCCOPY);
 	}
 }

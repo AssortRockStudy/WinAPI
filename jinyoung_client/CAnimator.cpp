@@ -13,6 +13,24 @@ CAnimator::CAnimator(CObj* _Owner)
 {
 }
 
+CAnimator::CAnimator(const CAnimator& _Origin)
+	: CComponent(_Origin)
+	, m_CurAnim(nullptr)
+	, m_bRepeat(_Origin.m_bRepeat)
+{
+	for (const auto& pair : _Origin.m_mapAnim)
+	{
+		CAnim* pAnim = pair.second->Clone();
+		pAnim->m_pAnimator = this;
+		m_mapAnim.insert(make_pair(pair.first, pAnim));
+	}
+
+	if (nullptr != _Origin.m_CurAnim)
+	{
+		m_CurAnim = FindAnim(_Origin.m_CurAnim->GetName());
+	}
+}
+
 CAnimator::~CAnimator()
 {
 	for (const auto& pair : m_mapAnim)

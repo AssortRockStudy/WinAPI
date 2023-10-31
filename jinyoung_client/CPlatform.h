@@ -15,7 +15,9 @@ public:
 
 
 public:
+    CLONE(CPlatform);
     CPlatform();
+    CPlatform(const CPlatform& _Origin);
     ~CPlatform();
 };
 

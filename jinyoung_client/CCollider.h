@@ -28,9 +28,12 @@ public:
     void Overlap(CCollider* _OtherCol);
     void EndOverlap(CCollider* _OtherCol);
 
+public:
+    virtual CCollider* Clone() { return new CCollider(*this); }
 
 public:
     CCollider(CObj* _Owner);
+    CCollider(const CCollider& _Origin);
     ~CCollider();
 };
 

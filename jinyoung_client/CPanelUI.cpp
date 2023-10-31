@@ -31,7 +31,11 @@ void CPanelUI::render(HDC _dc)
 	Vec2 vPos = GetFinalPos();
 	Vec2 vScale = GetScale();
 	SELECT_PEN(_dc, RED_PEN);
-	Rectangle(_dc, vPos.x, vPos.y, vPos.x + vScale.x, vPos.y + vScale.y);
+	Rectangle(_dc
+		, (int)(vPos.x)
+		, (int)(vPos.y)
+		, (int)(vPos.x + vScale.x)
+		, (int)(vPos.y + vScale.y));
 
 	Super::render(_dc);
 }

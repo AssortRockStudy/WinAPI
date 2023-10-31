@@ -39,7 +39,9 @@ public:
 
 
 public:
+    CLONE(CGuided);
     CGuided();
+    CGuided(const CGuided& _Origin);
     ~CGuided();
 };
 

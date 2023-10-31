@@ -32,7 +32,10 @@ class CCollider;
 using std::wstring;
 
 CPlayer::CPlayer()
-	: m_Speed(500.f)
+	: m_Collider(nullptr)
+	, m_Animator(nullptr)
+	, m_Movement(nullptr)
+	//m_Speed(500.f)
 	//, m_Image(nullptr)
 {
 	//이미지가 존재하는 상대경로 (contents 폴더로 부터)
@@ -95,6 +98,19 @@ CPlayer::CPlayer()
 	//DeleteObject(SelectObject(m_ImageDC, m_Image));
  //	GetObject(m_Image, sizeof(BITMAP), &m_BitmapInfo);
 }
+
+CPlayer::CPlayer(const CPlayer& _Origin)
+	: CObj(_Origin)
+	, m_Collider(nullptr)
+	, m_Animator(nullptr)
+	, m_Movement(nullptr)
+{
+	m_Collider = GetComponent<CCollider>();
+	m_Animator = GetComponent<CAnimator>();
+	m_Movement = GetComponent<CMovement>();
+}
+
+
 
 CPlayer::~CPlayer()
 {

@@ -48,7 +48,9 @@ public:
 	UINT GetTileRow() { return m_TileRow; }
 
 public:
+	CLONE_DISABLE(CLevel);
 	CLevel();
+	CLevel(const CLevel& _Origin) = delete;
 	~CLevel();
 
 	friend class CLevelMgr;

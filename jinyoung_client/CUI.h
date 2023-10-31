@@ -39,7 +39,9 @@ public:
     bool IsLBtnDown() { return m_bMouseLBtnDown; }
 
 public:
+    virtual CUI* Clone() = 0;
     CUI();
+    CUI(const CUI& _Origin);
     ~CUI();
 
     friend class CUIMgr;

@@ -58,20 +58,10 @@ void CEditorLevel::enter()
 	pPanelUI->AddChildUI(pBtnUI);
 	AddObject(LAYER::UI, pPanelUI);
 
-	//pPanelUI = pPanelUI->Clone();
 
-	//pPanelUI = new CPanelUI;
-	//pPanelUI->SetScale(Vec2(500.f, 400.f));
-	//pPanelUI->SetPos(Vec2(400.f, 200.f));
-
-	//pBtnUI = new CBtnUI;
-	//pBtnUI->SetScale(Vec2(200.f, 80.f));
-	//pBtnUI->SetPos(Vec2(10.f, 10.f));
-	////pBtnUI->SetCallBack(TestFunc);
-	//pBtnUI->SetDeletage(this, (DelegateFunc)&CEditorLevel::OpenTileCreateWindow);
-
-	//pPanelUI->AddChildUI(pBtnUI);
-	//AddObject(LAYER::UI, pPanelUI);
+	/*pPanelUI = pPanelUI->Clone();
+	pPanelUI->SetPos(Vec2(500.f, 200.f));
+	AddObject(LAYER::UI, pPanelUI);*/
 }
 
 void CEditorLevel::exit()
@@ -108,11 +98,11 @@ void CEditorLevel::tick()
 		Vec2 vMousePos = CKeyman::GetInst()->GetMousePos();
 		vMousePos = CCamera::GetInst()->GetRealPos(vMousePos);
 
-		int col = vMousePos.x / TILE_SIZE;
-		int row = vMousePos.y / TILE_SIZE;
+		int col = (int)vMousePos.x / TILE_SIZE;
+		int row = (int)vMousePos.y / TILE_SIZE;
 		int idx = GetTileCol() * row + col;
 
-		if (!(GetTileCol() <= col) && !(GetTileRow() <= row)
+		if (!((int)GetTileCol() <= col) && !((int)GetTileRow() <= row)
 			&& !(vMousePos.x < 0.f) && !(vMousePos.y < 0.f))
 		{
 			const vector<CObj*>& vecTiles = GetLayer(LAYER::TILE)->GetObjects();

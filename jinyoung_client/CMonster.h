@@ -24,7 +24,9 @@ public:
 
 
 public:
+    CLONE(CMonster);
     CMonster();
+    CMonster(const CMonster& _Origin);
     ~CMonster();
 };
 

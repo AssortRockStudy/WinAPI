@@ -21,6 +21,7 @@ public:
     virtual void render(HDC _dc) override;
 
 public:
+    CLONE(CTile);
     CTile();
     ~CTile();
 };

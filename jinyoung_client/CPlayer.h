@@ -7,7 +7,6 @@ class CPlayer :
 {
     GENERATED_OBJECT(CObj);
 
-
 private:
     //HBITMAP hLoadBit;
     //HBITMAP m_Image;
@@ -16,7 +15,7 @@ private:
     //CCollider* m_Collider;
     //CTexture* m_pTexture;
     //CAnimator* m_Animator;
-    float             m_Speed;
+//    float             m_Speed;
     class CCollider* m_Collider;
     class CAnimator* m_Animator;
     class CMovement* m_Movement;
@@ -30,7 +29,9 @@ public:
     virtual void EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
 
 public:
+    CLONE(CPlayer);
     CPlayer();
+    CPlayer(const CPlayer& _Origin);
     ~CPlayer();
 };
 

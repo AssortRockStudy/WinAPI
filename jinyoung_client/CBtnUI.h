@@ -25,7 +25,7 @@ private:
     // 맴버함수의 주소
     DelegateFunc    m_Delegate;
 
-    Vec2            m_vLbtnDownPos;
+    //Vec2            m_vLbtnDownPos;
 
 public:
     void SetNormalImg(CTexture* _NormalImg) { m_NormalImg = _NormalImg; }
@@ -48,6 +48,7 @@ public:
     virtual void LBtnClicked(Vec2 _vMousePos) override;
 
 public:
+    CLONE(CBtnUI);
     CBtnUI();
     ~CBtnUI();
 };

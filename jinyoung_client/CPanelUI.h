@@ -14,6 +14,7 @@ public:
     virtual void render(HDC _dc) override;
 
 public:
+    CLONE(CPanelUI);
     CPanelUI();
     ~CPanelUI();
 };

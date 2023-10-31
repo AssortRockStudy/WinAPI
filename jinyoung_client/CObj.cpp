@@ -11,6 +11,21 @@ CObj::CObj()
 {
 }
 
+CObj::CObj(const CObj& _Origin)
+	: CEntity(_Origin)
+	, m_Pos(_Origin.m_Pos)
+	, m_Scale(_Origin.m_Scale)
+	, m_iLayerIdx(-1)
+{
+	for (size_t i = 0; i < _Origin.m_vecComponent.size(); ++i)
+	{
+		CComponent* pCom = _Origin.m_vecComponent[i]->Clone();
+		pCom->m_pOwner = this;
+		m_vecComponent.push_back(pCom);
+	}
+}
+
+
 CObj::~CObj()
 {
 	for (size_t i = 0; i < m_vecComponent.size(); ++i)

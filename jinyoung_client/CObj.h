@@ -4,6 +4,7 @@
 #include "CTaskMgr.h"
 #include "CCamera.h"
 
+#include "components.h"
 
 
 class CComponent;
@@ -39,6 +40,33 @@ protected:
 		pNewCom->SetName(_strName);
 		return pNewCom;
 	}
+
+	template<typename T>
+	T* GetComponent()
+	{
+		for (size_t i = 0; i < m_vecComponent.size(); ++i)
+		{
+			if (dynamic_cast<T*>(m_vecComponent[i]))
+			{
+				return (T*)m_vecComponent[i];
+			}
+		}
+
+		return nullptr;
+	}
+
+	template<typename T>
+	void GetComponents(vector<T*>& _out)
+	{
+		for (size_t i = 0; i < m_vecComponent.size(); ++i)
+		{
+			if (dynamic_cast<T>(m_vecComponent[i]))
+			{
+				_out.push_back((T*)m_vecComponent[i]);
+			}
+		}
+	}
+
 	
 public:
 	// Level 이 시작할 때 Level 안에 들어있던 오브젝트 or 레벨이 시작되고나서 레벨에 합류하는 오브젝트
@@ -69,7 +97,9 @@ private:
 	void SetDead();
 
 public:
+	virtual CObj* Clone() = 0;
 	CObj();
+	CObj(const CObj& _Origin);
 	virtual ~CObj();
 private:
 	virtual void Abstract() = 0;
