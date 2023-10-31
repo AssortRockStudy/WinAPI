@@ -22,9 +22,18 @@
 
 #pragma comment(lib, "Msimg32.lib")
 
+// Png 관련
 #include <objidl.h>
 #include <gdiplus.h>
 #pragma comment(lib, "Gdiplus.lib")
+
+// 사운드
+#include <mmsystem.h>
+#include <dsound.h>
+#include <dinput.h>
+
+#pragma comment(lib, "winmm.lib")
+#pragma comment(lib, "dsound.lib")
 
 using namespace::Gdiplus;
 using std::vector;

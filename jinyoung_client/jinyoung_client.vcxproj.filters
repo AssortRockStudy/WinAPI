@@ -38,14 +38,20 @@
     <Filter Include="Game\06.Component\Collider">
       <UniqueIdentifier>{b871ccfc-09a5-4233-934b-8833db48ccba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\06.Component\Movemnet">
-      <UniqueIdentifier>{be11d616-eaa3-4a34-8855-73dc755ffc90}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\04.Object\proj">
       <UniqueIdentifier>{26bd8e5c-6508-47ae-96f2-33a540126cf1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\08.UI">
       <UniqueIdentifier>{97f47edb-529b-4736-92e7-5660626d56f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06.Component\StateMachine">
+      <UniqueIdentifier>{a5b56880-7ade-4855-80d4-768022a5113a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06.Component\Movement">
+      <UniqueIdentifier>{be11d616-eaa3-4a34-8855-73dc755ffc90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06.Component\StateMachine\state">
+      <UniqueIdentifier>{1c97e7b8-792c-420e-8419-40b809d1bc02}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -118,9 +124,6 @@
     <ClInclude Include="CTexture.h">
       <Filter>Game\07.Asset</Filter>
     </ClInclude>
-    <ClInclude Include="CSound.h">
-      <Filter>Game\07.Asset</Filter>
-    </ClInclude>
     <ClInclude Include="CAssetMgr.h">
       <Filter>Game\03.Manager</Filter>
     </ClInclude>
@@ -155,7 +158,7 @@
       <Filter>Game\01.Header</Filter>
     </ClInclude>
     <ClInclude Include="CMovement.h">
-      <Filter>Game\06.Component\Movemnet</Filter>
+      <Filter>Game\06.Component\Movement</Filter>
     </ClInclude>
     <ClInclude Include="CPlatform.h">
       <Filter>Game\04.Object</Filter>
@@ -192,6 +195,24 @@
     </ClInclude>
     <ClInclude Include="CUIMgr.h">
       <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CSound.h">
+      <Filter>Game\07.Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="CSoundMgr.h">
+      <Filter>Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CStateMachine.h">
+      <Filter>Game\06.Component\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="CNormalMonTrace.h">
+      <Filter>Game\06.Component\StateMachine\state</Filter>
+    </ClInclude>
+    <ClInclude Include="CState.h">
+      <Filter>Game\06.Component\StateMachine\state</Filter>
+    </ClInclude>
+    <ClInclude Include="CNormalMonIdle.h">
+      <Filter>Game\06.Component\StateMachine\state</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -268,9 +289,6 @@
     <ClCompile Include="CTexture.cpp">
       <Filter>Game\07.Asset</Filter>
     </ClCompile>
-    <ClCompile Include="CSound.cpp">
-      <Filter>Game\07.Asset</Filter>
-    </ClCompile>
     <ClCompile Include="CAssetMgr.cpp">
       <Filter>Game\03.Manager</Filter>
     </ClCompile>
@@ -296,7 +314,7 @@
       <Filter>Game\01.Header</Filter>
     </ClCompile>
     <ClCompile Include="CMovement.cpp">
-      <Filter>Game\06.Component\Movemnet</Filter>
+      <Filter>Game\06.Component\Movement</Filter>
     </ClCompile>
     <ClCompile Include="CPlatform.cpp">
       <Filter>Game\04.Object</Filter>
@@ -333,6 +351,24 @@
     </ClCompile>
     <ClCompile Include="CUIMgr.cpp">
       <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CSound.cpp">
+      <Filter>Game\07.Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="CSoundMgr.cpp">
+      <Filter>Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CStateMachine.cpp">
+      <Filter>Game\06.Component\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="CNormalMonTrace.cpp">
+      <Filter>Game\06.Component\StateMachine\state</Filter>
+    </ClCompile>
+    <ClCompile Include="CState.cpp">
+      <Filter>Game\06.Component\StateMachine\state</Filter>
+    </ClCompile>
+    <ClCompile Include="CNormalMonIdle.cpp">
+      <Filter>Game\06.Component\StateMachine\state</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -10,9 +10,9 @@ class CMonster :
 {
     GENERATED_OBJECT(CObj);
 private:
-    FMonInfo    m_Info;
-
+    FMonInfo        m_Info;
     CCollider* m_Collider;
+    CStateMachine* m_AI;
     CTexture* m_Texture;
 
 public:

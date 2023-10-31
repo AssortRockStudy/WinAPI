@@ -28,6 +28,7 @@ CAnimator::CAnimator(const CAnimator& _Origin)
 	if (nullptr != _Origin.m_CurAnim)
 	{
 		m_CurAnim = FindAnim(_Origin.m_CurAnim->GetName());
+		m_CurAnim->Reset();
 	}
 }
 

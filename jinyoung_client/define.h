@@ -180,3 +180,10 @@ enum class LEVEL_TYPE
 	EDITOR_LEVEL,
 	END,
 };
+
+
+enum class ENORMAL_MON_STATE
+{
+	NORMAL_MON_IDLE,
+	NORMAL_MON_TRACE,
+};

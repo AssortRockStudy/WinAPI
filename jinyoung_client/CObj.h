@@ -31,7 +31,8 @@ public:
 
 	int GetLayerIdx() { return m_iLayerIdx; }
 	bool IsDead() { return m_bDead; }
-protected:
+
+public:
 	template<typename T>
 	T* AddComponent(const wstring& _strName = L"")
 	{

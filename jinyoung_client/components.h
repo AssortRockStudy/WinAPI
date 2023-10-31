@@ -6,5 +6,6 @@
 #include "CMovement.h"
 
 #include "CCollider.h"
+#include "CStateMachine.h"
 
 //#include "AI.h"

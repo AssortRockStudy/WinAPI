@@ -38,6 +38,7 @@ CPlayer::CPlayer()
 	//m_Speed(500.f)
 	//, m_Image(nullptr)
 {
+	SetName(L"Player");
 	//이미지가 존재하는 상대경로 (contents 폴더로 부터)
 	//힙메모리에할당
 	//wstring strPath = CPathMgr::GetContentDir();

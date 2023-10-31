@@ -7,24 +7,34 @@
 #include "CAssetMgr.h"
 #include "CTexture.h"
 
+#include "CNormalMonIdle.h"
+#include "CNormalMonTrace.h"
 
 CMonster::CMonster()
 	: m_Info{}
 	, m_Collider(nullptr)
+	, m_AI(nullptr)
 	, m_Texture(nullptr)
 {
 	m_Collider = AddComponent<CCollider>(L"MonsterCollider");
 	m_Info.HP = 5.f;
 	m_Texture = CAssetMgr::GetInst()->LoadTexture(L"StartTex", L"texture\\MagicCircle_01.png");
+
+	// 상태머신 컴포넌트 추가 및 설정
+	m_AI = AddComponent<CStateMachine>(L"AI");
+	m_AI->AddState((UINT)ENORMAL_MON_STATE::NORMAL_MON_IDLE, new CNormalMonIdle);
+	m_AI->AddState((UINT)ENORMAL_MON_STATE::NORMAL_MON_TRACE, new CNormalMonTrace);
 }
 
 CMonster::CMonster(const CMonster& _Origin)
 	: CObj(_Origin)
 	, m_Info(_Origin.m_Info)
 	, m_Collider(nullptr)
+	, m_AI(nullptr)
 	, m_Texture(_Origin.m_Texture)
 {
 	m_Collider = GetComponent<CCollider>();
+	m_AI = GetComponent<CStateMachine>();
 }
 
 CMonster::~CMonster()
@@ -34,6 +44,14 @@ CMonster::~CMonster()
 void CMonster::begin()
 {
 	m_Collider->SetScale(GetScale() - 10.f);
+
+	Vec2 vPos = GetPos();
+	m_AI->AddDataToBlackboard(L"Initial Position", vPos);
+	m_AI->AddDataToBlackboard(L"Detect Range", 500.f);
+	m_AI->AddDataToBlackboard(L"Attack Range", 50.f);
+	m_AI->AddDataToBlackboard(L"Speed", 100.f);
+
+	m_AI->ChangeState((UINT)ENORMAL_MON_STATE::NORMAL_MON_IDLE);
 }
 
 

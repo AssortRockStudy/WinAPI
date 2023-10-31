@@ -17,6 +17,7 @@
 #include "CLogMgr.h"
 #include "CCamera.h"
 #include "CUIMgr.h"
+#include "CSoundMgr.h"
 
 #include "CTexture.h"
 
@@ -93,6 +94,8 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	CTimeManager::GetInst()->init();
 	CKeyman::GetInst()->init();
 	CPathMgr::init();
+	CSoundMgr::GetInst()->init();
+
 	CLevelMgr::GetInst()->init();
 
 	//레벨매니저로 이관

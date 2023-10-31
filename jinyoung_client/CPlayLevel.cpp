@@ -12,6 +12,8 @@
 #include "CKeyman.h"
 #include "CLevelMgr.h"
 
+#include "CAssetMgr.h"
+#include "CSound.h"
 
 void CPlayLevel::init()
 {
@@ -50,8 +52,8 @@ void CPlayLevel::init()
 
 void CPlayLevel::enter()
 {
-	CCamera::GetInst()->FadeOut(3.f);
-	//CCamera::GetInst()->FadeIn(0.3f);
+	//CCamera::GetInst()->FadeOut(3.f);
+	CCamera::GetInst()->FadeIn(0.3f);
 
 	//CCamera::GetInst()->FadeOut(0.3f);
 	//CCamera::GetInst()->FadeIn(0.3f);
@@ -64,6 +66,11 @@ void CPlayLevel::enter()
 
 	//CCamera::GetInst()->FadeOut(0.3f);
 	//CCamera::GetInst()->FadeIn(0.3f);
+
+	CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\DM.wav");
+	pSound->SetVolume(100);
+	pSound->SetPosition(45.f);
+	pSound->Play(true);
 }
 
 void CPlayLevel::exit()
@@ -79,6 +86,14 @@ void CPlayLevel::tick()
 	if (KEY_TAP(KEY::ENTER))
 	{
 		ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
+	}
+
+	if (KEY_TAP(KEY::M))
+	{
+		CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_02", L"sound\\BGM_Stage1.wav");
+		pSound->SetVolume(100);
+		pSound->SetPosition(45.f);
+		pSound->Play(true);
 	}
 
 	//if (KEY_TAP(KEY::F))
