@@ -1,9 +1,14 @@
 #include "pch.h"
 #include "CBtnUI.h"
 
-
+#include "CEngine.h"
+#include "Resource.h"
 
 CBtnUI::CBtnUI()
+	: m_NormalImg(nullptr)
+	, m_HoverImg(nullptr)
+	, m_PressedImg(nullptr)
+	, m_CurImg(nullptr)
 {
 }
 
@@ -22,7 +27,17 @@ void CBtnUI::render(HDC _dc)
 {
 	Vec2 vPos = GetFinalPos();
 	Vec2 vScale = GetScale();
-	Rectangle(_dc, vPos.x, vPos.y, vPos.x + vScale.x, vPos.y + vScale.y);
+	//Rectangle(_dc, vPos.x, vPos.y, vPos.x + vScale.x, vPos.y + vScale.y);
+
+	if (nullptr != m_CurImg)
+	{
+
+	}
+	else
+	{
+		Rectangle(_dc, vPos.x, vPos.y, vPos.x + vScale.x, vPos.y + vScale.y);
+	}
+
 
 	// 부모클래스(CUI) 렌더함수 호출(자식 UI 들한테 render 를 호출한다)
 	Super::render(_dc);
@@ -32,6 +47,7 @@ void CBtnUI::render(HDC _dc)
 
 void CBtnUI::OnHovered(Vec2 _vMousePos)
 {
+	m_CurImg = m_HoverImg;
 }
 
 void CBtnUI::MouseOn(Vec2 _vMousePos)
@@ -41,5 +57,23 @@ void CBtnUI::MouseOn(Vec2 _vMousePos)
 
 void CBtnUI::OnUnHovered(Vec2 _vMousePos)
 {
+	m_CurImg = m_NormalImg;
+}
 
+
+void CBtnUI::LBtnDown(Vec2 _vMousePos)
+{
+	m_CurImg = m_PressedImg;
+}
+
+void CBtnUI::LBtnUp(Vec2 _vMousePos)
+{
+	m_CurImg = m_NormalImg;
+}
+
+INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+
+void CBtnUI::LBtnClicked(Vec2 _vMousePos)
+{
+	DialogBox(nullptr, MAKEINTRESOURCE(IDD_TILECOUNT), CEngine::GetInst()->GetMainWind(), CreateTileProc);
 }

@@ -13,6 +13,8 @@ private:
     bool                m_bMouseOn;
     bool                m_bMouseOn_Prev;
 
+    bool                m_bMouseLBtnDown;
+
 public:
     void AddChildUI(CUI* _ChildUI)
     {
