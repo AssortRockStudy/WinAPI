@@ -67,4 +67,14 @@ void CPlayLevel::tick()
 	{
 		ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
 	}
+
+	if (KEY_TAP(KEY::F))
+	{
+		CCamera::GetInst()->FadeIn(2.5f);
+	}
+
+	if (KEY_TAP(KEY::G))
+	{
+		CCamera::GetInst()->FadeOut(2.5f);
+	}
 }

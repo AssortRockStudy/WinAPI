@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "pch.h"
 class CLevel;
+class CTexture;
 
 //엔진은 게임프로그램의 관리자.
 //디자인패턴(설계의 유형)
@@ -20,17 +21,18 @@ class CEngine
 	SINGLETON(CEngine);
 
 private:
-	HWND	m_hWnd;			// 메인 윈도우 핸들
-	POINT	m_ptResolution;	// 윈도우 해상도
+	HWND		m_hWnd;			// 메인 윈도우 핸들
+	POINT		m_ptResolution;	// 윈도우 해상도
 
-	HDC		m_dc;
-	HDC		m_subdc;
-	HBITMAP m_subbitmap;
-
+	HDC			m_dc;
+	//HDC			m_subdc;
+	//HBITMAP		m_subbitmap;
+	CTexture* m_SubTex;
 
 	bool	m_bDebugRender;
-
 	HPEN	m_arrPen[PEN_END];
+
+
 
 public:
 	HWND GetMainWind() { return m_hWnd; }

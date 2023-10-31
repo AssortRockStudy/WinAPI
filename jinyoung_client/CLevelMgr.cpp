@@ -55,7 +55,7 @@ void CLevelMgr::init()
 	}
 
 	// Level
-	::ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
+	::ChangeLevel(LEVEL_TYPE::PLAY_LEVEL);
 
 	// Level 
 	//m_pCurLevel = m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL];

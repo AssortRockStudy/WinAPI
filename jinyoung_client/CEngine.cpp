@@ -7,6 +7,7 @@
 
 #include "CTimeManager.h"
 #include "CKeyman.h"
+#include "CAssetMgr.h"
 #include "CLevelMgr.h"
 #include "CPathMgr.h"
 #include "CTaskMgr.h"
@@ -17,6 +18,7 @@
 #include "CCamera.h"
 #include "CUIMgr.h"
 
+#include "CTexture.h"
 
 //레벨을 알고있어야 delete소멸자호출가능
 #include "CLevel.h"
@@ -38,9 +40,9 @@ CEngine::~CEngine()
 	ReleaseDC(m_hWnd, m_dc);
 
 
-	DeleteObject(m_subbitmap);
-	//우리가만든 dc는 deletedc로 지워야한다
-	DeleteDC(m_subdc);
+	////우리가만든 dc는 deletedc로 지워야한다
+	//DeleteObject(m_subbitmap);
+	//DeleteDC(m_subdc);
 
 	// 레벨 해제
 	//if (nullptr != m_Level)
@@ -78,12 +80,14 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 
 
 	// 추가 비트맵 버퍼
-	m_subbitmap= CreateCompatibleBitmap(m_dc, m_ptResolution.x, m_ptResolution.y);
-	m_subdc = CreateCompatibleDC(m_dc);
+	m_SubTex = CAssetMgr::GetInst()->CreateTexture(L"SubTex", m_ptResolution.x, m_ptResolution.y);
 
+	//m_subbitmap= CreateCompatibleBitmap(m_dc, m_ptResolution.x, m_ptResolution.y);
+	//m_subdc = CreateCompatibleDC(m_dc);
+	// 
 	//m_subdc가 msubbitmap을 저장하고 원래 목적지로 갖고잇던BitMap 이 반환값으로 나오는데, 
 	// 이걸 바로 DeleteObject 함수에 전달시켜서 삭제요청한다.
-	DeleteObject((HBITMAP)SelectObject(m_subdc, m_subbitmap));
+	//DeleteObject((HBITMAP)SelectObject(m_subdc, m_subbitmap));
 
 	// Manager 초기화
 	CTimeManager::GetInst()->init();
@@ -140,7 +144,18 @@ void CEngine::tick()
 	CCollisionMgr::GetInst()->tick();
 	CUIMgr::GetInst()->tick();
 
-	CLevelMgr::GetInst()->render(m_subdc);
+	CLevelMgr::GetInst()->render(m_SubTex->GetDC());
+
+	// Camera render
+	CCamera::GetInst()->render(m_SubTex->GetDC());
+
+	// m_SubDC -> m_DC 로 비트맵 복사
+	BitBlt(CEngine::GetInst()->GetMainDC()
+		, 0, 0
+		, m_ptResolution.x, m_ptResolution.y
+		, m_SubTex->GetDC()
+		, 0, 0, SRCCOPY);
+
 
 	// Task Execute
 	CTaskMgr::GetInst()->tick();
