@@ -102,8 +102,6 @@ public:
 	CObj(const CObj& _Origin);
 	virtual ~CObj();
 private:
-	virtual void Abstract() = 0;
-	
 
 	friend class CLevel;
 	friend class CTaskMgr;
