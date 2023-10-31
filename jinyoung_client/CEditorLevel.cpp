@@ -11,6 +11,7 @@
 #include "Resource.h"
 
 #include "CTile.h"
+#include "CBtnUI.h"
 
 void CEditorLevel::init()
 {
@@ -38,6 +39,12 @@ void CEditorLevel::enter()
 
 	// 鸥老 积己
 	CreateTile(10, 10);
+
+	// UI 积己
+	CBtnUI* pBtnUI = new CBtnUI;
+	pBtnUI->SetScale(Vec2(200.f, 80.f));
+	pBtnUI->SetPos(Vec2(700.f, 10.f));
+	AddObject(LAYER::UI, pBtnUI);
 }
 
 void CEditorLevel::exit()

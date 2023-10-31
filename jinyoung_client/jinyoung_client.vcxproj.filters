@@ -44,6 +44,9 @@
     <Filter Include="Game\04.Object\proj">
       <UniqueIdentifier>{26bd8e5c-6508-47ae-96f2-33a540126cf1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\08.UI">
+      <UniqueIdentifier>{97f47edb-529b-4736-92e7-5660626d56f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -178,6 +181,15 @@
     <ClInclude Include="CTile.h">
       <Filter>Game\04.Object</Filter>
     </ClInclude>
+    <ClInclude Include="CBtnUI.h">
+      <Filter>Game\08.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CPanelUI.h">
+      <Filter>Game\08.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>Game\08.UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -306,6 +318,15 @@
     </ClCompile>
     <ClCompile Include="CTile.cpp">
       <Filter>Game\04.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CBtnUI.cpp">
+      <Filter>Game\08.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CPanelUI.cpp">
+      <Filter>Game\08.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>Game\08.UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

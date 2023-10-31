@@ -113,45 +113,65 @@ void CKeyman::init()
 
 void CKeyman::tick()
 {
-
-	for (size_t i = 0; i < m_vecKeyData.size(); ++i)
+	if (nullptr == GetFocus())
 	{
-		if (GetAsyncKeyState(g_KeySync[m_vecKeyData[i].eKey]) & 0x8001)
+		for (size_t i = 0; i < m_vecKeyData.size(); ++i)
 		{
-			// 이번 프레임에 해당 키가 눌려있다.
-			if (m_vecKeyData[i].bPressed)
+			if (TAP == m_vecKeyData[i].eState)
 			{
-				// 이전에도 눌려있었다 ==> 계속 눌림 상태
 				m_vecKeyData[i].eState = PRESSED;
 			}
-			else
+			else if (PRESSED == m_vecKeyData[i].eState)
 			{
-				// 이전에는 눌려있지 않았다 ==> 막 눌림 상태
-				m_vecKeyData[i].eState = TAP;
-			}
-
-			m_vecKeyData[i].bPressed = true;
-		}
-		else
-		{
-			// 이번 프레임에 해당키는 안 눌려 있다
-			if (m_vecKeyData[i].bPressed)
-			{
-				// 이전 프레임에는 눌려 있었다 ==> 막 뗌
 				m_vecKeyData[i].eState = RELEASED;
 			}
-			else
+			else if (RELEASED == m_vecKeyData[i].eState)
 			{
 				m_vecKeyData[i].eState = NONE;
 			}
-
-			m_vecKeyData[i].bPressed = false;
 		}
 	}
+	else
+	{
+		for (size_t i = 0; i < m_vecKeyData.size(); ++i)
+		{
+			if (GetAsyncKeyState(g_KeySync[m_vecKeyData[i].eKey]) & 0x8001)
+			{
+				// 이번 프레임에 해당 키가 눌려있다.
+				if (m_vecKeyData[i].bPressed)
+				{
+					// 이전에도 눌려있었다 ==> 계속 눌림 상태
+					m_vecKeyData[i].eState = PRESSED;
+				}
+				else
+				{
+					// 이전에는 눌려있지 않았다 ==> 막 눌림 상태
+					m_vecKeyData[i].eState = TAP;
+				}
 
-	// 마우스 좌표 계산
-	POINT pt = {};
-	GetCursorPos(&pt);
-	ScreenToClient(CEngine::GetInst()->GetMainWind(), &pt);
-	m_vMousePos = pt;
+				m_vecKeyData[i].bPressed = true;
+			}
+			else
+			{
+				// 이번 프레임에 해당키는 안 눌려 있다
+				if (m_vecKeyData[i].bPressed)
+				{
+					// 이전 프레임에는 눌려 있었다 ==> 막 뗌
+					m_vecKeyData[i].eState = RELEASED;
+				}
+				else
+				{
+					m_vecKeyData[i].eState = NONE;
+				}
+
+				m_vecKeyData[i].bPressed = false;
+			}
+		}
+
+		// 마우스 좌표 계산
+		POINT pt = {};
+		GetCursorPos(&pt);
+		ScreenToClient(CEngine::GetInst()->GetMainWind(), &pt);
+		m_vMousePos = pt;
+	}
 }
