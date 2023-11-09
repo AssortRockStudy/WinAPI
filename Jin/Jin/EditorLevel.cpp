@@ -11,6 +11,12 @@
 
 #include "Tile.h"
 #include "BtnUI.h"
+#include "PanelUI.h"
+
+//void TestFunc();
+INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+
+
 
 void EditorLevel::init()
 {
@@ -31,10 +37,20 @@ void EditorLevel::enter()
 	POINT ptResSol = Engine::GetInst()->GetResolution();
 	Engine::GetInst()->ChangeWindowSize(ptResSol, true);
 
+
+	PanelUI* pPanelUI = new PanelUI;
+	pPanelUI->SetScale(Vec2(500.f, 400.f));
+	pPanelUI->SetPos(Vec2(800.f, 200.f));
+
 	BtnUI* pBtnUI = new BtnUI;
 	pBtnUI->SetScale(Vec2(200.f, 80.f));
-	pBtnUI->SetPos(Vec2(1390.f, 10.f));
-	AddObject(LAYER::UI, pBtnUI);
+	pBtnUI->SetPos(Vec2(10.f, 10.f));
+	pBtnUI->SetDelegate(this, (DelegateFunc)& EditorLevel::OpenTileCreateWindow);
+
+	pPanelUI->AddChildUI(pBtnUI);
+	AddObject(LAYER::UILAYER, pPanelUI);
+
+
 }
 
 void EditorLevel::exit()
@@ -56,14 +72,14 @@ void EditorLevel::tick()
 
 	if (KEY_TAP(KEY::LBTN))
 	{
-		Vec2 vMousePos = KeyMgr::GetInst()->GetMousPos();
+		Vec2 vMousePos = KeyMgr::GetInst()->GetMousePos();
 		vMousePos = Camera::GetInst()->GerRealPos(vMousePos);
 
-		int col = vMousePos.x / TILE_SIZE;
-		int row = vMousePos.y / TILE_SIZE;
+		int col = (int)vMousePos.x / TILE_SIZE;
+		int row = (int)vMousePos.y / TILE_SIZE;
 		int idx = GetTileCol() * row + col;
 
-		if (!(GetTileCol() <= col) && !(GetTileCol() <= row)
+		if (!((int)GetTileCol() <= col) && !((int)GetTileCol() <= row)
 			 && !(vMousePos.x < 0.f) && !(vMousePos.y < 0.f) )
 		{
 			const vector<Obj*>& vecTiles = GetLayer(LAYER::TILE)->GetObjects();
@@ -78,6 +94,12 @@ void EditorLevel::tick()
 		ChangeLevel(LEVEL_TYPE::PLAY_LEVEL);
 	}
 
+
+}
+
+void EditorLevel::OpenTileCreateWindow()
+{
+	DialogBox(nullptr, MAKEINTRESOURCE(IDD_JIN_DIALOG), Engine::GetInst()->GetMainWind(), CreateTileProc);
 
 }
 
@@ -115,3 +137,8 @@ INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM l
 	}
 	return (INT_PTR)FALSE;
 }
+
+//void TestFunc()
+//{
+//	DialogBox(nullptr, MAKEINTRESOURCE(ID_CREATE_TILE), Engine::GetInst()->GetMainWind(), CreateTileProc);
+//}

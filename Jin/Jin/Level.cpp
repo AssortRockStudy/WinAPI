@@ -59,6 +59,21 @@ void Level::render(HDC _dc)
 	}
 }
 
+Obj* Level::FindObjectByName(const wstring& _Name)
+{
+	for (UINT i = 0; i < LAYER::END; ++i)
+	{
+		const vector<Obj*>& vecObjects = m_Layer[i]->GetObjects();
+		for (size_t j = 0; j < vecObjects.size(); ++j)
+		{
+			if (vecObjects[j]->GetName() == _Name)
+				return vecObjects[j];
+		}
+	}
+
+	return nullptr;
+}
+
 void Level :: AddObject(LAYER _LayerType, Obj* _Object)
 {
 	m_Layer[_LayerType]->AddObject(_Object);

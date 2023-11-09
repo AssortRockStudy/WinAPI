@@ -6,7 +6,7 @@ class Obj;
 class Component : public Entity
 {
 private:
-	Obj* const m_pOwner;
+	Obj*  m_pOwner;
 
 public:
 	Obj* GetOwner()
@@ -21,8 +21,12 @@ public:
     {}
 
 public:
+	virtual Component* Clone() = 0;
+
+public:
 	Component(Obj* _Owner);
 	~Component();
 
+	friend class Obj;
 };
 

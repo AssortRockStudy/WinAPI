@@ -39,7 +39,7 @@ void LevelMgr::init()
 		m_arrLevels[i]->init();
 	}
 
-	::ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
+	::ChangeLevel(LEVEL_TYPE::PLAY_LEVEL);
 
 
 }
@@ -61,8 +61,6 @@ void LevelMgr::render(HDC _dc)
 	m_pCurLevel->render(_dc);
 
 	LogMgr::GetInst()->tick(_dc);
-	BitBlt(Engine::GetInst()->GetMainDC(), 0, 0, ptResolution.x, ptResolution.y, _dc, 0, 0, SRCCOPY);
-
 }
 
 

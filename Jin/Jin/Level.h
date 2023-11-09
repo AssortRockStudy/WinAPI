@@ -42,6 +42,8 @@ public:
 		return m_TileRow;
 	}
 
+	Obj* FindObjectByName(const wstring& _Name);
+
 protected:
 	void AddObject(LAYER _LayerType, Obj* _Object);
 	void DeleteAllObjects();
@@ -49,7 +51,9 @@ protected:
 
 
 public:
+	CLONE_DISABLE(Level);
 	Level();
+	Level(const Level& _Origin) = delete;
 	~Level();
 
 	friend class LevelMgr;

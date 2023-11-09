@@ -17,6 +17,18 @@ Guided::~Guided()
 {
 }
 
+
+Guided::Guided(const Guided& _Origin)
+	: m_Target(nullptr)
+	, m_fMass(_Origin.m_fMass)
+	, m_vAccel(_Origin.m_vAccel)
+	, m_vVelocity(_Origin.m_vVelocity)
+	, m_vForce(_Origin.m_vForce)
+	, m_vDir(_Origin.m_vDir)
+	, m_fRotateSpeed(_Origin.m_fRotateSpeed)
+{
+}
+
 void Guided::begin()
 {
 	Super::begin();

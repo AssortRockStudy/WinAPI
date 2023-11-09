@@ -1,6 +1,7 @@
 #pragma once
 #include "Obj.h"
 class Collider;
+class Texture;
 
 class Monster : public Obj
 {
@@ -9,6 +10,8 @@ class Monster : public Obj
 private:
     FMonInfo m_Info;
     Collider* m_Collider;
+    Texture* m_Texture;
+    StateMachine* m_AI;
 
 public:
     void SetMonsterInfo(const FMonInfo& _Info)
@@ -24,7 +27,9 @@ public:
 
 
 public:
+    CLONE(Monster);
     Monster();
+    Monster(const Monster& _Origin);
     ~Monster();
 
 

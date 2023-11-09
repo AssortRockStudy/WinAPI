@@ -8,5 +8,8 @@ public:
     virtual void enter() override;
     virtual void exit() override;
     virtual void tick() override;
+
+public:
+    void OpenTileCreateWindow();
 };
 

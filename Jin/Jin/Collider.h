@@ -42,9 +42,13 @@ public:
 	void Overlap(Collider* _OtherCol);
 	void EndOverlap(Collider* _OtherCol);
 
+public:
+	CLONE(Collider);
+
 
 public:
 	Collider(Obj* _Owner);
+	Collider(const Collider& _Origin);
 	~Collider();
 };
 

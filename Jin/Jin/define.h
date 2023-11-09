@@ -24,8 +24,7 @@
 
 #define GAME_FOLDER MyGame
 
-#define GENERATED_OBJECT(type) typedef type Super;\
-							   virtual void Abstract() override {}
+#define GENERATED_OBJECT(type) typedef type Super;
 
 #define DEBUG_RENDER Engine::GetInst()->DebugRender()
 #define SELECT_PEN(DC, TYPE) FSelectPen tempPenSelect(DC, TYPE)
@@ -33,6 +32,8 @@
 
 #define TILE_SIZE 64
 
+#define CLONE(type) virtual type* Clone() { return new type(*this);}
+#define CLONE_DISABLE(type) virtual type* Clone() {return nullptr;}
 //enum Color
 //{
 //	BLACK, RED, GREEN, BLUE, WHITE,
@@ -78,7 +79,7 @@ enum LAYER
 	MONSTER_PJ,
 	WORLD_STATIC,
 
-	UI = 31,
+	UILAYER = 31,
 	END = 32,
 };
 
@@ -111,5 +112,12 @@ enum class LEVEL_TYPE
 	PLAY_LEVEL,
 	EDITOR_LEVEL,
 	END,
+};
+
+
+enum class ENORMAL_MON_STATE
+{
+	NORMAL_MON_IDLE,
+	NORMAL_MON_TRACE,
 };
 

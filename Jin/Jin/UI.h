@@ -1,5 +1,6 @@
 #pragma once
 #include "Obj.h"
+
 class UI :
     public Obj
 {
@@ -8,6 +9,11 @@ class UI :
 private:
     UI* m_ParentUI;
     vector<UI*> m_vecChildUI;
+    Vec2 m_vFinalPos;
+
+    bool m_bMouseOn;
+    bool m_bMouseOn_Prev;
+    bool m_bMouseLBtnDown;
 
 public:
     void AddChildUI(UI* _ChildUI)
@@ -20,9 +26,30 @@ public:
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
 
+    virtual void OnHovered(Vec2 _vMousePos) {}
+    virtual void MouseOn(Vec2 _vMousePos) {}
+    virtual void OnUnHovered(Vec2 _vMousePos) {}
+
+    virtual void LBtnDown(Vec2 _vMousePos) {}
+    virtual void LBtnUp(Vec2 _vMousePos) {}
+    virtual void LBtnClicked(Vec2 _vMousePos) {}
+
+    bool IsLBtnDown()
+    {
+        return m_bMouseLBtnDown;
+    }
+
+    Vec2 GetFinalPos()
+    { 
+        return m_vFinalPos; 
+    }
+
 public:
+    virtual UI* Clone() = 0;
     UI();
+    UI(const UI& _Origin);
     ~UI();
 
+    friend class UIMgr;
 };
 

@@ -12,6 +12,9 @@
 #include "KeyMgr.h"
 #include "LevelMgr.h"
 
+#include "AssetMgr.h"
+#include "Sound.h"
+
 void PlayLevel::init()
 {
 
@@ -22,11 +25,11 @@ void PlayLevel::init()
 
 	AddObject(PLAYER, pPlayer);
 
-	//Monster* pMonster = nullptr;
-	//pMonster = new Monster;
-	//pMonster->SetPos(Vec2(900.f, 500.f));
-	//pMonster->SetScale(Vec2(100.f, 100.f));
-	//m_pCurLevel->AddObject(MONSTER, pMonster);
+	Monster* pMonster = nullptr;
+	pMonster = new Monster;
+	pMonster->SetPos(Vec2(900.f, 500.f));
+	pMonster->SetScale(Vec2(50.f, 50.f));
+	AddObject(MONSTER, pMonster);
 
 	Platform* pPlatform = new Platform;
 	pPlatform->SetPos(Vec2(800.f, 700.f));
@@ -44,7 +47,13 @@ void PlayLevel::init()
 
 void PlayLevel::enter()
 {
-	init();
+	Camera::GetInst()->FadeOut(0.3f);
+	Camera::GetInst()->FadeIn(0.3f);
+
+	Sound* pSound = AssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\DM.wav");
+	pSound->SetVolume(100);
+	pSound->SetPosition(45.f);
+	pSound->Play(true);
 }
 
 void PlayLevel::exit()
@@ -59,4 +68,13 @@ void PlayLevel::tick()
 	{
 		ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
 	}
+
+	if (KEY_TAP(KEY::M))
+	{
+		Sound* pSound = AssetMgr::GetInst()->LoadSound(L"BGM_02", L"sound\\BGM_Stage1.wav");
+		pSound->SetVolume(100);
+		pSound->SetPosition(45.f);
+		pSound->Play(true);
+	}
 }
+

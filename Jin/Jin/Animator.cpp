@@ -12,6 +12,25 @@ Animator::Animator(Obj* _Owner)
 {
 }
 
+Animator::Animator(const Animator& _Origin)
+	: Component(_Origin)
+	, m_CurAnim(nullptr)
+	, m_bRepeat(_Origin.m_bRepeat)
+{
+	for (const auto& pair : _Origin.m_mapAnim)
+	{
+		Anim* pAnim = pair.second->Clone();
+		pAnim->m_pAnimator = this;
+		m_mapAnim.insert(make_pair(pair.first, pAnim));
+	}
+
+	if (nullptr != _Origin.m_CurAnim)
+	{
+		m_CurAnim = FindAnim(_Origin.m_CurAnim->GetName());
+	}
+}
+
+
 Animator::~Animator()
 {
 	for (const auto& pair : m_mapAnim)
@@ -45,6 +64,7 @@ void Animator::Play(const wstring& _strName, bool _bRepeat)
 {
 	m_bRepeat = _bRepeat;
 	m_CurAnim = FindAnim(_strName);
+	m_CurAnim->Reset();
 }
 
 void Animator::Stop()

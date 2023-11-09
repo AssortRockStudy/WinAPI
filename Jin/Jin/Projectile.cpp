@@ -12,6 +12,15 @@ Projectile::Projectile()
 	m_Collider = AddComponent<Collider>(L"Collider");
 }
 
+Projectile::Projectile(const Projectile& _Origin)
+	: m_Collider(nullptr)
+	, m_Speed(_Origin.m_Speed)
+	, m_Angle(_Origin.m_Angle)
+{
+	m_Collider = GetComponent<Collider>();
+}
+
+
 Projectile::~Projectile()
 {
 }

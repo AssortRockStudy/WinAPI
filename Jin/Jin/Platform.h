@@ -12,7 +12,9 @@ public:
     virtual void Overlap(Collider* _OwnCol, Obj* _OtherObj, Collider* _OtherCol) override;
 
 public:
+    CLONE(Platform);
     Platform();
+    Platform(const Platform& _Origin);
     ~Platform();
 
 };

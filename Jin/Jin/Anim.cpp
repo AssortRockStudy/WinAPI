@@ -50,13 +50,28 @@ void Anim::render(HDC _dc)
 	Obj* pOwnerObject = m_pAnimator->GetOwner();
 	Vec2 vRenderPos = pOwnerObject->GetRenderPos();
 
-	TransparentBlt(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
+	//TransparentBlt(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
+	//	, int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
+	//	, int(frm.vCutSize.x), int(frm.vCutSize.y)
+	//	, m_Atlas->GetDC()
+	//	, int(frm.vLeftTop.x), int(frm.vLeftTop.y)
+	//	, int(frm.vCutSize.x), int(frm.vCutSize.y)
+	//	, RGB(255, 0, 255));
+
+	BLENDFUNCTION blend = {};
+	blend.BlendOp = AC_SRC_OVER;
+	blend.BlendFlags = 0;
+
+	blend.SourceConstantAlpha = 255; // 0 ~ 255
+	blend.AlphaFormat = AC_SRC_ALPHA; // 0
+
+	AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
 		, int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
 		, int(frm.vCutSize.x), int(frm.vCutSize.y)
 		, m_Atlas->GetDC()
 		, int(frm.vLeftTop.x), int(frm.vLeftTop.y)
 		, int(frm.vCutSize.x), int(frm.vCutSize.y)
-		, RGB(255, 0, 255));
+		, blend);
 }
 
 void Anim::Create(const wstring& _strName, Texture* _Atlas, Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm)
@@ -109,9 +124,9 @@ bool Anim::Save(const wstring& _FilePath)
 	fwprintf_s(pFile, L"\n\n");
 
 	fwprintf_s(pFile, L"[FRAME_COUNT]\n");
-	fwprintf_s(pFile, L"%d\n\n", m_vecFrm.size());
+	fwprintf_s(pFile, L"%d\n\n", (int)m_vecFrm.size());
 
-	for (size_t i = 0; i < m_vecFrm.size(); ++i)
+	for (int i = 0; i < (int)m_vecFrm.size(); ++i)
 	{
 		fwprintf_s(pFile, L"[FRAME_NUM]\n");
 		fwprintf_s(pFile, L"%d\n", i);
@@ -170,11 +185,11 @@ bool Anim::Load(const wstring& _FilePath)
 		}
 		else if (!wcscmp(szRead, L"[FRAME_COUNT]"))
 		{
-			size_t iFrameCount = 0;
+			int iFrameCount = 0;
 			fwscanf_s(pFile, L"%d", &iFrameCount);
 			m_vecFrm.resize(iFrameCount);
 
-			size_t iCurFrame = 0;
+			int iCurFrame = 0;
 			while (true)
 			{
 				fwscanf_s(pFile, L"%s", szRead, 256);

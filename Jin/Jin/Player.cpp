@@ -24,10 +24,12 @@
 
 
 Player::Player()
-	: m_Speed(500.f)
+	: m_Collider(nullptr)
+	, m_Animator(nullptr)
+	, m_Movement(nullptr)
 {
-
-	Texture* pAtlas = AssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\link.bmp");
+	SetName(L"Player");
+	Texture* pAtlas = AssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\link_alpha.bmp");
 
 	m_Animator = AddComponent<Animator>(L"Animator");
 	m_Animator->CreateAnimation(L"WalkDown", pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
@@ -68,6 +70,17 @@ Player::Player()
 	m_Movement->UseGravity(false);
 	m_Movement->SetGravity(Vec2(0.f, 980.f));
 	m_Movement->SetGround(true);
+}
+
+Player::Player(const Player& _Origin)
+	: Obj(_Origin)
+	 ,m_Collider(nullptr)
+	, m_Animator(nullptr)
+	, m_Movement(nullptr)
+{
+	m_Collider = GetComponent<Collider>();
+	m_Animator = GetComponent<Animator>();
+	m_Movement = GetComponent<Movement>();
 }
 
 Player::~Player()

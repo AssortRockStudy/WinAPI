@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "TaskMgr.h"
 #include "Camera.h"
+#include "components.h"
 
 class Component;
 class Collider;
@@ -43,7 +44,6 @@ public:
 
 
 private:
-	virtual void Abstract() = 0;
 	void SetDead();
 
 protected:
@@ -55,9 +55,37 @@ protected:
 		pNewComponent->SetName(_strName);
 		return pNewComponent;
 	}
+public:
+	template<typename T>
+	T* GetComponent()
+	{
+		for (size_t i = 0; i < m_vecComponent.size(); ++i)
+		{
+			if (dynamic_cast<T*>(m_vecComponent[i]))
+			{
+				return (T*)m_vecComponent[i];
+			}
+		}
+		return nullptr;
+	}
+
+
+	template<typename T>
+	void GetComponents(vector<T*>& _Out)
+	{
+		for (size_t i = 0; i < m_vecComponent.size(); ++i)
+		{
+			if (dynamic_cast<T>(m_vecComponent[i]))
+			{
+				_Out.push_back((T*)m_vecComponent[i]);
+			}
+		}
+	}
 
 public:
+	virtual Obj* Clone() = 0;
 	Obj();
+	Obj(const Obj& _Origin);
 	virtual ~Obj();
 
 	friend class Level;

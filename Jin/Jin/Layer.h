@@ -45,11 +45,13 @@ public:
 	void DeleteAllObjects();
 
 public:
+	CLONE_DISABLE(Layer);
 	Layer();
+	Layer(const Layer& _Origin) = delete;
 	~Layer();
 
 	friend class Level;
-
+	friend class UIMgr;
 
 
 };

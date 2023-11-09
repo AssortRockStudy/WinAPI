@@ -47,6 +47,7 @@ public:
 
 
 public:
+    CLONE(Anim);
     Anim();
     ~Anim();
 
