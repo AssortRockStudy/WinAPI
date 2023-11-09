@@ -10,5 +10,6 @@ public:
 	void tick();
 	void SetLookAt(Vec2 _vLookAt) { mLookAt = _vLookAt; }
 	Vec2 GetRenderPos(Vec2 _vRealPos) { return _vRealPos - mDiff; }
+	Vec2 getRealPos(Vec2 _vRenderPos) { return mDiff + _vRenderPos; }
 };
 

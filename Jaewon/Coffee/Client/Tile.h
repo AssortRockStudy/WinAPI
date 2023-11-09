@@ -11,6 +11,7 @@ private:
 public:
     void setAtlas(CTexture* _Atlas) { atlas = _Atlas; }
     void setImgIdx(int _ImgIdx) { idx = _ImgIdx; }
+    void addImgIdx();
 
 public:
     virtual void tick(float _DT) override;

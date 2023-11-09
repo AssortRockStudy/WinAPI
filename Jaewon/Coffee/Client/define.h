@@ -102,6 +102,9 @@ enum KEY
 	UP,
 	DOWN,
 
+	LBTN,
+	RBTN,
+
 	KEY_END,
 };
 
@@ -127,7 +130,7 @@ enum LAYER
 
 
 
-
+	UI = 31,
 	END = 32,
 };
 

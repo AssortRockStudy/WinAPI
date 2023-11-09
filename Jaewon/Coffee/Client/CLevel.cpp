@@ -48,8 +48,14 @@ void CLevel::deleteAllObjects()
 		m_Layer[i]->deleteAllObjects();
 }
 
+void CLevel::deleteObjByLayrt(LAYER _layer)
+{
+	m_Layer[_layer]->deleteAllObjects();
+}
+
 void CLevel::createTile(UINT _Row, UINT _Col)
 {
+	deleteObjByLayrt(LAYER::TILE);
 	tileRow = _Row;
 	tileCol = _Col;
 
